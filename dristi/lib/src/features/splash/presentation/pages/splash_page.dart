@@ -41,13 +41,13 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       Duration(milliseconds: autoScrollDuration),
       (timer) {
         if (_pageController.page == splashModels.length - 1) {
-          Future.delayed(const Duration(milliseconds: 700), () {
+          Future.delayed(const Duration(milliseconds: 2000), () {
             _pageController.jumpToPage(0);
           });
         } else {
           _pageController.nextPage(
-            duration: const Duration(milliseconds: 700),
-            curve: Curves.ease,
+            duration: const Duration(milliseconds: 3000),
+            curve: Curves.linearToEaseOut,
           );
         }
       },
@@ -83,7 +83,6 @@ class _SplashPageState extends ConsumerState<SplashPage> {
           alignment: Alignment.topCenter,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10.sp),
               child: Image.asset(
                 splashModels[index].image,
                 fit: BoxFit.cover,
