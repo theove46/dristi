@@ -201,7 +201,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         alignment: Alignment.topLeft,
         child: Text(
           TextConstants.appName,
-          style: AppTypography.bold32Nova(
+          style: AppTypography.bold28Nova(
             color: UIColors.white,
           ),
         ),

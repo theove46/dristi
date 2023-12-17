@@ -18,6 +18,8 @@ dependencies:
   flutter_screenutil: 5.8.4
   animated_text_kit: 4.2.2
   flutter_svg: 2.0.7
+  carousel_slider: 4.2.1
+
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +33,11 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/categories/
+    - assets/images/items/
+    - assets/images/popular/
     - assets/images/splash/
+    - assets/images/top_destinations/
 
   fonts:
     - family: Nova
