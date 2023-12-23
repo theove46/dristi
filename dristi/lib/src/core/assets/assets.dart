@@ -1,11 +1,49 @@
 class Assets {
   static const String imagePath = 'assets/images';
+  static const String itemsPath = 'assets/images/items';
+  static const String categoriesPath = 'assets/images/categories';
   static const String splashPath = 'assets/images/splash';
+  static const String popularPath = 'assets/images/popular';
+  static const String topDestinationsPath = 'assets/images/top_destinations';
 
-  static const String appLogo = '$imagePath/logo.svg';
+  /// Common Item Images
+  static const String appLogo = '$itemsPath/logo.png';
+  static const String menu = '$itemsPath/menu.png';
+
+  /// Splash Page Images
   static const String coxsBazar = '$splashPath/coxs_bazar.jpg';
   static const String sundarbans = '$splashPath/sundarbans.jpg';
   static const String saintMartins = '$splashPath/saint_martins.jpg';
   static const String nafakhum = '$splashPath/nafakhum.jpg';
   static const String sajekValley = '$splashPath/sajek_valley.jpg';
+
+  /// Categories Images
+  static const String beach = '$categoriesPath/beach.png';
+  static const String mountains = '$categoriesPath/mountains.png';
+  static const String forest = '$categoriesPath/forest.png';
+  static const String waterfalls = '$categoriesPath/waterfalls.png';
+  static const String heritage = '$categoriesPath/heritage.png';
+  static const String lake = '$categoriesPath/lake.png';
+  static const String themePark = '$categoriesPath/theme_park.png';
+  static const String monument = '$categoriesPath/monument.png';
+  static const String museum = '$categoriesPath/museum.png';
+  static const String nationalPark = '$categoriesPath/national_park.png';
+  static const String resort = '$categoriesPath/resort.png';
+  static const String allCategories = '$categoriesPath/all.png';
+
+  /// Popular Districts Images
+  static const String coxsBazar2 = '$popularPath/coxs_bazar.jpg';
+  static const String bandarban = '$popularPath/bandarban.jpg';
+  static const String dhaka = '$popularPath/dhaka.jpg';
+  static const String chattogram = '$popularPath/chattogram.jpg';
+  static const String khulna = '$popularPath/khulna.jpg';
+  static const String sylhet = '$popularPath/sylhet.jpg';
+
+  /// Top Destinations Images
+  static const String inaniBeach = '$topDestinationsPath/inani_beach.jpg';
+  static const String kaptaiLake = '$topDestinationsPath/kaptai_lake.jpg';
+  static const String nilgiri = '$topDestinationsPath/nilgiri.jpg';
+  static const String hironPoint = '$topDestinationsPath/hiron_point.jpg';
+  static const String tanguarHaor = '$topDestinationsPath/tanguar_haor.jpg';
+  static const String jaflong = '$topDestinationsPath/jaflong.jpg';
 }

@@ -39,11 +39,29 @@ class AppTypography {
     );
   }
 
+  static TextStyle semiBold10Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s10.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.semiBold,
+      color ?? UIColors.black,
+    );
+  }
+
   static TextStyle regular12Nova({Color? color}) {
     return _getTextStyle(
       FontSize.s12.sp,
       FontConstants.fontFamilyNova,
       FontWeightManager.regular,
+      color ?? UIColors.black,
+    );
+  }
+
+  static TextStyle semiBold12Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s12.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.semiBold,
       color ?? UIColors.black,
     );
   }
@@ -75,7 +93,7 @@ class AppTypography {
     );
   }
 
-  static TextStyle bold14Caros({Color? color}) {
+  static TextStyle bold14Nova({Color? color}) {
     return _getTextStyle(
       FontSize.s14.sp,
       FontConstants.fontFamilyNova,
@@ -129,6 +147,15 @@ class AppTypography {
     );
   }
 
+  static TextStyle mediumBold24Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s24.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.medium,
+      color ?? UIColors.black,
+    );
+  }
+
   static TextStyle bold24Nova({Color? color}) {
     return _getTextStyle(
       FontSize.s24.sp,
@@ -138,9 +165,18 @@ class AppTypography {
     );
   }
 
-  static TextStyle bold32Nova({Color? color}) {
+  static TextStyle bold28Nova({Color? color}) {
     return _getTextStyle(
-      FontSize.s32.sp,
+      FontSize.s28.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.bold,
+      color ?? UIColors.black,
+    );
+  }
+
+  static TextStyle bold40Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s40.sp,
       FontConstants.fontFamilyNova,
       FontWeightManager.bold,
       color ?? UIColors.black,
@@ -149,6 +185,15 @@ class AppTypography {
 
   static TextStyle bold32Vibes({Color? color}) {
     return _getTextStyle(
+      FontSize.s32.sp,
+      FontConstants.fontFamilyVibes,
+      FontWeightManager.bold,
+      color ?? UIColors.black,
+    );
+  }
+
+  static TextStyle bold32VibesWithShadow({Color? color}) {
+    return _getTextStyleWithShadow(
       FontSize.s32.sp,
       FontConstants.fontFamilyVibes,
       FontWeightManager.bold,

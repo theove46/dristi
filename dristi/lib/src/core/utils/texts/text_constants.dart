@@ -1,6 +1,13 @@
 class TextConstants {
   /// Global
   static const String appName = 'Dristi';
+  static const String exploreThe = 'Explore the';
+  static const String beautifulBD = 'Beautiful Bangladesh!';
+  static const String topDestinations = 'Top Destinations';
+  static const String popularDistricts = 'Popular Districts';
+  static const String categories = 'Categories';
+  static const String viewAll = 'View all';
+  static const String explore = 'Explore';
 
   /// Update page
   static const String successfullyUpdated = 'Updated Successfully';
