@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
-import 'package:dristi/src/features/home/data/categories_model.dart';
+import 'package:dristi/src/features/home/data/model/categories_model.dart';
 import 'package:dristi/src/features/home/presentation/riverpod/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
