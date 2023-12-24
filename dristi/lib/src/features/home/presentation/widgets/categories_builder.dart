@@ -72,10 +72,10 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       margin: EdgeInsets.all(2.h),
       padding: EdgeInsets.all(10.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: UIColors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         border: Border.all(
-          color: UIColors.gray.withOpacity(0.2),
+          color: UIColors.primary.withOpacity(0.5),
           width: 2,
         ),
       ),

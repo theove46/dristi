@@ -42,9 +42,7 @@ class _PopularCitiesBuilderState
             ),
           ),
           TextButton(
-            onPressed: () {
-              // View More button action
-            },
+            onPressed: () {},
             child: Text(
               TextConstants.explore,
               style: AppTypography.bold12Nova(
@@ -67,29 +65,39 @@ class _PopularCitiesBuilderState
           final item = popularDistrictItems[index];
           return Padding(
             padding: EdgeInsets.only(right: 8.h),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16.r),
-                  child: Image.asset(
-                    item.image,
-                    width: 130.sp,
-                    height: 130.sp,
-                    fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: navigateToDistrictPage,
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16.r),
+                    child: Image.asset(
+                      item.image,
+                      width: 130.sp,
+                      height: 130.sp,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                SizedBox(height: 4.sp),
-                Text(
-                  item.title,
-                  style: AppTypography.bold12Nova(
-                    color: UIColors.black,
+                  SizedBox(height: 4.sp),
+                  Text(
+                    item.title,
+                    style: AppTypography.bold12Nova(
+                      color: UIColors.black,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
       ),
     );
+  }
+
+  void navigateToDistrictPage() {
+    // Navigator.pushNamed(
+    //   context,
+    //   Routes.spot,
+    // );
   }
 }

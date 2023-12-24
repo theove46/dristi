@@ -5,6 +5,7 @@ class Assets {
   static const String splashPath = 'assets/images/splash';
   static const String popularPath = 'assets/images/popular';
   static const String topDestinationsPath = 'assets/images/top_destinations';
+  static const String descriptionItems = 'assets/images/description_items';
 
   /// Common Item Images
   static const String appLogo = '$itemsPath/logo.png';
@@ -46,4 +47,12 @@ class Assets {
   static const String hironPoint = '$topDestinationsPath/hiron_point.jpg';
   static const String tanguarHaor = '$topDestinationsPath/tanguar_haor.jpg';
   static const String jaflong = '$topDestinationsPath/jaflong.jpg';
+
+  /// Description Item Images
+  static const String caution = '$descriptionItems/caution.png';
+  static const String live = '$descriptionItems/live.png';
+  static const String nearest = '$descriptionItems/nearest.png';
+  static const String plans = '$descriptionItems/plans.png';
+  static const String seasons = '$descriptionItems/seasons.png';
+  static const String specials = '$descriptionItems/specials.png';
 }
