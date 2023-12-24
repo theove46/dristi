@@ -201,6 +201,15 @@ class AppTypography {
     );
   }
 
+  static TextStyle bold44VibesWithShadow({Color? color}) {
+    return _getTextStyleWithShadow(
+      FontSize.s44.sp,
+      FontConstants.fontFamilyVibes,
+      FontWeightManager.bold,
+      color ?? UIColors.black,
+    );
+  }
+
   static TextStyle bold60VibesWithShadow({Color? color}) {
     return _getTextStyleWithShadow(
       FontSize.s60.sp,
