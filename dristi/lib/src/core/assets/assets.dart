@@ -10,6 +10,7 @@ class Assets {
   /// Common Item Images
   static const String appLogo = '$itemsPath/logo.png';
   static const String menu = '$itemsPath/menu.png';
+  static const String forestCard = '$itemsPath/forest_card.png';
 
   /// Splash Page Images
   static const String coxsBazar = '$splashPath/coxs_bazar.jpg';

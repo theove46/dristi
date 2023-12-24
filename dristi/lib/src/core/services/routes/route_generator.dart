@@ -1,4 +1,5 @@
 import 'package:dristi/src/core/services/routes/routes.dart';
+import 'package:dristi/src/features/districts/presentation/pages/districts_list_page.dart';
 import 'package:dristi/src/features/home/presentation/pages/home_page.dart';
 import 'package:dristi/src/features/splash/presentation/pages/splash_page.dart';
 import 'package:dristi/src/features/spot/presentation/pages/spot_page.dart';
@@ -22,6 +23,11 @@ class RouteGenerator {
       case Routes.spot:
         return MaterialPageRoute(
           builder: (_) => const SpotPage(),
+        );
+
+      case Routes.districts:
+        return MaterialPageRoute(
+          builder: (_) => const DistrictsPage(),
         );
 
       default:

@@ -1,7 +1,8 @@
+import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
-import 'package:dristi/src/features/home/data/popular_districts_model.dart';
+import 'package:dristi/src/features/home/data/model/popular_districts_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,7 @@ class _PopularCitiesBuilderState
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: navigateToDistrictPage,
             child: Text(
               TextConstants.explore,
               style: AppTypography.bold12Nova(
@@ -95,9 +96,9 @@ class _PopularCitiesBuilderState
   }
 
   void navigateToDistrictPage() {
-    // Navigator.pushNamed(
-    //   context,
-    //   Routes.spot,
-    // );
+    Navigator.pushNamed(
+      context,
+      Routes.districts,
+    );
   }
 }

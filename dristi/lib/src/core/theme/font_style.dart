@@ -39,6 +39,15 @@ class AppTypography {
     );
   }
 
+  static TextStyle regular10Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s10.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.regular,
+      color ?? UIColors.black,
+    );
+  }
+
   static TextStyle semiBold10Nova({Color? color}) {
     return _getTextStyle(
       FontSize.s10.sp,

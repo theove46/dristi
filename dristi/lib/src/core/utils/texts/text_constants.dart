@@ -9,6 +9,7 @@ class TextConstants {
   static const String viewAll = 'View all';
   static const String explore = 'Explore';
   static const String overview = 'Overview';
+  static const String allDistrictsBD = 'Explore The Beautiful Bangladesh';
 
   /// Boiler Text
   static const String boiler =
