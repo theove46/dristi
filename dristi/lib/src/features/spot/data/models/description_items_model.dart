@@ -11,7 +11,7 @@ class DescriptionItemsModel {
 
   static List<DescriptionItemsModel> fetchAllData() => [
         DescriptionItemsModel(
-          title: 'Live',
+          title: 'Hotels',
           image: Assets.live,
         ),
         DescriptionItemsModel(

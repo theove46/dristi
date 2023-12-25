@@ -70,6 +70,11 @@ class _HomePageState extends ConsumerState<HomePage> {
             color: UIColors.primary,
           ),
         ),
+        Divider(
+          color: UIColors.primary,
+          thickness: 1.sp,
+          height: 16.h,
+        ),
       ],
     );
   }

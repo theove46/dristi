@@ -67,7 +67,7 @@ class _PopularCitiesBuilderState
           return Padding(
             padding: EdgeInsets.only(right: 8.h),
             child: GestureDetector(
-              onTap: navigateToDistrictPage,
+              onTap: () {},
               child: Column(
                 children: [
                   ClipRRect(

@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
@@ -19,44 +18,13 @@ class SplashPage extends ConsumerStatefulWidget {
 }
 
 class _SplashPageState extends ConsumerState<SplashPage> {
-  final PageController _pageController = PageController(initialPage: 0);
   final List<SplashModel> splashModels = SplashModel.fetchAllData();
   final int autoScrollDuration = 5000;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAutoScroll();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  void _startAutoScroll() {
-    _timer = Timer.periodic(
-      Duration(milliseconds: autoScrollDuration),
-      (timer) {
-        if (_pageController.page == splashModels.length - 1) {
-          Future.delayed(const Duration(milliseconds: 2000), () {
-            _pageController.jumpToPage(0);
-          });
-        } else {
-          _pageController.nextPage(
-            duration: const Duration(milliseconds: 3000),
-            curve: Curves.linearToEaseOut,
-          );
-        }
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: UIColors.primary,
       body: Stack(
         children: [
           _buildImageView(),
@@ -71,14 +39,9 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   Widget _buildImageView() {
     final currentSplashNotifier = ref.watch(currentSplashProvider.notifier);
 
-    return PageView.builder(
-      pageSnapping: true,
-      controller: _pageController,
+    return CarouselSlider.builder(
       itemCount: splashModels.length,
-      onPageChanged: (index) {
-        currentSplashNotifier.state = index;
-      },
-      itemBuilder: (context, index) {
+      itemBuilder: (context, index, realIndex) {
         return Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -106,6 +69,22 @@ class _SplashPageState extends ConsumerState<SplashPage> {
           ],
         );
       },
+      options: CarouselOptions(
+        height: double.infinity,
+        aspectRatio: 5,
+        viewportFraction: 1,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: false,
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 3),
+        autoPlayAnimationDuration: const Duration(seconds: 2),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        onPageChanged: (index, reason) {
+          currentSplashNotifier.state = index;
+        },
+        scrollDirection: Axis.horizontal,
+      ),
     );
   }
 
