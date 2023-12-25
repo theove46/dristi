@@ -82,8 +82,8 @@ class _SpotPageState extends ConsumerState<SpotPage> {
         onTap: () {},
         child: Container(
           padding: EdgeInsets.all(3.sp),
-          height: 60.sp,
-          width: 60.sp,
+          height: 75.sp,
+          width: 75.sp,
           decoration: BoxDecoration(
             color: UIColors.white,
             borderRadius: BorderRadius.circular(12.r),
@@ -157,14 +157,6 @@ class _SpotPageState extends ConsumerState<SpotPage> {
                 ),
               ),
             ],
-          ),
-          SizedBox(height: 10.sp),
-          Text(
-            TextConstants.overview,
-            textAlign: TextAlign.justify,
-            style: AppTypography.bold18Nova(
-              color: UIColors.black,
-            ),
           ),
           SizedBox(height: 10.sp),
           Text(

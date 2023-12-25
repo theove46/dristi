@@ -42,9 +42,7 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
             ),
           ),
           TextButton(
-            onPressed: () {
-              // View More button action
-            },
+            onPressed: () {},
             child: Text(
               TextConstants.viewAll,
               style: AppTypography.bold12Nova(

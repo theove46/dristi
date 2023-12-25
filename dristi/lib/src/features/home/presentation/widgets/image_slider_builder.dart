@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/features/home/data/model/carousel_slider_model.dart';
@@ -62,33 +63,36 @@ class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
       itemCount: carouselItems.length,
       itemBuilder: (context, index, realIndex) {
         final item = carouselItems[index];
-        return Stack(
-          alignment: Alignment.topRight,
-          children: [
-            SizedBox(
-              width: double.infinity,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10.h)),
-                child: Image.asset(
-                  item.image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 16.sp,
-              right: 16.sp,
-              child: Transform.rotate(
-                angle: -15 * (3.1415926535 / 180),
-                child: Text(
-                  carouselItems[index].title,
-                  style: AppTypography.bold32VibesWithShadow(
-                    color: UIColors.white,
+        return GestureDetector(
+          onTap: navigateToSpotPage,
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10.h)),
+                  child: Image.asset(
+                    item.image,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                bottom: 16.sp,
+                right: 16.sp,
+                child: Transform.rotate(
+                  angle: -15 * (3.1415926535 / 180),
+                  child: Text(
+                    carouselItems[index].title,
+                    style: AppTypography.bold32VibesWithShadow(
+                      color: UIColors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
       options: CarouselOptions(
@@ -108,6 +112,13 @@ class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
         },
         scrollDirection: Axis.horizontal,
       ),
+    );
+  }
+
+  void navigateToSpotPage() {
+    Navigator.pushNamed(
+      context,
+      Routes.spot,
     );
   }
 }
