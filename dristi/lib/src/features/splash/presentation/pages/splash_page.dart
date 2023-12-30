@@ -1,11 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
 import 'package:dristi/src/core/widgets/button.dart';
-import 'package:dristi/src/features/splash/data/model/on_boarding_model.dart';
-import 'package:dristi/src/features/splash/presentation/riverpod/providers.dart';
+import 'package:dristi/src/core/widgets/primary_snackbar.dart';
+import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
+import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
+import 'package:dristi/src/features/splash/presentation/widgets/image_view_builder.dart';
+import 'package:dristi/src/features/splash/presentation/widgets/page_indicator_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,17 +20,38 @@ class SplashPage extends ConsumerStatefulWidget {
 }
 
 class _SplashPageState extends ConsumerState<SplashPage> {
-  final List<SplashModel> splashModels = SplashModel.fetchAllData();
-  final int autoScrollDuration = 5000;
+  @override
+  void initState() {
+    super.initState();
+    Future(() {
+      ref.read(splashProvider.notifier).getSplashComponents();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(splashProvider);
+
+    ref.listen(
+      splashProvider,
+      (_, next) {
+        if (next.status == SplashStatus.success) {
+          navigateToHomePage();
+        } else if (next.status == SplashStatus.failure) {
+          ShowSnackBarMessage.showErrorSnackBar(
+            message: next.errorMessage!,
+            context: context,
+          );
+        }
+      },
+    );
+
     return Scaffold(
       backgroundColor: UIColors.primary,
       body: Stack(
         children: [
-          _buildImageView(),
-          _buildPageIndicator(),
+          const ImageViewBuilder(),
+          const PageIndicatorBuilder(),
           _buildButton(),
           _buildTopName(),
         ],
@@ -36,121 +59,9 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     );
   }
 
-  Widget _buildImageView() {
-    final currentSplashNotifier = ref.watch(currentSplashProvider.notifier);
-
-    return CarouselSlider.builder(
-      itemCount: splashModels.length,
-      itemBuilder: (context, index, realIndex) {
-        return Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            ClipRRect(
-              child: Image.asset(
-                splashModels[index].image,
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-              ),
-            ),
-            Positioned(
-              bottom: 160.sp,
-              child: Transform.rotate(
-                angle: -15 * (3.1415926535 / 180),
-                child: Text(
-                  splashModels[index].title,
-                  style: AppTypography.bold60VibesWithShadow(
-                    color: splashModels[index].textColor,
-                  ),
-                ),
-              ),
-            ),
-            _buildGradient(),
-          ],
-        );
-      },
-      options: CarouselOptions(
-        height: double.infinity,
-        aspectRatio: 5,
-        viewportFraction: 1,
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: false,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 3),
-        autoPlayAnimationDuration: const Duration(seconds: 2),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        onPageChanged: (index, reason) {
-          currentSplashNotifier.state = index;
-        },
-        scrollDirection: Axis.horizontal,
-      ),
-    );
-  }
-
-  Widget _buildPageIndicator() {
-    final currentSplashState = ref.watch(currentSplashProvider);
-
-    return Positioned(
-      bottom: 120.sp,
-      left: 0.sp,
-      right: 0.sp,
-      child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                splashModels.length,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1.sp),
-                  child: Container(
-                    height: 8.sp,
-                    width: currentSplashState == index ? 40.sp : 20.sp,
-                    decoration: BoxDecoration(
-                      color: currentSplashState == index
-                          ? UIColors.primary
-                          : UIColors.white,
-                      borderRadius: BorderRadius.circular(4.r),
-                      border: Border.all(
-                        color: UIColors.primary,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGradient() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: Alignment.topLeft,
-          tileMode: TileMode.clamp,
-          radius: 1.5,
-          colors: [
-            UIColors.primary,
-            UIColors.primary.withOpacity(0.8),
-            UIColors.primary.withOpacity(0.8),
-            UIColors.primary.withOpacity(0.5),
-            UIColors.primary.withOpacity(0.2),
-            UIColors.black.withOpacity(0.0),
-            UIColors.black.withOpacity(0.0),
-            UIColors.black.withOpacity(0.0),
-            // UIColors.primary,
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildButton() {
+    final notifier = ref.read(splashProvider.notifier);
+
     return Positioned(
       bottom: 40.sp,
       left: 0.sp,
@@ -158,7 +69,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 28.sp),
         child: Button(
-          onPressed: navigateToHomePage,
+          onPressed: notifier.splashPageSubmit,
           background: UIColors.primary,
           height: 60.h,
           label: TextConstants.getStarted,
