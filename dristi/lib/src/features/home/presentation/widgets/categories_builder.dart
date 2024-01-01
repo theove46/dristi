@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
-import 'package:dristi/src/features/home/data/categories_model.dart';
+import 'package:dristi/src/features/home/data/model/categories_model.dart';
 import 'package:dristi/src/features/home/presentation/riverpod/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +22,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
     final expandNotifier = ref.read(categoriesExpanded.notifier);
 
     if (expandNotifier.state) {
-      boxNotifier.state = 200.0;
+      boxNotifier.state = 220.0;
     } else {
       boxNotifier.state = 300.0;
     }
@@ -42,7 +42,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
 
   Widget _buildTopHeadings() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.sp),
+      padding: EdgeInsets.symmetric(vertical: 10.sp),
       child: Text(
         TextConstants.categories,
         style: AppTypography.bold16Nova(
@@ -70,12 +70,12 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       height: ref.watch(categoriesBoxHeight),
       width: 1.sw,
       margin: EdgeInsets.all(2.h),
-      padding: EdgeInsets.all(10.h),
+      padding: EdgeInsets.all(16.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: UIColors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         border: Border.all(
-          color: UIColors.gray.withOpacity(0.2),
+          color: UIColors.primary.withOpacity(0.5),
           width: 2,
         ),
       ),
@@ -147,6 +147,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
               width: 30,
               height: 30,
               decoration: BoxDecoration(
+                shape: BoxShape.circle,
                 border: Border.all(
                   color: UIColors.white,
                 ),

@@ -11,7 +11,7 @@ class CategoriesModel {
 
   static List<CategoriesModel> fetchAllData() => [
         CategoriesModel(
-          title: 'Beach',
+          title: 'Beaches',
           image: Assets.beach,
         ),
         CategoriesModel(
@@ -19,7 +19,7 @@ class CategoriesModel {
           image: Assets.mountains,
         ),
         CategoriesModel(
-          title: 'Forest',
+          title: 'Forests',
           image: Assets.forest,
         ),
         CategoriesModel(
@@ -27,35 +27,35 @@ class CategoriesModel {
           image: Assets.waterfalls,
         ),
         CategoriesModel(
-          title: 'Heritage',
+          title: 'Heritages',
           image: Assets.heritage,
         ),
         CategoriesModel(
-          title: 'Lake',
+          title: 'Lakes',
           image: Assets.lake,
         ),
         CategoriesModel(
-          title: 'Theme Park',
+          title: 'Theme Parks',
           image: Assets.themePark,
         ),
         CategoriesModel(
-          title: 'Monument',
+          title: 'Monuments',
           image: Assets.monument,
         ),
         CategoriesModel(
-          title: 'Museum',
+          title: 'Museums',
           image: Assets.museum,
         ),
         CategoriesModel(
-          title: 'National Park',
+          title: 'National Parks',
           image: Assets.nationalPark,
         ),
         CategoriesModel(
-          title: 'Resort',
+          title: 'Resorts',
           image: Assets.resort,
         ),
         CategoriesModel(
-          title: 'All',
+          title: 'All Categories',
           image: Assets.allCategories,
         ),
       ];

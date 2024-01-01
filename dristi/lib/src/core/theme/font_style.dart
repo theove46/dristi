@@ -39,6 +39,15 @@ class AppTypography {
     );
   }
 
+  static TextStyle regular10Nova({Color? color}) {
+    return _getTextStyle(
+      FontSize.s10.sp,
+      FontConstants.fontFamilyNova,
+      FontWeightManager.regular,
+      color ?? UIColors.black,
+    );
+  }
+
   static TextStyle semiBold10Nova({Color? color}) {
     return _getTextStyle(
       FontSize.s10.sp,
@@ -195,6 +204,15 @@ class AppTypography {
   static TextStyle bold32VibesWithShadow({Color? color}) {
     return _getTextStyleWithShadow(
       FontSize.s32.sp,
+      FontConstants.fontFamilyVibes,
+      FontWeightManager.bold,
+      color ?? UIColors.black,
+    );
+  }
+
+  static TextStyle bold44VibesWithShadow({Color? color}) {
+    return _getTextStyleWithShadow(
+      FontSize.s44.sp,
       FontConstants.fontFamilyVibes,
       FontWeightManager.bold,
       color ?? UIColors.black,

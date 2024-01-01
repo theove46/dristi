@@ -6,7 +6,6 @@ import 'package:dristi/src/features/home/presentation/widgets/categories_builder
 import 'package:dristi/src/features/home/presentation/widgets/image_slider_builder.dart';
 import 'package:dristi/src/features/home/presentation/widgets/popular_districts.dart';
 import 'package:dristi/src/features/home/presentation/widgets/top_destinations_builder.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,21 +21,14 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.only(left: 16.sp),
-          child: const Image(
-            image: AssetImage(Assets.menu),
-          ),
-        ),
-        leadingWidth: 50,
-      ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(16.h, 0.h, 16.h, 16.h),
-        child: SingleChildScrollView(
+      backgroundColor: UIColors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.sp),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildDrawerIcon(),
               const ImageSliderBuilder(),
               _buildTitleMessage(),
               const CategoriesBuilder(),
@@ -45,6 +37,17 @@ class _HomePageState extends ConsumerState<HomePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDrawerIcon() {
+    return Padding(
+      padding: EdgeInsets.only(top: 16.sp, bottom: 2.sp),
+      child: const Image(
+        image: AssetImage(Assets.menu),
+        color: UIColors.primary,
+        height: 30,
       ),
     );
   }
@@ -66,6 +69,11 @@ class _HomePageState extends ConsumerState<HomePage> {
           style: AppTypography.bold28Nova(
             color: UIColors.primary,
           ),
+        ),
+        Divider(
+          color: UIColors.primary,
+          thickness: 1.sp,
+          height: 16.h,
         ),
       ],
     );
