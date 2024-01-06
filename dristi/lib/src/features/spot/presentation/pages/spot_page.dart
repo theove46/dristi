@@ -2,6 +2,7 @@ import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,14 @@ class SpotPage extends ConsumerStatefulWidget {
 }
 
 class _SpotPageState extends ConsumerState<SpotPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future(() {
+      ref.read(spotProvider.notifier).getSpotItemsComponents();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

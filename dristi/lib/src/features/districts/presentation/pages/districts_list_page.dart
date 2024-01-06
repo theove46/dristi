@@ -72,6 +72,7 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
 
   Widget _buildDistrictCard(int index) {
     final districtModelsState = ref.watch(districtProvider);
+    final item = districtModelsState.data[index];
 
     return Expanded(
       child: Card(
@@ -93,20 +94,17 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
               opacity: 0.15,
-              //repeat: ImageRepeat.repeat,
             ),
           ),
           child: ListTile(
             title: Text(
-              districtModelsState.data[index].title,
-              // district.title,
+              item.title,
               style: AppTypography.semiBold16Nova(
                 color: UIColors.primary,
               ),
             ),
             subtitle: Text(
-              districtModelsState.data[index].division,
-              // district.division,
+              item.division,
               style: AppTypography.regular10Nova(
                 color: UIColors.primary,
               ),
