@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/assets/assets.dart';
 
-class DescriptionItemsModel {
-  DescriptionItemsModel({
+class SpotItemComponentsModel {
+  SpotItemComponentsModel({
     required this.title,
     required this.image,
   });
@@ -9,28 +9,28 @@ class DescriptionItemsModel {
   final String title;
   final String image;
 
-  static List<DescriptionItemsModel> fetchAllData() => [
-        DescriptionItemsModel(
+  static List<SpotItemComponentsModel> fetchAllData() => [
+        SpotItemComponentsModel(
           title: 'Hotels',
           image: Assets.live,
         ),
-        DescriptionItemsModel(
+        SpotItemComponentsModel(
           title: "Nearest",
           image: Assets.nearest,
         ),
-        DescriptionItemsModel(
+        SpotItemComponentsModel(
           title: 'Plans',
           image: Assets.plans,
         ),
-        DescriptionItemsModel(
+        SpotItemComponentsModel(
           title: 'Seasons',
           image: Assets.seasons,
         ),
-        DescriptionItemsModel(
+        SpotItemComponentsModel(
           title: 'Specials',
           image: Assets.specials,
         ),
-        DescriptionItemsModel(
+        SpotItemComponentsModel(
           title: 'Cautions',
           image: Assets.caution,
         ),
