@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/assets/assets.dart';
 
-class PopularDistrictsModel {
-  PopularDistrictsModel({
+class PopularDistrictsComponentsModel {
+  PopularDistrictsComponentsModel({
     required this.title,
     required this.image,
   });
@@ -9,28 +9,28 @@ class PopularDistrictsModel {
   final String title;
   final String image;
 
-  static List<PopularDistrictsModel> fetchAllData() => [
-        PopularDistrictsModel(
+  static List<PopularDistrictsComponentsModel> fetchAllData() => [
+        PopularDistrictsComponentsModel(
           title: "Cox's Bazar",
           image: Assets.coxsBazar2,
         ),
-        PopularDistrictsModel(
+        PopularDistrictsComponentsModel(
           title: 'Bandarban',
           image: Assets.bandarban,
         ),
-        PopularDistrictsModel(
+        PopularDistrictsComponentsModel(
           title: "Dhaka",
           image: Assets.dhaka,
         ),
-        PopularDistrictsModel(
+        PopularDistrictsComponentsModel(
           title: "Chattogram",
           image: Assets.chattogram,
         ),
-        PopularDistrictsModel(
+        PopularDistrictsComponentsModel(
           title: 'Khulna',
           image: Assets.khulna,
         ),
-        PopularDistrictsModel(
+        PopularDistrictsComponentsModel(
           title: 'Sylhet',
           image: Assets.sylhet,
         ),

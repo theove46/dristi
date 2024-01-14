@@ -1,7 +1,9 @@
 import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/utils/loggers/logger.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/features/home/presentation/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/presentation/widgets/categories_builder.dart';
 import 'package:dristi/src/features/home/presentation/widgets/image_slider_builder.dart';
 import 'package:dristi/src/features/home/presentation/widgets/popular_districts.dart';
@@ -18,6 +20,15 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Future(() {
+      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
