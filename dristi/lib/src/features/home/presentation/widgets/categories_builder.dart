@@ -1,8 +1,7 @@
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
-import 'package:dristi/src/features/home/data/model/categories_model.dart';
-import 'package:dristi/src/features/home/presentation/riverpod/providers.dart';
+import 'package:dristi/src/features/home/presentation/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +14,6 @@ class CategoriesBuilder extends ConsumerStatefulWidget {
 }
 
 class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
-  final List<CategoriesModel> categoriesItems = CategoriesModel.fetchAllData();
-
   void _onTap() {
     final boxNotifier = ref.read(categoriesBoxHeight.notifier);
     final expandNotifier = ref.read(categoriesExpanded.notifier);
@@ -64,6 +61,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
 
   Widget _buildCategoriesList() {
     final expandState = ref.watch(categoriesExpanded);
+    final categoriesItems = ref.watch(categoriesProvider);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
@@ -83,16 +81,16 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
         child: Wrap(
           runSpacing: 1.h,
           children: [
-            ...categoriesItems.take(8).map(
+            ...categoriesItems.data.take(8).map(
               (item) {
-                final index = categoriesItems.indexOf(item);
+                final index = categoriesItems.data.indexOf(item);
                 return _buildItems(index);
               },
             ),
             if (expandState)
-              ...categoriesItems.skip(8).map(
+              ...categoriesItems.data.skip(8).map(
                 (item) {
-                  final index = categoriesItems.indexOf(item);
+                  final index = categoriesItems.data.indexOf(item);
 
                   return _buildItems(index);
                 },
@@ -104,31 +102,35 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
   }
 
   Widget _buildItems(int index) {
+    final categoriesItems = ref.watch(categoriesProvider);
+
     return SizedBox(
       width: 75.w,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6.r),
-              child: Image.asset(
-                categoriesItems[index].image,
-                width: 50.sp,
-                height: 50.sp,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 4.sp),
-            Text(
-              categoriesItems[index].title,
-              style: AppTypography.semiBold10Nova(
-                color: UIColors.black,
-              ),
-            ),
-          ],
-        ),
+        child: categoriesItems.data != null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6.r),
+                    child: Image.asset(
+                      categoriesItems.data[index].image,
+                      width: 50.sp,
+                      height: 50.sp,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SizedBox(height: 4.sp),
+                  Text(
+                    categoriesItems.data[index].title,
+                    style: AppTypography.semiBold10Nova(
+                      color: UIColors.black,
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
       ),
     );
   }

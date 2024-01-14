@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/assets/assets.dart';
 
-class CategoriesModel {
-  CategoriesModel({
+class CategoriesComponentsModel {
+  CategoriesComponentsModel({
     required this.title,
     required this.image,
   });
@@ -9,52 +9,52 @@ class CategoriesModel {
   final String title;
   final String image;
 
-  static List<CategoriesModel> fetchAllData() => [
-        CategoriesModel(
+  static List<CategoriesComponentsModel> fetchAllData() => [
+        CategoriesComponentsModel(
           title: 'Beaches',
           image: Assets.beach,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: "Mountains",
           image: Assets.mountains,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Forests',
           image: Assets.forest,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Waterfalls',
           image: Assets.waterfalls,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Heritages',
           image: Assets.heritage,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Lakes',
           image: Assets.lake,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Theme Parks',
           image: Assets.themePark,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Monuments',
           image: Assets.monument,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Museums',
           image: Assets.museum,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'National Parks',
           image: Assets.nationalPark,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'Resorts',
           image: Assets.resort,
         ),
-        CategoriesModel(
+        CategoriesComponentsModel(
           title: 'All Categories',
           image: Assets.allCategories,
         ),
