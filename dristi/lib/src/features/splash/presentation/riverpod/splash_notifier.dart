@@ -1,16 +1,10 @@
 import 'package:dristi/src/core/utils/loggers/logger.dart';
-import 'package:dristi/src/features/splash/data/models/splash_components_model.dart';
 import 'package:dristi/src/features/splash/domain/use_cases/splash_use_case.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashNotifier extends Notifier<SplashState> {
   late SplashUseCase useCase;
-
-  List<SplashComponentsModel> get doubledLengthList {
-    final splashComponents = state.data[2].subcomponents;
-    return <SplashComponentsModel>[...splashComponents, ...splashComponents];
-  }
 
   @override
   SplashState build() {

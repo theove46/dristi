@@ -1,5 +1,4 @@
 import 'package:dristi/src/core/utils/loggers/logger.dart';
-import 'package:dristi/src/features/spot/data/models/spot_items_components_model.dart';
 import 'package:dristi/src/features/spot/domain/use_cases/spot_items_use_cases.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_state.dart';
 
@@ -7,14 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpotNotifier extends Notifier<SpotState> {
   late SpotItemsUseCase useCase;
-
-  List<SpotItemComponentsModel> get doubledLengthList {
-    final districtComponents = state.data[2].subcomponents;
-    return <SpotItemComponentsModel>[
-      ...districtComponents,
-      ...districtComponents
-    ];
-  }
 
   @override
   SpotState build() {
