@@ -2,22 +2,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/features/home/data/model/carousel_slider_model.dart';
-import 'package:dristi/src/features/home/presentation/riverpod/providers.dart';
+import 'package:dristi/src/features/home/presentation/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ImageSliderBuilder extends ConsumerStatefulWidget {
-  const ImageSliderBuilder({super.key});
+class SliderBuilder extends ConsumerStatefulWidget {
+  const SliderBuilder({super.key});
 
   @override
   ConsumerState createState() => _ImageSliderBuilderState();
 }
 
-class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
-  final List<CarouselModel> carouselItems = CarouselModel.fetchAllData();
-
+class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,11 +28,12 @@ class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
 
   Widget _buildSliderIndicator() {
     final currentSliderState = ref.watch(currentSlideProvider);
+    final carouselItems = ref.watch(sliderProvider);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-        carouselItems.length,
+        carouselItems.data.length,
         (index) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 1.sp),
           child: Container(
@@ -58,11 +56,12 @@ class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
 
   Widget _buildCarouselSlider() {
     final currentSliderNotifier = ref.read(currentSlideProvider.notifier);
+    final carouselItems = ref.watch(sliderProvider);
 
     return CarouselSlider.builder(
-      itemCount: carouselItems.length,
+      itemCount: carouselItems.data.length,
       itemBuilder: (context, index, realIndex) {
-        final item = carouselItems[index];
+        final item = carouselItems.data[index];
         return GestureDetector(
           onTap: navigateToSpotPage,
           child: Stack(
@@ -84,7 +83,7 @@ class _ImageSliderBuilderState extends ConsumerState<ImageSliderBuilder> {
                 child: Transform.rotate(
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
-                    carouselItems[index].title,
+                    carouselItems.data[index].title,
                     style: AppTypography.bold32VibesWithShadow(
                       color: UIColors.white,
                     ),

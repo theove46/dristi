@@ -1,12 +1,11 @@
 import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/loggers/logger.dart';
 import 'package:dristi/src/core/utils/texts/text_constants.dart';
 import 'package:dristi/src/features/home/presentation/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/presentation/widgets/categories_builder.dart';
-import 'package:dristi/src/features/home/presentation/widgets/image_slider_builder.dart';
-import 'package:dristi/src/features/home/presentation/widgets/popular_districts.dart';
+import 'package:dristi/src/features/home/presentation/widgets/slider_builder.dart';
+import 'package:dristi/src/features/home/presentation/widgets/popular_districts_builder.dart';
 import 'package:dristi/src/features/home/presentation/widgets/top_destinations_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +25,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     Future(() {
       ref.read(categoriesProvider.notifier).getCategoriesComponents();
       ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref.read(sliderProvider.notifier).getSliderComponents();
     });
   }
 
@@ -40,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildDrawerIcon(),
-              const ImageSliderBuilder(),
+              const SliderBuilder(),
               _buildTitleMessage(),
               const CategoriesBuilder(),
               const TopDestinationBuilder(),

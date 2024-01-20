@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/assets/assets.dart';
 
-class CarouselModel {
-  CarouselModel({
+class SliderComponentsModel {
+  SliderComponentsModel({
     required this.title,
     required this.image,
   });
@@ -9,24 +9,24 @@ class CarouselModel {
   final String title;
   final String image;
 
-  static List<CarouselModel> fetchAllData() => [
-        CarouselModel(
+  static List<SliderComponentsModel> fetchAllData() => [
+        SliderComponentsModel(
           title: 'Sundarbans',
           image: Assets.sundarbans,
         ),
-        CarouselModel(
+        SliderComponentsModel(
           title: "Cox's Bazar",
           image: Assets.coxsBazar,
         ),
-        CarouselModel(
+        SliderComponentsModel(
           title: 'Saint Martins',
           image: Assets.saintMartins,
         ),
-        CarouselModel(
+        SliderComponentsModel(
           title: 'Nafakhum',
           image: Assets.nafakhum,
         ),
-        CarouselModel(
+        SliderComponentsModel(
           title: 'Sajek Valley',
           image: Assets.sajekValley,
         ),
