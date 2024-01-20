@@ -1,6 +1,5 @@
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/features/spot/data/models/spot_items_components_model.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +14,6 @@ class DescriptionItemsBuilder extends ConsumerStatefulWidget {
 
 class _DescriptionItemsBuilderState
     extends ConsumerState<DescriptionItemsBuilder> {
-  final List<SpotItemComponentsModel> items1 =
-      SpotItemComponentsModel.fetchAllData();
-
   @override
   Widget build(BuildContext context) {
     final spotItemsModelsState = ref.watch(spotProvider);
