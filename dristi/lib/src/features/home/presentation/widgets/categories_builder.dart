@@ -78,25 +78,27 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
         ),
       ),
       child: SingleChildScrollView(
-        child: Wrap(
-          runSpacing: 1.h,
-          children: [
-            ...categoriesItems.data.take(8).map(
-              (item) {
-                final index = categoriesItems.data.indexOf(item);
-                return _buildItems(index);
-              },
-            ),
-            if (expandState)
-              ...categoriesItems.data.skip(8).map(
-                (item) {
-                  final index = categoriesItems.data.indexOf(item);
+        child: categoriesItems.data != null
+            ? Wrap(
+                runSpacing: 1.h,
+                children: [
+                  ...categoriesItems.data.take(8).map(
+                    (item) {
+                      final index = categoriesItems.data.indexOf(item);
+                      return _buildItems(index);
+                    },
+                  ),
+                  if (expandState)
+                    ...categoriesItems.data.skip(8).map(
+                      (item) {
+                        final index = categoriesItems.data.indexOf(item);
 
-                  return _buildItems(index);
-                },
-              ),
-          ],
-        ),
+                        return _buildItems(index);
+                      },
+                    ),
+                ],
+              )
+            : Container(),
       ),
     );
   }

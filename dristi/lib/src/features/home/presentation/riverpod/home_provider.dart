@@ -4,6 +4,8 @@ import 'package:dristi/src/features/home/presentation/riverpod/popular_districts
 import 'package:dristi/src/features/home/presentation/riverpod/popular_districts/popular_districts_state.dart';
 import 'package:dristi/src/features/home/presentation/riverpod/slider/slider_notifier.dart';
 import 'package:dristi/src/features/home/presentation/riverpod/slider/slider_state.dart';
+import 'package:dristi/src/features/home/presentation/riverpod/top_destinations/top_destinations_notifier.dart';
+import 'package:dristi/src/features/home/presentation/riverpod/top_destinations/top_destinations_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final categoriesProvider =
@@ -21,6 +23,12 @@ final popularDistrictProvider =
 final sliderProvider = NotifierProvider<SliderNotifier, SliderState>(
   SliderNotifier.new,
   name: 'sliderProvider',
+);
+
+final topDestinationsProvider =
+    NotifierProvider<TopDestinationsNotifier, TopDestinationsState>(
+  TopDestinationsNotifier.new,
+  name: 'topDestinationsProvider',
 );
 
 final currentSlideProvider = StateProvider<int>(

@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/assets/assets.dart';
 
-class TopDestinationsModel {
-  TopDestinationsModel({
+class TopDestinationComponentsModel {
+  TopDestinationComponentsModel({
     required this.title,
     required this.image,
   });
@@ -9,28 +9,28 @@ class TopDestinationsModel {
   final String title;
   final String image;
 
-  static List<TopDestinationsModel> fetchAllData() => [
-        TopDestinationsModel(
+  static List<TopDestinationComponentsModel> fetchAllData() => [
+        TopDestinationComponentsModel(
           title: 'Inani Beach',
           image: Assets.inaniBeach,
         ),
-        TopDestinationsModel(
+        TopDestinationComponentsModel(
           title: 'Kaptai Lake',
           image: Assets.kaptaiLake,
         ),
-        TopDestinationsModel(
+        TopDestinationComponentsModel(
           title: "Nil Giri",
           image: Assets.nilgiri,
         ),
-        TopDestinationsModel(
+        TopDestinationComponentsModel(
           title: "Hiron Point",
           image: Assets.hironPoint,
         ),
-        TopDestinationsModel(
+        TopDestinationComponentsModel(
           title: 'Tanguar Haor',
           image: Assets.tanguarHaor,
         ),
-        TopDestinationsModel(
+        TopDestinationComponentsModel(
           title: 'Jaflong',
           image: Assets.jaflong,
         ),

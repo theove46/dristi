@@ -26,6 +26,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       ref.read(categoriesProvider.notifier).getCategoriesComponents();
       ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
       ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
     });
   }
 
