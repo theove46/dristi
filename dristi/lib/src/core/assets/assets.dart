@@ -65,4 +65,6 @@ class Assets {
   static const String spotComponents = '$jsonAssets/spot_components.json';
   static const String categoriesComponents =
       '$jsonAssets/categories_components.json';
+  static const String popularDistrictsComponents =
+      '$jsonAssets/popular_districts_components.json';
 }
