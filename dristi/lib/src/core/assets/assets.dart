@@ -63,4 +63,6 @@ class Assets {
       '$jsonAssets/district_components.json';
   static const String splashComponents = '$jsonAssets/splash_components.json';
   static const String spotComponents = '$jsonAssets/spot_components.json';
+  static const String categoriesComponents =
+      '$jsonAssets/categories_components.json';
 }

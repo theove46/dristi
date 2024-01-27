@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Beaches",
+    "image": "assets/images/categories/beach.png"
+  },
+  {
+    "title": "Mountains",
+    "image": "assets/images/categories/mountains.png"
+  },
+  {
+    "title": "Forests",
+    "image": "assets/images/categories/forest.png"
+  },
+  {
+    "title": "Waterfalls",
+    "image": "assets/images/categories/waterfalls.png"
+  },
+  {
+    "title": "Heritages",
+    "image": "assets/images/categories/heritage.png"
+  },
+  {
+    "title": "Lakes",
+    "image": "assets/images/categories/lake.png"
+  },
+  {
+    "title": "Theme Parks",
+    "image": "assets/images/categories/theme_park.png"
+  },
+  {
+    "title": "Monuments",
+    "image": "assets/images/categories/monument.png"
+  },
+  {
+    "title": "Museums",
+    "image": "assets/images/categories/museum.png"
+  },
+  {
+    "title": "National Parks",
+    "image": "assets/images/categories/national_park.png"
+  },
+  {
+    "title": "Resorts",
+    "image": "assets/images/categories/resort.png"
+  },
+  {
+    "title": "All Categories",
+    "image": "assets/images/categories/all.png"
+  }
+
+]
+
+
+
+
