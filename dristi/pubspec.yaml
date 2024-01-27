@@ -42,6 +42,7 @@ flutter:
     - assets/images/popular/
     - assets/images/splash/
     - assets/images/top_destinations/
+    - assets/json/
 
   fonts:
     - family: Nova
