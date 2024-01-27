@@ -1,4 +1,3 @@
-import 'package:dristi/src/features/splash/data/models/splash_components_model.dart';
 import 'package:dristi/src/features/splash/domain/entities/splash_entity.dart';
 
 class SplashResponseModel<T> {
@@ -10,13 +9,11 @@ class SplashResponseModel<T> {
   final String message;
   final List<SplashEntity> data;
 
-  factory SplashResponseModel.fromSplashComponentsModel(
-      List<SplashComponentsModel> splashComponents) {
-    List<SplashEntity> convertedData = splashComponents
-        .map((splashModel) => SplashEntity(
-              title: splashModel.title.toString(),
-              image: splashModel.image.toString(),
-              textColor: splashModel.textColor,
+  factory SplashResponseModel.fromJson(List<dynamic> jsonList) {
+    List<SplashEntity> convertedData = jsonList
+        .map((json) => SplashEntity(
+              title: json['title'] ?? '',
+              image: json['image'] ?? '',
             ))
         .toList();
 

@@ -61,4 +61,5 @@ class Assets {
   /// JSON Assets
   static const String districtComponents =
       '$jsonAssets/district_components.json';
+  static const String splashComponents = '$jsonAssets/splash_components.json';
 }

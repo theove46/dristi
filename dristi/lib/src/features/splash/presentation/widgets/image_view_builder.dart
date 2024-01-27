@@ -41,7 +41,7 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
                   child: Text(
                     splashModelsState.data[index].title,
                     style: AppTypography.bold60VibesWithShadow(
-                      color: splashModelsState.data[index].textColor,
+                      color: UIColors.white,
                     ),
                   ),
                 ),
