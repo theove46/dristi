@@ -1,4 +1,3 @@
-import 'package:dristi/src/features/spot/data/models/spot_items_components_model.dart';
 import 'package:dristi/src/features/spot/domain/entities/spot_item_entities.dart';
 
 class SpotItemResponseModel<T> {
@@ -10,12 +9,11 @@ class SpotItemResponseModel<T> {
   final String message;
   final List<SpotItemsEntity> data;
 
-  factory SpotItemResponseModel.fromSpotItemComponentsModel(
-      List<SpotItemComponentsModel> spotItemComponents) {
-    List<SpotItemsEntity> convertedData = spotItemComponents
-        .map((spotItemModel) => SpotItemsEntity(
-              title: spotItemModel.title.toString(),
-              image: spotItemModel.image.toString(),
+  factory SpotItemResponseModel.fromJson(List<dynamic> jsonList) {
+    List<SpotItemsEntity> convertedData = jsonList
+        .map((json) => SpotItemsEntity(
+              title: json['title'] ?? '',
+              image: json['image'] ?? '',
             ))
         .toList();
 

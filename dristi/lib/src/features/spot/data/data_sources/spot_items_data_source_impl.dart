@@ -1,23 +1,35 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/utils/loggers/logger.dart';
 import 'package:dristi/src/features/spot/data/data_sources/spot_items_data_source.dart';
-import 'package:dristi/src/features/spot/data/models/spot_items_components_model.dart';
 import 'package:dristi/src/features/spot/data/models/spot_items_response_model.dart';
+import 'package:flutter/services.dart';
 
 class SpotItemsDataSourceImp implements SpotItemsDataSource {
   const SpotItemsDataSourceImp();
 
   @override
   Future<Response> spotItemsComponents() async {
-    List<SpotItemComponentsModel> spotItemComponents =
-        SpotItemComponentsModel.fetchAllData();
+    try {
+      String response = await rootBundle.loadString(Assets.spotComponents);
+      Log.debug(response.toString());
+      final List<dynamic> jsonList = json.decode(response);
+      SpotItemResponseModel splashResponse =
+          SpotItemResponseModel.fromJson(jsonList);
 
-    SpotItemResponseModel response =
-        SpotItemResponseModel.fromSpotItemComponentsModel(spotItemComponents);
-
-    return Response(
-      requestOptions: RequestOptions(),
-      statusMessage: response.message,
-      data: response.data,
-    );
+      return Response(
+        requestOptions: RequestOptions(),
+        statusMessage: '',
+        data: splashResponse.data,
+      );
+    } catch (error) {
+      return Response(
+        requestOptions: RequestOptions(),
+        statusMessage: 'Error loading data: $error',
+        data: null,
+      );
+    }
   }
 }

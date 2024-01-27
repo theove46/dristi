@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Hotels",
+    "image": "assets/images/spot_items/hotel.png"
+  },
+  {
+    "title": "Nearest",
+    "image": "assets/images/spot_items/nearest.png"
+  },
+  {
+    "title": "Plans",
+    "image": "assets/images/spot_items/plans.png"
+  },
+  {
+    "title": "Seasons",
+    "image": "assets/images/spot_items/seasons.png"
+  },
+  {
+    "title": "Specials",
+    "image": "assets/images/spot_items/specials.png"
+  },
+  {
+    "title": "Cautions",
+    "image": "assets/images/spot_items/caution.png"
+  }
+]
