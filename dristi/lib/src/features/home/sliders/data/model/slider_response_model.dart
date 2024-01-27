@@ -1,4 +1,3 @@
-import 'package:dristi/src/features/home/sliders/data/model/slider_components_model.dart';
 import 'package:dristi/src/features/home/sliders/domain/entity/slider_entity.dart';
 
 class SliderResponseModel<T> {
@@ -10,12 +9,11 @@ class SliderResponseModel<T> {
   final String message;
   final List<SliderEntity> data;
 
-  factory SliderResponseModel.fromSliderComponentsModel(
-      List<SliderComponentsModel> sliderComponents) {
-    List<SliderEntity> convertedData = sliderComponents
-        .map((sliderModel) => SliderEntity(
-              title: sliderModel.title.toString(),
-              image: sliderModel.image.toString(),
+  factory SliderResponseModel.fromJson(List<dynamic> jsonList) {
+    List<SliderEntity> convertedData = jsonList
+        .map((json) => SliderEntity(
+              title: json['title'] ?? '',
+              image: json['image'] ?? '',
             ))
         .toList();
 

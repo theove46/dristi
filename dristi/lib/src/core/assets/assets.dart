@@ -5,7 +5,8 @@ class Assets {
   static const String splashPath = 'assets/images/splash';
   static const String popularPath = 'assets/images/popular';
   static const String topDestinationsPath = 'assets/images/top_destinations';
-  static const String descriptionItems = 'assets/images/description_items';
+  static const String spotItems = 'assets/images/spot_items';
+  static const String jsonAssets = 'assets/json';
 
   /// Common Item Images
   static const String appLogo = '$itemsPath/logo.png';
@@ -50,10 +51,23 @@ class Assets {
   static const String jaflong = '$topDestinationsPath/jaflong.jpg';
 
   /// Description Item Images
-  static const String caution = '$descriptionItems/caution.png';
-  static const String live = '$descriptionItems/live.png';
-  static const String nearest = '$descriptionItems/nearest.png';
-  static const String plans = '$descriptionItems/plans.png';
-  static const String seasons = '$descriptionItems/seasons.png';
-  static const String specials = '$descriptionItems/specials.png';
+  static const String caution = '$spotItems/caution.png';
+  static const String live = '$spotItems/hotel.png';
+  static const String nearest = '$spotItems/nearest.png';
+  static const String plans = '$spotItems/plans.png';
+  static const String seasons = '$spotItems/seasons.png';
+  static const String specials = '$spotItems/specials.png';
+
+  /// JSON Assets
+  static const String districtComponents =
+      '$jsonAssets/district_components.json';
+  static const String splashComponents = '$jsonAssets/splash_components.json';
+  static const String spotComponents = '$jsonAssets/spot_components.json';
+  static const String categoriesComponents =
+      '$jsonAssets/categories_components.json';
+  static const String popularDistrictsComponents =
+      '$jsonAssets/popular_districts_components.json';
+  static const String sliderComponents = '$jsonAssets/slider_components.json';
+  static const String topDestinationComponents =
+      '$jsonAssets/top_destination_components.json';
 }
