@@ -68,4 +68,6 @@ class Assets {
   static const String popularDistrictsComponents =
       '$jsonAssets/popular_districts_components.json';
   static const String sliderComponents = '$jsonAssets/slider_components.json';
+  static const String topDestinationComponents =
+      '$jsonAssets/top_destination_components.json';
 }

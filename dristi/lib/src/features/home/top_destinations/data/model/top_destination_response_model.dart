@@ -1,4 +1,3 @@
-import 'package:dristi/src/features/home/top_destinations/data/model/top_destination_components_model.dart';
 import 'package:dristi/src/features/home/top_destinations/domain/entity/top_destination_entity.dart';
 
 class TopDestinationResponseModel<T> {
@@ -10,12 +9,11 @@ class TopDestinationResponseModel<T> {
   final String message;
   final List<TopDestinationEntity> data;
 
-  factory TopDestinationResponseModel.fromTopDestinationComponentsModel(
-      List<TopDestinationComponentsModel> topDestinationComponents) {
-    List<TopDestinationEntity> convertedData = topDestinationComponents
-        .map((topDestinationModel) => TopDestinationEntity(
-              title: topDestinationModel.title.toString(),
-              image: topDestinationModel.image.toString(),
+  factory TopDestinationResponseModel.fromJson(List<dynamic> jsonList) {
+    List<TopDestinationEntity> convertedData = jsonList
+        .map((json) => TopDestinationEntity(
+              title: json['title'] ?? '',
+              image: json['image'] ?? '',
             ))
         .toList();
 
