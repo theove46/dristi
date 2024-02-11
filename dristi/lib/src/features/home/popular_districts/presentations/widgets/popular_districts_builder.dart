@@ -68,7 +68,7 @@ class _PopularCitiesBuilderState
                 return Padding(
                   padding: EdgeInsets.only(right: 8.h),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToDestinationsPage,
                     child: Column(
                       children: [
                         ClipRRect(
@@ -101,6 +101,13 @@ class _PopularCitiesBuilderState
     Navigator.pushNamed(
       context,
       Routes.districts,
+    );
+  }
+
+  void navigateToDestinationsPage() {
+    Navigator.pushNamed(
+      context,
+      Routes.destination,
     );
   }
 }
