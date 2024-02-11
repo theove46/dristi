@@ -39,7 +39,7 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: navigateToDestinationsPage,
             child: Text(
               TextConstants.viewAll,
               style: AppTypography.bold12Nova(
@@ -92,6 +92,13 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
               },
             )
           : Container(),
+    );
+  }
+
+  void navigateToDestinationsPage() {
+    Navigator.pushNamed(
+      context,
+      Routes.destination,
     );
   }
 
