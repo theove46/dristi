@@ -1,5 +1,5 @@
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,14 +20,14 @@ class _DescriptionItemsBuilderState
 
     return spotItemsModelsState.data != null
         ? SizedBox(
-            height: 100.h,
+            height: AppValues.dimen_100.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: spotItemsModelsState.data.length,
               itemBuilder: (context, index) {
                 final item = spotItemsModelsState.data[index];
                 return SizedBox(
-                  width: 75.w,
+                  width: AppValues.dimen_75.w,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -35,17 +35,15 @@ class _DescriptionItemsBuilderState
                         borderRadius: BorderRadius.circular(6.r),
                         child: Image.asset(
                           item.image,
-                          width: 40.sp,
-                          height: 40.sp,
+                          width: AppValues.dimen_40.r,
+                          height: AppValues.dimen_40.r,
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(height: 4.sp),
+                      SizedBox(height: AppValues.dimen_4.h),
                       Text(
                         item.title,
-                        style: AppTypography.regular12Nova(
-                          color: UIColors.black,
-                        ),
+                        style: blackNovaRegular12,
                       ),
                     ],
                   ),

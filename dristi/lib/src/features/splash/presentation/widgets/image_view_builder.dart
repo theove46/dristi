@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,14 +36,12 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
                 ),
               ),
               Positioned(
-                bottom: 160.sp,
+                bottom: AppValues.dimen_160.h,
                 child: Transform.rotate(
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
                     splashModelsState.data[index].title,
-                    style: AppTypography.bold60VibesWithShadow(
-                      color: UIColors.white,
-                    ),
+                    style: whiteVibesBoldShadow60,
                   ),
                 ),
               ),
@@ -78,7 +77,7 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
         gradient: RadialGradient(
           center: Alignment.topLeft,
           tileMode: TileMode.clamp,
-          radius: 1.5,
+          radius: 1.5.r,
           colors: [
             UIColors.primary,
             UIColors.primary.withOpacity(0.8),
@@ -88,7 +87,6 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
             UIColors.black.withOpacity(0.0),
             UIColors.black.withOpacity(0.0),
             UIColors.black.withOpacity(0.0),
-            // UIColors.primary,
           ],
         ),
       ),

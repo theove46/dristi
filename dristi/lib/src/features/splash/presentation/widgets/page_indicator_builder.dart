@@ -1,3 +1,4 @@
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,9 @@ class _PageIndicatorBuilderState extends ConsumerState<PageIndicatorBuilder> {
 
     if (splashModelsState.data != null) {
       return Positioned(
-        bottom: 120.sp,
-        left: 0.sp,
-        right: 0.sp,
+        bottom: AppValues.dimen_120.h,
+        left: AppValues.dimen_0.w,
+        right: AppValues.dimen_0.w,
         child: Align(
           alignment: Alignment.center,
           child: Column(
@@ -31,18 +32,19 @@ class _PageIndicatorBuilderState extends ConsumerState<PageIndicatorBuilder> {
                 children: List.generate(
                   splashModelsState.data.length,
                   (index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.sp),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: AppValues.dimen_2.w),
                     child: Container(
-                      height: 8.sp,
-                      width: currentSplashState == index ? 40.sp : 20.sp,
+                      height: AppValues.dimen_10.h,
+                      width: currentSplashState == index
+                          ? AppValues.dimen_40.w
+                          : AppValues.dimen_28.w,
                       decoration: BoxDecoration(
                         color: currentSplashState == index
                             ? UIColors.primary
                             : UIColors.white,
-                        borderRadius: BorderRadius.circular(3.r),
-                        border: Border.all(
-                          color: UIColors.primary,
-                        ),
+                        borderRadius:
+                            BorderRadius.circular(AppValues.dimen_5.r),
                       ),
                     ),
                   ),

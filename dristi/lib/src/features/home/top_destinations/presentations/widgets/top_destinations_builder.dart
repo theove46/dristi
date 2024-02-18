@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/core/constants/text_constants.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,23 +28,19 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
 
   Widget _buildTopHeadings() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.sp),
+      padding: EdgeInsets.only(top: AppValues.dimen_16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             TextConstants.topDestinations,
-            style: AppTypography.bold16Nova(
-              color: UIColors.primary,
-            ),
+            style: primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDestinationsPage,
             child: Text(
               TextConstants.viewAll,
-              style: AppTypography.bold12Nova(
-                color: UIColors.primary,
-              ),
+              style: primaryNovaBold12,
             ),
           ),
         ],
@@ -56,7 +52,7 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
     final topDestinationItems = ref.watch(topDestinationsProvider);
 
     return SizedBox(
-      height: 100.sp,
+      height: AppValues.dimen_100.h,
       child: topDestinationItems.data != null
           ? ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -64,26 +60,25 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
               itemBuilder: (context, index) {
                 final item = topDestinationItems.data[index];
                 return Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: EdgeInsets.only(right: AppValues.dimen_8.w),
                   child: GestureDetector(
                     onTap: navigateToSpotPage,
                     child: Column(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(16.r),
+                          borderRadius:
+                              BorderRadius.circular(AppValues.dimen_16.r),
                           child: Image.asset(
                             item.image,
-                            width: 80.sp,
-                            height: 80.sp,
+                            width: AppValues.dimen_80.r,
+                            height: AppValues.dimen_80.r,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 4.sp),
+                        SizedBox(height: AppValues.dimen_4.h),
                         Text(
                           item.title,
-                          style: AppTypography.bold12Nova(
-                            color: UIColors.black,
-                          ),
+                          style: blackNovaBold12,
                         ),
                       ],
                     ),

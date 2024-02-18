@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RiverpodLogger extends ProviderObserver {

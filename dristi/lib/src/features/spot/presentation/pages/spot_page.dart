@@ -1,7 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/core/constants/text_constants.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
 import 'package:flutter/material.dart';
@@ -30,21 +31,18 @@ class _SpotPageState extends ConsumerState<SpotPage> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(0.sp),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildImage(),
-                  _buildDescription(),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildImage(),
+                _buildDescription(),
+              ],
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 20.sp,
-              horizontal: 10.sp,
+              vertical: AppValues.dimen_20.h,
+              horizontal: AppValues.dimen_10.w,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,12 +70,12 @@ class _SpotPageState extends ConsumerState<SpotPage> {
 
   Widget _buildBackgroundImage() {
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(
-        bottom: Radius.circular(20),
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(AppValues.dimen_20.r),
       ),
       child: Image.asset(
         Assets.nilgiri,
-        height: 500.h,
+        height: AppValues.dimen_500.h,
         fit: BoxFit.cover,
       ),
     );
@@ -85,24 +83,24 @@ class _SpotPageState extends ConsumerState<SpotPage> {
 
   Widget _buildGalleryIcon() {
     return Positioned(
-      bottom: 100.sp,
-      right: 16.sp,
+      bottom: AppValues.dimen_100.h,
+      right: AppValues.dimen_16.w,
       child: GestureDetector(
         onTap: () {},
         child: Container(
-          padding: EdgeInsets.all(3.sp),
-          height: 75.sp,
-          width: 75.sp,
+          padding: EdgeInsets.all(AppValues.dimen_3.r),
+          height: AppValues.dimen_75.r,
+          width: AppValues.dimen_75.r,
           decoration: BoxDecoration(
             color: UIColors.white,
-            borderRadius: BorderRadius.circular(12.r),
+            borderRadius: BorderRadius.circular(AppValues.dimen_12.r),
           ),
           child: Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
                 child: SizedBox.fromSize(
-                  size: Size.fromRadius(48.r), // Image radius
+                  size: Size.fromRadius(AppValues.dimen_48.r),
                   child: Image.asset(
                     Assets.bandarban,
                     fit: BoxFit.cover,
@@ -113,7 +111,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
                 child: Icon(
                   Icons.more_horiz_outlined,
                   color: UIColors.white,
-                  size: 32.h,
+                  size: AppValues.dimen_32.h,
                 ),
               ),
             ],
@@ -125,15 +123,13 @@ class _SpotPageState extends ConsumerState<SpotPage> {
 
   Widget _buildDestinationText() {
     return Positioned(
-      bottom: 16.sp,
-      right: 16.sp,
+      bottom: AppValues.dimen_16.h,
+      right: AppValues.dimen_16.w,
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
           "Nil Giri",
-          style: AppTypography.bold44VibesWithShadow(
-            color: UIColors.white,
-          ),
+          style: whiteVibesBoldShadow44,
         ),
       ),
     );
@@ -141,18 +137,16 @@ class _SpotPageState extends ConsumerState<SpotPage> {
 
   Widget _buildDescription() {
     return Padding(
-      padding: EdgeInsets.all(16.sp),
+      padding: EdgeInsets.all(AppValues.dimen_16.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const DescriptionItemsBuilder(),
           Text(
             "Nil Giri",
-            style: AppTypography.bold28Nova(
-              color: UIColors.primary,
-            ),
+            style: primaryNovaBold28,
           ),
-          SizedBox(height: 10.sp),
+          SizedBox(height: AppValues.dimen_10.h),
           Row(
             children: [
               const Icon(
@@ -161,19 +155,15 @@ class _SpotPageState extends ConsumerState<SpotPage> {
               ),
               Text(
                 ' Bandarban, Chattogram',
-                style: AppTypography.bold18Nova(
-                  color: UIColors.primary,
-                ),
+                style: primaryNovaBold18,
               ),
             ],
           ),
-          SizedBox(height: 10.sp),
+          SizedBox(height: AppValues.dimen_10.h),
           Text(
             TextConstants.boiler,
             textAlign: TextAlign.justify,
-            style: AppTypography.regular14Nova(
-              color: UIColors.black,
-            ),
+            style: blackNovaRegular14,
           ),
         ],
       ),
@@ -190,12 +180,12 @@ class _SpotPageState extends ConsumerState<SpotPage> {
           shape: BoxShape.circle,
           color: UIColors.white,
         ),
-        padding: EdgeInsets.only(left: 6.sp),
+        padding: EdgeInsets.only(left: AppValues.dimen_6.w),
         child: Center(
           child: Icon(
             Icons.arrow_back_ios,
             color: UIColors.black,
-            size: 20.h,
+            size: AppValues.dimen_20.h,
           ),
         ),
       ),
@@ -214,7 +204,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
           child: Icon(
             Icons.favorite_border_outlined,
             color: UIColors.red,
-            size: 20.h,
+            size: AppValues.dimen_20.h,
           ),
         ),
       ),

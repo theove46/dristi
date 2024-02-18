@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/home/popular_districts/domain/use_cases/popular_districts_use_case.dart';
 import 'package:dristi/src/features/home/popular_districts/presentations/riverpod/popular_districts_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/destinations/domain/use_cases/destination_use_case.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

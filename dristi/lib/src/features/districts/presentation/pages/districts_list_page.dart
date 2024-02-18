@@ -1,7 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/core/constants/text_constants.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,15 +33,13 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
       appBar: AppBar(
         title: Text(
           TextConstants.allDistrictsBD,
-          style: AppTypography.bold16Nova(
-            color: UIColors.primary,
-          ),
+          style: primaryNovaBold16,
         ),
         centerTitle: false,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: UIColors.primary, // Change the color here
+            color: UIColors.primary,
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -54,7 +53,8 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
                 final int startIndex = index * 2;
                 final int endIndex = startIndex + 1;
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: AppValues.dimen_16.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -78,14 +78,14 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
       child: Card(
         elevation: 4,
         color: UIColors.white,
-        margin: EdgeInsets.all(5.sp),
+        margin: EdgeInsets.all(AppValues.dimen_5.r),
         shadowColor: UIColors.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
             border: Border.all(
               color: UIColors.primary,
             ),
@@ -99,15 +99,11 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
           child: ListTile(
             title: Text(
               item.title,
-              style: AppTypography.semiBold16Nova(
-                color: UIColors.primary,
-              ),
+              style: primaryNovaSemiBold16,
             ),
             subtitle: Text(
               item.division,
-              style: AppTypography.regular10Nova(
-                color: UIColors.primary,
-              ),
+              style: primaryNovaRegular10,
             ),
             onTap: () {},
           ),

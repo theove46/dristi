@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/assets/assets.dart';
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/splash/data/data_sources/splash_data_source.dart';
 import 'package:dristi/src/features/splash/data/models/splash_response_model.dart';
 import 'package:flutter/services.dart';
