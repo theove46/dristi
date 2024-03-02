@@ -1,5 +1,9 @@
 import 'package:dristi/firebase_options.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/flavors/build_config.dart';
+import 'package:dristi/src/core/flavors/env_config.dart';
+import 'package:dristi/src/core/flavors/environment.dart';
+import 'package:dristi/src/core/network/api_end_points.dart';
 import 'package:dristi/src/core/services/routes/route_generator.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
@@ -16,7 +20,19 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  EnvConfig prodConfig = EnvConfig(
+    appName: TextConstants.appName,
+    baseUrl: API.prod,
+    shouldCollectCrashLog: true,
+  );
+
+  BuildConfig.instantiate(
+    envType: Environment.prod,
+    envConfig: prodConfig,
+  );
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
