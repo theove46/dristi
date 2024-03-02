@@ -15,8 +15,8 @@ class SplashUseCase {
 
   final SplashRepository repository;
 
-  Future<(String, List<SplashEntity>?)> getSplashComponents() async {
-    return repository.getSplashComponents();
+  Future<List<SplashEntity>> getSplashComponents() async {
+    return await repository.getSplashComponents();
   }
 
   Future<(String, dynamic)> buttonSubmit() async {

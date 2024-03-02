@@ -10,11 +10,10 @@ class SplashRepositoryImp implements SplashRepository {
   final SplashDataSource dataSource;
 
   @override
-  Future<(String, List<SplashEntity>?)> getSplashComponents() async {
+  Future<List<SplashEntity>> getSplashComponents() async {
     final response = await dataSource.splashComponents();
 
-    return Future.value(
-        (response.statusMessage!, response.data as List<SplashEntity>?));
+    return response.splashItems;
   }
 
   @override

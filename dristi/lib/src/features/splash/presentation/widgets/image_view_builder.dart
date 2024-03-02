@@ -28,7 +28,7 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
             alignment: Alignment.topCenter,
             children: [
               ClipRRect(
-                child: Image.asset(
+                child: Image.network(
                   splashModelsState.data[index].image,
                   fit: BoxFit.cover,
                   height: double.infinity,
