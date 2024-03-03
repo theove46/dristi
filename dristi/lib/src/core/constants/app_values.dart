@@ -35,10 +35,15 @@ class AppValues {
   static const double dimen_150 = 150;
   static const double dimen_160 = 160;
   static const double dimen_200 = 200;
+  static const double dimen_220 = 220;
   static const double dimen_240 = 240;
   static const double dimen_360 = 360;
   static const double dimen_500 = 500;
 
   static const double dimenDefaultWidth = 428;
   static const double dimenDefaultHeight = 926;
+
+  static const int loggerLineLength = 120;
+  static const int loggerErrorMethodCount = 8;
+  static const int loggerMethodCount = 2;
 }

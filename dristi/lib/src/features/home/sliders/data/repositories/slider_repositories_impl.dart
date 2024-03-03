@@ -10,10 +10,9 @@ class SliderRepositoryImp implements SliderRepository {
   final SliderDataSource dataSource;
 
   @override
-  Future<(String, List<SliderEntity>?)> getSliderComponents() async {
+  Future<List<SliderEntity>> getSliderComponents() async {
     final response = await dataSource.sliderComponents();
 
-    return Future.value(
-        (response.statusMessage!, response.data as List<SliderEntity>?));
+    return response.sliderItems;
   }
 }

@@ -13,12 +13,14 @@ class SliderNotifier extends Notifier<SliderState> {
   }
 
   Future<void> getSliderComponents() async {
+    state = state.copyWith(status: SliderStatus.loading);
+
     try {
       final response = await useCase.getSliderComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(
