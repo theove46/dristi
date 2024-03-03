@@ -121,7 +121,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-                    child: Image.asset(
+                    child: Image.network(
                       categoriesItems.data[index].image,
                       width: AppValues.dimen_60.r,
                       height: AppValues.dimen_60.r,
@@ -130,7 +130,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
                   ),
                   SizedBox(height: AppValues.dimen_4.h),
                   Text(
-                    categoriesItems.data[index].title,
+                    categoriesItems.data[index].titleEn,
                     style: blackNovaSemiBold10,
                   ),
                 ],

@@ -20,20 +20,6 @@ class Assets {
   static const String nafakhum = '$splashPath/nafakhum.jpg';
   static const String sajekValley = '$splashPath/sajek_valley.jpg';
 
-  /// Categories Images
-  static const String beach = '$categoriesPath/beach.png';
-  static const String mountains = '$categoriesPath/mountains.png';
-  static const String forest = '$categoriesPath/forest.png';
-  static const String waterfalls = '$categoriesPath/waterfalls.png';
-  static const String heritage = '$categoriesPath/heritage.png';
-  static const String lake = '$categoriesPath/lake.png';
-  static const String themePark = '$categoriesPath/theme_park.png';
-  static const String monument = '$categoriesPath/monument.png';
-  static const String museum = '$categoriesPath/museum.png';
-  static const String nationalPark = '$categoriesPath/national_park.png';
-  static const String resort = '$categoriesPath/resort.png';
-  static const String allCategories = '$categoriesPath/all.png';
-
   /// Popular Districts Images
   static const String coxsBazar2 = '$popularPath/coxs_bazar.jpg';
   static const String bandarban = '$popularPath/bandarban.jpg';
@@ -63,8 +49,6 @@ class Assets {
       '$jsonAssets/district_components.json';
   static const String splashComponents = '$jsonAssets/splash_components.json';
   static const String spotComponents = '$jsonAssets/spot_components.json';
-  static const String categoriesComponents =
-      '$jsonAssets/categories_components.json';
   static const String popularDistrictsComponents =
       '$jsonAssets/popular_districts_components.json';
   static const String topDestinationComponents =

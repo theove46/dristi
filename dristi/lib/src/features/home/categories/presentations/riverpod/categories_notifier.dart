@@ -16,9 +16,9 @@ class CategoriesNotifier extends Notifier<CategoriesState> {
     try {
       final response = await useCase.getCategoriesComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(

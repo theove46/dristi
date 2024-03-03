@@ -11,5 +11,5 @@ final categoriesRepositoryProvider = Provider<CategoriesRepository>(
 );
 
 abstract class CategoriesRepository {
-  Future<(String, List<CategoriesEntity>?)> getCategoriesComponents();
+  Future<List<CategoryEntity>> getCategoriesComponents();
 }

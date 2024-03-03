@@ -13,8 +13,6 @@ class SliderNotifier extends Notifier<SliderState> {
   }
 
   Future<void> getSliderComponents() async {
-    state = state.copyWith(status: SliderStatus.loading);
-
     try {
       final response = await useCase.getSliderComponents();
 
