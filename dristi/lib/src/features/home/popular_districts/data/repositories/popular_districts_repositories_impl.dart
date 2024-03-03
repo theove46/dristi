@@ -10,13 +10,9 @@ class PopularDistrictRepositoryImp implements PopularDistrictRepository {
   final PopularDistrictDataSource dataSource;
 
   @override
-  Future<(String, List<PopularDistrictEntity>?)>
-      getPopularDistrictComponents() async {
+  Future<List<PopularDistrictEntity>> getPopularDistrictComponents() async {
     final response = await dataSource.popularDistrictComponents();
 
-    return Future.value((
-      response.statusMessage!,
-      response.data as List<PopularDistrictEntity>?
-    ));
+    return response.popularDistrictItems;
   }
 }

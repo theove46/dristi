@@ -15,8 +15,7 @@ class PopularDistrictUseCase {
 
   final PopularDistrictRepository repository;
 
-  Future<(String, List<PopularDistrictEntity>?)>
-      getPopularDistrictComponents() async {
+  Future<List<PopularDistrictEntity>> getPopularDistrictComponents() async {
     return repository.getPopularDistrictComponents();
   }
 }

@@ -74,7 +74,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
         bottom: Radius.circular(AppValues.dimen_20.r),
       ),
       child: Image.asset(
-        Assets.nilgiri,
+        Assets.coxsBazar,
         height: AppValues.dimen_500.h,
         fit: BoxFit.cover,
       ),
@@ -102,7 +102,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
                   child: Image.asset(
-                    Assets.bandarban,
+                    Assets.coxsBazar,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -128,7 +128,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          "Nil Giri",
+          "Cox's Bazar",
           style: whiteVibesBoldShadow44,
         ),
       ),

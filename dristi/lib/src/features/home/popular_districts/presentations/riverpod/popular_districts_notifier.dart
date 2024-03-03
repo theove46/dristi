@@ -16,9 +16,9 @@ class PopularDistrictNotifier extends Notifier<PopularDistrictState> {
     try {
       final response = await useCase.getPopularDistrictComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(

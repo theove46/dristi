@@ -69,7 +69,7 @@ class _PopularCitiesBuilderState
                         ClipRRect(
                           borderRadius:
                               BorderRadius.circular(AppValues.dimen_16.r),
-                          child: Image.asset(
+                          child: Image.network(
                             item.image,
                             width: AppValues.dimen_130.r,
                             height: AppValues.dimen_130.r,
@@ -78,7 +78,7 @@ class _PopularCitiesBuilderState
                         ),
                         SizedBox(height: AppValues.dimen_4.h),
                         Text(
-                          item.title,
+                          item.titleEn,
                           style: blackNovaBold12,
                         ),
                       ],
