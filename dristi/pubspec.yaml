@@ -39,7 +39,6 @@ flutter:
   assets:
     - assets/images/spot_items/
     - assets/images/items/
-    - assets/images/popular/
     - assets/images/splash/
     - assets/images/top_destinations/
     - assets/json/
