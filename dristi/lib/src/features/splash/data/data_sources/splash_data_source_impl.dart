@@ -11,25 +11,18 @@ class SplashDataSourceImp implements SplashDataSource {
   const SplashDataSourceImp();
 
   @override
-  Future<Response> splashComponents() async {
-    try {
-      String response = await rootBundle.loadString(Assets.splashComponents);
-      Log.debug(response.toString());
-      final List<dynamic> jsonList = json.decode(response);
-      SplashResponseModel splashResponse =
-          SplashResponseModel.fromJson(jsonList);
+  Future<SplashResponseModel> splashComponents() async {
+    String response = await rootBundle.loadString(Assets.splashComponents);
+    Log.debug(response.toString());
+    final List<dynamic> jsonList = json.decode(response);
 
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: '',
-        data: splashResponse.data,
-      );
+    try {
+      SplashResponseModel splashResponse =
+          SplashResponseModel.fromJson(json: jsonList);
+
+      return splashResponse;
     } catch (error) {
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: 'Error loading data: $error',
-        data: null,
-      );
+      rethrow;
     }
   }
 

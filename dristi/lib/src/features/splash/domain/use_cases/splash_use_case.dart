@@ -15,7 +15,7 @@ class SplashUseCase {
 
   final SplashRepository repository;
 
-  Future<(String, List<SplashEntity>?)> getSplashComponents() async {
+  Future<List<SplashEntity>> getSplashComponents() async {
     return repository.getSplashComponents();
   }
 

@@ -1,25 +1,36 @@
 import 'package:dristi/src/features/splash/domain/entities/splash_entity.dart';
 
-class SplashResponseModel<T> {
-  SplashResponseModel({
-    required this.message,
-    required this.data,
-  });
+class SplashResponseModel {
+  SplashResponseModel(this.splashItems);
 
-  final String message;
-  final List<SplashEntity> data;
+  SplashResponseModel.fromJson({
+    required List<dynamic> json,
+  }) {
+    splashItems = <SplashEntity>[];
+    for (var item in json) {
+      splashItems.add(SplashData.fromJson(item));
+    }
+  }
 
-  factory SplashResponseModel.fromJson(List<dynamic> jsonList) {
-    List<SplashEntity> convertedData = jsonList
-        .map((json) => SplashEntity(
-              title: json['title'] ?? '',
-              image: json['image'] ?? '',
-            ))
-        .toList();
+  List<SplashEntity> splashItems = <SplashEntity>[];
+}
 
-    return SplashResponseModel(
-      message: '',
-      data: convertedData,
+class SplashData extends SplashEntity {
+  String? splashTitle;
+  String? splashImage;
+
+  SplashData({
+    this.splashTitle,
+    this.splashImage,
+  }) : super(
+          title: splashTitle ?? "",
+          image: splashImage ?? "",
+        );
+
+  factory SplashData.fromJson(dynamic json) {
+    return SplashData(
+      splashTitle: json['title'],
+      splashImage: json['image'],
     );
   }
 }
