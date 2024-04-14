@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -39,16 +40,33 @@ Future<void> main() async {
     ),
   );
 
+  await Hive.initFlutter();
+
+  final isFirstTime = await getFirstTimeStatus();
+
   runApp(
     ProviderScope(
       observers: [RiverpodLogger()],
-      child: const MyApp(),
+      child: MyApp(
+        isFirstTime: isFirstTime,
+      ),
     ),
   );
 }
 
+Future<bool> getFirstTimeStatus() async {
+  final settingsBox = await Hive.openBox<bool>('appSettings');
+  bool? isFirstTime = settingsBox.get('isFirstTime');
+  return isFirstTime ?? true;
+}
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    Key? key,
+    required this.isFirstTime,
+  }) : super(key: key);
+
+  final bool isFirstTime;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +92,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute: Routes.splash,
+          initialRoute: isFirstTime ? Routes.splash : Routes.home,
           navigatorKey: navigatorKey,
         );
       },

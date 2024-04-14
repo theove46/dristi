@@ -40,6 +40,7 @@ class SplashNotifier extends Notifier<SplashState> {
       state = state.copyWith(status: SplashStatus.loading);
 
       final response = await useCase.buttonSubmit();
+      await useCase.setFirstTime(false);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(

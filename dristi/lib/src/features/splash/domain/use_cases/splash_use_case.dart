@@ -15,6 +15,10 @@ class SplashUseCase {
 
   final SplashRepository repository;
 
+  Future<void> setFirstTime(bool value) async {
+    await repository.setFirstTime(value);
+  }
+
   Future<List<SplashEntity>> getSplashComponents() async {
     return repository.getSplashComponents();
   }

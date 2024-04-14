@@ -24,9 +24,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future(() {
-      ref.read(splashProvider.notifier).getSplashComponents();
-    });
+    ref.read(splashProvider.notifier).getSplashComponents();
   }
 
   @override

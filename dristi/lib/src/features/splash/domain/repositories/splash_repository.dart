@@ -11,6 +11,8 @@ final splashRepositoryProvider = Provider<SplashRepository>(
 );
 
 abstract class SplashRepository {
+  Future<void> setFirstTime(bool value);
+
   Future<List<SplashEntity>> getSplashComponents();
 
   Future<(String, dynamic)> buttonSubmit();
