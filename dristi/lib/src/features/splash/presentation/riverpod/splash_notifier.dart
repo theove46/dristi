@@ -13,14 +13,12 @@ class SplashNotifier extends Notifier<SplashState> {
   }
 
   Future<void> getSplashComponents() async {
-    state = state.copyWith(status: SplashStatus.loading);
-
     try {
       final response = await useCase.getSplashComponents();
 
-      if (response.isNotEmpty) {
+      if (response.$1.isEmpty) {
         state = state.copyWith(
-          data: response,
+          data: response.$2,
         );
       } else {
         state = state.copyWith(
