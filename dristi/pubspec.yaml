@@ -20,8 +20,6 @@ dependencies:
   carousel_slider: 4.2.1
   equatable: 2.0.5
   dio: 5.4.0
-  firebase_core: 2.24.2
-  firebase_storage: 11.6.0
   hive_flutter: 1.1.0
   get_it: 7.6.7
 

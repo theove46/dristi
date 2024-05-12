@@ -1,4 +1,3 @@
-import 'package:dristi/firebase_options.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/flavors/build_config.dart';
 import 'package:dristi/src/core/flavors/env_config.dart';
@@ -10,7 +9,6 @@ import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/loggers/riverpod_logger.dart';
 import 'package:dristi/src/core/constants/text_constants.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,8 +29,6 @@ Future<void> main() async {
     envType: Environment.prod,
     envConfig: prodConfig,
   );
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
