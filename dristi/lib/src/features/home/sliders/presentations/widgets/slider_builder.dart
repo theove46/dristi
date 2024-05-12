@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,40 +21,10 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
     return Column(
       children: [
         _buildCarouselSlider(),
-        SizedBox(height: 10.h),
+        SizedBox(height: AppValues.dimen_10.h),
         _buildSliderIndicator(),
       ],
     );
-  }
-
-  Widget _buildSliderIndicator() {
-    final currentSliderState = ref.watch(currentSlideProvider);
-    final carouselItems = ref.watch(sliderProvider);
-
-    return carouselItems.data != null
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              carouselItems.data.length,
-              (index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 1.sp),
-                child: Container(
-                  height: 8.sp,
-                  width: currentSliderState == index ? 24.sp : 12.sp,
-                  decoration: BoxDecoration(
-                    color: currentSliderState == index
-                        ? UIColors.primary
-                        : UIColors.white,
-                    borderRadius: BorderRadius.circular(2.r),
-                    border: Border.all(
-                      color: UIColors.primary,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
-        : Container();
   }
 
   Widget _buildCarouselSlider() {
@@ -73,23 +44,23 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
                     SizedBox(
                       width: double.infinity,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(10.h)),
-                        child: Image.asset(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(AppValues.dimen_10.r),
+                        ),
+                        child: Image.network(
                           item.image,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Positioned(
-                      bottom: 16.sp,
-                      right: 16.sp,
+                      bottom: AppValues.dimen_16.h,
+                      right: AppValues.dimen_16.w,
                       child: Transform.rotate(
                         angle: -15 * (3.1415926535 / 180),
                         child: Text(
                           carouselItems.data[index].title,
-                          style: AppTypography.bold32VibesWithShadow(
-                            color: UIColors.white,
-                          ),
+                          style: whiteVibesBoldShadow32,
                         ),
                       ),
                     ),
@@ -98,7 +69,7 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
               );
             },
             options: CarouselOptions(
-              height: 200.h,
+              height: AppValues.dimen_220.h,
               aspectRatio: 2,
               viewportFraction: 1,
               initialPage: 0,
@@ -113,6 +84,38 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
                 currentSliderNotifier.state = index;
               },
               scrollDirection: Axis.horizontal,
+            ),
+          )
+        : Container();
+  }
+
+  Widget _buildSliderIndicator() {
+    final currentSliderState = ref.watch(currentSlideProvider);
+    final carouselItems = ref.watch(sliderProvider);
+
+    return carouselItems.data != null
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              carouselItems.data.length,
+              (index) => Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
+                child: Container(
+                  height: AppValues.dimen_12.h,
+                  width: currentSliderState == index
+                      ? AppValues.dimen_40.w
+                      : AppValues.dimen_28.w,
+                  decoration: BoxDecoration(
+                    color: currentSliderState == index
+                        ? UIColors.primary
+                        : UIColors.white,
+                    borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
+                    border: Border.all(
+                      color: UIColors.primary,
+                    ),
+                  ),
+                ),
+              ),
             ),
           )
         : Container();

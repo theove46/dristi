@@ -1,36 +1,24 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:dristi/src/core/assets/assets.dart';
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/base/base_remote_source.dart';
+import 'package:dristi/src/core/network/api_end_points.dart';
+import 'package:dristi/src/core/network/dio_provider.dart';
 import 'package:dristi/src/features/home/popular_districts/data/data_sources/popular_districts_data_source.dart';
 import 'package:dristi/src/features/home/popular_districts/data/model/popular_districts_response_model.dart';
-import 'package:flutter/services.dart';
 
-class PopularDistrictDataSourceImp implements PopularDistrictDataSource {
-  const PopularDistrictDataSourceImp();
-
+class PopularDistrictDataSourceImp extends BaseRemoteSource
+    implements PopularDistrictDataSource {
   @override
-  Future<Response> popularDistrictComponents() async {
-    try {
-      String response =
-          await rootBundle.loadString(Assets.popularDistrictsComponents);
-      Log.debug(response.toString());
-      final List<dynamic> jsonList = json.decode(response);
-      PopularDistrictResponseModel splashResponse =
-          PopularDistrictResponseModel.fromJson(jsonList);
+  Future<PopularDistrictsResponseModel> popularDistrictComponents() {
+    final String endpoint = DioProvider.baseUrl + API.popularDistricts;
 
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: '',
-        data: splashResponse.data,
-      );
-    } catch (error) {
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: 'Error loading data: $error',
-        data: null,
-      );
+    final Future<Response> dioCall = dioClient.get(endpoint);
+
+    try {
+      return callApiWithErrorParser(dioCall).then((Response response) {
+        return PopularDistrictsResponseModel.fromJson(json: response.data);
+      });
+    } catch (e) {
+      rethrow;
     }
   }
 }

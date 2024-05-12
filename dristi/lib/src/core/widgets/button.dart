@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -126,7 +126,7 @@ class Button extends StatelessWidget {
                     elevation: 0,
                     fixedSize: Size(width, height),
                     backgroundColor: disable
-                        ? UIColors.gray
+                        ? UIColors.grey
                         : background ?? UIColors.transparent,
                     side: BorderSide(
                       color:
@@ -154,7 +154,7 @@ class Button extends StatelessWidget {
                   prefix == null
                       ? Text(
                           label,
-                          style: textStyle ?? _labelTextStyle(context),
+                          style: textStyle ?? blackNovaRegular16,
                         )
                       : Row(
                           children: [
@@ -162,16 +162,12 @@ class Button extends StatelessWidget {
                             SizedBox(width: 10.w),
                             Text(
                               label,
-                              style: textStyle ?? _labelTextStyle(context),
+                              style: textStyle ?? blackNovaRegular16,
                             ),
                           ],
                         ),
               ],
             ),
           );
-  }
-
-  TextStyle _labelTextStyle(BuildContext context) {
-    return AppTypography.regular16Nova();
   }
 }

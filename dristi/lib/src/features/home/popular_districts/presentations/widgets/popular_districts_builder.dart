@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/core/constants/text_constants.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,23 +29,19 @@ class _PopularCitiesBuilderState
 
   Widget _buildTopHeadings() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.sp),
+      padding: EdgeInsets.only(top: AppValues.dimen_16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             TextConstants.popularDistricts,
-            style: AppTypography.bold16Nova(
-              color: UIColors.primary,
-            ),
+            style: primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDistrictPage,
             child: Text(
               TextConstants.explore,
-              style: AppTypography.bold12Nova(
-                color: UIColors.primary,
-              ),
+              style: primaryNovaBold12,
             ),
           ),
         ],
@@ -57,35 +53,33 @@ class _PopularCitiesBuilderState
     final popularDistricts = ref.watch(popularDistrictProvider);
 
     return SizedBox(
-      height: 150.sp,
+      height: AppValues.dimen_150.h,
       child: popularDistricts.data != null
           ? ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: popularDistricts.data.length,
               itemBuilder: (context, index) {
                 final item = popularDistricts.data[index];
-
                 return Padding(
-                  padding: EdgeInsets.only(right: 8.h),
+                  padding: EdgeInsets.only(right: AppValues.dimen_8.w),
                   child: GestureDetector(
                     onTap: navigateToDestinationsPage,
                     child: Column(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(16.r),
-                          child: Image.asset(
+                          borderRadius:
+                              BorderRadius.circular(AppValues.dimen_16.r),
+                          child: Image.network(
                             item.image,
-                            width: 130.sp,
-                            height: 130.sp,
+                            width: AppValues.dimen_130.r,
+                            height: AppValues.dimen_130.r,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 4.sp),
+                        SizedBox(height: AppValues.dimen_4.h),
                         Text(
-                          item.title,
-                          style: AppTypography.bold12Nova(
-                            color: UIColors.black,
-                          ),
+                          item.titleEn,
+                          style: blackNovaBold12,
                         ),
                       ],
                     ),

@@ -1,7 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,15 +33,13 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
       appBar: AppBar(
         title: Text(
           "Top Destination *** ***",
-          style: AppTypography.bold16Nova(
-            color: UIColors.primary,
-          ),
+          style: primaryNovaBold16,
         ),
         centerTitle: false,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: UIColors.primary, // Change the color here
+            color: UIColors.primary,
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -51,14 +50,11 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
           ? GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 80.sp / 100.sp,
+                childAspectRatio: AppValues.dimen_80.w / AppValues.dimen_100.w,
               ),
               itemCount: destinationModelsState.data.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.all(8.sp),
-                  child: _buildDestinationCard(index),
-                );
+                return _buildDestinationCard(index);
               },
             )
           : Container(),
@@ -72,10 +68,10 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
         child: Card(
           elevation: 4,
           color: UIColors.white,
-          margin: EdgeInsets.all(5.sp),
+          margin: EdgeInsets.all(AppValues.dimen_8.r),
           shadowColor: UIColors.primary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
           ),
           child: Stack(
             fit: StackFit.expand,
@@ -93,13 +89,13 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
   Widget _buildImage() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
         border: Border.all(
           width: 0,
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
         child: Image.asset(
           Assets.nilgiri,
           fit: BoxFit.cover,
@@ -111,7 +107,7 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
   Widget _buildGradient() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -131,22 +127,18 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
     final item = destinationModelsState.data[index];
 
     return Padding(
-      padding: EdgeInsets.all(10.sp),
+      padding: EdgeInsets.all(AppValues.dimen_16.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             item.title,
-            style: AppTypography.semiBold16Nova(
-              color: UIColors.white,
-            ),
+            style: whiteNovaSemiBold16,
           ),
           Text(
             item.division,
-            style: AppTypography.regular10Nova(
-              color: UIColors.white,
-            ),
+            style: whiteNovaRegular10,
           ),
         ],
       ),

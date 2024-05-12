@@ -1,35 +1,23 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:dristi/src/core/assets/assets.dart';
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/base/base_remote_source.dart';
+import 'package:dristi/src/core/network/api_end_points.dart';
+import 'package:dristi/src/core/network/dio_provider.dart';
 import 'package:dristi/src/features/home/sliders/data/data_sources/slider_data_source.dart';
 import 'package:dristi/src/features/home/sliders/data/model/slider_response_model.dart';
-import 'package:flutter/services.dart';
 
-class SliderDataSourceImp implements SliderDataSource {
-  const SliderDataSourceImp();
-
+class SliderDataSourceImp extends BaseRemoteSource implements SliderDataSource {
   @override
-  Future<Response> sliderComponents() async {
-    try {
-      String response = await rootBundle.loadString(Assets.sliderComponents);
-      Log.debug(response.toString());
-      final List<dynamic> jsonList = json.decode(response);
-      SliderResponseModel splashResponse =
-          SliderResponseModel.fromJson(jsonList);
+  Future<SliderResponseModel> sliderComponents() {
+    final String endpoint = DioProvider.baseUrl + API.slider;
 
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: '',
-        data: splashResponse.data,
-      );
-    } catch (error) {
-      return Response(
-        requestOptions: RequestOptions(),
-        statusMessage: 'Error loading data: $error',
-        data: null,
-      );
+    final Future<Response> dioCall = dioClient.get(endpoint);
+
+    try {
+      return callApiWithErrorParser(dioCall).then((Response response) {
+        return SliderResponseModel.fromJson(json: response.data);
+      });
+    } catch (e) {
+      rethrow;
     }
   }
 }

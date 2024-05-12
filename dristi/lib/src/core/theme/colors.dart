@@ -12,7 +12,7 @@ class UIColors {
   static const Color platinum = Color(0xffE7E8E3);
   static const Color aliceBlue = Color(0xffdaeaf6);
   static const Color azure = Color(0xffc5e3f6);
-  static const Color gray = Color(0xff797C7B);
+  static const Color grey = Color(0xff797C7B);
   static const Color black = Color(0xff333333);
   static const Color transparent = Colors.transparent;
 }

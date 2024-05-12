@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/home/sliders/domain/use_cases/slider_use_cases.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,9 +16,9 @@ class SliderNotifier extends Notifier<SliderState> {
     try {
       final response = await useCase.getSliderComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(

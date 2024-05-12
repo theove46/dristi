@@ -1,9 +1,7 @@
 class Assets {
   static const String imagePath = 'assets/images';
   static const String itemsPath = 'assets/images/items';
-  static const String categoriesPath = 'assets/images/categories';
   static const String splashPath = 'assets/images/splash';
-  static const String popularPath = 'assets/images/popular';
   static const String topDestinationsPath = 'assets/images/top_destinations';
   static const String spotItems = 'assets/images/spot_items';
   static const String jsonAssets = 'assets/json';
@@ -19,28 +17,6 @@ class Assets {
   static const String saintMartins = '$splashPath/saint_martins.jpg';
   static const String nafakhum = '$splashPath/nafakhum.jpg';
   static const String sajekValley = '$splashPath/sajek_valley.jpg';
-
-  /// Categories Images
-  static const String beach = '$categoriesPath/beach.png';
-  static const String mountains = '$categoriesPath/mountains.png';
-  static const String forest = '$categoriesPath/forest.png';
-  static const String waterfalls = '$categoriesPath/waterfalls.png';
-  static const String heritage = '$categoriesPath/heritage.png';
-  static const String lake = '$categoriesPath/lake.png';
-  static const String themePark = '$categoriesPath/theme_park.png';
-  static const String monument = '$categoriesPath/monument.png';
-  static const String museum = '$categoriesPath/museum.png';
-  static const String nationalPark = '$categoriesPath/national_park.png';
-  static const String resort = '$categoriesPath/resort.png';
-  static const String allCategories = '$categoriesPath/all.png';
-
-  /// Popular Districts Images
-  static const String coxsBazar2 = '$popularPath/coxs_bazar.jpg';
-  static const String bandarban = '$popularPath/bandarban.jpg';
-  static const String dhaka = '$popularPath/dhaka.jpg';
-  static const String chattogram = '$popularPath/chattogram.jpg';
-  static const String khulna = '$popularPath/khulna.jpg';
-  static const String sylhet = '$popularPath/sylhet.jpg';
 
   /// Top Destinations Images
   static const String inaniBeach = '$topDestinationsPath/inani_beach.jpg';
@@ -63,11 +39,6 @@ class Assets {
       '$jsonAssets/district_components.json';
   static const String splashComponents = '$jsonAssets/splash_components.json';
   static const String spotComponents = '$jsonAssets/spot_components.json';
-  static const String categoriesComponents =
-      '$jsonAssets/categories_components.json';
-  static const String popularDistrictsComponents =
-      '$jsonAssets/popular_districts_components.json';
-  static const String sliderComponents = '$jsonAssets/slider_components.json';
   static const String topDestinationComponents =
       '$jsonAssets/top_destination_components.json';
 }

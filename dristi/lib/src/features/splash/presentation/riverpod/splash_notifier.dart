@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/splash/domain/use_cases/splash_use_case.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,9 +16,9 @@ class SplashNotifier extends Notifier<SplashState> {
     try {
       final response = await useCase.getSplashComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(
@@ -40,6 +40,7 @@ class SplashNotifier extends Notifier<SplashState> {
       state = state.copyWith(status: SplashStatus.loading);
 
       final response = await useCase.buttonSubmit();
+      await useCase.setFirstTime(false);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(

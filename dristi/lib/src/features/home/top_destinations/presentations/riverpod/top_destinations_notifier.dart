@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/home/top_destinations/domain/use_cases/top_destination_use_case.dart';
 import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 

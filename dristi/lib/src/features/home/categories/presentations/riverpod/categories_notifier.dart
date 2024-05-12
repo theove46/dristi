@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/utils/loggers/logger.dart';
+import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/home/categories/domain/use_cases/categories_use_cases.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,9 +16,9 @@ class CategoriesNotifier extends Notifier<CategoriesState> {
     try {
       final response = await useCase.getCategoriesComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
         );
       } else {
         state = state.copyWith(

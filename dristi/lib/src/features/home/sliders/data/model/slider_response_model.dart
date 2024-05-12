@@ -1,25 +1,36 @@
 import 'package:dristi/src/features/home/sliders/domain/entity/slider_entity.dart';
 
-class SliderResponseModel<T> {
-  SliderResponseModel({
-    required this.message,
-    required this.data,
-  });
+class SliderResponseModel {
+  SliderResponseModel(this.sliderItems);
 
-  final String message;
-  final List<SliderEntity> data;
+  SliderResponseModel.fromJson({
+    required List<dynamic> json,
+  }) {
+    sliderItems = <SliderEntity>[];
+    for (var item in json) {
+      sliderItems.add(SliderData.fromJson(item));
+    }
+  }
 
-  factory SliderResponseModel.fromJson(List<dynamic> jsonList) {
-    List<SliderEntity> convertedData = jsonList
-        .map((json) => SliderEntity(
-              title: json['title'] ?? '',
-              image: json['image'] ?? '',
-            ))
-        .toList();
+  List<SliderEntity> sliderItems = <SliderEntity>[];
+}
 
-    return SliderResponseModel(
-      message: '',
-      data: convertedData,
+class SliderData extends SliderEntity {
+  String? sliderTitle;
+  String? sliderImage;
+
+  SliderData({
+    this.sliderTitle,
+    this.sliderImage,
+  }) : super(
+          title: sliderTitle ?? "",
+          image: sliderImage ?? "",
+        );
+
+  factory SliderData.fromJson(dynamic json) {
+    return SliderData(
+      sliderTitle: json['title'],
+      sliderImage: json['image'],
     );
   }
 }

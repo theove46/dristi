@@ -1,7 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/font_style.dart';
-import 'package:dristi/src/core/utils/texts/text_constants.dart';
+import 'package:dristi/src/core/constants/text_constants.dart';
+import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
 import 'package:dristi/src/features/home/sliders/presentations/widgets/slider_builder.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       backgroundColor: UIColors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.sp),
+          padding: EdgeInsets.all(AppValues.dimen_16.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +56,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Widget _buildDrawerIcon() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.sp, bottom: 2.sp),
+      padding: EdgeInsets.only(
+        top: AppValues.dimen_16.h,
+        bottom: AppValues.dimen_2.h,
+      ),
       child: const Image(
         image: AssetImage(Assets.menu),
         color: UIColors.primary,
@@ -68,24 +72,17 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10.sp),
+        SizedBox(height: AppValues.dimen_10.h),
         Text(
           TextConstants.exploreThe,
-          style: AppTypography.mediumBold24Nova(
-            color: UIColors.primary,
-          ),
+          style: primaryNovaMedium24,
         ),
-        SizedBox(height: 10.sp),
-        Text(
-          TextConstants.beautifulBD,
-          style: AppTypography.bold28Nova(
-            color: UIColors.primary,
-          ),
-        ),
+        SizedBox(height: AppValues.dimen_10.h),
+        Text(TextConstants.beautifulBD, style: primaryNovaBold28),
         Divider(
           color: UIColors.primary,
-          thickness: 1.sp,
-          height: 16.h,
+          thickness: AppValues.dimen_1.h,
+          height: AppValues.dimen_16.h,
         ),
       ],
     );

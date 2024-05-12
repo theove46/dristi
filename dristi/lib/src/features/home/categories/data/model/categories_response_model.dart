@@ -1,25 +1,40 @@
 import 'package:dristi/src/features/home/categories/domain/entity/categories_entity.dart';
 
-class CategoriesResponseModel<T> {
-  CategoriesResponseModel({
-    required this.message,
-    required this.data,
-  });
+class CategoriesResponseModel {
+  CategoriesResponseModel(this.categoryItems);
 
-  final String message;
-  final List<CategoriesEntity> data;
+  CategoriesResponseModel.fromJson({
+    required List<dynamic> json,
+  }) {
+    categoryItems = <CategoryEntity>[];
+    for (var item in json) {
+      categoryItems.add(CategoryData.fromJson(item));
+    }
+  }
 
-  factory CategoriesResponseModel.fromJson(List<dynamic> jsonList) {
-    List<CategoriesEntity> convertedData = jsonList
-        .map((json) => CategoriesEntity(
-              title: json['title'] ?? '',
-              image: json['image'] ?? '',
-            ))
-        .toList();
+  List<CategoryEntity> categoryItems = <CategoryEntity>[];
+}
 
-    return CategoriesResponseModel(
-      message: '',
-      data: convertedData,
+class CategoryData extends CategoryEntity {
+  String? sliderTitleEn;
+  String? sliderTitleBn;
+  String? sliderImage;
+
+  CategoryData({
+    this.sliderTitleEn,
+    this.sliderTitleBn,
+    this.sliderImage,
+  }) : super(
+          titleEn: sliderTitleEn ?? "",
+          titleBn: sliderTitleBn ?? "",
+          image: sliderImage ?? "",
+        );
+
+  factory CategoryData.fromJson(dynamic json) {
+    return CategoryData(
+      sliderTitleEn: json['title_en'],
+      sliderTitleBn: json['title_bn'],
+      sliderImage: json['image'],
     );
   }
 }
