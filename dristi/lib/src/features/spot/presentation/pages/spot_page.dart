@@ -41,7 +41,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: AppValues.dimen_20.h,
+              vertical: AppValues.dimen_30.h,
               horizontal: AppValues.dimen_10.w,
             ),
             child: Row(
