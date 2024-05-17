@@ -1,8 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/constants/text_constants.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
 import 'package:dristi/src/features/home/sliders/presentations/widgets/slider_builder.dart';
@@ -74,11 +74,11 @@ class _HomePageState extends ConsumerState<HomePage> {
       children: [
         SizedBox(height: AppValues.dimen_10.h),
         Text(
-          TextConstants.exploreThe,
+          context.localization.exploreThe,
           style: primaryNovaMedium24,
         ),
         SizedBox(height: AppValues.dimen_10.h),
-        Text(TextConstants.beautifulBD, style: primaryNovaBold28),
+        Text(context.localization.beautifulBD, style: primaryNovaBold28),
         Divider(
           color: UIColors.primary,
           thickness: AppValues.dimen_1.h,

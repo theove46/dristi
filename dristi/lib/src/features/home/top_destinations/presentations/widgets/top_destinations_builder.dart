@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/routes.dart';
-import 'package:dristi/src/core/constants/text_constants.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,13 +33,13 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            TextConstants.topDestinations,
+            context.localization.topDestinations,
             style: primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDestinationsPage,
             child: Text(
-              TextConstants.viewAll,
+              context.localization.viewAll,
               style: primaryNovaBold12,
             ),
           ),

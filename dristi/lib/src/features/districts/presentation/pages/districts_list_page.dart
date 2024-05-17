@@ -1,8 +1,8 @@
 import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/constants/text_constants.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +32,7 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
       backgroundColor: UIColors.white,
       appBar: AppBar(
         title: Text(
-          TextConstants.allDistrictsBD,
+          context.localization.allDistrictsBD,
           style: primaryNovaBold16,
         ),
         centerTitle: false,
