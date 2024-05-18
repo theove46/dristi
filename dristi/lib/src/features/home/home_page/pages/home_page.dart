@@ -78,7 +78,10 @@ class _HomePageState extends ConsumerState<HomePage> {
           style: primaryNovaMedium24,
         ),
         SizedBox(height: AppValues.dimen_10.h),
-        Text(context.localization.beautifulBD, style: primaryNovaBold28),
+        Text(
+          context.localization.beautifulBD,
+          style: primaryNovaBold28,
+        ),
         Divider(
           color: UIColors.primary,
           thickness: AppValues.dimen_1.h,

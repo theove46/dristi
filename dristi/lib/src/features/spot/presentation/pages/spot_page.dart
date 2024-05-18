@@ -8,6 +8,7 @@ import 'package:dristi/src/features/spot/presentation/widgets/description_items_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SpotPage extends ConsumerStatefulWidget {
   const SpotPage({super.key});
@@ -173,7 +174,7 @@ class _SpotPageState extends ConsumerState<SpotPage> {
   Widget _buildBackButton() {
     return IconButton(
       onPressed: () {
-        Navigator.of(context).pop();
+        context.pop();
       },
       icon: Container(
         decoration: const BoxDecoration(

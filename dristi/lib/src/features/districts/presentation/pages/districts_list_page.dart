@@ -7,6 +7,7 @@ import 'package:dristi/src/features/districts/presentation/riverpod/district_pro
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DistrictsPage extends ConsumerStatefulWidget {
   const DistrictsPage({super.key});
@@ -42,7 +43,7 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
             color: UIColors.primary,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
       ),
@@ -53,8 +54,9 @@ class _DistrictsPageState extends ConsumerState<DistrictsPage> {
                 final int startIndex = index * 2;
                 final int endIndex = startIndex + 1;
                 return Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: AppValues.dimen_16.w),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppValues.dimen_16.w,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -43,7 +43,7 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
             color: UIColors.primary,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
       ),

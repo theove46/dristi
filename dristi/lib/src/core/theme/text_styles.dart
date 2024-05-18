@@ -48,11 +48,21 @@ final TextStyle _blackNovaBold = _novaBold.copyWith(
 final TextStyle _whiteNovaRegular = _novaRegular.copyWith(
   color: UIColors.white,
 );
+
 final TextStyle _whiteNovaSemiBold = _novaSemiBold.copyWith(
   color: UIColors.white,
 );
+
+final TextStyle _redNovaSemiBold = _novaSemiBold.copyWith(
+  color: UIColors.red,
+);
+
 final TextStyle _whiteNovaBold = _novaBold.copyWith(
   color: UIColors.white,
+);
+
+final TextStyle _redNovaBold = _novaBold.copyWith(
+  color: UIColors.red,
 );
 
 final TextStyle _whiteVibesBold = _vibesBold.copyWith(
@@ -101,6 +111,9 @@ final TextStyle primaryNovaSemiBold16 = _primaryNovaSemiBold.copyWith(
 final TextStyle whiteNovaSemiBold16 = _whiteNovaSemiBold.copyWith(
   fontSize: 16.sp,
 );
+final TextStyle redNovaSemiBold16 = _redNovaSemiBold.copyWith(
+  fontSize: 16.sp,
+);
 final TextStyle primaryNovaBold16 = _primaryNovaBold.copyWith(
   fontSize: 16.sp,
 );
@@ -121,6 +134,9 @@ final TextStyle primaryNovaBold28 = _primaryNovaBold.copyWith(
 );
 final TextStyle whiteNovaBold28 = _whiteNovaBold.copyWith(
   fontSize: 28.sp,
+);
+final TextStyle redNovaBold24 = _redNovaBold.copyWith(
+  fontSize: 24.sp,
 );
 final TextStyle whiteVibesBoldShadow32 = _whiteVibesBoldShadow.copyWith(
   fontSize: 32.sp,

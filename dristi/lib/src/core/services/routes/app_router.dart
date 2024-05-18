@@ -1,5 +1,7 @@
 import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/services/routes/navigation_helper.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/core/widgets/error_screen.dart';
 import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_page.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_page.dart';
 import 'package:dristi/src/features/home/home_page/pages/home_page.dart';
@@ -20,6 +22,9 @@ GoRouter appRouter(bool isFirstTime) {
   return GoRouter(
     navigatorKey: NavigationHelper().parentNavigatorKey,
     initialLocation: isFirstTime ? _Path.splash : _Path.home,
+    observers: [
+      RouteNavigatorObserver(),
+    ],
     routes: <RouteBase>[
       GoRoute(
         path: _Path.home,
@@ -47,31 +52,15 @@ GoRouter appRouter(bool isFirstTime) {
         builder: (context, state) => const DestinationPage(),
       ),
     ],
-  );
-}
-
-CustomTransitionPage buildPageWithDefaultTransition<T>({
-  required BuildContext context,
-  required GoRouterState state,
-  required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
-    child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      final tween = Tween(begin: begin, end: end);
-      final curvedAnimation = CurvedAnimation(
-        parent: animation,
-        curve: curve,
-      );
-
-      return SlideTransition(
-        position: tween.animate(curvedAnimation),
-        child: child,
+    errorPageBuilder: (context, state) {
+      return MaterialPage<void>(
+        key: state.pageKey,
+        child: ErrorScreen(
+          errorMessage: context.localization.pageNotFound,
+          onPressed: () {
+            context.pop();
+          },
+        ),
       );
     },
   );
