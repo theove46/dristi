@@ -11,14 +11,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SpotPage extends ConsumerStatefulWidget {
-  const SpotPage({super.key});
+class SpotScreen extends ConsumerStatefulWidget {
+  const SpotScreen({super.key});
 
   @override
   ConsumerState createState() => _SpotPageState();
 }
 
-class _SpotPageState extends ConsumerState<SpotPage> {
+class _SpotPageState extends ConsumerState<SpotScreen> {
   @override
   void initState() {
     super.initState();

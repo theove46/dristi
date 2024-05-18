@@ -9,14 +9,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class DistrictsPage extends ConsumerStatefulWidget {
-  const DistrictsPage({super.key});
+class DistrictsScreen extends ConsumerStatefulWidget {
+  const DistrictsScreen({super.key});
 
   @override
   ConsumerState createState() => _DistrictsPageState();
 }
 
-class _DistrictsPageState extends ConsumerState<DistrictsPage> {
+class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
   @override
   void initState() {
     super.initState();
