@@ -28,8 +28,8 @@ class ErrorScreen extends StatelessWidget {
           children: [
             AssetImageView(
               fileName: Assets.error,
-              height: AppValues.dimen_200.h,
-              width: AppValues.dimen_200.h,
+              height: AppValues.dimen_200.r,
+              width: AppValues.dimen_200.r,
             ),
             Text(
               context.localization.somethingWentWrong,

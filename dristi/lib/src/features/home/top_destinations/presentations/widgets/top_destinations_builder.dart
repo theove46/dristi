@@ -1,6 +1,7 @@
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -69,8 +70,8 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
                         ClipRRect(
                           borderRadius:
                               BorderRadius.circular(AppValues.dimen_16.r),
-                          child: Image.asset(
-                            item.image,
+                          child: AssetImageView(
+                            fileName: item.image,
                             width: AppValues.dimen_80.r,
                             height: AppValues.dimen_80.r,
                             fit: BoxFit.cover,

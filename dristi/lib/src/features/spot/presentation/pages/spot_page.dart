@@ -2,6 +2,7 @@ import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
@@ -74,10 +75,11 @@ class _SpotPageState extends ConsumerState<SpotPage> {
       borderRadius: BorderRadius.vertical(
         bottom: Radius.circular(AppValues.dimen_20.r),
       ),
-      child: Image.asset(
-        Assets.coxsBazar,
-        height: AppValues.dimen_500.h,
+      child: AssetImageView(
+        fileName: Assets.coxsBazar,
         fit: BoxFit.cover,
+        height: AppValues.dimen_500.r,
+        width: double.infinity,
       ),
     );
   }
@@ -102,8 +104,8 @@ class _SpotPageState extends ConsumerState<SpotPage> {
                 borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
-                  child: Image.asset(
-                    Assets.coxsBazar,
+                  child: const AssetImageView(
+                    fileName: Assets.coxsBazar,
                     fit: BoxFit.cover,
                   ),
                 ),

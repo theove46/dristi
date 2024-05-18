@@ -3,6 +3,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -97,8 +98,8 @@ class _DestinationPageState extends ConsumerState<DestinationPage> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-        child: Image.asset(
-          Assets.nilgiri,
+        child: const AssetImageView(
+          fileName: Assets.nilgiri,
           fit: BoxFit.cover,
         ),
       ),

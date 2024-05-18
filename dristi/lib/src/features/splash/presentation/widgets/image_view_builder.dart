@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,8 +29,8 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
             alignment: Alignment.topCenter,
             children: [
               ClipRRect(
-                child: Image.asset(
-                  splashModelsState.data[index].image,
+                child: AssetImageView(
+                  fileName: splashModelsState.data[index].image,
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: double.infinity,

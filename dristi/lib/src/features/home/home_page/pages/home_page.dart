@@ -2,6 +2,7 @@ import 'package:dristi/src/core/assets/assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
@@ -57,13 +58,15 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget _buildDrawerIcon() {
     return Padding(
       padding: EdgeInsets.only(
-        top: AppValues.dimen_16.h,
+        top: AppValues.dimen_24.h,
         bottom: AppValues.dimen_2.h,
       ),
-      child: const Image(
-        image: AssetImage(Assets.menu),
+      child: AssetImageView(
+        fileName: Assets.menu,
+        fit: BoxFit.cover,
+        height: AppValues.dimen_30.r,
+        width: AppValues.dimen_30.r,
         color: UIColors.primary,
-        height: 30,
       ),
     );
   }
