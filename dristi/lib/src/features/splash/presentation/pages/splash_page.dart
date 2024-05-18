@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/services/routes/routes.dart';
+import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -12,6 +12,7 @@ import 'package:dristi/src/features/splash/presentation/widgets/page_indicator_b
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
@@ -95,10 +96,6 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   }
 
   void navigateToHomePage() {
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      Routes.home,
-      (route) => false,
-    );
+    context.pushNamed(AppRoutes.home);
   }
 }

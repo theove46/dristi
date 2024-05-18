@@ -1,11 +1,12 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/services/routes/routes.dart';
+import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_page/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class TopDestinationBuilder extends ConsumerStatefulWidget {
   const TopDestinationBuilder({super.key});
@@ -91,16 +92,10 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
   }
 
   void navigateToDestinationsPage() {
-    Navigator.pushNamed(
-      context,
-      Routes.destination,
-    );
+    context.pushNamed(AppRoutes.destination);
   }
 
   void navigateToSpotPage() {
-    Navigator.pushNamed(
-      context,
-      Routes.spot,
-    );
+    context.pushNamed(AppRoutes.spot);
   }
 }
