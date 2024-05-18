@@ -2,11 +2,11 @@ import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/services/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/error_screen.dart';
-import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_page.dart';
-import 'package:dristi/src/features/districts/presentation/pages/districts_list_page.dart';
-import 'package:dristi/src/features/home/home_page/pages/home_page.dart';
-import 'package:dristi/src/features/splash/presentation/pages/splash_page.dart';
-import 'package:dristi/src/features/spot/presentation/pages/spot_page.dart';
+import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_screen.dart';
+import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
+import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
+import 'package:dristi/src/features/splash/presentation/pages/splash_screen.dart';
+import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,34 +22,32 @@ GoRouter appRouter(bool isFirstTime) {
   return GoRouter(
     navigatorKey: NavigationHelper().parentNavigatorKey,
     initialLocation: isFirstTime ? _Path.splash : _Path.home,
-    observers: [
-      RouteNavigatorObserver(),
-    ],
+    observers: [RouteNavigatorObserver()],
     routes: <RouteBase>[
       GoRoute(
         path: _Path.home,
         name: AppRoutes.home,
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: _Path.splash,
         name: AppRoutes.splash,
-        builder: (context, state) => const SplashPage(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: _Path.spot,
         name: AppRoutes.spot,
-        builder: (context, state) => const SpotPage(),
+        builder: (context, state) => const SpotScreen(),
       ),
       GoRoute(
         path: _Path.districts,
         name: AppRoutes.districts,
-        builder: (context, state) => const DistrictsPage(),
+        builder: (context, state) => const DistrictsScreen(),
       ),
       GoRoute(
         path: _Path.destination,
         name: AppRoutes.destination,
-        builder: (context, state) => const DestinationPage(),
+        builder: (context, state) => const DestinationScreen(),
       ),
     ],
     errorPageBuilder: (context, state) {

@@ -25,6 +25,12 @@ class RouteNavigatorObserver extends NavigatorObserver {
     super.didPop(route, previousRoute);
   }
 
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    _logRoute(route, 'DidRemove');
+    super.didRemove(route, previousRoute);
+  }
+
   void _logRoute(Route<dynamic> route, String action) {
     final String? routeName = route.settings.name;
     Log.info('$action route: ${routeName ?? 'unknown'}');
