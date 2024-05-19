@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-enum PopularDistrictStatus { initial, loading, success, failure }
+enum PopularDistrictsStatus { initial, loading, success, failure }
 
 class PopularDistrictState<T> extends Equatable {
   const PopularDistrictState({
-    this.status = PopularDistrictStatus.initial,
+    this.status = PopularDistrictsStatus.initial,
     this.data,
     this.errorMessage,
   });
 
-  final PopularDistrictStatus status;
+  final PopularDistrictsStatus status;
   final T? data;
   final String? errorMessage;
 
   PopularDistrictState copyWith({
-    PopularDistrictStatus? status,
+    PopularDistrictsStatus? status,
     T? data,
     String? errorMessage,
   }) {

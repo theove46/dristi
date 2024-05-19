@@ -16,47 +16,99 @@ const gradient = LinearGradient(
   stops: [0.1, 0.3, 0.4],
 );
 
-Widget buildSliderShimmer() {
+Widget buildShimmer({
+  required double height,
+  required double width,
+  Widget? child,
+}) {
   return Shimmer(
     gradient: gradient,
     child: SizedBox(
+      height: height,
+      width: width,
+      child: child,
+    ),
+  );
+}
+
+Widget buildShimmerContainer({
+  required double height,
+  required double width,
+  required double borderRadius,
+}) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(borderRadius),
+    child: Container(
+      height: height,
+      width: width,
+      color: UIColors.white,
+    ),
+  );
+}
+
+Widget buildSquareHorizontalListShimmer({
+  required double height,
+  required double itemSize,
+  required int itemCount,
+}) {
+  return buildShimmer(
+    height: height,
+    width: double.infinity,
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.only(right: AppValues.dimen_8.w),
+          child: Column(
+            children: [
+              buildShimmerContainer(
+                height: itemSize,
+                width: itemSize,
+                borderRadius: AppValues.dimen_16.r,
+              ),
+              SizedBox(height: AppValues.dimen_4.h),
+              buildShimmerContainer(
+                height: AppValues.dimen_10.r,
+                width: itemSize,
+                borderRadius: AppValues.dimen_6.r,
+              ),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
+Widget buildSliderShimmer() {
+  return buildShimmer(
+    height: AppValues.dimen_220.h,
+    width: double.infinity,
+    child: buildShimmerContainer(
       height: AppValues.dimen_220.h,
       width: double.infinity,
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(
-          Radius.circular(AppValues.dimen_10.r),
-        ),
-        child: Container(
-          height: AppValues.dimen_220.h,
-          color: UIColors.white,
-        ),
-      ),
+      borderRadius: AppValues.dimen_10.r,
     ),
   );
 }
 
 Widget buildSliderIndicatorShimmer() {
-  return Shimmer(
-    gradient: gradient,
+  return buildShimmer(
+    height: AppValues.dimen_12.h,
+    width: double.infinity,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        5,
-        (index) => Padding(
+      children: List.generate(5, (index) {
+        return Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
-          child: Container(
+          child: buildShimmerContainer(
             height: AppValues.dimen_12.h,
             width: index == 0 ? AppValues.dimen_40.w : AppValues.dimen_28.w,
-            decoration: BoxDecoration(
-              color: UIColors.white,
-              borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
-              border: Border.all(
-                color: UIColors.white,
-              ),
-            ),
+            borderRadius: AppValues.dimen_5.r,
           ),
-        ),
-      ),
+        );
+      }),
     ),
   );
 }
@@ -93,22 +145,16 @@ Widget buildCategoriesShimmer() {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-                      child: Container(
-                        width: AppValues.dimen_60.r,
-                        height: AppValues.dimen_60.r,
-                        color: UIColors.white,
-                      ),
+                    buildShimmerContainer(
+                      width: AppValues.dimen_60.r,
+                      height: AppValues.dimen_60.r,
+                      borderRadius: AppValues.dimen_6.r,
                     ),
                     SizedBox(height: AppValues.dimen_4.h),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-                      child: Container(
-                        height: AppValues.dimen_10.r,
-                        width: AppValues.dimen_60.r,
-                        color: UIColors.white,
-                      ),
+                    buildShimmerContainer(
+                      width: AppValues.dimen_60.r,
+                      height: AppValues.dimen_10.r,
+                      borderRadius: AppValues.dimen_6.r,
                     ),
                   ],
                 ),
@@ -122,40 +168,17 @@ Widget buildCategoriesShimmer() {
 }
 
 Widget buildTopDestinationsShimmer() {
-  return Shimmer(
-    gradient: gradient,
-    child: SizedBox(
-      height: AppValues.dimen_100.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.only(right: AppValues.dimen_8.w),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                  child: Container(
-                    height: AppValues.dimen_80.r,
-                    width: AppValues.dimen_80.r,
-                    color: UIColors.white,
-                  ),
-                ),
-                SizedBox(height: AppValues.dimen_4.h),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-                  child: Container(
-                    height: AppValues.dimen_10.r,
-                    width: AppValues.dimen_80.r,
-                    color: UIColors.white,
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    ),
+  return buildSquareHorizontalListShimmer(
+    height: AppValues.dimen_100.h,
+    itemSize: AppValues.dimen_80.r,
+    itemCount: 6,
+  );
+}
+
+Widget buildPopularDistrictsShimmer() {
+  return buildSquareHorizontalListShimmer(
+    height: AppValues.dimen_150.h,
+    itemSize: AppValues.dimen_130.r,
+    itemCount: 6,
   );
 }
