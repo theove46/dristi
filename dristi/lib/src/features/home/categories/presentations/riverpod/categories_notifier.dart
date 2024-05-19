@@ -17,7 +17,6 @@ class CategoriesNotifier extends Notifier<CategoriesState> {
       state = state.copyWith(
         status: CategoriesStatus.loading,
       );
-
       final response = await useCase.getCategoriesComponents();
 
       if (response.isNotEmpty) {

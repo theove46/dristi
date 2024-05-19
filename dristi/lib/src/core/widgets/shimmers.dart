@@ -102,10 +102,13 @@ Widget buildCategoriesShimmer() {
                       ),
                     ),
                     SizedBox(height: AppValues.dimen_4.h),
-                    Container(
-                      height: AppValues.dimen_10.r,
-                      width: AppValues.dimen_60.r,
-                      color: UIColors.black,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
+                      child: Container(
+                        height: AppValues.dimen_10.r,
+                        width: AppValues.dimen_60.r,
+                        color: UIColors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -113,6 +116,45 @@ Widget buildCategoriesShimmer() {
             ),
           ),
         ),
+      ),
+    ),
+  );
+}
+
+Widget buildTopDestinationsShimmer() {
+  return Shimmer(
+    gradient: gradient,
+    child: SizedBox(
+      height: AppValues.dimen_100.h,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 6,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(right: AppValues.dimen_8.w),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                  child: Container(
+                    height: AppValues.dimen_80.r,
+                    width: AppValues.dimen_80.r,
+                    color: UIColors.white,
+                  ),
+                ),
+                SizedBox(height: AppValues.dimen_4.h),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
+                  child: Container(
+                    height: AppValues.dimen_10.r,
+                    width: AppValues.dimen_80.r,
+                    color: UIColors.white,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     ),
   );

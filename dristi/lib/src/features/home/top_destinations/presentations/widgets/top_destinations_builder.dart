@@ -3,7 +3,9 @@ import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
+import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,42 +55,44 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
   Widget _buildDestinations() {
     final topDestinationItems = ref.watch(topDestinationsProvider);
 
+    if (topDestinationItems.status != TopDestinationsStatus.success ||
+        topDestinationItems.data == null) {
+      return buildTopDestinationsShimmer();
+    }
+
     return SizedBox(
       height: AppValues.dimen_100.h,
-      child: topDestinationItems.data != null
-          ? ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: topDestinationItems.data.length,
-              itemBuilder: (context, index) {
-                final item = topDestinationItems.data[index];
-                return Padding(
-                  padding: EdgeInsets.only(right: AppValues.dimen_8.w),
-                  child: GestureDetector(
-                    onTap: navigateToSpotPage,
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(AppValues.dimen_16.r),
-                          child: AssetImageView(
-                            fileName: item.image,
-                            width: AppValues.dimen_80.r,
-                            height: AppValues.dimen_80.r,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(height: AppValues.dimen_4.h),
-                        Text(
-                          item.title,
-                          style: blackNovaBold12,
-                        ),
-                      ],
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: topDestinationItems.data.length,
+        itemBuilder: (context, index) {
+          final item = topDestinationItems.data[index];
+          return Padding(
+            padding: EdgeInsets.only(right: AppValues.dimen_8.w),
+            child: GestureDetector(
+              onTap: navigateToSpotPage,
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                    child: AssetImageView(
+                      fileName: item.image,
+                      width: AppValues.dimen_80.r,
+                      height: AppValues.dimen_80.r,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                );
-              },
-            )
-          : Container(),
+                  SizedBox(height: AppValues.dimen_4.h),
+                  Text(
+                    item.title,
+                    style: blackNovaBold12,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

@@ -54,7 +54,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
 
     if (categoriesItems.status != CategoriesStatus.success ||
         categoriesItems.data == null) {
-      return buildCategories();
+      return buildCategoriesShimmer();
     }
 
     return AnimatedContainer(
