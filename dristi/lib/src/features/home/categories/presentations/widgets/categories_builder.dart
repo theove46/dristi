@@ -2,6 +2,8 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/core/widgets/shimmers.dart';
+import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,18 +17,6 @@ class CategoriesBuilder extends ConsumerStatefulWidget {
 }
 
 class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
-  void _onTap() {
-    final boxNotifier = ref.read(categoriesBoxHeight.notifier);
-    final expandNotifier = ref.read(categoriesExpanded.notifier);
-
-    if (expandNotifier.state) {
-      boxNotifier.state = AppValues.dimen_240.h;
-    } else {
-      boxNotifier.state = AppValues.dimen_360.h;
-    }
-    expandNotifier.state = !expandNotifier.state;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -62,10 +52,15 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
     final expandState = ref.watch(categoriesExpanded);
     final categoriesItems = ref.watch(categoriesProvider);
 
+    if (categoriesItems.status != CategoriesStatus.success ||
+        categoriesItems.data == null) {
+      return buildCategories();
+    }
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
       height: ref.watch(categoriesBoxHeight),
-      width: 1.sw,
+      width: AppValues.dimen_1.sw,
       margin: EdgeInsets.all(AppValues.dimen_2.r),
       padding: EdgeInsets.all(AppValues.dimen_16.r),
       decoration: BoxDecoration(
@@ -81,28 +76,25 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       child: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
-          child: categoriesItems.data != null
-              ? Wrap(
-                  runSpacing: 10.r,
-                  spacing: 10.r,
-                  children: [
-                    ...categoriesItems.data.take(8).map(
-                      (item) {
-                        final index = categoriesItems.data.indexOf(item);
-                        return _buildItems(index);
-                      },
-                    ),
-                    if (expandState)
-                      ...categoriesItems.data.skip(8).map(
-                        (item) {
-                          final index = categoriesItems.data.indexOf(item);
-
-                          return _buildItems(index);
-                        },
-                      ),
-                  ],
-                )
-              : Container(),
+          child: Wrap(
+            runSpacing: 10.r,
+            spacing: 10.r,
+            children: [
+              ...categoriesItems.data.take(8).map(
+                (item) {
+                  final index = categoriesItems.data.indexOf(item);
+                  return _buildItems(index);
+                },
+              ),
+              if (expandState)
+                ...categoriesItems.data.skip(8).map(
+                  (item) {
+                    final index = categoriesItems.data.indexOf(item);
+                    return _buildItems(index);
+                  },
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -115,27 +107,25 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       width: AppValues.dimen_75.w,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
-        child: categoriesItems.data != null
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-                    child: Image.network(
-                      categoriesItems.data[index].image,
-                      width: AppValues.dimen_60.r,
-                      height: AppValues.dimen_60.r,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(height: AppValues.dimen_4.h),
-                  Text(
-                    categoriesItems.data[index].titleEn,
-                    style: blackNovaSemiBold10,
-                  ),
-                ],
-              )
-            : Container(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
+              child: Image.network(
+                categoriesItems.data[index].image,
+                width: AppValues.dimen_60.r,
+                height: AppValues.dimen_60.r,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: AppValues.dimen_4.h),
+            Text(
+              categoriesItems.data[index].titleEn,
+              style: blackNovaSemiBold10,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -170,5 +160,17 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
         ),
       ),
     );
+  }
+
+  void _onTap() {
+    final boxNotifier = ref.read(categoriesBoxHeight.notifier);
+    final expandNotifier = ref.read(categoriesExpanded.notifier);
+
+    if (expandNotifier.state) {
+      boxNotifier.state = AppValues.dimen_240.h;
+    } else {
+      boxNotifier.state = AppValues.dimen_360.h;
+    }
+    expandNotifier.state = !expandNotifier.state;
   }
 }

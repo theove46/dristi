@@ -101,7 +101,7 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
 
     if (carouselItems.status != SliderStatus.success ||
         carouselItems.data == null) {
-      return const SizedBox.shrink();
+      return buildSliderIndicatorShimmer();
     }
 
     return Row(

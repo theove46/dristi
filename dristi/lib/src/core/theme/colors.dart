@@ -9,6 +9,8 @@ class UIColors {
   static const Color cyclamen = Color(0xfffc5c9c);
   static const Color red = Color(0xffEA5455);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color ghostWhite = Color(0xFFEBEBF4);
+  static const Color smokeWhite = Color(0xFFF4F4F4);
   static const Color platinum = Color(0xffE7E8E3);
   static const Color aliceBlue = Color(0xffdaeaf6);
   static const Color azure = Color(0xffc5e3f6);
