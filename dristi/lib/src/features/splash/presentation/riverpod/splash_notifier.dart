@@ -35,7 +35,7 @@ class SplashNotifier extends Notifier<SplashState> {
     }
   }
 
-  Future<void> splashPageSubmit() async {
+  Future<void> homeScreenNavigationSubmit() async {
     try {
       state = state.copyWith(status: SplashStatus.loading);
 

@@ -1,12 +1,15 @@
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/services/routes/app_router.dart';
+import 'package:dristi/src/core/services/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class App extends StatelessWidget {
   const App({
@@ -24,8 +27,10 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp.router(
-          routerConfig: appRouter(isFirstTime),
+        return MaterialApp(
+          initialRoute: isFirstTime ? AppRoutes.splash : AppRoutes.home,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: AppBarTheme(

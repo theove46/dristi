@@ -12,7 +12,6 @@ import 'package:dristi/src/features/splash/presentation/widgets/page_indicator_b
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -69,7 +68,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_28.w),
         child: Button(
-          onPressed: notifier.splashPageSubmit,
+          onPressed: notifier.homeScreenNavigationSubmit,
           background: UIColors.primary,
           height: AppValues.dimen_60.h,
           label: context.localization.getStarted,
@@ -96,6 +95,9 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
   }
 
   void navigateToHomePage() {
-    context.pushNamed(AppRoutes.home);
+    Navigator.pushNamed(
+      context,
+      AppRoutes.home,
+    );
   }
 }

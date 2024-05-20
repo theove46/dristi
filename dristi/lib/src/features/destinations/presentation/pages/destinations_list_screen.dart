@@ -148,6 +148,9 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
   }
 
   void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+    Navigator.pushNamed(
+      context,
+      AppRoutes.spot,
+    );
   }
 }

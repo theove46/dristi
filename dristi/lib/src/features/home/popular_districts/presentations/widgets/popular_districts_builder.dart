@@ -8,7 +8,6 @@ import 'package:dristi/src/features/home/popular_districts/presentations/riverpo
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class PopularDistrictsBuilder extends ConsumerStatefulWidget {
   const PopularDistrictsBuilder({super.key});
@@ -97,10 +96,16 @@ class _PopularCitiesBuilderState
   }
 
   void navigateToDistrictPage() {
-    context.pushNamed(AppRoutes.districts);
+    Navigator.pushNamed(
+      context,
+      AppRoutes.districts,
+    );
   }
 
   void navigateToDestinationsPage() {
-    context.pushNamed(AppRoutes.destination);
+    Navigator.pushNamed(
+      context,
+      AppRoutes.destination,
+    );
   }
 }

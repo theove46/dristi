@@ -20,22 +20,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="113.33333333333333" y="336.33333333333331" width="166.66666666666669" height="179.33333333333331"/>
+                                <rect key="frame" x="130" y="359.33333333333331" width="133.33333333333337" height="133.33333333333331"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dristi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcC-kt-2QB">
-                                <rect key="frame" x="134.33333333333334" y="695.66666666666663" width="124.33333333333334" height="62.333333333333371"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="54"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.18039217590000001" green="0.40392160420000001" blue="0.43921568989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
-                            <constraint firstItem="kcC-kt-2QB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CjU-py-TOL"/>
-                            <constraint firstItem="kcC-kt-2QB" firstAttribute="top" secondItem="YRO-k0-Ey4" secondAttribute="bottom" constant="180" id="Gg2-OX-lMq"/>
-                            <constraint firstItem="xbc-2k-c8Z" firstAttribute="top" secondItem="kcC-kt-2QB" secondAttribute="bottom" constant="60" id="WvB-ox-0FV"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -45,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="166.66667175292969" height="166.66667175292969"/>
+        <image name="LaunchImage" width="133.33332824707031" height="133.33332824707031"/>
     </resources>
 </document>
