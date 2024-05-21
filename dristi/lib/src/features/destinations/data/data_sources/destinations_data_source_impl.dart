@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/destinations/data/data_sources/destinations_data_source.dart';
 import 'package:dristi/src/features/destinations/data/models/destination_response_model.dart';

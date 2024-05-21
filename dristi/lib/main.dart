@@ -2,7 +2,7 @@ import 'package:dristi/app.dart';
 import 'package:dristi/src/core/flavors/build_config.dart';
 import 'package:dristi/src/core/flavors/env_config.dart';
 import 'package:dristi/src/core/flavors/environment.dart';
-import 'package:dristi/src/core/network/api_end_points.dart';
+import 'package:dristi/src/core/constants/app_end_points.dart';
 import 'package:dristi/src/core/loggers/riverpod_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

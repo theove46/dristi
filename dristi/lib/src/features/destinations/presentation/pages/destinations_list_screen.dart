@@ -1,6 +1,6 @@
-import 'package:dristi/src/core/assets/assets.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/services/routes/app_routes.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';

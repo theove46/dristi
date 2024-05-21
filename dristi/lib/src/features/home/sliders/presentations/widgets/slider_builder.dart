@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/services/routes/app_routes.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/theme/colors.dart';
 import 'package:dristi/src/core/theme/text_styles.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';

@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/services/routes/app_routes.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
