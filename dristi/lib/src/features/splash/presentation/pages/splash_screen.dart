@@ -95,7 +95,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
   }
 
   void navigateToHomePage() {
-    Navigator.pushNamed(
+    Navigator.pushReplacementNamed(
       context,
       AppRoutes.home,
     );

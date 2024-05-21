@@ -1,4 +1,5 @@
 import 'package:dristi/app.dart';
+import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/flavors/build_config.dart';
 import 'package:dristi/src/core/flavors/env_config.dart';
 import 'package:dristi/src/core/flavors/environment.dart';
@@ -13,7 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   EnvConfig prodConfig = EnvConfig(
-    appName: "Dristi",
+    appName: TextConstants.appName,
     baseUrl: API.prod,
     shouldCollectCrashLog: true,
   );
