@@ -1,6 +1,6 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
@@ -33,7 +33,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
       child: Text(
         context.localization.categories,
-        style: primaryNovaBold16,
+        style: AppTextStyles(context).primaryNovaBold16,
       ),
     );
   }
@@ -64,7 +64,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       margin: EdgeInsets.all(AppValues.dimen_2.r),
       padding: EdgeInsets.all(AppValues.dimen_16.r),
       decoration: BoxDecoration(
-        color: UIColors.white,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.all(
           Radius.circular(AppValues.dimen_10.r),
         ),
@@ -122,7 +122,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
             SizedBox(height: AppValues.dimen_4.h),
             Text(
               categoriesItems.data[index].titleEn,
-              style: blackNovaSemiBold10,
+              style: AppTextStyles(context).secondaryNovaSemiBold10,
             ),
           ],
         ),
@@ -146,15 +146,13 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: UIColors.white,
+                  color: UIColors.secondary,
                 ),
-                color: UIColors.white,
+                color: UIColors.secondary,
               ),
             ),
             Icon(
               expandState ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-              color: UIColors.primary,
-              size: 30.h,
             ),
           ],
         ),

@@ -1,14 +1,13 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
   const DestinationScreen({super.key});
@@ -31,20 +30,16 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
     final destinationModelsState = ref.watch(destinationProvider);
 
     return Scaffold(
-      backgroundColor: UIColors.white,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Top Destination *** ***",
-          style: primaryNovaBold16,
         ),
-        centerTitle: false,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: UIColors.primary,
           ),
           onPressed: () {
-            context.pop();
+            Navigator.of(context).pop();
           },
         ),
       ),
@@ -66,23 +61,14 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
   Widget _buildDestinationCard(int index) {
     return GestureDetector(
       onTap: navigateToSpotPage,
-      child: Expanded(
-        child: Card(
-          elevation: 4,
-          color: UIColors.white,
-          margin: EdgeInsets.all(AppValues.dimen_8.r),
-          shadowColor: UIColors.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-          ),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              _buildImage(),
-              _buildGradient(),
-              _buildLabels(index),
-            ],
-          ),
+      child: Card(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            _buildImage(),
+            _buildGradient(),
+            _buildLabels(index),
+          ],
         ),
       ),
     );
@@ -115,8 +101,8 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
           end: Alignment.topCenter,
           tileMode: TileMode.clamp,
           colors: [
-            UIColors.black,
-            UIColors.black.withOpacity(0.2),
+            UIColors.onSecondary,
+            UIColors.onSecondary.withOpacity(0.2),
             UIColors.transparent,
           ],
         ),
@@ -136,11 +122,11 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
         children: [
           Text(
             item.title,
-            style: whiteNovaSemiBold16,
+            style: AppTextStyles(context).tertiaryNovaSemiBold16,
           ),
           Text(
             item.division,
-            style: whiteNovaRegular10,
+            style: AppTextStyles(context).tertiaryNovaRegular10,
           ),
         ],
       ),

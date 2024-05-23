@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
+import 'package:dristi/src/core/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
@@ -104,7 +104,7 @@ Widget buildSliderIndicatorShimmer() {
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: buildShimmerContainer(
             height: AppValues.dimen_12.h,
-            width: index == 0 ? AppValues.dimen_40.w : AppValues.dimen_28.w,
+            width: index == 0 ? AppValues.dimen_50.w : AppValues.dimen_28.w,
             borderRadius: AppValues.dimen_5.r,
           ),
         );
@@ -120,7 +120,6 @@ Widget buildCategoriesShimmer() {
     margin: EdgeInsets.all(AppValues.dimen_2.r),
     padding: EdgeInsets.all(AppValues.dimen_16.r),
     decoration: BoxDecoration(
-      color: UIColors.white,
       borderRadius: BorderRadius.all(
         Radius.circular(AppValues.dimen_10.r),
       ),

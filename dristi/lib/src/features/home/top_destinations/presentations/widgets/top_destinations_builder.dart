@@ -1,6 +1,6 @@
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
@@ -37,13 +37,13 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
         children: [
           Text(
             context.localization.topDestinations,
-            style: primaryNovaBold16,
+            style: AppTextStyles(context).primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDestinationsPage,
             child: Text(
               context.localization.viewAll,
-              style: primaryNovaBold12,
+              style: AppTextStyles(context).primaryNovaBold12,
             ),
           ),
         ],
@@ -81,10 +81,9 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: AppValues.dimen_4.h),
                   Text(
                     item.title,
-                    style: blackNovaBold12,
+                    style: AppTextStyles(context).secondaryNovaBold12,
                   ),
                 ],
               ),

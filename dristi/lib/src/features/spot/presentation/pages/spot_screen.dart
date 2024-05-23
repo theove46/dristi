@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
@@ -9,7 +9,6 @@ import 'package:dristi/src/features/spot/presentation/widgets/description_items_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class SpotScreen extends ConsumerStatefulWidget {
   const SpotScreen({super.key});
@@ -32,28 +31,9 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildImage(),
-                _buildDescription(),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: AppValues.dimen_30.h,
-              horizontal: AppValues.dimen_10.w,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildBackButton(),
-                _buildFavouriteButton(),
-              ],
-            ),
-          ),
+          _buildImage(),
+          _buildDescription(),
+          _buildTopNavigationIcons(),
         ],
       ),
     );
@@ -72,13 +52,10 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
 
   Widget _buildBackgroundImage() {
     return ClipRRect(
-      borderRadius: BorderRadius.vertical(
-        bottom: Radius.circular(AppValues.dimen_20.r),
-      ),
       child: AssetImageView(
         fileName: Assets.coxsBazar,
         fit: BoxFit.cover,
-        height: AppValues.dimen_500.r,
+        height: AppValues.dimen_500.h,
         width: double.infinity,
       ),
     );
@@ -87,7 +64,7 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
   Widget _buildGalleryIcon() {
     return Positioned(
       bottom: AppValues.dimen_100.h,
-      right: AppValues.dimen_16.w,
+      left: AppValues.dimen_16.w,
       child: GestureDetector(
         onTap: () {},
         child: Container(
@@ -126,90 +103,116 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
 
   Widget _buildDestinationText() {
     return Positioned(
-      bottom: AppValues.dimen_16.h,
+      bottom: AppValues.dimen_60.h,
       right: AppValues.dimen_16.w,
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          "Cox's Bazar",
-          style: whiteVibesBoldShadow44,
+          "Saint Martins Island",
+          style: AppTextStyles(context).tertiaryVibesBoldShadow44,
         ),
       ),
     );
   }
 
   Widget _buildDescription() {
-    return Padding(
-      padding: EdgeInsets.all(AppValues.dimen_16.w),
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const DescriptionItemsBuilder(),
-          Text(
-            "Nil Giri",
-            style: primaryNovaBold28,
-          ),
-          SizedBox(height: AppValues.dimen_10.h),
-          Row(
-            children: [
-              const Icon(
-                Icons.location_on_outlined,
-                color: UIColors.primary,
+          SizedBox(height: AppValues.dimen_480.h),
+          Container(
+            decoration: BoxDecoration(
+              color: UIColors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(AppValues.dimen_20.r),
+                topRight: Radius.circular(AppValues.dimen_20.r),
               ),
-              Text(
-                ' Bandarban, Chattogram',
-                style: primaryNovaBold18,
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(AppValues.dimen_16.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const DescriptionItemsBuilder(),
+                  Text(
+                    "Nil Giri",
+                    style: AppTextStyles(context).primaryNovaBold28,
+                  ),
+                  SizedBox(height: AppValues.dimen_10.h),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.location_on_outlined,
+                        color: UIColors.primary,
+                      ),
+                      Text(
+                        ' Bandarban, Chattogram',
+                        style: AppTextStyles(context).primaryNovaBold18,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: AppValues.dimen_10.h),
+                  Text(
+                    context.localization.boiler,
+                    textAlign: TextAlign.justify,
+                    style: AppTextStyles(context).secondaryNovaRegular14,
+                  ),
+                ],
               ),
-            ],
-          ),
-          SizedBox(height: AppValues.dimen_10.h),
-          Text(
-            context.localization.boiler,
-            textAlign: TextAlign.justify,
-            style: blackNovaRegular14,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBackButton() {
-    return IconButton(
-      onPressed: () {
-        context.pop();
-      },
-      icon: Container(
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: UIColors.white,
-        ),
-        padding: EdgeInsets.only(left: AppValues.dimen_6.w),
-        child: Center(
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: UIColors.black,
-            size: AppValues.dimen_20.h,
+  Widget _buildTopNavigationIcons() {
+    return Positioned(
+      top: AppValues.dimen_40.r,
+      left: AppValues.dimen_10.r,
+      right: AppValues.dimen_10.r,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildNavigationIcon(
+            icon: Padding(
+              padding: EdgeInsets.only(left: AppValues.dimen_6.w),
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: UIColors.primary,
+                size: AppValues.dimen_20.h,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
           ),
-        ),
+          _buildNavigationIcon(
+            icon: Icon(
+              Icons.favorite_border_outlined,
+              color: UIColors.error,
+              size: AppValues.dimen_20.h,
+            ),
+            onTap: () {},
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildFavouriteButton() {
-    return IconButton(
-      onPressed: () {},
-      icon: Container(
+  Widget _buildNavigationIcon(
+      {required Widget icon, required Function()? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: AppValues.dimen_40.r,
+        width: AppValues.dimen_40.r,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: UIColors.white,
+          color: UIColors.azure,
         ),
-        child: Center(
-          child: Icon(
-            Icons.favorite_border_outlined,
-            color: UIColors.red,
-            size: AppValues.dimen_20.h,
-          ),
-        ),
+        child: Center(child: icon),
       ),
     );
   }

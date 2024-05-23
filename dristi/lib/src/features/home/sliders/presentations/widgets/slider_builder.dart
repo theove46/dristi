@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
@@ -66,7 +66,7 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
                     carouselItems.data[index].title,
-                    style: whiteVibesBoldShadow32,
+                    style: AppTextStyles(context).tertiaryVibesBoldShadow32,
                   ),
                 ),
               ),
@@ -112,12 +112,12 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
           child: Container(
             height: AppValues.dimen_12.h,
             width: currentSliderState == index
-                ? AppValues.dimen_40.w
+                ? AppValues.dimen_50.w
                 : AppValues.dimen_28.w,
             decoration: BoxDecoration(
               color: currentSliderState == index
                   ? UIColors.primary
-                  : UIColors.white,
+                  : UIColors.tertiary,
               borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
               border: Border.all(
                 color: UIColors.primary,

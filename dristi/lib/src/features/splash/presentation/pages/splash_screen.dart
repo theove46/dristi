@@ -1,9 +1,8 @@
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/core/widgets/button.dart';
 import 'package:dristi/src/core/widgets/primary_snackbar.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
@@ -46,7 +45,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
     );
 
     return Scaffold(
-      backgroundColor: UIColors.primary,
+      backgroundColor: UIColors.white,
       body: Stack(
         children: [
           const ImageViewBuilder(),
@@ -67,12 +66,12 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
       right: AppValues.dimen_0.w,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_28.w),
-        child: Button(
+        child: ElevatedButton(
           onPressed: notifier.homeScreenNavigationSubmit,
-          background: UIColors.primary,
-          height: AppValues.dimen_60.h,
-          label: context.localization.getStarted,
-          textStyle: whiteNovaBold20,
+          child: Text(
+            context.localization.getStarted,
+            style: AppTextStyles(context).tertiaryNovaSemiBold16,
+          ),
         ),
       ),
     );
@@ -88,7 +87,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
         alignment: Alignment.topLeft,
         child: Text(
           context.localization.appName,
-          style: whiteNovaBold28,
+          style: AppTextStyles(context).tertiaryNovaBold28,
         ),
       ),
     );

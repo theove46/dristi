@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
                     splashModelsState.data[index].title,
-                    style: whiteVibesBoldShadow60,
+                    style: AppTextStyles(context).tertiaryVibesBoldShadow60,
                   ),
                 ),
               ),
@@ -85,9 +85,9 @@ class _ImageViewBuilderState extends ConsumerState<ImageViewBuilder> {
             UIColors.primary.withOpacity(0.8),
             UIColors.primary.withOpacity(0.5),
             UIColors.primary.withOpacity(0.2),
-            UIColors.black.withOpacity(0.0),
-            UIColors.black.withOpacity(0.0),
-            UIColors.black.withOpacity(0.0),
+            UIColors.onSecondary.withOpacity(0.0),
+            UIColors.onSecondary.withOpacity(0.0),
+            UIColors.onSecondary.withOpacity(0.0),
           ],
         ),
       ),

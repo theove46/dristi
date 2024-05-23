@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:dristi/src/core/theme/colors.dart';
+import 'package:dristi/src/core/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class ShowSnackBarMessage {
@@ -36,7 +36,7 @@ class ShowSnackBarMessage {
             style: const TextStyle(color: UIColors.white, fontSize: 16),
           ),
         ),
-        backgroundColor: UIColors.red,
+        backgroundColor: UIColors.error,
       ),
     );
   }

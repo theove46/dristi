@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -35,14 +35,24 @@ class _HomePageState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: UIColors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: AssetImageView(
+            fileName: Assets.menu,
+            fit: BoxFit.cover,
+            height: AppValues.dimen_30.r,
+            width: AppValues.dimen_30.r,
+            color: UIColors.primary,
+          ),
+          onPressed: () {},
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(AppValues.dimen_16.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildDrawerIcon(),
               const SliderBuilder(),
               _buildTitleMessage(),
               const CategoriesBuilder(),
@@ -55,41 +65,20 @@ class _HomePageState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildDrawerIcon() {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: AppValues.dimen_24.h,
-        bottom: AppValues.dimen_2.h,
-      ),
-      child: AssetImageView(
-        fileName: Assets.menu,
-        fit: BoxFit.cover,
-        height: AppValues.dimen_30.r,
-        width: AppValues.dimen_30.r,
-        color: UIColors.primary,
-      ),
-    );
-  }
-
   Widget _buildTitleMessage() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: AppValues.dimen_10.h),
         Text(
           context.localization.exploreThe,
-          style: primaryNovaMedium24,
+          style: AppTextStyles(context).primaryNovaMedium24,
         ),
         SizedBox(height: AppValues.dimen_10.h),
         Text(
           context.localization.beautifulBD,
-          style: primaryNovaBold28,
+          style: AppTextStyles(context).primaryNovaBold28,
         ),
-        Divider(
-          color: UIColors.primary,
-          thickness: AppValues.dimen_1.h,
-          height: AppValues.dimen_16.h,
-        ),
+        const Divider(),
       ],
     );
   }

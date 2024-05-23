@@ -2,8 +2,7 @@ import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/themes/app_theme.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,18 +31,8 @@ class App extends StatelessWidget {
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            appBarTheme: AppBarTheme(
-              backgroundColor: UIColors.white,
-              elevation: 0,
-              titleSpacing: 0,
-              centerTitle: true,
-              titleTextStyle: blackNovaBold18,
-              iconTheme: const IconThemeData(
-                color: UIColors.black,
-              ),
-            ),
-          ),
+          theme: AppThemeData.darkTheme,
+          darkTheme: AppThemeData.darkTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: _supportedLocales,
           locale: AppLanguages.bn.toLocale,

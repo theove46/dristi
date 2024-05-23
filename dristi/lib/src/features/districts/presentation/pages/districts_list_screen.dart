@@ -1,13 +1,12 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class DistrictsScreen extends ConsumerStatefulWidget {
   const DistrictsScreen({super.key});
@@ -30,20 +29,16 @@ class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
     final districtModelsState = ref.watch(districtProvider);
 
     return Scaffold(
-      backgroundColor: UIColors.white,
       appBar: AppBar(
         title: Text(
           context.localization.allDistrictsBD,
-          style: primaryNovaBold16,
         ),
-        centerTitle: false,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: UIColors.primary,
           ),
           onPressed: () {
-            context.pop();
+            Navigator.of(context).pop();
           },
         ),
       ),
@@ -78,13 +73,6 @@ class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
 
     return Expanded(
       child: Card(
-        elevation: 4,
-        color: UIColors.white,
-        margin: EdgeInsets.all(AppValues.dimen_5.r),
-        shadowColor: UIColors.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-        ),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
@@ -101,11 +89,11 @@ class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
           child: ListTile(
             title: Text(
               item.title,
-              style: primaryNovaSemiBold16,
+              style: AppTextStyles(context).primaryNovaSemiBold16,
             ),
             subtitle: Text(
               item.division,
-              style: primaryNovaRegular10,
+              style: AppTextStyles(context).primaryNovaRegular10,
             ),
             onTap: () {},
           ),

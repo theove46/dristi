@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
+import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

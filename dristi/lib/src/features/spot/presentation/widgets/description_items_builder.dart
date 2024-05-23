@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class _DescriptionItemsBuilderState
                       SizedBox(height: AppValues.dimen_4.h),
                       Text(
                         item.title,
-                        style: blackNovaRegular12,
+                        style: AppTextStyles(context).secondaryNovaRegular12,
                       ),
                     ],
                   ),

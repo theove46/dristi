@@ -1,10 +1,9 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/colors.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/core/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,20 +32,21 @@ class ErrorScreen extends StatelessWidget {
             ),
             Text(
               context.localization.somethingWentWrong,
-              style: redNovaBold24,
+              style: AppTextStyles(context).errorNovaBold24,
             ),
             SizedBox(height: AppValues.dimen_10.h),
             Text(
               errorMessage,
-              style: primaryNovaSemiBold16,
+              style: AppTextStyles(context).primaryNovaSemiBold16,
             ),
             SizedBox(height: AppValues.dimen_30.h),
-            Button(
-              label: context.localization.goBack,
-              textStyle: whiteNovaSemiBold16,
-              width: AppValues.dimen_360.w,
+            ElevatedButton(
               onPressed: onPressed,
-            )
+              child: Text(
+                context.localization.goBack,
+                style: AppTextStyles(context).tertiaryNovaSemiBold16,
+              ),
+            ),
           ],
         ),
       ),
