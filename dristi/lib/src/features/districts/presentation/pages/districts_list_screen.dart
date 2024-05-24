@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class DistrictsScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _DistrictsPageState();
 }
 
-class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
+class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   @override
   void initState() {
     super.initState();
@@ -89,11 +89,11 @@ class _DistrictsPageState extends ConsumerState<DistrictsScreen> {
           child: ListTile(
             title: Text(
               item.title,
-              style: AppTextStyles(context).primaryNovaSemiBold16,
+              style: appTextStyles.primaryNovaSemiBold16,
             ),
             subtitle: Text(
               item.division,
-              style: AppTextStyles(context).primaryNovaRegular10,
+              style: appTextStyles.primaryNovaRegular10,
             ),
             onTap: () {},
           ),

@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/primary_snackbar.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
@@ -19,7 +19,7 @@ class SplashScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ConsumerState<SplashScreen> {
+class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -70,7 +70,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
           onPressed: notifier.homeScreenNavigationSubmit,
           child: Text(
             context.localization.getStarted,
-            style: AppTextStyles(context).tertiaryNovaSemiBold16,
+            style: appTextStyles.tertiaryNovaSemiBold16,
           ),
         ),
       ),
@@ -87,7 +87,7 @@ class _SplashPageState extends ConsumerState<SplashScreen> {
         alignment: Alignment.topLeft,
         child: Text(
           context.localization.appName,
-          style: AppTextStyles(context).tertiaryNovaBold28,
+          style: appTextStyles.tertiaryNovaSemiBold16,
         ),
       ),
     );

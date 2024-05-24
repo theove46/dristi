@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
@@ -17,7 +17,7 @@ class SpotScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _SpotPageState();
 }
 
-class _SpotPageState extends ConsumerState<SpotScreen> {
+class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
   @override
   void initState() {
     super.initState();
@@ -109,7 +109,7 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
         angle: -15 * (3.1415926535 / 180),
         child: Text(
           "Saint Martins Island",
-          style: AppTextStyles(context).tertiaryVibesBoldShadow44,
+          style: appTextStyles.tertiaryVibesBoldShadow44,
         ),
       ),
     );
@@ -137,7 +137,7 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
                   const DescriptionItemsBuilder(),
                   Text(
                     "Nil Giri",
-                    style: AppTextStyles(context).primaryNovaBold28,
+                    style: appTextStyles.primaryNovaBold28,
                   ),
                   SizedBox(height: AppValues.dimen_10.h),
                   Row(
@@ -148,7 +148,7 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
                       ),
                       Text(
                         ' Bandarban, Chattogram',
-                        style: AppTextStyles(context).primaryNovaBold18,
+                        style: appTextStyles.primaryNovaBold18,
                       ),
                     ],
                   ),
@@ -156,7 +156,7 @@ class _SpotPageState extends ConsumerState<SpotScreen> {
                   Text(
                     context.localization.boiler,
                     textAlign: TextAlign.justify,
-                    style: AppTextStyles(context).secondaryNovaRegular14,
+                    style: appTextStyles.secondaryNovaRegular14,
                   ),
                 ],
               ),

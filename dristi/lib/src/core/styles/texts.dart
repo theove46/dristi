@@ -27,50 +27,50 @@ class AppTextStyles {
 
   /// Font Colors
   TextStyle get primaryNovaRegular => _novaRegular.copyWith(
-        color: AppUIColors.primaryTextColor(context),
+        color: AppUIColors.primary(context),
       );
   TextStyle get primaryNovaMedium => _novaMedium.copyWith(
-        color: AppUIColors.primaryTextColor(context),
+        color: AppUIColors.primary(context),
       );
   TextStyle get primaryNovaSemiBold => _novaSemiBold.copyWith(
-        color: AppUIColors.primaryTextColor(context),
+        color: AppUIColors.primary(context),
       );
   TextStyle get primaryNovaBold => _novaBold.copyWith(
-        color: AppUIColors.primaryTextColor(context),
+        color: AppUIColors.primary(context),
       );
   TextStyle get secondaryNovaRegular => _novaRegular.copyWith(
-        color: AppUIColors.secondaryTextColor(context),
+        color: AppUIColors.secondary(context),
       );
   TextStyle get secondaryNovaSemiBold => _novaSemiBold.copyWith(
-        color: AppUIColors.secondaryTextColor(context),
+        color: AppUIColors.secondary(context),
       );
   TextStyle get secondaryNovaBold => _novaBold.copyWith(
-        color: AppUIColors.secondaryTextColor(context),
+        color: AppUIColors.secondary(context),
       );
   TextStyle get tertiaryNovaRegular => _novaRegular.copyWith(
-        color: AppUIColors.tertiaryTextColor(context),
+        color: AppUIColors.tertiary(context),
       );
   TextStyle get tertiaryNovaSemiBold => _novaSemiBold.copyWith(
-        color: AppUIColors.tertiaryTextColor(context),
+        color: AppUIColors.tertiary(context),
       );
   TextStyle get errorNovaSemiBold => _novaSemiBold.copyWith(
-        color: AppUIColors.errorTextColor(context),
+        color: AppUIColors.error(context),
       );
   TextStyle get tertiaryNovaBold => _novaBold.copyWith(
-        color: AppUIColors.tertiaryTextColor(context),
+        color: AppUIColors.tertiary(context),
       );
   TextStyle get errorNovaBold => _novaBold.copyWith(
-        color: AppUIColors.errorTextColor(context),
+        color: AppUIColors.error(context),
       );
   TextStyle get tertiaryVibesBold => _vibesBold.copyWith(
-        color: AppUIColors.tertiaryTextColor(context),
+        color: AppUIColors.tertiary(context),
       );
   TextStyle get tertiaryVibesBoldShadow => tertiaryVibesBold.copyWith(
         shadows: [
           Shadow(
             offset: const Offset(3.0, 3.0),
             blurRadius: 2.0,
-            color: AppUIColors.primaryTextColor(context),
+            color: AppUIColors.primary(context),
           ),
         ],
       );

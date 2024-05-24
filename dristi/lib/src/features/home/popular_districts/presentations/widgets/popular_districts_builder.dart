@@ -1,6 +1,6 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -17,7 +17,7 @@ class PopularDistrictsBuilder extends ConsumerStatefulWidget {
 }
 
 class _PopularCitiesBuilderState
-    extends ConsumerState<PopularDistrictsBuilder> {
+    extends BaseConsumerStatefulWidget<PopularDistrictsBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,13 +37,13 @@ class _PopularCitiesBuilderState
         children: [
           Text(
             context.localization.popularDistricts,
-            style: AppTextStyles(context).primaryNovaBold16,
+            style: appTextStyles.primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDistrictPage,
             child: Text(
               context.localization.explore,
-              style: AppTextStyles(context).primaryNovaBold12,
+              style: appTextStyles.primaryNovaBold12,
             ),
           ),
         ],
@@ -83,7 +83,7 @@ class _PopularCitiesBuilderState
                   ),
                   Text(
                     item.titleEn,
-                    style: AppTextStyles(context).secondaryNovaBold12,
+                    style: appTextStyles.secondaryNovaBold12,
                   ),
                 ],
               ),

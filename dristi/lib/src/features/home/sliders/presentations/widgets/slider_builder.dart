@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
@@ -17,7 +17,8 @@ class SliderBuilder extends ConsumerStatefulWidget {
   ConsumerState createState() => _ImageSliderBuilderState();
 }
 
-class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
+class _ImageSliderBuilderState
+    extends BaseConsumerStatefulWidget<SliderBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,7 +67,7 @@ class _ImageSliderBuilderState extends ConsumerState<SliderBuilder> {
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
                     carouselItems.data[index].title,
-                    style: AppTextStyles(context).tertiaryVibesBoldShadow32,
+                    style: appTextStyles.tertiaryVibesBoldShadow32,
                   ),
                 ),
               ),

@@ -1,7 +1,7 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomeScreen> {
+class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -71,12 +71,12 @@ class _HomePageState extends ConsumerState<HomeScreen> {
       children: [
         Text(
           context.localization.exploreThe,
-          style: AppTextStyles(context).primaryNovaMedium24,
+          style: appTextStyles.primaryNovaMedium24,
         ),
         SizedBox(height: AppValues.dimen_10.h),
         Text(
           context.localization.beautifulBD,
-          style: AppTextStyles(context).primaryNovaBold28,
+          style: appTextStyles.primaryNovaBold28,
         ),
         const Divider(),
       ],

@@ -1,6 +1,6 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
@@ -17,7 +17,8 @@ class TopDestinationBuilder extends ConsumerStatefulWidget {
   ConsumerState createState() => _TopDestinationBuilderState();
 }
 
-class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
+class _TopDestinationBuilderState
+    extends BaseConsumerStatefulWidget<TopDestinationBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,13 +38,13 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
         children: [
           Text(
             context.localization.topDestinations,
-            style: AppTextStyles(context).primaryNovaBold16,
+            style: appTextStyles.primaryNovaBold16,
           ),
           TextButton(
             onPressed: navigateToDestinationsPage,
             child: Text(
               context.localization.viewAll,
-              style: AppTextStyles(context).primaryNovaBold12,
+              style: appTextStyles.primaryNovaBold12,
             ),
           ),
         ],
@@ -83,7 +84,7 @@ class _TopDestinationBuilderState extends ConsumerState<TopDestinationBuilder> {
                   ),
                   Text(
                     item.title,
-                    style: AppTextStyles(context).secondaryNovaBold12,
+                    style: appTextStyles.secondaryNovaBold12,
                   ),
                 ],
               ),

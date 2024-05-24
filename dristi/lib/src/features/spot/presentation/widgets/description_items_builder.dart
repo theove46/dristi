@@ -1,5 +1,5 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class DescriptionItemsBuilder extends ConsumerStatefulWidget {
 }
 
 class _DescriptionItemsBuilderState
-    extends ConsumerState<DescriptionItemsBuilder> {
+    extends BaseConsumerStatefulWidget<DescriptionItemsBuilder> {
   @override
   Widget build(BuildContext context) {
     final spotItemsModelsState = ref.watch(spotProvider);
@@ -44,7 +44,7 @@ class _DescriptionItemsBuilderState
                       SizedBox(height: AppValues.dimen_4.h),
                       Text(
                         item.title,
-                        style: AppTextStyles(context).secondaryNovaRegular12,
+                        style: appTextStyles.secondaryNovaRegular12,
                       ),
                     ],
                   ),

@@ -1,13 +1,13 @@
+import 'package:dristi/src/core/base/base_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ErrorScreen extends StatelessWidget {
+class ErrorScreen extends StatefulWidget {
   final String errorMessage;
   final VoidCallback onPressed;
 
@@ -17,6 +17,11 @@ class ErrorScreen extends StatelessWidget {
     required this.onPressed,
   }) : super(key: key);
 
+  @override
+  State<ErrorScreen> createState() => _ErrorScreenState();
+}
+
+class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,19 +37,19 @@ class ErrorScreen extends StatelessWidget {
             ),
             Text(
               context.localization.somethingWentWrong,
-              style: AppTextStyles(context).errorNovaBold24,
+              style: appTextStyles.errorNovaBold24,
             ),
             SizedBox(height: AppValues.dimen_10.h),
             Text(
-              errorMessage,
-              style: AppTextStyles(context).primaryNovaSemiBold16,
+              widget.errorMessage,
+              style: appTextStyles.primaryNovaSemiBold16,
             ),
             SizedBox(height: AppValues.dimen_30.h),
             ElevatedButton(
-              onPressed: onPressed,
+              onPressed: widget.onPressed,
               child: Text(
                 context.localization.goBack,
-                style: AppTextStyles(context).tertiaryNovaSemiBold16,
+                style: appTextStyles.tertiaryNovaSemiBold16,
               ),
             ),
           ],

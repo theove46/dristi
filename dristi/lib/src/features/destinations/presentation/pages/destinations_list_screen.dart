@@ -1,8 +1,8 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,8 @@ class DestinationScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _DestinationPageState();
 }
 
-class _DestinationPageState extends ConsumerState<DestinationScreen> {
+class _DestinationPageState
+    extends BaseConsumerStatefulWidget<DestinationScreen> {
   @override
   void initState() {
     super.initState();
@@ -122,11 +123,11 @@ class _DestinationPageState extends ConsumerState<DestinationScreen> {
         children: [
           Text(
             item.title,
-            style: AppTextStyles(context).tertiaryNovaSemiBold16,
+            style: appTextStyles.tertiaryNovaSemiBold16,
           ),
           Text(
             item.division,
-            style: AppTextStyles(context).tertiaryNovaRegular10,
+            style: appTextStyles.tertiaryNovaRegular10,
           ),
         ],
       ),

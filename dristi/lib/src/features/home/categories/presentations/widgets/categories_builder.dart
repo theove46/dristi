@@ -1,6 +1,6 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/styles/colors.dart';
-import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
@@ -16,7 +16,8 @@ class CategoriesBuilder extends ConsumerStatefulWidget {
   ConsumerState createState() => _CategoriesBuilderState();
 }
 
-class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
+class _CategoriesBuilderState
+    extends BaseConsumerStatefulWidget<CategoriesBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +34,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
       padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
       child: Text(
         context.localization.categories,
-        style: AppTextStyles(context).primaryNovaBold16,
+        style: appTextStyles.primaryNovaBold16,
       ),
     );
   }
@@ -122,7 +123,7 @@ class _CategoriesBuilderState extends ConsumerState<CategoriesBuilder> {
             SizedBox(height: AppValues.dimen_4.h),
             Text(
               categoriesItems.data[index].titleEn,
-              style: AppTextStyles(context).secondaryNovaSemiBold10,
+              style: appTextStyles.secondaryNovaSemiBold10,
             ),
           ],
         ),
