@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -42,7 +41,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
             fit: BoxFit.cover,
             height: AppValues.dimen_30.r,
             width: AppValues.dimen_30.r,
-            color: UIColors.primary,
+            color: uiColors.primary,
           ),
           onPressed: () {},
         ),
@@ -71,7 +70,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
       children: [
         Text(
           context.localization.exploreThe,
-          style: appTextStyles.primaryNovaMedium24,
+          style: appTextStyles.primaryNovaBold24,
         ),
         SizedBox(height: AppValues.dimen_10.h),
         Text(

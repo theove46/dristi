@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,6 @@ class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: UIColors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +35,7 @@ class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
             ),
             Text(
               context.localization.somethingWentWrong,
-              style: appTextStyles.errorNovaBold24,
+              style: appTextStyles.errorNovaBold16,
             ),
             SizedBox(height: AppValues.dimen_10.h),
             Text(
@@ -45,11 +43,14 @@ class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
               style: appTextStyles.primaryNovaSemiBold16,
             ),
             SizedBox(height: AppValues.dimen_30.h),
-            ElevatedButton(
-              onPressed: widget.onPressed,
-              child: Text(
-                context.localization.goBack,
-                style: appTextStyles.tertiaryNovaSemiBold16,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_28.w),
+              child: ElevatedButton(
+                onPressed: widget.onPressed,
+                child: Text(
+                  context.localization.goBack,
+                  style: appTextStyles.tertiaryNovaSemiBold16,
+                ),
               ),
             ),
           ],

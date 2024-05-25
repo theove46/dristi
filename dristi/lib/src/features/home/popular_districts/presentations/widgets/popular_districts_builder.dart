@@ -43,7 +43,7 @@ class _PopularCitiesBuilderState
             onPressed: navigateToDistrictPage,
             child: Text(
               context.localization.explore,
-              style: appTextStyles.primaryNovaBold12,
+              style: appTextStyles.primaryNovaSemiBold12,
             ),
           ),
         ],
@@ -82,8 +82,8 @@ class _PopularCitiesBuilderState
                     ),
                   ),
                   Text(
-                    item.titleEn,
-                    style: appTextStyles.secondaryNovaBold12,
+                    item.titleEn, // TODO fix max letter
+                    style: appTextStyles.secondaryNovaRegular12,
                   ),
                 ],
               ),

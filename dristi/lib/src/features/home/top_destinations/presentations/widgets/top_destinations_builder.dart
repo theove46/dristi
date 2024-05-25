@@ -44,7 +44,7 @@ class _TopDestinationBuilderState
             onPressed: navigateToDestinationsPage,
             child: Text(
               context.localization.viewAll,
-              style: appTextStyles.primaryNovaBold12,
+              style: appTextStyles.primaryNovaSemiBold12,
             ),
           ),
         ],
@@ -83,8 +83,8 @@ class _TopDestinationBuilderState
                     ),
                   ),
                   Text(
-                    item.title,
-                    style: appTextStyles.secondaryNovaBold12,
+                    item.title, // TODO fix max letter
+                    style: appTextStyles.secondaryNovaRegular12,
                   ),
                 ],
               ),

@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/colors_fixed.dart';
 import 'package:flutter/material.dart';
 
 class ShowSnackBarMessage {
@@ -15,10 +15,10 @@ class ShowSnackBarMessage {
         content: Center(
           child: Text(
             message,
-            style: const TextStyle(color: UIColors.white, fontSize: 16),
+            style: const TextStyle(color: ExtraColors.white, fontSize: 16),
           ),
         ),
-        backgroundColor: UIColors.primary,
+        backgroundColor: ExtraColors.primary,
       ),
     );
   }
@@ -33,10 +33,10 @@ class ShowSnackBarMessage {
         content: Center(
           child: Text(
             message,
-            style: const TextStyle(color: UIColors.white, fontSize: 16),
+            style: const TextStyle(color: ExtraColors.white, fontSize: 16),
           ),
         ),
-        backgroundColor: UIColors.error,
+        backgroundColor: ExtraColors.error,
       ),
     );
   }
@@ -53,12 +53,12 @@ class ShowSnackBarMessage {
             Center(
               child: Text(
                 message,
-                style: const TextStyle(color: UIColors.white, fontSize: 16),
+                style: const TextStyle(color: ExtraColors.white, fontSize: 16),
               ),
             ),
           ],
         ),
-        backgroundColor: UIColors.primary,
+        backgroundColor: ExtraColors.primary,
       ),
     );
   }

@@ -1,14 +1,14 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/colors_fixed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 const gradient = LinearGradient(
   colors: [
-    UIColors.ghostWhite,
-    UIColors.smokeWhite,
-    UIColors.ghostWhite,
+    ExtraColors.ghostWhite,
+    ExtraColors.smokeWhite,
+    ExtraColors.ghostWhite,
   ],
   begin: Alignment(-1.0, -0.3),
   end: Alignment(1.0, 0.3),
@@ -41,7 +41,7 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: UIColors.white,
+      color: ExtraColors.white,
     ),
   );
 }
@@ -124,7 +124,7 @@ Widget buildCategoriesShimmer() {
         Radius.circular(AppValues.dimen_10.r),
       ),
       border: Border.all(
-        color: UIColors.primary.withOpacity(0.5),
+        color: ExtraColors.primary.withOpacity(0.5),
         width: 2.r,
       ),
     ),

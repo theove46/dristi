@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -77,13 +76,13 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
             border: Border.all(
-              color: UIColors.primary,
+              color: uiColors.primary,
             ),
             image: const DecorationImage(
               image: AssetImage(Assets.forestCard),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
-              opacity: 0.15,
+              opacity: 0.30,
             ),
           ),
           child: ListTile(
@@ -93,7 +92,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
             ),
             subtitle: Text(
               item.division,
-              style: appTextStyles.primaryNovaRegular10,
+              style: appTextStyles.primaryNovaRegular12,
             ),
             onTap: () {},
           ),

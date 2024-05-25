@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
@@ -72,7 +71,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
           height: AppValues.dimen_75.r,
           width: AppValues.dimen_75.r,
           decoration: BoxDecoration(
-            color: UIColors.white,
+            color: uiColors.onImage,
             borderRadius: BorderRadius.circular(AppValues.dimen_12.r),
           ),
           child: Stack(
@@ -90,7 +89,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
               Center(
                 child: Icon(
                   Icons.more_horiz_outlined,
-                  color: UIColors.white,
+                  color: uiColors.onImage,
                   size: AppValues.dimen_32.h,
                 ),
               ),
@@ -109,7 +108,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
         angle: -15 * (3.1415926535 / 180),
         child: Text(
           "Saint Martins Island",
-          style: appTextStyles.tertiaryVibesBoldShadow44,
+          style: appTextStyles.onImageBoldShadow44,
         ),
       ),
     );
@@ -123,7 +122,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
           SizedBox(height: AppValues.dimen_480.h),
           Container(
             decoration: BoxDecoration(
-              color: UIColors.white,
+              color: uiColors.secondary,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(AppValues.dimen_20.r),
                 topRight: Radius.circular(AppValues.dimen_20.r),
@@ -142,13 +141,13 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                   SizedBox(height: AppValues.dimen_10.h),
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.location_on_outlined,
-                        color: UIColors.primary,
+                        color: uiColors.primary,
                       ),
                       Text(
                         ' Bandarban, Chattogram',
-                        style: appTextStyles.primaryNovaBold18,
+                        style: appTextStyles.primaryNovaBold16,
                       ),
                     ],
                   ),
@@ -156,7 +155,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                   Text(
                     context.localization.boiler,
                     textAlign: TextAlign.justify,
-                    style: appTextStyles.secondaryNovaRegular14,
+                    style: appTextStyles.secondaryNovaRegular16,
                   ),
                 ],
               ),
@@ -180,7 +179,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
               padding: EdgeInsets.only(left: AppValues.dimen_6.w),
               child: Icon(
                 Icons.arrow_back_ios,
-                color: UIColors.primary,
+                color: uiColors.primary,
                 size: AppValues.dimen_20.h,
               ),
             ),
@@ -191,7 +190,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
           _buildNavigationIcon(
             icon: Icon(
               Icons.favorite_border_outlined,
-              color: UIColors.error,
+              color: uiColors.error,
               size: AppValues.dimen_20.h,
             ),
             onTap: () {},
@@ -208,9 +207,9 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
       child: Container(
         height: AppValues.dimen_40.r,
         width: AppValues.dimen_40.r,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: UIColors.azure,
+          color: uiColors.onImage,
         ),
         child: Center(child: icon),
       ),

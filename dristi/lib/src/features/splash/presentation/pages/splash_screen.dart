@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/primary_snackbar.dart';
 import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
@@ -45,7 +44,7 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
     );
 
     return Scaffold(
-      backgroundColor: UIColors.white,
+      backgroundColor: uiColors.shadow,
       body: Stack(
         children: [
           const ImageViewBuilder(),
@@ -80,14 +79,14 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
   Widget _buildTopName() {
     return Padding(
       padding: EdgeInsets.only(
-        top: AppValues.dimen_40.h,
-        left: AppValues.dimen_16.w,
+        top: AppValues.dimen_48.r,
+        left: AppValues.dimen_28.r,
       ),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
           context.localization.appName,
-          style: appTextStyles.tertiaryNovaSemiBold16,
+          style: appTextStyles.onImageNovaBold28,
         ),
       ),
     );

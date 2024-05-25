@@ -2,7 +2,6 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
@@ -102,9 +101,9 @@ class _DestinationPageState
           end: Alignment.topCenter,
           tileMode: TileMode.clamp,
           colors: [
-            UIColors.onSecondary,
-            UIColors.onSecondary.withOpacity(0.2),
-            UIColors.transparent,
+            uiColors.shadow,
+            uiColors.shadow.withOpacity(0.2),
+            uiColors.transparent,
           ],
         ),
       ),
@@ -123,11 +122,11 @@ class _DestinationPageState
         children: [
           Text(
             item.title,
-            style: appTextStyles.tertiaryNovaSemiBold16,
+            style: appTextStyles.onImageNovaSemiBold16,
           ),
           Text(
             item.division,
-            style: appTextStyles.tertiaryNovaRegular10,
+            style: appTextStyles.onImageNovaRegular12,
           ),
         ],
       ),

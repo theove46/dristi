@@ -31,7 +31,7 @@ class App extends StatelessWidget {
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
-          theme: AppThemeData.darkTheme,
+          theme: AppThemeData.lightTheme,
           darkTheme: AppThemeData.darkTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: _supportedLocales,

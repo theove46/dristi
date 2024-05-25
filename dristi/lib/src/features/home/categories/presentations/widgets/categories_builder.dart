@@ -1,6 +1,5 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/shimmers.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
@@ -61,7 +60,6 @@ class _CategoriesBuilderState
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
       height: ref.watch(categoriesBoxHeight),
-      width: AppValues.dimen_1.sw,
       margin: EdgeInsets.all(AppValues.dimen_2.r),
       padding: EdgeInsets.all(AppValues.dimen_16.r),
       decoration: BoxDecoration(
@@ -70,7 +68,7 @@ class _CategoriesBuilderState
           Radius.circular(AppValues.dimen_10.r),
         ),
         border: Border.all(
-          color: UIColors.primary.withOpacity(0.5),
+          color: uiColors.primary.withOpacity(0.5),
           width: 2.r,
         ),
       ),
@@ -78,8 +76,8 @@ class _CategoriesBuilderState
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
           child: Wrap(
-            runSpacing: 10.r,
-            spacing: 10.r,
+            runSpacing: 8.r,
+            spacing: 8.r,
             children: [
               ...categoriesItems.data.take(8).map(
                 (item) {
@@ -105,7 +103,7 @@ class _CategoriesBuilderState
     final categoriesItems = ref.watch(categoriesProvider);
 
     return SizedBox(
-      width: AppValues.dimen_75.w,
+      width: AppValues.dimen_80.r,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
         child: Column(
@@ -124,6 +122,7 @@ class _CategoriesBuilderState
             Text(
               categoriesItems.data[index].titleEn,
               style: appTextStyles.secondaryNovaSemiBold10,
+              textAlign: TextAlign.end,
             ),
           ],
         ),
@@ -147,9 +146,9 @@ class _CategoriesBuilderState
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: UIColors.secondary,
+                  color: uiColors.secondary,
                 ),
-                color: UIColors.secondary,
+                color: uiColors.secondary,
               ),
             ),
             Icon(

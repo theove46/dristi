@@ -9,6 +9,10 @@ import 'package:dristi/src/core/styles/themes/divider_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppThemeData {
+  static ThemeData get lightTheme => _lightTheme;
+
+  static ThemeData get darkTheme => _darkTheme;
+
   static final ThemeData _lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
@@ -46,8 +50,4 @@ class AppThemeData {
     ),
     iconTheme: CustomIconTheme(scheme: darkColorScheme),
   );
-
-  static ThemeData get lightTheme => _lightTheme;
-
-  static ThemeData get darkTheme => _darkTheme;
 }
