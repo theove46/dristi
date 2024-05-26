@@ -1,5 +1,6 @@
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/theme/text_styles.dart';
+import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +14,7 @@ class DescriptionItemsBuilder extends ConsumerStatefulWidget {
 }
 
 class _DescriptionItemsBuilderState
-    extends ConsumerState<DescriptionItemsBuilder> {
+    extends BaseConsumerStatefulWidget<DescriptionItemsBuilder> {
   @override
   Widget build(BuildContext context) {
     final spotItemsModelsState = ref.watch(spotProvider);
@@ -33,17 +34,17 @@ class _DescriptionItemsBuilderState
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(6.r),
-                        child: Image.asset(
-                          item.image,
-                          width: AppValues.dimen_40.r,
-                          height: AppValues.dimen_40.r,
+                        child: AssetImageView(
+                          fileName: item.image,
                           fit: BoxFit.cover,
+                          height: AppValues.dimen_40.r,
+                          width: AppValues.dimen_40.r,
                         ),
                       ),
                       SizedBox(height: AppValues.dimen_4.h),
                       Text(
                         item.title,
-                        style: blackNovaRegular12,
+                        style: appTextStyles.secondaryNovaRegular12,
                       ),
                     ],
                   ),

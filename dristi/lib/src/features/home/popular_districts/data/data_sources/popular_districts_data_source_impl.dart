@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/base/base_remote_source.dart';
-import 'package:dristi/src/core/network/api_end_points.dart';
+import 'package:dristi/src/core/constants/app_end_points.dart';
 import 'package:dristi/src/core/network/dio_provider.dart';
 import 'package:dristi/src/features/home/popular_districts/data/data_sources/popular_districts_data_source.dart';
 import 'package:dristi/src/features/home/popular_districts/data/model/popular_districts_response_model.dart';

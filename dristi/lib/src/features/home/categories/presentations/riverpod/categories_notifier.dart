@@ -14,11 +14,16 @@ class CategoriesNotifier extends Notifier<CategoriesState> {
 
   Future<void> getCategoriesComponents() async {
     try {
+      state = state.copyWith(
+        status: CategoriesStatus.loading,
+      );
+
       final response = await useCase.getCategoriesComponents();
 
       if (response.isNotEmpty) {
         state = state.copyWith(
           data: response,
+          status: CategoriesStatus.success,
         );
       } else {
         state = state.copyWith(

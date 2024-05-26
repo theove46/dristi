@@ -14,15 +14,18 @@ class PopularDistrictNotifier extends Notifier<PopularDistrictState> {
 
   Future<void> getPopularDistrictComponents() async {
     try {
+      state = state.copyWith(
+        status: PopularDistrictsStatus.loading,
+      );
+
       final response = await useCase.getPopularDistrictComponents();
 
       if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response,
-        );
+            data: response, status: PopularDistrictsStatus.success);
       } else {
         state = state.copyWith(
-          status: PopularDistrictStatus.failure,
+          status: PopularDistrictsStatus.failure,
         );
       }
     } catch (e, stackTrace) {
@@ -30,7 +33,7 @@ class PopularDistrictNotifier extends Notifier<PopularDistrictState> {
       Log.error(stackTrace.toString());
 
       state = state.copyWith(
-        status: PopularDistrictStatus.failure,
+        status: PopularDistrictsStatus.failure,
       );
     }
   }

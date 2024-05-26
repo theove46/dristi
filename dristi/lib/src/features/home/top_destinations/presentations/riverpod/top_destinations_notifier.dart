@@ -15,11 +15,16 @@ class TopDestinationsNotifier extends Notifier<TopDestinationsState> {
 
   Future<void> topDestinationsComponents() async {
     try {
+      state = state.copyWith(
+        status: TopDestinationsStatus.loading,
+      );
+
       final response = await useCase.topDestinationsComponents();
 
       if (response.$1.isEmpty) {
         state = state.copyWith(
           data: response.$2,
+          status: TopDestinationsStatus.success,
         );
       } else {
         state = state.copyWith(

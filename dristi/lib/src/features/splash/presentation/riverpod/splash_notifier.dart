@@ -12,6 +12,19 @@ class SplashNotifier extends Notifier<SplashState> {
     return const SplashState();
   }
 
+  Future<bool> getFirstTimeStatus() async {
+    try {
+      final response = await useCase.getFirstTimeStatus();
+
+      return response;
+    } catch (e, stackTrace) {
+      Log.error(e.toString());
+      Log.error(stackTrace.toString());
+
+      return true;
+    }
+  }
+
   Future<void> getSplashComponents() async {
     try {
       final response = await useCase.getSplashComponents();
@@ -35,12 +48,12 @@ class SplashNotifier extends Notifier<SplashState> {
     }
   }
 
-  Future<void> splashPageSubmit() async {
+  Future<void> homeScreenNavigationSubmit() async {
     try {
       state = state.copyWith(status: SplashStatus.loading);
 
       final response = await useCase.buttonSubmit();
-      await useCase.setFirstTime(false);
+      await useCase.setFirstTimeStatusFalse();
 
       if (response.$1.isEmpty) {
         state = state.copyWith(
