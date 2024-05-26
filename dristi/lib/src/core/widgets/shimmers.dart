@@ -1,26 +1,23 @@
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/styles/colors_fixed.dart';
+import 'package:dristi/src/core/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-const gradient = LinearGradient(
-  colors: [
-    ExtraColors.ghostWhite,
-    ExtraColors.smokeWhite,
-    ExtraColors.ghostWhite,
-  ],
-  begin: Alignment(-1.0, -0.3),
-  end: Alignment(1.0, 0.3),
-  tileMode: TileMode.clamp,
-  stops: [0.1, 0.3, 0.4],
-);
-
 Widget buildShimmer({
+  required BuildContext context,
   required double height,
   required double width,
   Widget? child,
 }) {
+  final gradient = LinearGradient(
+    colors: UIColors.shimmerGradient(context),
+    begin: const Alignment(-1.0, -0.3),
+    end: const Alignment(1.0, 0.3),
+    tileMode: TileMode.clamp,
+    stops: const [0.1, 0.3, 0.4],
+  );
+
   return Shimmer(
     gradient: gradient,
     child: SizedBox(
@@ -32,6 +29,7 @@ Widget buildShimmer({
 }
 
 Widget buildShimmerContainer({
+  required BuildContext context,
   required double height,
   required double width,
   required double borderRadius,
@@ -41,17 +39,19 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: ExtraColors.white,
+      color: UIColors.componentsWhite(context),
     ),
   );
 }
 
 Widget buildSquareHorizontalListShimmer({
+  required BuildContext context,
   required double height,
   required double itemSize,
   required int itemCount,
 }) {
   return buildShimmer(
+    context: context,
     height: height,
     width: double.infinity,
     child: ListView.builder(
@@ -63,12 +63,14 @@ Widget buildSquareHorizontalListShimmer({
           child: Column(
             children: [
               buildShimmerContainer(
+                context: context,
                 height: itemSize,
                 width: itemSize,
                 borderRadius: AppValues.dimen_16.r,
               ),
               SizedBox(height: AppValues.dimen_4.h),
               buildShimmerContainer(
+                context: context,
                 height: AppValues.dimen_10.r,
                 width: itemSize,
                 borderRadius: AppValues.dimen_6.r,
@@ -81,11 +83,13 @@ Widget buildSquareHorizontalListShimmer({
   );
 }
 
-Widget buildSliderShimmer() {
+Widget buildSliderShimmer(BuildContext context) {
   return buildShimmer(
+    context: context,
     height: AppValues.dimen_220.h,
     width: double.infinity,
     child: buildShimmerContainer(
+      context: context,
       height: AppValues.dimen_220.h,
       width: double.infinity,
       borderRadius: AppValues.dimen_10.r,
@@ -93,8 +97,9 @@ Widget buildSliderShimmer() {
   );
 }
 
-Widget buildSliderIndicatorShimmer() {
+Widget buildSliderIndicatorShimmer(BuildContext context) {
   return buildShimmer(
+    context: context,
     height: AppValues.dimen_12.h,
     width: double.infinity,
     child: Row(
@@ -103,6 +108,7 @@ Widget buildSliderIndicatorShimmer() {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: buildShimmerContainer(
+            context: context,
             height: AppValues.dimen_12.h,
             width: index == 0 ? AppValues.dimen_50.w : AppValues.dimen_28.w,
             borderRadius: AppValues.dimen_5.r,
@@ -113,7 +119,7 @@ Widget buildSliderIndicatorShimmer() {
   );
 }
 
-Widget buildCategoriesShimmer() {
+Widget buildCategoriesShimmer(BuildContext context) {
   return Container(
     height: AppValues.dimen_240.h,
     width: AppValues.dimen_1.sw,
@@ -124,7 +130,7 @@ Widget buildCategoriesShimmer() {
         Radius.circular(AppValues.dimen_10.r),
       ),
       border: Border.all(
-        color: ExtraColors.primary.withOpacity(0.5),
+        color: UIColors.componentsPrimary(context).withOpacity(0.5),
         width: 2.r,
       ),
     ),
@@ -136,7 +142,13 @@ Widget buildCategoriesShimmer() {
         children: List.generate(
           8,
           (index) => Shimmer(
-            gradient: gradient,
+            gradient: LinearGradient(
+              colors: UIColors.shimmerGradient(context),
+              begin: const Alignment(-1.0, -0.3),
+              end: const Alignment(1.0, 0.3),
+              tileMode: TileMode.clamp,
+              stops: const [0.1, 0.3, 0.4],
+            ),
             child: SizedBox(
               width: AppValues.dimen_75.w,
               child: Padding(
@@ -145,12 +157,14 @@ Widget buildCategoriesShimmer() {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     buildShimmerContainer(
+                      context: context,
                       width: AppValues.dimen_60.r,
                       height: AppValues.dimen_60.r,
                       borderRadius: AppValues.dimen_6.r,
                     ),
                     SizedBox(height: AppValues.dimen_4.h),
                     buildShimmerContainer(
+                      context: context,
                       width: AppValues.dimen_60.r,
                       height: AppValues.dimen_10.r,
                       borderRadius: AppValues.dimen_6.r,
@@ -166,16 +180,18 @@ Widget buildCategoriesShimmer() {
   );
 }
 
-Widget buildTopDestinationsShimmer() {
+Widget buildTopDestinationsShimmer(BuildContext context) {
   return buildSquareHorizontalListShimmer(
+    context: context,
     height: AppValues.dimen_100.h,
     itemSize: AppValues.dimen_80.r,
     itemCount: 6,
   );
 }
 
-Widget buildPopularDistrictsShimmer() {
+Widget buildPopularDistrictsShimmer(BuildContext context) {
   return buildSquareHorizontalListShimmer(
+    context: context,
     height: AppValues.dimen_150.h,
     itemSize: AppValues.dimen_130.r,
     itemCount: 6,

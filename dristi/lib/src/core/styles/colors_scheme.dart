@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Color instruction:
-// primary, secondary, tertiary, error: Variations of Components Color
+// primary, secondary, tertiary, error: Variations of Components Colors
 // onPrimary, onSecondary, onTertiary, onError: Variations of texts
 // background: Scaffold Background Color -> Mainly Secondary Color
 // onBackground: Always White Color -> Components On Image Color
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // shadow: Deep Color -> Primary for Light, Secondary for Dark
 // surface: Lighter Variants for shadow Color
 // surTint: Container background color, Appbar surfaceTintColor color
+// surfaceVariant, onSurfaceVariant: Shimmer gradient Colors
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -44,8 +45,8 @@ const lightColorScheme = ColorScheme(
   // surface
   surface: Color(0xFF49beb7), // set
   onSurface: Color(0xFF000000),
-  surfaceVariant: Color(0xFF000000),
-  onSurfaceVariant: Color(0xFF000000),
+  surfaceVariant: Color(0xFFEBEBF4), // set
+  onSurfaceVariant: Color(0xFFF4F4F4), // set
   surfaceTint: Color(0xFFdaeaf6), // set
 
   // outline
@@ -89,12 +90,12 @@ const darkColorScheme = ColorScheme(
   // surface
   surface: Color(0xFF1f4287), // set
   onSurface: Color(0xFF000000),
-  surfaceVariant: Color(0xFF000000),
-  onSurfaceVariant: Color(0xFF000000),
+  surfaceVariant: Color(0xFF183661), // set
+  onSurfaceVariant: Color(0xFF1c4b82), // set
   surfaceTint: Color(0xFF88bef5), // set
 
   // outline
-  outline: Color(0xFFdaeaf6), // set
+  outline: Color(0xFF17b978), // set
 
   // shadow
   shadow: Color(0xFF001f3f), // set

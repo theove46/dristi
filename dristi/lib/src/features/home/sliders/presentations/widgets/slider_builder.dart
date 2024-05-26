@@ -36,7 +36,7 @@ class _ImageSliderBuilderState
 
     if (carouselItems.status != SliderStatus.success ||
         carouselItems.data == null) {
-      return buildSliderShimmer();
+      return buildSliderShimmer(context);
     }
 
     return CarouselSlider.builder(
@@ -101,7 +101,7 @@ class _ImageSliderBuilderState
 
     if (carouselItems.status != SliderStatus.success ||
         carouselItems.data == null) {
-      return buildSliderIndicatorShimmer();
+      return buildSliderIndicatorShimmer(context);
     }
 
     return Row(

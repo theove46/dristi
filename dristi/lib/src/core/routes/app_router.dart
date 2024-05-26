@@ -50,11 +50,6 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) => const DestinationScreen(),
     ),
     GoRoute(
-      path: _Path.destination,
-      name: AppRoutes.destination,
-      builder: (context, state) => const DestinationScreen(),
-    ),
-    GoRoute(
       path: _Path.error,
       name: AppRoutes.error,
       builder: (context, state) => const ErrorScreen(),
