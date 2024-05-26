@@ -11,7 +11,9 @@ final splashRepositoryProvider = Provider<SplashRepository>(
 );
 
 abstract class SplashRepository {
-  Future<void> setFirstTime(bool value);
+  Future<void> setFirstTimeStatusFalse();
+
+  Future<bool> getFirstTimeStatus();
 
   Future<List<SplashEntity>> getSplashComponents();
 

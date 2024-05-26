@@ -22,12 +22,25 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    ref.read(splashProvider.notifier).getSplashComponents();
+    Future(() {
+      onBoardingStatus();
+    });
+  }
+
+  void onBoardingStatus() async {
+    bool isFirstTime =
+        await ref.read(splashProvider.notifier).getFirstTimeStatus();
+
+    if (!isFirstTime) {
+      navigateToHomePage();
+    } else {
+      ref.read(splashProvider.notifier).getSplashComponents();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(splashProvider);
+    final splashItems = ref.watch(splashProvider);
 
     ref.listen(
       splashProvider,
@@ -44,15 +57,16 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
     );
 
     return Scaffold(
-      backgroundColor: uiColors.shadow,
-      body: Stack(
-        children: [
-          const ImageViewBuilder(),
-          const PageIndicatorBuilder(),
-          _buildButton(),
-          _buildTopName(),
-        ],
-      ),
+      body: splashItems.data != null
+          ? Stack(
+              children: [
+                const ImageViewBuilder(),
+                const PageIndicatorBuilder(),
+                _buildButton(),
+                _buildTopName(),
+              ],
+            )
+          : const SizedBox.shrink(),
     );
   }
 

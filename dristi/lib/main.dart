@@ -37,20 +37,10 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
-  final isFirstTime = await getFirstTimeStatus();
-
   runApp(
     ProviderScope(
       observers: [RiverpodLogger()],
-      child: App(
-        isFirstTime: isFirstTime,
-      ),
+      child: const App(),
     ),
   );
-}
-
-Future<bool> getFirstTimeStatus() async {
-  final settingsBox = await Hive.openBox<bool>('appSettings');
-  bool? isFirstTime = settingsBox.get('isFirstTime');
-  return isFirstTime ?? true;
 }

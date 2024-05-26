@@ -5,11 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final splashDataSourceProvider = Provider<SplashDataSource>(
   (ref) {
-    return const SplashDataSourceImp();
+    return SplashDataSourceImp();
   },
 );
 
 abstract class SplashDataSource {
+  Future<void> setFirstTimeStatusFalse();
+
+  Future<bool> getFirstTimeStatus();
+
   Future<SplashResponseModel> splashComponents();
 
   Future<Response> buttonSubmit();

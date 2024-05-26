@@ -13,10 +13,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class App extends StatelessWidget {
   const App({
     Key? key,
-    required this.isFirstTime,
   }) : super(key: key);
-
-  final bool isFirstTime;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class App extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-          initialRoute: isFirstTime ? AppRoutes.splash : AppRoutes.home,
+          initialRoute: AppRoutes.splash,
           onGenerateRoute: RouteGenerator.generateRoute,
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
