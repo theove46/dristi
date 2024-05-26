@@ -7,6 +7,7 @@ import 'package:dristi/src/features/destinations/presentation/riverpod/destinati
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
   const DestinationScreen({super.key});
@@ -39,7 +40,7 @@ class _DestinationPageState
             Icons.arrow_back_ios,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
       ),
@@ -134,9 +135,6 @@ class _DestinationPageState
   }
 
   void navigateToSpotPage() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.spot,
-    );
+    context.pushNamed(AppRoutes.spot);
   }
 }

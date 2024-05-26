@@ -1,7 +1,6 @@
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
-import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/styles/themes/app_theme.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +22,8 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          initialRoute: AppRoutes.splash,
-          onGenerateRoute: RouteGenerator.generateRoute,
-          navigatorKey: navigatorKey,
+        return MaterialApp.router(
+          routerConfig: appRouter,
           debugShowCheckedModeBanner: false,
           theme: AppThemeData.lightTheme,
           darkTheme: AppThemeData.darkTheme,

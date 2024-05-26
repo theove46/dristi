@@ -9,6 +9,7 @@ import 'package:dristi/src/features/home/top_destinations/presentations/riverpod
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class TopDestinationBuilder extends ConsumerStatefulWidget {
   const TopDestinationBuilder({super.key});
@@ -96,16 +97,10 @@ class _TopDestinationBuilderState
   }
 
   void navigateToDestinationsPage() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.destination,
-    );
+    context.pushNamed(AppRoutes.destination);
   }
 
   void navigateToSpotPage() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.spot,
-    );
+    context.pushNamed(AppRoutes.spot);
   }
 }

@@ -8,6 +8,7 @@ import 'package:dristi/src/features/spot/presentation/widgets/description_items_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SpotScreen extends ConsumerStatefulWidget {
   const SpotScreen({super.key});
@@ -184,7 +185,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              context.pop();
             },
           ),
           _buildNavigationIcon(

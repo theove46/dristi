@@ -10,6 +10,7 @@ import 'package:dristi/src/features/splash/presentation/widgets/page_indicator_b
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -107,9 +108,6 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
   }
 
   void navigateToHomePage() {
-    Navigator.pushReplacementNamed(
-      context,
-      AppRoutes.home,
-    );
+    context.pushNamed(AppRoutes.home);
   }
 }

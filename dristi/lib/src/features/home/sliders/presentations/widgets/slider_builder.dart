@@ -8,6 +8,7 @@ import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_s
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SliderBuilder extends ConsumerStatefulWidget {
   const SliderBuilder({super.key});
@@ -130,9 +131,6 @@ class _ImageSliderBuilderState
   }
 
   void navigateToSpotPage() {
-    Navigator.pushNamed(
-      context,
-      AppRoutes.spot,
-    );
+    context.pushNamed(AppRoutes.spot);
   }
 }

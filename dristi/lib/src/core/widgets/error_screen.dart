@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorScreen extends StatefulWidget {
-  final String errorMessage;
-  final VoidCallback onPressed;
+  final String? errorMessage;
+  final VoidCallback? onPressed;
 
   const ErrorScreen({
     Key? key,
-    required this.errorMessage,
-    required this.onPressed,
+    this.errorMessage,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -39,7 +39,7 @@ class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
             ),
             SizedBox(height: AppValues.dimen_10.h),
             Text(
-              widget.errorMessage,
+              widget.errorMessage ?? '',
               style: appTextStyles.primaryNovaSemiBold16,
             ),
             SizedBox(height: AppValues.dimen_30.h),
