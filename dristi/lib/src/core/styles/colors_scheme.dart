@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 // Color instruction:
 // primary, secondary, tertiary, error: Variations of Components Colors
 // onPrimary, onSecondary, onTertiary, onError: Variations of texts
-// background: Scaffold Background Color -> Mainly Secondary Color
-// onBackground: Always White Color -> Components On Image Color
+// surface: Scaffold Background Color -> Mainly Secondary Color
+// onSurface: Always White Color -> Components On Image Color
 // outline: Outline Color -> Mainly Primary Color
 // shadow: Deep Color -> Primary for Light, Secondary for Dark
-// surface: Lighter Variants for shadow Color
+// surfaceDim: Lighter Variants for shadow Color
 // surTint: Container background color, Appbar surfaceTintColor color
-// surfaceVariant, onSurfaceVariant: Shimmer gradient Colors
+// inverseSurface, onInverseSurface: Shimmer gradient Colors
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -38,15 +38,13 @@ const lightColorScheme = ColorScheme(
   errorContainer: Color(0xFFE6ACA6),
   onErrorContainer: Color(0xFF000000),
 
-  // background
-  background: Color(0xFFFFFFFF), // set
-  onBackground: Color(0xFFFFFFFF), // set
-
   // surface
-  surface: Color(0xFF49beb7), // set
-  onSurface: Color(0xFF000000),
-  surfaceVariant: Color(0xFFEBEBF4), // set
-  onSurfaceVariant: Color(0xFFF4F4F4), // set
+  surface: Color(0xFFFFFFFF), // set
+  onSurface: Color(0xFFFFFFFF), // set
+  surfaceDim: Color(0xFF49beb7), // set
+  inverseSurface: Color(0xFFEBEBF4), // set
+  onInverseSurface: Color(0xFFF4F4F4), // set
+  onSurfaceVariant: Color(0xFF000000),
   surfaceTint: Color(0xFFdaeaf6), // set
 
   // outline
@@ -83,15 +81,13 @@ const darkColorScheme = ColorScheme(
   errorContainer: Color(0xFF000000),
   onErrorContainer: Color(0xFF000000),
 
-  // background
-  background: Color(0xFF001f3f), // set
-  onBackground: Color(0xFFdaeaf6), // set
-
   // surface
-  surface: Color(0xFF1f4287), // set
-  onSurface: Color(0xFF000000),
-  surfaceVariant: Color(0xFF183661), // set
-  onSurfaceVariant: Color(0xFF1c4b82), // set
+  surface: Color(0xFF001f3f), // set
+  onSurface: Color(0xFFdaeaf6), // set
+  surfaceDim: Color(0xFF1f4287), // set
+  inverseSurface: Color(0xFF183661), // set
+  onInverseSurface: Color(0xFF1c4b82), // set
+  onSurfaceVariant: Color(0xFF000000),
   surfaceTint: Color(0xFF88bef5), // set
 
   // outline

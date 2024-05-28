@@ -1,4 +1,3 @@
-import 'package:dristi/src/core/styles/colors_scheme.dart';
 import 'package:flutter/material.dart';
 
 class UIColors {
@@ -17,9 +16,9 @@ class UIColors {
 
   Color get shadow => Theme.of(context).colorScheme.shadow;
 
-  Color get background => Theme.of(context).colorScheme.background;
+  Color get background => Theme.of(context).colorScheme.surface;
 
-  Color get onImage => Theme.of(context).colorScheme.onBackground;
+  Color get onImage => Theme.of(context).colorScheme.onSurface;
 
   // Text Colors
   static Color primaryText(BuildContext context) =>
@@ -35,7 +34,7 @@ class UIColors {
       Theme.of(context).colorScheme.onError;
 
   static Color onImageText(BuildContext context) =>
-      Theme.of(context).colorScheme.onBackground;
+      Theme.of(context).colorScheme.onSurface;
 
   static Color onImageShadowText(BuildContext context) =>
       Theme.of(context).colorScheme.shadow;
@@ -45,14 +44,14 @@ class UIColors {
       Theme.of(context).colorScheme.primary;
 
   static Color componentsWhite(BuildContext context) =>
-      Theme.of(context).colorScheme.onBackground;
+      Theme.of(context).colorScheme.onSurface;
 
   static Color componentsError(BuildContext context) =>
       Theme.of(context).colorScheme.error;
 
   static List<Color> shimmerGradient(BuildContext context) => [
-        Theme.of(context).colorScheme.surfaceVariant,
-        Theme.of(context).colorScheme.onSurfaceVariant,
-        Theme.of(context).colorScheme.surfaceVariant,
+        Theme.of(context).colorScheme.inverseSurface,
+        Theme.of(context).colorScheme.onInverseSurface,
+        Theme.of(context).colorScheme.inverseSurface,
       ];
 }
