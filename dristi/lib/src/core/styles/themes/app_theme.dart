@@ -16,7 +16,7 @@ class AppThemeData {
   static final ThemeData _lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
-    scaffoldBackgroundColor: lightColorScheme.surface,
+    scaffoldBackgroundColor: lightColorScheme.background,
     fontFamily: FontFamily.nova,
     focusColor: lightColorScheme.primary,
     brightness: Brightness.light,
@@ -36,7 +36,7 @@ class AppThemeData {
     useMaterial3: true,
     colorScheme: darkColorScheme,
     fontFamily: FontFamily.nova,
-    scaffoldBackgroundColor: darkColorScheme.surface,
+    scaffoldBackgroundColor: darkColorScheme.background,
     focusColor: darkColorScheme.primary,
     brightness: Brightness.dark,
     appBarTheme: CustomAppBarTheme(scheme: darkColorScheme),

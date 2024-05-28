@@ -7,24 +7,24 @@ class CustomOutlinedButtonTheme extends ButtonStyle {
 
   CustomOutlinedButtonTheme({required this.scheme})
       : super(
-          side: WidgetStatePropertyAll(
+          side: MaterialStatePropertyAll(
             BorderSide(
               color: scheme.outline,
             ),
           ),
-          backgroundColor: WidgetStateProperty.resolveWith(
+          backgroundColor: MaterialStateProperty.resolveWith(
             (states) {
-              if (states.contains(WidgetState.disabled) ||
-                  states.contains(WidgetState.selected)) {
+              if (states.contains(MaterialState.disabled) ||
+                  states.contains(MaterialState.selected)) {
                 return scheme.secondaryContainer;
               } else {
                 return scheme.secondary;
               }
             },
           ),
-          foregroundColor: WidgetStateProperty.resolveWith(
+          foregroundColor: MaterialStateProperty.resolveWith(
             (states) {
-              if (states.contains(WidgetState.disabled)) {
+              if (states.contains(MaterialState.disabled)) {
                 return scheme.primaryContainer;
               } else {
                 return scheme.primary;
@@ -32,19 +32,19 @@ class CustomOutlinedButtonTheme extends ButtonStyle {
             },
           ),
           animationDuration: const Duration(milliseconds: 200),
-          minimumSize: WidgetStatePropertyAll(
+          minimumSize: MaterialStatePropertyAll(
             Size(
               double.infinity,
               AppValues.dimen_48.r,
             ),
           ),
-          padding: WidgetStatePropertyAll(
+          padding: MaterialStatePropertyAll(
             EdgeInsets.symmetric(
               vertical: AppValues.dimen_16.r,
               horizontal: AppValues.dimen_16.r,
             ),
           ),
-          shape: WidgetStatePropertyAll(
+          shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                 AppValues.dimen_16.r,

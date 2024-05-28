@@ -12,7 +12,7 @@ class Log {
 
   static final Log _singleton = Log._internal();
 
-  static void verbose(String message) => _singleton._logger.t(message);
+  static void verbose(String message) => _singleton._logger.v(message);
 
   static void debug(String message) => _singleton._logger.d(message);
 

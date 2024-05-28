@@ -9,7 +9,7 @@ class CustomAppBarTheme extends AppBarTheme {
   CustomAppBarTheme({
     required this.scheme,
   }) : super(
-          backgroundColor: scheme.surface,
+          backgroundColor: scheme.background,
           foregroundColor: scheme.primary,
           surfaceTintColor: scheme.surfaceTint,
           elevation: 0,
