@@ -75,6 +75,7 @@ class _CategoriesBuilderState
       child: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Wrap(
             runSpacing: 8.r,
             spacing: 8.r,
