@@ -1,7 +1,7 @@
 class Assets {
   static const String imagePath = 'assets/images';
   static const String itemsPath = 'assets/images/items';
-  static const String splashPath = 'assets/images/on_boarding';
+  static const String onBoardingPath = 'assets/images/on_boarding';
   static const String spotItems = 'assets/images/spot_items';
   static const String jsonAssets = 'assets/json';
 
@@ -12,7 +12,7 @@ class Assets {
   static const String error = '$itemsPath/error.svg';
 
   /// Splash Page Images
-  static const String coxsBazar = '$splashPath/coxs_bazar.jpg';
+  static const String coxsBazar = '$onBoardingPath/coxs_bazar.jpg';
 
   /// Top Destinations Images
   static const String nilgiri = '$itemsPath/nilgiri.jpg';
