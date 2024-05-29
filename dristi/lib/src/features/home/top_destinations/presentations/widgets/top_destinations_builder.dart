@@ -76,15 +76,15 @@ class _TopDestinationBuilderState
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                    child: AssetImageView(
-                      fileName: item.image,
+                    child: Image.network(
+                      item.image,
                       width: AppValues.dimen_80.r,
                       height: AppValues.dimen_80.r,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Text(
-                    item.title, // TODO fix max letter
+                    item.titleEn, // TODO fix max letter
                     style: appTextStyles.secondaryNovaRegular12,
                   ),
                 ],
