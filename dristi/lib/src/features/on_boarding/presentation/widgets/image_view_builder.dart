@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
-import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
+import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,19 +18,20 @@ class _ImageViewBuilderState
     extends BaseConsumerStatefulWidget<ImageViewBuilder> {
   @override
   Widget build(BuildContext context) {
-    final splashModelsState = ref.watch(splashProvider);
-    final currentSplashNotifier = ref.watch(currentSplashProvider.notifier);
+    final onBoardingModelsState = ref.watch(onBoardingProvider);
+    final currentOnBoardingScreenNotifier =
+        ref.watch(currentOnBoardingScreenProvider.notifier);
 
-    if (splashModelsState.data != null) {
+    if (onBoardingModelsState.data != null) {
       return CarouselSlider.builder(
-        itemCount: splashModelsState.data.length,
+        itemCount: onBoardingModelsState.data.length,
         itemBuilder: (context, index, realIndex) {
           return Stack(
             alignment: Alignment.topCenter,
             children: [
               ClipRRect(
                 child: AssetImageView(
-                  fileName: splashModelsState.data[index].image,
+                  fileName: onBoardingModelsState.data[index].image,
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: double.infinity,
@@ -41,7 +42,7 @@ class _ImageViewBuilderState
                 child: Transform.rotate(
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
-                    splashModelsState.data[index].title,
+                    onBoardingModelsState.data[index].title,
                     style: appTextStyles.onImageBoldShadow60,
                   ),
                 ),
@@ -62,7 +63,7 @@ class _ImageViewBuilderState
           autoPlayAnimationDuration: const Duration(seconds: 2),
           autoPlayCurve: Curves.fastOutSlowIn,
           onPageChanged: (index, reason) {
-            currentSplashNotifier.state = index;
+            currentOnBoardingScreenNotifier.state = index;
           },
           scrollDirection: Axis.horizontal,
         ),

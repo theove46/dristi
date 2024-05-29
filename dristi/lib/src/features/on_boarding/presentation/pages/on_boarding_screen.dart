@@ -3,23 +3,24 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/widgets/primary_snackbar.dart';
-import 'package:dristi/src/features/splash/presentation/riverpod/splash_providers.dart';
-import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
-import 'package:dristi/src/features/splash/presentation/widgets/image_view_builder.dart';
-import 'package:dristi/src/features/splash/presentation/widgets/page_indicator_builder.dart';
+import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_providers.dart';
+import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_state.dart';
+import 'package:dristi/src/features/on_boarding/presentation/widgets/image_view_builder.dart';
+import 'package:dristi/src/features/on_boarding/presentation/widgets/page_indicator_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SplashScreen extends ConsumerStatefulWidget {
-  const SplashScreen({super.key});
+class OnBoardingScreen extends ConsumerStatefulWidget {
+  const OnBoardingScreen({super.key});
 
   @override
-  ConsumerState createState() => _SplashPageState();
+  ConsumerState createState() => _OnBoardingScreenState();
 }
 
-class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
+class _OnBoardingScreenState
+    extends BaseConsumerStatefulWidget<OnBoardingScreen> {
   @override
   void initState() {
     super.initState();
@@ -30,25 +31,25 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
 
   void onBoardingStatus() async {
     bool isFirstTime =
-        await ref.read(splashProvider.notifier).getFirstTimeStatus();
+        await ref.read(onBoardingProvider.notifier).getFirstTimeStatus();
 
     if (!isFirstTime) {
       navigateToHomePage();
     } else {
-      ref.read(splashProvider.notifier).getSplashComponents();
+      ref.read(onBoardingProvider.notifier).getOnBoardingComponents();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final splashItems = ref.watch(splashProvider);
+    final onBoardingItems = ref.watch(onBoardingProvider);
 
     ref.listen(
-      splashProvider,
+      onBoardingProvider,
       (_, next) {
-        if (next.status == SplashStatus.success) {
+        if (next.status == OnBoardingStatus.success) {
           navigateToHomePage();
-        } else if (next.status == SplashStatus.failure) {
+        } else if (next.status == OnBoardingStatus.failure) {
           ShowSnackBarMessage.showErrorSnackBar(
             message: next.errorMessage!,
             context: context,
@@ -58,7 +59,7 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
     );
 
     return Scaffold(
-      body: splashItems.data != null
+      body: onBoardingItems.data != null
           ? Stack(
               children: [
                 const ImageViewBuilder(),
@@ -72,7 +73,7 @@ class _SplashPageState extends BaseConsumerStatefulWidget<SplashScreen> {
   }
 
   Widget _buildButton() {
-    final notifier = ref.read(splashProvider.notifier);
+    final notifier = ref.read(onBoardingProvider.notifier);
 
     return Positioned(
       bottom: AppValues.dimen_40.h,

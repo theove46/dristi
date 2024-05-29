@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-enum SplashStatus { initial, loading, success, failure }
+enum OnBoardingStatus { initial, loading, success, failure }
 
-class SplashState<T> extends Equatable {
-  const SplashState({
-    this.status = SplashStatus.initial,
+class OnBoardingState<T> extends Equatable {
+  const OnBoardingState({
+    this.status = OnBoardingStatus.initial,
     this.data,
     this.errorMessage,
   });
 
-  final SplashStatus status;
+  final OnBoardingStatus status;
   final T? data;
   final String? errorMessage;
 
-  SplashState copyWith({
-    SplashStatus? status,
+  OnBoardingState copyWith({
+    OnBoardingStatus? status,
     T? data,
     String? errorMessage,
   }) {
-    return SplashState(
+    return OnBoardingState(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

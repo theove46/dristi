@@ -1,8 +1,8 @@
-class SplashUIModel {
+class OnBoardingUIModel {
   final String title;
   final String image;
 
-  SplashUIModel({
+  OnBoardingUIModel({
     required this.title,
     required this.image,
   });

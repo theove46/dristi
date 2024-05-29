@@ -1,0 +1,20 @@
+import 'package:dio/dio.dart';
+import 'package:dristi/src/features/on_boarding/data/data_sources/on_boarding_data_source_impl.dart';
+import 'package:dristi/src/features/on_boarding/data/models/on_boarding_response_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final onBoardingDataSourceProvider = Provider<OnBoardingDataSource>(
+  (ref) {
+    return OnBoardingDataSourceImp();
+  },
+);
+
+abstract class OnBoardingDataSource {
+  Future<void> setFirstTimeStatusFalse();
+
+  Future<bool> getFirstTimeStatus();
+
+  Future<OnBoardingResponseModel> onBoardingComponents();
+
+  Future<Response> buttonSubmit();
+}

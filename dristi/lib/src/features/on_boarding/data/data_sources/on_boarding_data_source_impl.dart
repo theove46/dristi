@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/loggers/logger.dart';
-import 'package:dristi/src/features/splash/data/data_sources/splash_data_source.dart';
-import 'package:dristi/src/features/splash/data/models/splash_response_model.dart';
+import 'package:dristi/src/features/on_boarding/data/data_sources/on_boarding_data_source.dart';
+import 'package:dristi/src/features/on_boarding/data/models/on_boarding_response_model.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class SplashDataSourceImp implements SplashDataSource {
-  SplashDataSourceImp();
+class OnBoardingDataSourceImp implements OnBoardingDataSource {
+  OnBoardingDataSourceImp();
 
   late Box<bool> _settingsBox;
   static const String _boxName = 'appSettings';
@@ -34,16 +34,16 @@ class SplashDataSourceImp implements SplashDataSource {
   }
 
   @override
-  Future<SplashResponseModel> splashComponents() async {
-    String response = await rootBundle.loadString(Assets.splashComponents);
+  Future<OnBoardingResponseModel> onBoardingComponents() async {
+    String response = await rootBundle.loadString(Assets.onBoardingComponents);
     Log.debug(response.toString());
     final List<dynamic> jsonList = json.decode(response);
 
     try {
-      SplashResponseModel splashResponse =
-          SplashResponseModel.fromJson(json: jsonList);
+      OnBoardingResponseModel onBoardingResponse =
+          OnBoardingResponseModel.fromJson(json: jsonList);
 
-      return splashResponse;
+      return onBoardingResponse;
     } catch (error) {
       rethrow;
     }

@@ -1,15 +1,15 @@
 import 'package:dristi/src/core/loggers/logger.dart';
-import 'package:dristi/src/features/splash/domain/use_cases/splash_use_case.dart';
-import 'package:dristi/src/features/splash/presentation/riverpod/splash_state.dart';
+import 'package:dristi/src/features/on_boarding/domain/use_cases/on_boarding_use_case.dart';
+import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SplashNotifier extends Notifier<SplashState> {
-  late SplashUseCase useCase;
+class OnBoardingNotifier extends Notifier<OnBoardingState> {
+  late OnBoardingUseCase useCase;
 
   @override
-  SplashState build() {
-    useCase = ref.read(splashUseCaseProvider);
-    return const SplashState();
+  OnBoardingState build() {
+    useCase = ref.read(onBoardingUseCaseProvider);
+    return const OnBoardingState();
   }
 
   Future<bool> getFirstTimeStatus() async {
@@ -25,9 +25,9 @@ class SplashNotifier extends Notifier<SplashState> {
     }
   }
 
-  Future<void> getSplashComponents() async {
+  Future<void> getOnBoardingComponents() async {
     try {
-      final response = await useCase.getSplashComponents();
+      final response = await useCase.getOnBoardingComponents();
 
       if (response.isNotEmpty) {
         state = state.copyWith(
@@ -35,7 +35,7 @@ class SplashNotifier extends Notifier<SplashState> {
         );
       } else {
         state = state.copyWith(
-          status: SplashStatus.failure,
+          status: OnBoardingStatus.failure,
         );
       }
     } catch (e, stackTrace) {
@@ -43,31 +43,31 @@ class SplashNotifier extends Notifier<SplashState> {
       Log.error(stackTrace.toString());
 
       state = state.copyWith(
-        status: SplashStatus.failure,
+        status: OnBoardingStatus.failure,
       );
     }
   }
 
   Future<void> homeScreenNavigationSubmit() async {
     try {
-      state = state.copyWith(status: SplashStatus.loading);
+      state = state.copyWith(status: OnBoardingStatus.loading);
 
       final response = await useCase.buttonSubmit();
       await useCase.setFirstTimeStatusFalse();
 
       if (response.$1.isEmpty) {
         state = state.copyWith(
-          status: SplashStatus.success,
+          status: OnBoardingStatus.success,
         );
       } else {
         state = state.copyWith(
-          status: SplashStatus.failure,
+          status: OnBoardingStatus.failure,
         );
       }
     } catch (e, stackTrace) {
       Log.debug(stackTrace.toString());
       state = state.copyWith(
-        status: SplashStatus.failure,
+        status: OnBoardingStatus.failure,
       );
     }
   }
