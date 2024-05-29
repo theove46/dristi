@@ -109,6 +109,6 @@ class _OnBoardingScreenState
   }
 
   void navigateToHomePage() {
-    context.pushNamed(AppRoutes.home);
+    context.pushReplacementNamed(AppRoutes.home);
   }
 }
