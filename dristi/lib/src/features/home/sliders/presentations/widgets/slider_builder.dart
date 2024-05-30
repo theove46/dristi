@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -54,8 +55,8 @@ class _ImageSliderBuilderState
                   borderRadius: BorderRadius.all(
                     Radius.circular(AppValues.dimen_10.r),
                   ),
-                  child: Image.network(
-                    item.image,
+                  child: CachedNetworkImage(
+                    imageUrl: item.image,
                     fit: BoxFit.cover,
                   ),
                 ),

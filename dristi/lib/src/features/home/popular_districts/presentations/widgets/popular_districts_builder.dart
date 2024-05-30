@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
@@ -75,16 +76,22 @@ class _PopularCitiesBuilderState
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                    child: Image.network(
-                      item.image,
+                    child: CachedNetworkImage(
+                      imageUrl: item.image,
                       width: AppValues.dimen_130.r,
                       height: AppValues.dimen_130.r,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                    item.titleEn, // TODO fix max letter
-                    style: appTextStyles.secondaryNovaRegular12,
+                  SizedBox(
+                    width: AppValues.dimen_120.r,
+                    child: Text(
+                      item.titleEn,
+                      style: appTextStyles.secondaryNovaRegular12,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),

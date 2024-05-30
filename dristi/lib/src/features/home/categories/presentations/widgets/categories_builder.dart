@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -112,8 +113,8 @@ class _CategoriesBuilderState
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-              child: Image.network(
-                categoriesItems.data[index].image,
+              child: CachedNetworkImage(
+                imageUrl: categoriesItems.data[index].image,
                 width: AppValues.dimen_60.r,
                 height: AppValues.dimen_60.r,
                 fit: BoxFit.cover,
