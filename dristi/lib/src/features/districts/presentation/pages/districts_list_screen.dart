@@ -31,29 +31,51 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
     final districtModelsState = ref.watch(districtProvider);
 
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: districtModelsState.data != null
-          ? ListView.builder(
-              itemCount: (districtModelsState.data.length / 2).ceil(),
-              itemBuilder: (context, index) {
-                final int startIndex = index * 2;
-                final int endIndex = startIndex + 1;
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppValues.dimen_16.w,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildDistrictCard(startIndex),
-                      if (endIndex < districtModelsState.data.length)
-                        _buildDistrictCard(endIndex),
-                    ],
-                  ),
-                );
-              },
+      body: CustomScrollView(
+        slivers: [
+          _buildSliverAppBar(),
+          if (districtModelsState.data != null)
+            SliverPadding(
+              padding: EdgeInsets.only(
+                left: AppValues.dimen_8.r,
+                right: AppValues.dimen_8.r,
+                bottom: AppValues.dimen_16.r,
+              ),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final int startIndex = index * 2;
+                    final int endIndex = startIndex + 1;
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildDistrictCard(startIndex),
+                        if (endIndex < districtModelsState.data.length)
+                          _buildDistrictCard(endIndex),
+                      ],
+                    );
+                  },
+                  childCount: (districtModelsState.data.length / 2).ceil(),
+                ),
+              ),
             )
-          : Container(),
+          else
+            const SliverToBoxAdapter(
+              child: SizedBox.shrink(),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: _buildAppBar(),
+      ),
+      automaticallyImplyLeading: false,
+      expandedHeight: AppValues.dimen_70.h,
     );
   }
 
@@ -71,7 +93,9 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
         },
       ),
       title: Padding(
-        padding: EdgeInsets.only(right: AppValues.dimen_24.r),
+        padding: EdgeInsets.only(
+          right: AppValues.dimen_24.r,
+        ),
         child: TextField(
           controller: _searchFieldController,
           onChanged: (value) {
