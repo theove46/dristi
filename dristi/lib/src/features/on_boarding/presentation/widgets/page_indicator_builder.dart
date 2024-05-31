@@ -43,10 +43,10 @@ class _PageIndicatorBuilderState
                           : AppValues.dimen_30.w,
                       decoration: BoxDecoration(
                         color: currentOnBoardingScreenState == index
-                            ? uiColors.shadow
+                            ? uiColors.primary
                             : uiColors.onImage,
                         borderRadius:
-                            BorderRadius.circular(AppValues.dimen_3.r),
+                            BorderRadius.circular(AppValues.dimen_2.r),
                       ),
                     ),
                   ),
@@ -57,7 +57,7 @@ class _PageIndicatorBuilderState
         ),
       );
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 }

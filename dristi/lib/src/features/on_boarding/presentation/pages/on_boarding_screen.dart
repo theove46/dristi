@@ -59,6 +59,7 @@ class _OnBoardingScreenState
     );
 
     return Scaffold(
+      backgroundColor: uiColors.shadow,
       body: onBoardingItems.data != null
           ? Stack(
               children: [
