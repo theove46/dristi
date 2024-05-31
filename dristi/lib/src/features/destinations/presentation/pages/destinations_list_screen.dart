@@ -34,23 +34,51 @@ class _DestinationPageState
     final destinationModelsState = ref.watch(destinationProvider);
 
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: destinationModelsState.data != null
-          ? GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: AppValues.dimen_80.w / AppValues.dimen_100.w,
+      body: CustomScrollView(
+        slivers: [
+          _buildSliverAppBar(),
+          if (destinationModelsState.data != null)
+            SliverPadding(
+              padding: EdgeInsets.only(
+                left: AppValues.dimen_8.r,
+                right: AppValues.dimen_8.r,
+                bottom: AppValues.dimen_16.r,
               ),
-              itemCount: destinationModelsState.data.length,
-              itemBuilder: (context, index) {
-                return _buildDestinationCard(index);
-              },
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio:
+                      AppValues.dimen_80.w / AppValues.dimen_100.w,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return _buildDestinationCard(index);
+                  },
+                  childCount: destinationModelsState.data.length,
+                ),
+              ),
             )
-          : Container(),
+          else
+            const SliverToBoxAdapter(
+              child: SizedBox.shrink(),
+            ),
+        ],
+      ),
     );
   }
 
-  AppBar _buildAppBar() {
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: _buildAppBar(),
+      ),
+      automaticallyImplyLeading: false,
+      expandedHeight: AppValues.dimen_70.h,
+    );
+  }
+
+  Widget _buildAppBar() {
     final searchFieldState = ref.watch(destinationsSearchField);
     final searchFieldNotifier = ref.read(destinationsSearchField.notifier);
 
