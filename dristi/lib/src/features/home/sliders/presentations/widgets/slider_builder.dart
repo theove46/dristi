@@ -112,7 +112,7 @@ class _ImageSliderBuilderState
         (index) => Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: Container(
-            height: AppValues.dimen_12.h,
+            height: AppValues.dimen_8.h,
             width: currentSliderState == index
                 ? AppValues.dimen_50.w
                 : AppValues.dimen_30.w,
@@ -120,7 +120,7 @@ class _ImageSliderBuilderState
               color: currentSliderState == index
                   ? uiColors.primary
                   : uiColors.secondary,
-              borderRadius: BorderRadius.circular(AppValues.dimen_3.r),
+              borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
               border: Border.all(
                 color: uiColors.primary,
               ),

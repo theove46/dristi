@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Color instruction:
 // primary, secondary, tertiary, error: Variations of Components Colors
 // onPrimary, onSecondary, onTertiary, onError: Variations of texts
+// onPrimaryContainer: Blush color
 // surface: Scaffold Background Color -> Mainly Secondary Color
 // onSurface: Always White Color -> Components On Image Color
 // outline: Outline Color -> Mainly Primary Color
@@ -18,7 +19,7 @@ const lightColorScheme = ColorScheme(
   primary: Color(0xFF086972), // set
   onPrimary: Color(0xFF086972), // set
   primaryContainer: Color(0xFF000000),
-  onPrimaryContainer: Color(0xFF6d6e70),
+  onPrimaryContainer: Color(0xFF6d6e70), // set
 
   // secondary
   secondary: Color(0xFFFFFFFF), // set
@@ -61,7 +62,7 @@ const darkColorScheme = ColorScheme(
   primary: Color(0xFF17b978), // set
   onPrimary: Color(0xFF17b978), // set
   primaryContainer: Color(0xFF000000),
-  onPrimaryContainer: Color(0xFFB3E6DF),
+  onPrimaryContainer: Color(0xFFd9dad7),
 
   // secondary
   secondary: Color(0xFF001f3f), // set

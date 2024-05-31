@@ -3,6 +3,7 @@ import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,8 @@ class DestinationScreen extends ConsumerStatefulWidget {
 
 class _DestinationPageState
     extends BaseConsumerStatefulWidget<DestinationScreen> {
+  final TextEditingController _searchFieldController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -31,19 +34,7 @@ class _DestinationPageState
     final destinationModelsState = ref.watch(destinationProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Top Destination *** ***",
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: destinationModelsState.data != null
           ? GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -56,6 +47,51 @@ class _DestinationPageState
               },
             )
           : Container(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    final searchFieldState = ref.watch(destinationsSearchField);
+    final searchFieldNotifier = ref.read(destinationsSearchField.notifier);
+
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios,
+        ),
+        onPressed: () {
+          context.pop();
+        },
+      ),
+      title: TextField(
+        controller: _searchFieldController,
+        onChanged: (value) {
+          searchFieldNotifier.state = value;
+        },
+        cursorColor: uiColors.primary,
+        style: appTextStyles.primaryNovaSemiBold16,
+        decoration: InputDecoration(
+          hintText: context.localization.searchDestination,
+          suffixIcon: searchFieldState.isNotEmpty
+              ? GestureDetector(
+                  onTap: () {
+                    _searchFieldController.clear();
+                    searchFieldNotifier.state = '';
+                  },
+                  child: const Icon(Icons.clear),
+                )
+              : null,
+        ),
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_10.w),
+            child: const Icon(Icons.more_vert),
+          ),
+        ),
+      ],
     );
   }
 

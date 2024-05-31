@@ -7,3 +7,8 @@ final destinationProvider =
   DestinationNotifier.new,
   name: 'districtProvider',
 );
+
+final destinationsSearchField = StateProvider<String>(
+  (ref) => '',
+  name: 'destinationsSearchField',
+);

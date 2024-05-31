@@ -48,8 +48,16 @@ class AppTextStyles {
         color: UIColors.tertiaryText(context),
       );
 
+  TextStyle get errorNovaRegular => _novaRegular.copyWith(
+        color: UIColors.errorText(context),
+      );
+
   TextStyle get errorNovaBold => _novaBold.copyWith(
         color: UIColors.errorText(context),
+      );
+
+  TextStyle get blushNovaRegular => _novaRegular.copyWith(
+        color: UIColors.blushText(context),
       );
 
   TextStyle get onImageNovaRegular => _novaRegular.copyWith(
@@ -115,7 +123,15 @@ class AppTextStyles {
 
   // Error / Always Red Color texts
 
+  TextStyle get errorNovaRegular12 =>
+      errorNovaRegular.copyWith(fontSize: 12.sp);
+
   TextStyle get errorNovaBold16 => errorNovaBold.copyWith(fontSize: 16.sp);
+
+  // Blush / Grey color
+
+  TextStyle get blushNovaRegular16 =>
+      blushNovaRegular.copyWith(fontSize: 16.sp);
 
   // OnImage / Always White Color texts
 

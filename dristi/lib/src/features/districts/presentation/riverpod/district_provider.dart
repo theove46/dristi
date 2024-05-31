@@ -6,3 +6,8 @@ final districtProvider = NotifierProvider<DistrictNotifier, DistrictState>(
   DistrictNotifier.new,
   name: 'districtProvider',
 );
+
+final districtsSearchField = StateProvider<String>(
+  (ref) => '',
+  name: 'districtsSearchField',
+);

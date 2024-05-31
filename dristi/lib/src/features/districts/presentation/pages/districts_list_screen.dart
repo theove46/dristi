@@ -16,6 +16,8 @@ class DistrictsScreen extends ConsumerStatefulWidget {
 }
 
 class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
+  final TextEditingController _searchFieldController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -29,19 +31,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
     final districtModelsState = ref.watch(districtProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.localization.allDistrictsBD,
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: districtModelsState.data != null
           ? ListView.builder(
               itemCount: (districtModelsState.data.length / 2).ceil(),
@@ -64,6 +54,45 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
               },
             )
           : Container(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    final searchFieldState = ref.watch(districtsSearchField);
+    final searchFieldNotifier = ref.read(districtsSearchField.notifier);
+
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios,
+        ),
+        onPressed: () {
+          context.pop();
+        },
+      ),
+      title: Padding(
+        padding: EdgeInsets.only(right: AppValues.dimen_24.r),
+        child: TextField(
+          controller: _searchFieldController,
+          onChanged: (value) {
+            searchFieldNotifier.state = value;
+          },
+          cursorColor: uiColors.primary,
+          style: appTextStyles.primaryNovaSemiBold16,
+          decoration: InputDecoration(
+            hintText: context.localization.searchDistricts,
+            suffixIcon: searchFieldState.isNotEmpty
+                ? GestureDetector(
+                    onTap: () {
+                      _searchFieldController.clear();
+                      searchFieldNotifier.state = '';
+                    },
+                    child: const Icon(Icons.clear),
+                  )
+                : null,
+          ),
+        ),
+      ),
     );
   }
 

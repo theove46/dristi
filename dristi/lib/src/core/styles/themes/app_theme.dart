@@ -1,4 +1,5 @@
 import 'package:dristi/src/core/styles/themes/icon_theme.dart';
+import 'package:dristi/src/core/styles/themes/input_decoration_theme.dart';
 import 'package:dristi/src/core/styles/themes/outlined_button_theme.dart';
 import 'package:dristi/src/core/styles/themes/app_bar_theme.dart';
 import 'package:dristi/src/core/styles/colors_scheme.dart';
@@ -30,6 +31,7 @@ class AppThemeData {
       style: CustomOutlinedButtonTheme(scheme: lightColorScheme),
     ),
     iconTheme: CustomIconTheme(scheme: lightColorScheme),
+    inputDecorationTheme: CustomInputDecorationTheme(scheme: lightColorScheme),
   );
 
   static final ThemeData _darkTheme = ThemeData(
@@ -49,5 +51,6 @@ class AppThemeData {
       style: CustomOutlinedButtonTheme(scheme: darkColorScheme),
     ),
     iconTheme: CustomIconTheme(scheme: darkColorScheme),
+    inputDecorationTheme: CustomInputDecorationTheme(scheme: darkColorScheme),
   );
 }

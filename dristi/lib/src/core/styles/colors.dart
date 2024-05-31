@@ -33,6 +33,9 @@ class UIColors {
   static Color errorText(BuildContext context) =>
       Theme.of(context).colorScheme.onError;
 
+  static Color blushText(BuildContext context) =>
+      Theme.of(context).colorScheme.onPrimaryContainer;
+
   static Color onImageText(BuildContext context) =>
       Theme.of(context).colorScheme.onSurface;
 
