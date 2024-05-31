@@ -36,26 +36,45 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(AppValues.dimen_16.r),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SliderBuilder(),
-              _buildTitleMessage(),
-              const CategoriesBuilder(),
-              const TopDestinationBuilder(),
-              const PopularDistrictsBuilder(),
-            ],
+      body: CustomScrollView(
+        slivers: [
+          _buildSliverAppBar(),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: AppValues.dimen_16.r,
+                right: AppValues.dimen_16.r,
+                bottom: AppValues.dimen_16.r,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SliderBuilder(),
+                  _buildTitleMessage(),
+                  const CategoriesBuilder(),
+                  const TopDestinationBuilder(),
+                  const PopularDistrictsBuilder(),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 
-  AppBar _buildAppBar() {
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        background: _buildAppBar(),
+      ),
+      expandedHeight: AppValues.dimen_70.h,
+    );
+  }
+
+  Widget _buildAppBar() {
     return AppBar(
       leading: IconButton(
         icon: AssetImageView(
