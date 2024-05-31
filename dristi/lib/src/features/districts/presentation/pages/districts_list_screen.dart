@@ -3,6 +3,7 @@ import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
+import 'package:dristi/src/features/districts/presentation/riverpod/district_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,44 +29,47 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final districtModelsState = ref.watch(districtProvider);
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           _buildSliverAppBar(),
-          if (districtModelsState.data != null)
-            SliverPadding(
-              padding: EdgeInsets.only(
-                left: AppValues.dimen_8.r,
-                right: AppValues.dimen_8.r,
-                bottom: AppValues.dimen_16.r,
-              ),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final int startIndex = index * 2;
-                    final int endIndex = startIndex + 1;
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildDistrictCard(startIndex),
-                        if (endIndex < districtModelsState.data.length)
-                          _buildDistrictCard(endIndex),
-                      ],
-                    );
-                  },
-                  childCount: (districtModelsState.data.length / 2).ceil(),
-                ),
-              ),
-            )
-          else
-            const SliverToBoxAdapter(
-              child: SizedBox.shrink(),
-            ),
+          _buildDistrictsList(),
         ],
       ),
     );
+  }
+
+  Widget _buildDistrictsList() {
+    final districtModelsState = ref.watch(districtProvider);
+
+    return districtModelsState.data != null
+        ? SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final int startIndex = index * 2;
+                  final int endIndex = startIndex + 1;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildDistrictCard(startIndex),
+                      if (endIndex < districtModelsState.data.length)
+                        _buildDistrictCard(endIndex),
+                    ],
+                  );
+                },
+                childCount: (districtModelsState.data.length / 2).ceil(),
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter(
+            child: SizedBox.shrink(),
+          );
   }
 
   Widget _buildSliverAppBar() {
@@ -101,8 +105,11 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
           onChanged: (value) {
             searchFieldNotifier.state = value;
           },
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           cursorColor: uiColors.primary,
-          style: appTextStyles.primaryNovaSemiBold16,
+          style: appTextStyles.secondaryNovaRegular16,
           decoration: InputDecoration(
             hintText: context.localization.searchDistricts,
             suffixIcon: searchFieldState.isNotEmpty
@@ -136,7 +143,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
               image: AssetImage(Assets.forestCard),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
-              opacity: 0.30,
+              opacity: 0.20,
             ),
           ),
           child: ListTile(
@@ -146,7 +153,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
             ),
             subtitle: Text(
               item.division,
-              style: appTextStyles.primaryNovaRegular12,
+              style: appTextStyles.secondaryNovaRegular12,
             ),
             onTap: () {},
           ),

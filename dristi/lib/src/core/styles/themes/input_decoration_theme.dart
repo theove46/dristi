@@ -13,19 +13,19 @@ class CustomInputDecorationTheme extends InputDecorationTheme {
             horizontal: AppValues.dimen_16.r,
           ),
           errorStyle: TextStyle(
-            fontSize: 16,
+            fontSize: 12,
             letterSpacing: 0.1,
             fontWeight: FontWeight.w500,
             color: scheme.error,
           ),
           labelStyle: TextStyle(
-            fontSize: 16,
+            fontSize: 12,
             fontWeight: FontWeight.w500,
             letterSpacing: 0.1,
             color: scheme.primary,
           ),
           hintStyle: TextStyle(
-            fontSize: 16,
+            fontSize: 12,
             fontWeight: FontWeight.w500,
             letterSpacing: 0.1,
             color: scheme.onPrimaryContainer,

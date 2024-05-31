@@ -31,38 +31,15 @@ class _DestinationPageState
 
   @override
   Widget build(BuildContext context) {
-    final destinationModelsState = ref.watch(destinationProvider);
-
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _buildSliverAppBar(),
-          if (destinationModelsState.data != null)
-            SliverPadding(
-              padding: EdgeInsets.only(
-                left: AppValues.dimen_8.r,
-                right: AppValues.dimen_8.r,
-                bottom: AppValues.dimen_16.r,
-              ),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio:
-                      AppValues.dimen_80.w / AppValues.dimen_100.w,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return _buildDestinationCard(index);
-                  },
-                  childCount: destinationModelsState.data.length,
-                ),
-              ),
-            )
-          else
-            const SliverToBoxAdapter(
-              child: SizedBox.shrink(),
-            ),
-        ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: CustomScrollView(
+          slivers: [
+            _buildSliverAppBar(),
+            _buildDestinationsList(),
+          ],
+        ),
       ),
     );
   }
@@ -96,8 +73,11 @@ class _DestinationPageState
         onChanged: (value) {
           searchFieldNotifier.state = value;
         },
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         cursorColor: uiColors.primary,
-        style: appTextStyles.primaryNovaSemiBold16,
+        style: appTextStyles.secondaryNovaRegular16,
         decoration: InputDecoration(
           hintText: context.localization.searchDestination,
           suffixIcon: searchFieldState.isNotEmpty
@@ -121,6 +101,33 @@ class _DestinationPageState
         ),
       ],
     );
+  }
+
+  Widget _buildDestinationsList() {
+    final destinationModelsState = ref.watch(destinationProvider);
+    return destinationModelsState.data != null
+        ? SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: AppValues.dimen_80.w / AppValues.dimen_100.w,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return _buildDestinationCard(index);
+                },
+                childCount: destinationModelsState.data.length,
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter(
+            child: SizedBox.shrink(),
+          );
   }
 
   Widget _buildDestinationCard(int index) {
