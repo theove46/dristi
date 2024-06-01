@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class ShowSnackBarMessage {

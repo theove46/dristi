@@ -2,7 +2,7 @@ import 'package:dristi/src/core/styles/themes/icon_theme.dart';
 import 'package:dristi/src/core/styles/themes/input_decoration_theme.dart';
 import 'package:dristi/src/core/styles/themes/outlined_button_theme.dart';
 import 'package:dristi/src/core/styles/themes/app_bar_theme.dart';
-import 'package:dristi/src/core/styles/colors_scheme.dart';
+import 'package:dristi/src/core/styles/colors/colors_scheme.dart';
 import 'package:dristi/src/core/styles/themes/elevated_button_theme.dart';
 import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/styles/themes/card_theme.dart';

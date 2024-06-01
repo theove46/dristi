@@ -9,19 +9,7 @@ final cacheServiceProvider = Provider<CacheService>(
 abstract class CacheService {
   Future<void> init();
 
-  Future<bool> get isLoggedIn;
+  Future<void> setFirstTimeOnBoardingFalse();
 
-  Future<void> setLoggedIn(bool value);
-
-  Future<String?> get bearerToken;
-
-  Future<void> setBearerToken(String value);
-
-  Future<String?> get fcmToken;
-
-  Future<void> setFcmToken(String value);
-
-  Future<void> delete(String key);
-
-  Future<void> deleteAll();
+  Future<bool> getFirstTimeStatus();
 }

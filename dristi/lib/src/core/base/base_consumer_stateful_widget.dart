@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/styles/colors.dart';
+import 'package:dristi/src/core/styles/colors/colors.dart';
 import 'package:dristi/src/core/styles/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
