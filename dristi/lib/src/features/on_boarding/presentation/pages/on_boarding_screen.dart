@@ -2,7 +2,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/core/widgets/primary_snackbar.dart';
+import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_providers.dart';
 import 'package:dristi/src/features/on_boarding/presentation/riverpod/on_boarding_state.dart';
 import 'package:dristi/src/features/on_boarding/presentation/widgets/image_view_builder.dart';
