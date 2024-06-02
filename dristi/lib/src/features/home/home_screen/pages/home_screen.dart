@@ -1,6 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -39,6 +40,9 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
       body: CustomScrollView(
         slivers: [
           _buildSliverAppBar(),
+          const SliverToBoxAdapter(
+            child: NetworkErrorAlert(),
+          ),
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.only(

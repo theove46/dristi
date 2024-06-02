@@ -135,6 +135,9 @@ class AppTextStyles {
 
   // OnImage / Always White Color texts
 
+  TextStyle get onImageNovaRegular8 =>
+      onImageNovaRegular.copyWith(fontSize: 8.sp);
+
   TextStyle get onImageNovaRegular12 =>
       onImageNovaRegular.copyWith(fontSize: 12.sp);
 

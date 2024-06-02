@@ -77,7 +77,7 @@ const darkColorScheme = ColorScheme(
   onTertiaryContainer: Color(0xFF000000),
 
   // error
-  error: Color(0xFFE69490), // set
+  error: Color(0xffff304f), // set
   onError: Color(0xffff304f), // set
   errorContainer: Color(0xFF000000),
   onErrorContainer: Color(0xFF000000),
