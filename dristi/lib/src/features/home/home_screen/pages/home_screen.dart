@@ -1,6 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
@@ -27,42 +29,52 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   void initState() {
     super.initState();
     Future(() {
+      _getComponents();
+    });
+  }
+
+  Future<void> _getComponents() async {
+    final state = ref.watch(networkStatusProvider);
+    if (state.value?.first != ConnectivityResult.none) {
       ref.read(categoriesProvider.notifier).getCategoriesComponents();
       ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
       ref.read(sliderProvider.notifier).getSliderComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
-    });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _buildSliverAppBar(),
-          const SliverToBoxAdapter(
-            child: NetworkErrorAlert(),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: AppValues.dimen_16.r,
-                right: AppValues.dimen_16.r,
-                bottom: AppValues.dimen_16.r,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SliderBuilder(),
-                  _buildTitleMessage(),
-                  const CategoriesBuilder(),
-                  const TopDestinationBuilder(),
-                  const PopularDistrictsBuilder(),
-                ],
+      body: RefreshIndicator(
+        onRefresh: _getComponents,
+        child: CustomScrollView(
+          slivers: [
+            _buildSliverAppBar(),
+            const SliverToBoxAdapter(
+              child: NetworkErrorAlert(),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: AppValues.dimen_16.r,
+                  right: AppValues.dimen_16.r,
+                  bottom: AppValues.dimen_16.r,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SliderBuilder(),
+                    _buildTitleMessage(),
+                    const CategoriesBuilder(),
+                    const TopDestinationBuilder(),
+                    const PopularDistrictsBuilder(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

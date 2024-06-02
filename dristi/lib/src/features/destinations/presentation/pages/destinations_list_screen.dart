@@ -1,6 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -25,8 +28,15 @@ class _DestinationPageState
   void initState() {
     super.initState();
     Future(() {
-      ref.read(destinationProvider.notifier).getDestinationComponents();
+      _getDestinationComponents();
     });
+  }
+
+  Future<void> _getDestinationComponents() async {
+    final state = ref.watch(networkStatusProvider);
+    if (state.value?.first != ConnectivityResult.none) {
+      ref.read(destinationProvider.notifier).getDestinationComponents();
+    }
   }
 
   @override
@@ -34,11 +44,17 @@ class _DestinationPageState
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: CustomScrollView(
-          slivers: [
-            _buildSliverAppBar(),
-            _buildDestinationsList(),
-          ],
+        child: RefreshIndicator(
+          onRefresh: _getDestinationComponents,
+          child: CustomScrollView(
+            slivers: [
+              _buildSliverAppBar(),
+              const SliverToBoxAdapter(
+                child: NetworkErrorAlert(),
+              ),
+              _buildDestinationsList(),
+            ],
+          ),
         ),
       ),
     );
