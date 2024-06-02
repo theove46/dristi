@@ -16,19 +16,23 @@ class AdvertisementResponseModel {
 }
 
 class AdvertisementData extends AdvertisementEntity {
+  String? advertisementTitle;
   String? advertisementUrl;
   String? advertisementImage;
 
   AdvertisementData({
+    this.advertisementTitle,
     this.advertisementUrl,
     this.advertisementImage,
   }) : super(
+          title: advertisementTitle ?? "",
           url: advertisementUrl ?? "",
           image: advertisementImage ?? "",
         );
 
   factory AdvertisementData.fromJson(dynamic json) {
     return AdvertisementData(
+      advertisementTitle: json['title'],
       advertisementUrl: json['url'],
       advertisementImage: json['image'],
     );

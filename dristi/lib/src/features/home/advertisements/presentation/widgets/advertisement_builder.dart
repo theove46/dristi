@@ -4,6 +4,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/advertisements/presentation/riverpod/advertisement_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,9 @@ class _ImageAdvertisementBuilderState
         return Padding(
           padding: EdgeInsets.only(top: AppValues.dimen_16.h),
           child: GestureDetector(
-            onTap: navigateToSpotPage,
+            onTap: () {
+              navigateToWebView(item: item);
+            },
             child: Stack(
               alignment: Alignment.topRight,
               children: [
@@ -63,8 +66,8 @@ class _ImageAdvertisementBuilderState
                   ),
                 ),
                 Positioned(
-                  bottom: AppValues.dimen_10.h,
-                  right: AppValues.dimen_20.w,
+                  bottom: AppValues.dimen_16.r,
+                  right: AppValues.dimen_16.r,
                   child: _buildAdvertisementIndicator(),
                 ),
               ],
@@ -108,13 +111,13 @@ class _ImageAdvertisementBuilderState
         (index) => Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_2.w),
           child: Container(
-            height: AppValues.dimen_8.h,
+            height: AppValues.dimen_6.h,
             width: currentAdvertisementState == index
                 ? AppValues.dimen_40.w
-                : AppValues.dimen_8.w,
+                : AppValues.dimen_6.w,
             decoration: BoxDecoration(
-              color: uiColors.secondary,
-              borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
+              color: uiColors.onImage,
+              borderRadius: BorderRadius.circular(AppValues.dimen_3.r),
             ),
           ),
         ),
@@ -122,7 +125,7 @@ class _ImageAdvertisementBuilderState
     );
   }
 
-  void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+  void navigateToWebView({required AdvertisementEntity item}) {
+    context.pushNamed(AppRoutes.webView, extra: item);
   }
 }
