@@ -155,7 +155,6 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                   SizedBox(height: AppValues.dimen_10.h),
                   Text(
                     context.localization.boiler,
-                    textAlign: TextAlign.justify,
                     style: appTextStyles.secondaryNovaRegular16,
                   ),
                 ],
