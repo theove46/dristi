@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/core/widgets/shimmers.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class _CategoriesBuilderState
       child: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Wrap(
             runSpacing: 8.r,
             spacing: 8.r,
@@ -111,8 +113,8 @@ class _CategoriesBuilderState
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-              child: Image.network(
-                categoriesItems.data[index].image,
+              child: CachedNetworkImage(
+                imageUrl: categoriesItems.data[index].image,
                 width: AppValues.dimen_60.r,
                 height: AppValues.dimen_60.r,
                 fit: BoxFit.cover,

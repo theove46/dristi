@@ -1,5 +1,5 @@
 import 'package:dristi/src/core/loggers/logger.dart';
-import 'package:dristi/src/features/home/top_destinations/domain/use_cases/top_destination_use_case.dart';
+import 'package:dristi/src/features/home/top_destinations/domain/use_cases/top_destinations_use_case.dart';
 import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,11 +19,11 @@ class TopDestinationsNotifier extends Notifier<TopDestinationsState> {
         status: TopDestinationsStatus.loading,
       );
 
-      final response = await useCase.topDestinationsComponents();
+      final response = await useCase.getTopDestinationsComponents();
 
-      if (response.$1.isEmpty) {
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
           status: TopDestinationsStatus.success,
         );
       } else {

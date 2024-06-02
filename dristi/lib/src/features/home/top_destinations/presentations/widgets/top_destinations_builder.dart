@@ -1,9 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/core/widgets/shimmers.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 import 'package:flutter/material.dart';
@@ -76,16 +76,22 @@ class _TopDestinationBuilderState
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                    child: AssetImageView(
-                      fileName: item.image,
+                    child: CachedNetworkImage(
+                      imageUrl: item.image,
                       width: AppValues.dimen_80.r,
                       height: AppValues.dimen_80.r,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                    item.title, // TODO fix max letter
-                    style: appTextStyles.secondaryNovaRegular12,
+                  SizedBox(
+                    width: AppValues.dimen_75.r,
+                    child: Text(
+                      item.titleEn,
+                      style: appTextStyles.secondaryNovaRegular12,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),

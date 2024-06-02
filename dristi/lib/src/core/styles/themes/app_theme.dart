@@ -1,7 +1,8 @@
 import 'package:dristi/src/core/styles/themes/icon_theme.dart';
+import 'package:dristi/src/core/styles/themes/input_decoration_theme.dart';
 import 'package:dristi/src/core/styles/themes/outlined_button_theme.dart';
 import 'package:dristi/src/core/styles/themes/app_bar_theme.dart';
-import 'package:dristi/src/core/styles/colors_scheme.dart';
+import 'package:dristi/src/core/styles/colors/colors_scheme.dart';
 import 'package:dristi/src/core/styles/themes/elevated_button_theme.dart';
 import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/styles/themes/card_theme.dart';
@@ -16,7 +17,7 @@ class AppThemeData {
   static final ThemeData _lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
-    scaffoldBackgroundColor: lightColorScheme.background,
+    scaffoldBackgroundColor: lightColorScheme.surface,
     fontFamily: FontFamily.nova,
     focusColor: lightColorScheme.primary,
     brightness: Brightness.light,
@@ -30,13 +31,14 @@ class AppThemeData {
       style: CustomOutlinedButtonTheme(scheme: lightColorScheme),
     ),
     iconTheme: CustomIconTheme(scheme: lightColorScheme),
+    inputDecorationTheme: CustomInputDecorationTheme(scheme: lightColorScheme),
   );
 
   static final ThemeData _darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: darkColorScheme,
     fontFamily: FontFamily.nova,
-    scaffoldBackgroundColor: darkColorScheme.background,
+    scaffoldBackgroundColor: darkColorScheme.surface,
     focusColor: darkColorScheme.primary,
     brightness: Brightness.dark,
     appBarTheme: CustomAppBarTheme(scheme: darkColorScheme),
@@ -49,5 +51,6 @@ class AppThemeData {
       style: CustomOutlinedButtonTheme(scheme: darkColorScheme),
     ),
     iconTheme: CustomIconTheme(scheme: darkColorScheme),
+    inputDecorationTheme: CustomInputDecorationTheme(scheme: darkColorScheme),
   );
 }

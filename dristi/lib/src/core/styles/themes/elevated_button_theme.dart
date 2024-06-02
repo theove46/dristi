@@ -7,29 +7,29 @@ class CustomElevatedButtonTheme extends ButtonStyle {
 
   CustomElevatedButtonTheme({required this.scheme})
       : super(
-          backgroundColor: MaterialStateProperty.resolveWith(
+          backgroundColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.disabled) ||
-                  states.contains(MaterialState.selected)) {
+              if (states.contains(WidgetState.disabled) ||
+                  states.contains(WidgetState.selected)) {
                 return scheme.surface;
               } else {
                 return scheme.primary;
               }
             },
           ),
-          foregroundColor: MaterialStateProperty.resolveWith(
+          foregroundColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.disabled)) {
+              if (states.contains(WidgetState.disabled)) {
                 return scheme.shadow;
               } else {
                 return scheme.primary;
               }
             },
           ),
-          overlayColor: MaterialStateProperty.resolveWith(
+          overlayColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.disabled) ||
-                  states.contains(MaterialState.selected)) {
+              if (states.contains(WidgetState.disabled) ||
+                  states.contains(WidgetState.selected)) {
                 return scheme.shadow;
               } else {
                 return scheme.surface;
@@ -37,19 +37,19 @@ class CustomElevatedButtonTheme extends ButtonStyle {
             },
           ),
           animationDuration: const Duration(milliseconds: 100),
-          minimumSize: MaterialStatePropertyAll(
+          minimumSize: WidgetStatePropertyAll(
             Size(
               double.infinity,
               AppValues.dimen_48.r,
             ),
           ),
-          padding: MaterialStatePropertyAll(
+          padding: WidgetStatePropertyAll(
             EdgeInsets.symmetric(
               vertical: AppValues.dimen_16.r,
               horizontal: AppValues.dimen_16.r,
             ),
           ),
-          shape: MaterialStatePropertyAll(
+          shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                 AppValues.dimen_16.r,

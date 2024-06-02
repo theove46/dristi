@@ -16,6 +16,8 @@ class DistrictsScreen extends ConsumerStatefulWidget {
 }
 
 class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
+  final TextEditingController _searchFieldController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -25,45 +27,108 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   }
 
   @override
+  void dispose() {
+    _searchFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          _buildSliverAppBar(),
+          _buildDistrictsList(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDistrictsList() {
     final districtModelsState = ref.watch(districtProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.localization.allDistrictsBD,
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-      ),
-      body: districtModelsState.data != null
-          ? ListView.builder(
-              itemCount: (districtModelsState.data.length / 2).ceil(),
-              itemBuilder: (context, index) {
-                final int startIndex = index * 2;
-                final int endIndex = startIndex + 1;
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppValues.dimen_16.w,
-                  ),
-                  child: Row(
+    return districtModelsState.data != null
+        ? SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final int startIndex = index * 2;
+                  final int endIndex = startIndex + 1;
+                  return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildDistrictCard(startIndex),
                       if (endIndex < districtModelsState.data.length)
                         _buildDistrictCard(endIndex),
                     ],
-                  ),
-                );
-              },
-            )
-          : Container(),
+                  );
+                },
+                childCount: (districtModelsState.data.length / 2).ceil(),
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter(
+            child: SizedBox.shrink(),
+          );
+  }
+
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: _buildAppBar(),
+      ),
+      automaticallyImplyLeading: false,
+      expandedHeight: AppValues.dimen_70.h,
+    );
+  }
+
+  AppBar _buildAppBar() {
+    ref.watch(districtsSearchField);
+    final searchFieldNotifier = ref.read(districtsSearchField.notifier);
+
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios,
+        ),
+        onPressed: () {
+          context.pop();
+        },
+      ),
+      title: Padding(
+        padding: EdgeInsets.only(
+          right: AppValues.dimen_24.r,
+        ),
+        child: TextField(
+          controller: _searchFieldController,
+          onChanged: (value) {
+            searchFieldNotifier.state = value;
+          },
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          cursorColor: uiColors.primary,
+          style: appTextStyles.secondaryNovaRegular16,
+          decoration: InputDecoration(
+            hintText: context.localization.searchDistricts,
+            suffixIcon: _searchFieldController.text.isNotEmpty
+                ? GestureDetector(
+                    onTap: () {
+                      _searchFieldController.clear();
+                      searchFieldNotifier.state = '';
+                    },
+                    child: const Icon(Icons.clear),
+                  )
+                : null,
+          ),
+        ),
+      ),
     );
   }
 
@@ -83,7 +148,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
               image: AssetImage(Assets.forestCard),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
-              opacity: 0.30,
+              opacity: 0.20,
             ),
           ),
           child: ListTile(
@@ -93,7 +158,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
             ),
             subtitle: Text(
               item.division,
-              style: appTextStyles.primaryNovaRegular12,
+              style: appTextStyles.secondaryNovaRegular12,
             ),
             onTap: () {},
           ),

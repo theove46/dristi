@@ -1,8 +1,12 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,45 +22,128 @@ class DestinationScreen extends ConsumerStatefulWidget {
 
 class _DestinationPageState
     extends BaseConsumerStatefulWidget<DestinationScreen> {
+  final TextEditingController _searchFieldController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     Future(() {
-      ref.read(destinationProvider.notifier).getDestinationComponents();
+      _getDestinationComponents();
     });
+  }
+
+  Future<void> _getDestinationComponents() async {
+    final state = ref.watch(networkStatusProvider);
+    if (state.value?.first != ConnectivityResult.none) {
+      ref.read(destinationProvider.notifier).getDestinationComponents();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final destinationModelsState = ref.watch(destinationProvider);
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Top Destination *** ***",
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: RefreshIndicator(
+          onRefresh: _getDestinationComponents,
+          child: CustomScrollView(
+            slivers: [
+              _buildSliverAppBar(),
+              const SliverToBoxAdapter(
+                child: NetworkErrorAlert(),
+              ),
+              _buildDestinationsList(),
+            ],
           ),
-          onPressed: () {
-            context.pop();
-          },
         ),
       ),
-      body: destinationModelsState.data != null
-          ? GridView.builder(
+    );
+  }
+
+  Widget _buildSliverAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: _buildAppBar(),
+      ),
+      automaticallyImplyLeading: false,
+      expandedHeight: AppValues.dimen_70.h,
+    );
+  }
+
+  Widget _buildAppBar() {
+    ref.watch(destinationsSearchField);
+    final searchFieldNotifier = ref.read(destinationsSearchField.notifier);
+
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios,
+        ),
+        onPressed: () {
+          context.pop();
+        },
+      ),
+      title: TextField(
+        controller: _searchFieldController,
+        onChanged: (value) {
+          searchFieldNotifier.state = value;
+        },
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        cursorColor: uiColors.primary,
+        style: appTextStyles.secondaryNovaRegular16,
+        decoration: InputDecoration(
+          hintText: context.localization.searchDestination,
+          suffixIcon: _searchFieldController.text.isNotEmpty
+              ? GestureDetector(
+                  onTap: () {
+                    _searchFieldController.clear();
+                    searchFieldNotifier.state = '';
+                  },
+                  child: const Icon(Icons.clear),
+                )
+              : null,
+        ),
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_10.w),
+            child: const Icon(Icons.more_vert),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDestinationsList() {
+    final destinationModelsState = ref.watch(destinationProvider);
+    return destinationModelsState.data != null
+        ? SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            sliver: SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: AppValues.dimen_80.w / AppValues.dimen_100.w,
               ),
-              itemCount: destinationModelsState.data.length,
-              itemBuilder: (context, index) {
-                return _buildDestinationCard(index);
-              },
-            )
-          : Container(),
-    );
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return _buildDestinationCard(index);
+                },
+                childCount: destinationModelsState.data.length,
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter(
+            child: SizedBox.shrink(),
+          );
   }
 
   Widget _buildDestinationCard(int index) {

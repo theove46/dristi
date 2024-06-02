@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/widgets/shimmers.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +55,8 @@ class _ImageSliderBuilderState
                   borderRadius: BorderRadius.all(
                     Radius.circular(AppValues.dimen_10.r),
                   ),
-                  child: Image.network(
-                    item.image,
+                  child: CachedNetworkImage(
+                    imageUrl: item.image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -111,7 +112,7 @@ class _ImageSliderBuilderState
         (index) => Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: Container(
-            height: AppValues.dimen_12.h,
+            height: AppValues.dimen_8.h,
             width: currentSliderState == index
                 ? AppValues.dimen_50.w
                 : AppValues.dimen_30.w,
@@ -119,7 +120,7 @@ class _ImageSliderBuilderState
               color: currentSliderState == index
                   ? uiColors.primary
                   : uiColors.secondary,
-              borderRadius: BorderRadius.circular(AppValues.dimen_3.r),
+              borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
               border: Border.all(
                 color: uiColors.primary,
               ),

@@ -1,5 +1,3 @@
-import 'package:dristi/src/features/home/popular_districts/data/model/popular_districts_ui_model.dart';
-
 class PopularDistrictEntity {
   String titleEn;
   String titleBn;
@@ -10,11 +8,4 @@ class PopularDistrictEntity {
     required this.titleBn,
     required this.image,
   });
-
-  PopularDistrictsUIModel toPopularDistrictsUIModel() =>
-      PopularDistrictsUIModel(
-        titleEn: titleEn,
-        titleBn: titleBn,
-        image: image,
-      );
 }
