@@ -56,7 +56,7 @@ class _DestinationPageState
   }
 
   Widget _buildAppBar() {
-    final searchFieldState = ref.watch(destinationsSearchField);
+    ref.watch(destinationsSearchField);
     final searchFieldNotifier = ref.read(destinationsSearchField.notifier);
 
     return AppBar(
@@ -80,7 +80,7 @@ class _DestinationPageState
         style: appTextStyles.secondaryNovaRegular16,
         decoration: InputDecoration(
           hintText: context.localization.searchDestination,
-          suffixIcon: searchFieldState.isNotEmpty
+          suffixIcon: _searchFieldController.text.isNotEmpty
               ? GestureDetector(
                   onTap: () {
                     _searchFieldController.clear();

@@ -27,6 +27,12 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   }
 
   @override
+  void dispose() {
+    _searchFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
@@ -83,7 +89,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   }
 
   AppBar _buildAppBar() {
-    final searchFieldState = ref.watch(districtsSearchField);
+    ref.watch(districtsSearchField);
     final searchFieldNotifier = ref.read(districtsSearchField.notifier);
 
     return AppBar(
@@ -111,7 +117,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
           style: appTextStyles.secondaryNovaRegular16,
           decoration: InputDecoration(
             hintText: context.localization.searchDistricts,
-            suffixIcon: searchFieldState.isNotEmpty
+            suffixIcon: _searchFieldController.text.isNotEmpty
                 ? GestureDetector(
                     onTap: () {
                       _searchFieldController.clear();
