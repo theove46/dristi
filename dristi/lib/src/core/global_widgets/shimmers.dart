@@ -100,7 +100,7 @@ Widget buildSliderShimmer(BuildContext context) {
 Widget buildAdvertisementShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
-    height: AppValues.dimen_120.h,
+    height: AppValues.dimen_130.h,
     width: double.infinity,
     child: Padding(
       padding: EdgeInsets.only(top: AppValues.dimen_16.h),

@@ -76,7 +76,7 @@ class _ImageAdvertisementBuilderState
         );
       },
       options: CarouselOptions(
-        height: AppValues.dimen_120.h,
+        height: AppValues.dimen_130.h,
         aspectRatio: 2,
         viewportFraction: 1,
         initialPage: 0,
