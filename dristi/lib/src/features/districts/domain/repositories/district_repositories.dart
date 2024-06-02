@@ -11,5 +11,6 @@ final districtRepositoryProvider = Provider<DistrictRepository>(
 );
 
 abstract class DistrictRepository {
-  Future<(String, List<DistrictEntity>?)> getDistrictComponents();
+  Future<(String, List<DistrictEntity>?)> getDistrictComponents(
+      {required String searchKey});
 }

@@ -12,14 +12,17 @@ class DistrictNotifier extends Notifier<DistrictState> {
     return const DistrictState();
   }
 
-  Future<void> getDistrictComponents() async {
+  Future<void> getDistrictComponents({required String searchKey}) async {
     try {
-      final response = await useCase.getDistrictComponents();
+      final response =
+          await useCase.getDistrictComponents(searchKey: searchKey);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(
           data: response.$2,
         );
+        Log.debug('Response');
+        Log.debug("${response.$2}");
       } else {
         state = state.copyWith(
           status: DistrictStatus.failure,

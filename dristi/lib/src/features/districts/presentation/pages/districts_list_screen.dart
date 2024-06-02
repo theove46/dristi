@@ -1,6 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   void initState() {
     super.initState();
     Future(() {
-      ref.read(districtProvider.notifier).getDistrictComponents();
+      ref.read(districtProvider.notifier).getDistrictComponents(searchKey: '');
     });
   }
 
@@ -109,6 +110,9 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
           controller: _searchFieldController,
           onChanged: (value) {
             searchFieldNotifier.state = value;
+            ref
+                .read(districtProvider.notifier)
+                .getDistrictComponents(searchKey: value);
           },
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
@@ -122,6 +126,9 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
                     onTap: () {
                       _searchFieldController.clear();
                       searchFieldNotifier.state = '';
+                      ref
+                          .read(districtProvider.notifier)
+                          .getDistrictComponents(searchKey: '');
                     },
                     child: const Icon(Icons.clear),
                   )
@@ -160,10 +167,16 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
               item.division,
               style: appTextStyles.secondaryNovaRegular12,
             ),
-            onTap: () {},
+            onTap: () {
+              navigateToDestinationsPage();
+            },
           ),
         ),
       ),
     );
+  }
+
+  void navigateToDestinationsPage() {
+    context.pushNamed(AppRoutes.destination);
   }
 }

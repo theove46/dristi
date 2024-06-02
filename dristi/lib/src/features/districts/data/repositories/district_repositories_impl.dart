@@ -10,8 +10,10 @@ class DistrictRepositoryImp implements DistrictRepository {
   final DistrictDataSource dataSource;
 
   @override
-  Future<(String, List<DistrictEntity>?)> getDistrictComponents() async {
-    final response = await dataSource.districtComponents();
+  Future<(String, List<DistrictEntity>?)> getDistrictComponents(
+      {required String searchKey}) async {
+    final response =
+        await dataSource.getDistrictComponents(searchKey: searchKey);
 
     return Future.value(
         (response.statusMessage!, response.data as List<DistrictEntity>?));
