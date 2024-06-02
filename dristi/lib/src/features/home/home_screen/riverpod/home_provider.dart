@@ -1,4 +1,6 @@
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/features/home/advertisements/presentation/riverpod/advertisement_notifier.dart';
+import 'package:dristi/src/features/home/advertisements/presentation/riverpod/advertisement_state.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_notifier.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/popular_districts/presentations/riverpod/popular_districts_notifier.dart';
@@ -27,6 +29,12 @@ final sliderProvider = NotifierProvider<SliderNotifier, SliderState>(
   name: 'sliderProvider',
 );
 
+final advertisementProvider =
+    NotifierProvider<AdvertisementNotifier, AdvertisementState>(
+  AdvertisementNotifier.new,
+  name: 'advertisementProvider',
+);
+
 final topDestinationsProvider =
     NotifierProvider<TopDestinationsNotifier, TopDestinationsState>(
   TopDestinationsNotifier.new,
@@ -36,6 +44,11 @@ final topDestinationsProvider =
 final currentSlideProvider = StateProvider<int>(
   (ref) => 0,
   name: 'currentSlideProvider',
+);
+
+final currentAdvertisementProvider = StateProvider<int>(
+  (ref) => 0,
+  name: 'currentAdvertisementProvider',
 );
 
 final categoriesBoxHeight = StateProvider<double>(

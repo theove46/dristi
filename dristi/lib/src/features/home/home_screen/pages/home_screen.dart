@@ -7,6 +7,7 @@ import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/home/advertisements/presentation/widgets/advertisement_builder.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
 import 'package:dristi/src/features/home/sliders/presentations/widgets/slider_builder.dart';
@@ -36,10 +37,11 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   Future<void> _getComponents() async {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
-      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
       ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref.read(advertisementProvider.notifier).getAdvertisementComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
     }
   }
 
@@ -67,6 +69,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
                     const SliderBuilder(),
                     _buildTitleMessage(),
                     const CategoriesBuilder(),
+                    const AdvertisementBuilder(),
                     const TopDestinationBuilder(),
                     const PopularDistrictsBuilder(),
                   ],

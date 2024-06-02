@@ -1,5 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_state.dart';
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:flutter/services.dart';
