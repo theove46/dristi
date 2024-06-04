@@ -78,8 +78,12 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
         icon: const Icon(
           Icons.arrow_back_ios,
         ),
-        onPressed: () {
-          context.pop();
+        onPressed: () async {
+          if (await controller.canGoBack()) {
+            controller.goBack();
+          } else if (mounted) {
+            context.pop();
+          }
         },
       ),
       title: Text(
