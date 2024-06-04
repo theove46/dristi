@@ -39,7 +39,7 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: UIColors.componentsWhite(context),
+      color: UIColors.onImageShadowText(context),
     ),
   );
 }

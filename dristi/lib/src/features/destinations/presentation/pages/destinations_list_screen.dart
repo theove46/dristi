@@ -190,7 +190,7 @@ class _DestinationPageState
           tileMode: TileMode.clamp,
           colors: [
             uiColors.shadow,
-            uiColors.shadow.withOpacity(0.2),
+            uiColors.shadow.withOpacity(0.25),
             uiColors.transparent,
           ],
         ),
@@ -203,7 +203,7 @@ class _DestinationPageState
     final item = destinationModelsState.data[index];
 
     return Padding(
-      padding: EdgeInsets.all(AppValues.dimen_16.w),
+      padding: EdgeInsets.all(AppValues.dimen_10.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,

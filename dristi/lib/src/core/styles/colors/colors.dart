@@ -18,6 +18,10 @@ class UIColors {
 
   Color get background => Theme.of(context).colorScheme.surface;
 
+  Color get highlight => Theme.of(context).colorScheme.surfaceDim;
+
+  Color get scrim => Theme.of(context).colorScheme.scrim;
+
   Color get onImage => Theme.of(context).colorScheme.onSurface;
 
   // Text Colors

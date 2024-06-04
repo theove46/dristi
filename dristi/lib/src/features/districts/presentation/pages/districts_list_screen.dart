@@ -148,6 +148,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+            color: uiColors.background,
             border: Border.all(
               color: uiColors.primary,
             ),
@@ -155,7 +156,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
               image: AssetImage(Assets.forestCard),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
-              opacity: 0.20,
+              opacity: 0.30,
             ),
           ),
           child: ListTile(

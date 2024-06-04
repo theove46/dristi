@@ -112,11 +112,17 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
         child: Padding(
           padding: EdgeInsets.only(right: AppValues.dimen_16.w),
           child: Container(
-            height: AppValues.dimen_56.h,
+            height: AppValues.dimen_50.h,
             width: double.infinity,
             decoration: BoxDecoration(
+              color: uiColors.scrim,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  AppValues.dimen_10.r,
+                ),
+              ),
               border: Border.all(
-                color: uiColors.primary,
+                color: uiColors.scrim,
                 width: 1.0,
               ),
             ),
@@ -127,7 +133,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
                   const Icon(Icons.search),
                   Text(
                     context.localization.search,
-                    style: appTextStyles.blushNovaRegular16,
+                    style: appTextStyles.blushNovaRegular12,
                   ),
                 ],
               ),
@@ -144,9 +150,8 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
       children: [
         Text(
           context.localization.exploreThe,
-          style: appTextStyles.primaryNovaBold24,
+          style: appTextStyles.primaryNovaBold20,
         ),
-        SizedBox(height: AppValues.dimen_10.h),
         Text(
           context.localization.beautifulBD,
           style: appTextStyles.primaryNovaBold28,

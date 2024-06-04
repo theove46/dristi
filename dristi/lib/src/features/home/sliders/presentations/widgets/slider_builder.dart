@@ -109,24 +109,35 @@ class _ImageSliderBuilderState
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         carouselItems.data.length,
-        (index) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
-          child: Container(
-            height: AppValues.dimen_8.h,
-            width: currentSliderState == index
-                ? AppValues.dimen_50.w
-                : AppValues.dimen_30.w,
-            decoration: BoxDecoration(
-              color: currentSliderState == index
-                  ? uiColors.primary
-                  : uiColors.secondary,
-              borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
-              border: Border.all(
-                color: uiColors.primary,
+        (index) {
+          double width;
+
+          if (index == currentSliderState) {
+            width = AppValues.dimen_60.r;
+          } else if (index == currentSliderState - 1 ||
+              index == currentSliderState + 1) {
+            width = AppValues.dimen_24.r;
+          } else {
+            width = AppValues.dimen_8.r;
+          }
+
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
+            child: Container(
+              height: AppValues.dimen_8.r,
+              width: width,
+              decoration: BoxDecoration(
+                color: currentSliderState == index
+                    ? uiColors.primary
+                    : uiColors.secondary,
+                borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
+                border: Border.all(
+                  color: uiColors.primary,
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

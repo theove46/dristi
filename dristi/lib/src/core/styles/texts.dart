@@ -101,7 +101,7 @@ class AppTextStyles {
 
   TextStyle get primaryNovaBold16 => primaryNovaBold.copyWith(fontSize: 16.sp);
 
-  TextStyle get primaryNovaBold24 => primaryNovaBold.copyWith(fontSize: 24.sp);
+  TextStyle get primaryNovaBold20 => primaryNovaBold.copyWith(fontSize: 20.sp);
 
   TextStyle get primaryNovaBold28 => primaryNovaBold.copyWith(fontSize: 28.sp);
 
@@ -130,8 +130,8 @@ class AppTextStyles {
 
   // Blush / Grey color
 
-  TextStyle get blushNovaRegular16 =>
-      blushNovaRegular.copyWith(fontSize: 16.sp);
+  TextStyle get blushNovaRegular12 =>
+      blushNovaRegular.copyWith(fontSize: 12.sp);
 
   // OnImage / Always White Color texts
 

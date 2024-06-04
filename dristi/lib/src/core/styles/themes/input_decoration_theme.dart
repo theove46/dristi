@@ -30,21 +30,24 @@ class CustomInputDecorationTheme extends InputDecorationTheme {
             letterSpacing: 0.1,
             color: scheme.onPrimaryContainer,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: scheme.primary,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: scheme.primary,
-            ),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: scheme.primary,
-            ),
-          ),
+          filled: true,
+          fillColor: scheme.scrim,
+          enabledBorder: getBorder(scheme),
+          focusedBorder: getBorder(scheme),
+          errorBorder: getBorder(scheme),
           suffixIconColor: scheme.primary,
         );
+}
+
+OutlineInputBorder getBorder(ColorScheme scheme) {
+  return OutlineInputBorder(
+    borderSide: BorderSide(
+      color: scheme.scrim,
+    ),
+    borderRadius: BorderRadius.all(
+      Radius.circular(
+        AppValues.dimen_10.r,
+      ),
+    ),
+  );
 }

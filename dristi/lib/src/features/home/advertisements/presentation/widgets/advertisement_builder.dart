@@ -40,20 +40,20 @@ class _ImageAdvertisementBuilderState
       return buildAdvertisementShimmer(context);
     }
 
-    return CarouselSlider.builder(
-      itemCount: carouselItems.data.length,
-      itemBuilder: (context, index, realIndex) {
-        final item = carouselItems.data[index];
-        return Padding(
-          padding: EdgeInsets.only(top: AppValues.dimen_16.h),
-          child: GestureDetector(
-            onTap: () {
-              navigateToWebView(item: item);
-            },
-            child: Stack(
-              alignment: Alignment.topRight,
-              children: [
-                SizedBox(
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        CarouselSlider.builder(
+          itemCount: carouselItems.data.length,
+          itemBuilder: (context, index, realIndex) {
+            final item = carouselItems.data[index];
+            return Padding(
+              padding: EdgeInsets.only(top: AppValues.dimen_16.h),
+              child: GestureDetector(
+                onTap: () {
+                  navigateToWebView(item: item);
+                },
+                child: SizedBox(
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(
@@ -65,33 +65,33 @@ class _ImageAdvertisementBuilderState
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: AppValues.dimen_16.r,
-                  right: AppValues.dimen_16.r,
-                  child: _buildAdvertisementIndicator(),
-                ),
-              ],
-            ),
+              ),
+            );
+          },
+          options: CarouselOptions(
+            height: AppValues.dimen_130.h,
+            aspectRatio: 2,
+            viewportFraction: 1,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 5),
+            autoPlayAnimationDuration: const Duration(seconds: 2),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            enlargeCenterPage: true,
+            onPageChanged: (index, reason) {
+              currentAdvertisementNotifier.state = index;
+            },
+            scrollDirection: Axis.horizontal,
           ),
-        );
-      },
-      options: CarouselOptions(
-        height: AppValues.dimen_130.h,
-        aspectRatio: 2,
-        viewportFraction: 1,
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: false,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 5),
-        autoPlayAnimationDuration: const Duration(seconds: 2),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enlargeCenterPage: true,
-        onPageChanged: (index, reason) {
-          currentAdvertisementNotifier.state = index;
-        },
-        scrollDirection: Axis.horizontal,
-      ),
+        ),
+        Positioned(
+          bottom: AppValues.dimen_16.r,
+          right: AppValues.dimen_16.r,
+          child: _buildAdvertisementIndicator(),
+        ),
+      ],
     );
   }
 
