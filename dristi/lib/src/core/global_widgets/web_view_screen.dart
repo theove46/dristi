@@ -98,10 +98,11 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        WebViewWidget(
-          controller: controller,
-        ),
-        if (loading) const CircularProgressIndicator(),
+        loading
+            ? const CircularProgressIndicator()
+            : WebViewWidget(
+                controller: controller,
+              ),
       ],
     );
   }
