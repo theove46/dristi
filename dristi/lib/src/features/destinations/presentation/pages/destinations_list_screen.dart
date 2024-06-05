@@ -8,6 +8,7 @@ import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,7 @@ class _DestinationPageState
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
+              _buildAdvertisement(),
               _buildDestinationsList(),
             ],
           ),
@@ -146,6 +148,61 @@ class _DestinationPageState
           );
   }
 
+  Widget _buildAdvertisement() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppValues.dimen_16.r,
+          right: AppValues.dimen_16.r,
+          bottom: AppValues.dimen_10.r,
+        ),
+        child: GestureDetector(
+          onTap: () {
+            navigateToWebView(item: AdvertisementEntity.initial());
+          },
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: AppValues.dimen_60.r,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                  color: uiColors.background,
+                  image: const DecorationImage(
+                    image: AssetImage(Assets.advertiseBanner),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: AppValues.dimen_20.w),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppValues.dimen_8.r,
+                      vertical: AppValues.dimen_8.r,
+                    ),
+                    decoration: BoxDecoration(
+                      color: uiColors.shadow.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(
+                        AppValues.dimen_10.r,
+                      ),
+                    ),
+                    child: Text(
+                      context.localization.visitNow,
+                      style: appTextStyles.onImageNovaRegular12,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildDestinationCard(int index) {
     return GestureDetector(
       onTap: navigateToSpotPage,
@@ -219,6 +276,10 @@ class _DestinationPageState
         ],
       ),
     );
+  }
+
+  void navigateToWebView({required AdvertisementEntity item}) {
+    context.pushNamed(AppRoutes.webView, extra: item);
   }
 
   void navigateToSpotPage() {
