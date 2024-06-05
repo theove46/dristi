@@ -33,23 +33,34 @@ class _PageIndicatorBuilderState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   onBoardingModelsState.data.length,
-                  (index) => Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: AppValues.dimen_2.w),
-                    child: Container(
-                      height: AppValues.dimen_10.h,
-                      width: currentOnBoardingScreenState == index
-                          ? AppValues.dimen_60.w
-                          : AppValues.dimen_30.w,
-                      decoration: BoxDecoration(
-                        color: currentOnBoardingScreenState == index
-                            ? uiColors.primary
-                            : uiColors.onImage,
-                        borderRadius:
-                            BorderRadius.circular(AppValues.dimen_2.r),
+                  (index) {
+                    double width;
+
+                    if (index == currentOnBoardingScreenState) {
+                      width = AppValues.dimen_70.r;
+                    } else if (index == currentOnBoardingScreenState - 1 ||
+                        index == currentOnBoardingScreenState + 1) {
+                      width = AppValues.dimen_30.r;
+                    } else {
+                      width = AppValues.dimen_10.r;
+                    }
+
+                    return Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: AppValues.dimen_2.w),
+                      child: Container(
+                        height: AppValues.dimen_10.h,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: currentOnBoardingScreenState == index
+                              ? uiColors.primary
+                              : uiColors.onImage.withOpacity(0.8),
+                          borderRadius:
+                              BorderRadius.circular(AppValues.dimen_5.r),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
             ],

@@ -116,7 +116,9 @@ class _ImageAdvertisementBuilderState
                 ? AppValues.dimen_40.w
                 : AppValues.dimen_6.w,
             decoration: BoxDecoration(
-              color: uiColors.onImage,
+              color: currentAdvertisementState == index
+                  ? uiColors.onImage
+                  : uiColors.onImage.withOpacity(0.6),
               borderRadius: BorderRadius.circular(AppValues.dimen_3.r),
             ),
           ),

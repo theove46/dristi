@@ -129,10 +129,12 @@ class _ImageSliderBuilderState
               decoration: BoxDecoration(
                 color: currentSliderState == index
                     ? uiColors.primary
-                    : uiColors.secondary,
-                borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
+                    : uiColors.primary.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
                 border: Border.all(
-                  color: uiColors.primary,
+                  color: currentSliderState == index
+                      ? uiColors.primary
+                      : uiColors.primary.withOpacity(0.5),
                 ),
               ),
             ),

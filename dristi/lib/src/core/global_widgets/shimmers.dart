@@ -122,12 +122,21 @@ Widget buildSliderIndicatorShimmer(BuildContext context) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
+        double width;
+
+        if (index == 0) {
+          width = AppValues.dimen_60.r;
+        } else if (index == 1) {
+          width = AppValues.dimen_24.r;
+        } else {
+          width = AppValues.dimen_8.r;
+        }
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: buildShimmerContainer(
             context: context,
-            height: AppValues.dimen_12.h,
-            width: index == 0 ? AppValues.dimen_50.w : AppValues.dimen_28.w,
+            height: AppValues.dimen_8.h,
+            width: width,
             borderRadius: AppValues.dimen_5.r,
           ),
         );
