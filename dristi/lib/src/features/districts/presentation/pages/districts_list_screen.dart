@@ -4,6 +4,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
+import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,43 +40,11 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
       body: CustomScrollView(
         slivers: [
           _buildSliverAppBar(),
+          _buildAdvertisement(),
           _buildDistrictsList(),
         ],
       ),
     );
-  }
-
-  Widget _buildDistrictsList() {
-    final districtModelsState = ref.watch(districtProvider);
-
-    return districtModelsState.data != null
-        ? SliverPadding(
-            padding: EdgeInsets.only(
-              left: AppValues.dimen_8.r,
-              right: AppValues.dimen_8.r,
-              bottom: AppValues.dimen_16.r,
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final int startIndex = index * 2;
-                  final int endIndex = startIndex + 1;
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildDistrictCard(startIndex),
-                      if (endIndex < districtModelsState.data.length)
-                        _buildDistrictCard(endIndex),
-                    ],
-                  );
-                },
-                childCount: (districtModelsState.data.length / 2).ceil(),
-              ),
-            ),
-          )
-        : const SliverToBoxAdapter(
-            child: SizedBox.shrink(),
-          );
   }
 
   Widget _buildSliverAppBar() {
@@ -139,6 +108,94 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
     );
   }
 
+  Widget _buildAdvertisement() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppValues.dimen_16.r,
+          right: AppValues.dimen_16.r,
+          bottom: AppValues.dimen_10.r,
+        ),
+        child: GestureDetector(
+          onTap: () {
+            navigateToWebView(item: AdvertisementEntity.initial());
+          },
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: AppValues.dimen_60.r,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                  color: uiColors.background,
+                  image: const DecorationImage(
+                    image: AssetImage(Assets.advertiseBanner),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: AppValues.dimen_20.w),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppValues.dimen_8.r,
+                      vertical: AppValues.dimen_8.r,
+                    ),
+                    decoration: BoxDecoration(
+                      color: uiColors.shadow.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(
+                        AppValues.dimen_10.r,
+                      ),
+                    ),
+                    child: Text(
+                      context.localization.visitNow,
+                      style: appTextStyles.onImageNovaRegular12,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDistrictsList() {
+    final districtModelsState = ref.watch(districtProvider);
+
+    return districtModelsState.data != null
+        ? SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final int startIndex = index * 2;
+                  final int endIndex = startIndex + 1;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildDistrictCard(startIndex),
+                      if (endIndex < districtModelsState.data.length)
+                        _buildDistrictCard(endIndex),
+                    ],
+                  );
+                },
+                childCount: (districtModelsState.data.length / 2).ceil(),
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter(
+            child: SizedBox.shrink(),
+          );
+  }
+
   Widget _buildDistrictCard(int index) {
     final districtModelsState = ref.watch(districtProvider);
     final item = districtModelsState.data[index];
@@ -175,6 +232,10 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
         ),
       ),
     );
+  }
+
+  void navigateToWebView({required AdvertisementEntity item}) {
+    context.pushNamed(AppRoutes.webView, extra: item);
   }
 
   void navigateToDestinationsPage() {
