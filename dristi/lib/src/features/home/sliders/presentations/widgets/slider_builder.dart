@@ -134,7 +134,7 @@ class _ImageSliderBuilderState
                 border: Border.all(
                   color: currentSliderState == index
                       ? uiColors.primary
-                      : uiColors.primary.withOpacity(0.5),
+                      : uiColors.primary.withOpacity(0.6),
                 ),
               ),
             ),
