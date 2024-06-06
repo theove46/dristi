@@ -59,6 +59,7 @@ class _DestinationPageState
   }
 
   // For Future Usage
+  // ignore: unused_element
   Widget _buildAdvertisement() {
     return SliverToBoxAdapter(
       child: Padding(

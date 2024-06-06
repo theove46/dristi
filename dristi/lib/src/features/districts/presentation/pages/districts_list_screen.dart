@@ -46,6 +46,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   }
 
   // For Future Usage
+  // ignore: unused_element
   Widget _buildAdvertisement() {
     return SliverToBoxAdapter(
       child: Padding(
