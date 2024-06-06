@@ -3,6 +3,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
@@ -156,49 +157,7 @@ class _DestinationPageState
           right: AppValues.dimen_16.r,
           bottom: AppValues.dimen_10.r,
         ),
-        child: GestureDetector(
-          onTap: () {
-            navigateToWebView(item: AdvertisementEntity.initial());
-          },
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: AppValues.dimen_60.r,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                  color: uiColors.background,
-                  image: const DecorationImage(
-                    image: AssetImage(Assets.advertiseBanner),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: AppValues.dimen_20.w),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppValues.dimen_8.r,
-                      vertical: AppValues.dimen_8.r,
-                    ),
-                    decoration: BoxDecoration(
-                      color: uiColors.shadow.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(
-                        AppValues.dimen_10.r,
-                      ),
-                    ),
-                    child: Text(
-                      context.localization.visitNow,
-                      style: appTextStyles.onImageNovaRegular12,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        child: const AdvertisementImage(),
       ),
     );
   }

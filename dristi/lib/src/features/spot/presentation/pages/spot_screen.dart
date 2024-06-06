@@ -1,10 +1,9 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/routes/app_routes.dart';
+import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
 import 'package:flutter/material.dart';
@@ -136,7 +135,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildAdvertisement(),
+                  const AdvertisementImage(),
                   const DescriptionItemsBuilder(),
                   Text(
                     "Nil Giri",
@@ -161,52 +160,6 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                     style: appTextStyles.secondaryNovaRegular16,
                   ),
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAdvertisement() {
-    return GestureDetector(
-      onTap: () {
-        navigateToWebView(item: AdvertisementEntity.initial());
-      },
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            height: AppValues.dimen_60.r,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-              color: uiColors.background,
-              image: const DecorationImage(
-                image: AssetImage(Assets.advertiseBanner),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: EdgeInsets.only(right: AppValues.dimen_20.w),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppValues.dimen_8.r,
-                  vertical: AppValues.dimen_8.r,
-                ),
-                decoration: BoxDecoration(
-                  color: uiColors.shadow.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(
-                    AppValues.dimen_10.r,
-                  ),
-                ),
-                child: Text(
-                  context.localization.visitNow,
-                  style: appTextStyles.onImageNovaRegular12,
-                ),
               ),
             ),
           ),
@@ -263,9 +216,5 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
         child: Center(child: icon),
       ),
     );
-  }
-
-  void navigateToWebView({required AdvertisementEntity item}) {
-    context.pushNamed(AppRoutes.webView, extra: item);
   }
 }
