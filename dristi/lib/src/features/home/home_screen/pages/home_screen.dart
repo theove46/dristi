@@ -39,7 +39,9 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
     if (state.value?.first != ConnectivityResult.none) {
       ref.read(sliderProvider.notifier).getSliderComponents();
       ref.read(categoriesProvider.notifier).getCategoriesComponents();
-      ref.read(advertisementProvider.notifier).getAdvertisementComponents();
+      ref
+          .read(multipleAdvertisementProvider.notifier)
+          .getMultipleAdvertisementComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
       ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
     }

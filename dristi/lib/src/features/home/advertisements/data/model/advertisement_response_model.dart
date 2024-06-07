@@ -1,26 +1,27 @@
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 
-class AdvertisementResponseModel {
-  AdvertisementResponseModel(this.advertisementItems);
+class MultipleAdvertisementResponseModel {
+  MultipleAdvertisementResponseModel(this.multipleAdvertisementItems);
 
-  AdvertisementResponseModel.fromJson({
+  MultipleAdvertisementResponseModel.fromJson({
     required List<dynamic> json,
   }) {
-    advertisementItems = <AdvertisementEntity>[];
+    multipleAdvertisementItems = <MultipleAdvertisementEntity>[];
     for (var item in json) {
-      advertisementItems.add(AdvertisementData.fromJson(item));
+      multipleAdvertisementItems.add(MultipleAdvertisementData.fromJson(item));
     }
   }
 
-  List<AdvertisementEntity> advertisementItems = <AdvertisementEntity>[];
+  List<MultipleAdvertisementEntity> multipleAdvertisementItems =
+      <MultipleAdvertisementEntity>[];
 }
 
-class AdvertisementData extends AdvertisementEntity {
+class MultipleAdvertisementData extends MultipleAdvertisementEntity {
   String? advertisementTitle;
   String? advertisementUrl;
   String? advertisementImage;
 
-  AdvertisementData({
+  MultipleAdvertisementData({
     this.advertisementTitle,
     this.advertisementUrl,
     this.advertisementImage,
@@ -30,8 +31,8 @@ class AdvertisementData extends AdvertisementEntity {
           image: advertisementImage ?? "",
         );
 
-  factory AdvertisementData.fromJson(dynamic json) {
-    return AdvertisementData(
+  factory MultipleAdvertisementData.fromJson(dynamic json) {
+    return MultipleAdvertisementData(
       advertisementTitle: json['title'],
       advertisementUrl: json['url'],
       advertisementImage: json['image'],

@@ -15,7 +15,8 @@ class AdvertisementUseCase {
 
   final AdvertisementRepository repository;
 
-  Future<List<AdvertisementEntity>> getAdvertisementComponents() async {
-    return repository.getAdvertisementComponents();
+  Future<List<MultipleAdvertisementEntity>>
+      getMultipleAdvertisementComponents() async {
+    return repository.getMultipleAdvertisementComponents();
   }
 }

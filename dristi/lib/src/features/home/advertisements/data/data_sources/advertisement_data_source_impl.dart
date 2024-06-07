@@ -8,12 +8,13 @@ import 'package:dristi/src/features/home/advertisements/data/model/advertisement
 class AdvertisementDataSourceImp extends BaseRemoteSource
     implements AdvertisementDataSource {
   @override
-  Future<AdvertisementResponseModel> advertisementComponents() {
-    final String endpoint = DioProvider.baseUrl + API.advertisement;
+  Future<MultipleAdvertisementResponseModel>
+      getMultipleAdvertisementComponents() {
+    final String endpoint = DioProvider.baseUrl + API.multipleAdvertisement;
     final Future<Response> dioCall = dioClient.get(endpoint);
     try {
       return callApiWithErrorParser(dioCall).then((Response response) {
-        return AdvertisementResponseModel.fromJson(json: response.data);
+        return MultipleAdvertisementResponseModel.fromJson(json: response.data);
       });
     } catch (e) {
       rethrow;

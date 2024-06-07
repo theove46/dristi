@@ -56,7 +56,7 @@ GoRouter appRouter = GoRouter(
       path: _Path.webView,
       name: AppRoutes.webView,
       builder: (BuildContext context, GoRouterState state) {
-        final name = state.extra as AdvertisementEntity;
+        final name = state.extra as MultipleAdvertisementEntity;
         return WebViewScreen(
           item: name,
         );

@@ -12,7 +12,7 @@ class WebViewScreen extends StatefulWidget {
     super.key,
   });
 
-  final AdvertisementEntity item;
+  final MultipleAdvertisementEntity item;
 
   @override
   State<WebViewScreen> createState() => _WebViewScreenState();

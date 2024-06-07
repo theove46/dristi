@@ -22,7 +22,7 @@ class _AdvertisementImageState extends BaseStatefulWidget<AdvertisementImage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigateToWebView(item: AdvertisementEntity.initial());
+        navigateToWebView(item: MultipleAdvertisementEntity.initial());
       },
       child: Stack(
         alignment: Alignment.center,
@@ -65,7 +65,7 @@ class _AdvertisementImageState extends BaseStatefulWidget<AdvertisementImage> {
     );
   }
 
-  void navigateToWebView({required AdvertisementEntity item}) {
+  void navigateToWebView({required MultipleAdvertisementEntity item}) {
     context.pushNamed(AppRoutes.webView, extra: item);
   }
 }

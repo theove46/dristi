@@ -9,5 +9,6 @@ final advertisementDataSourceProvider = Provider<AdvertisementDataSource>(
 );
 
 abstract class AdvertisementDataSource {
-  Future<AdvertisementResponseModel> advertisementComponents();
+  Future<MultipleAdvertisementResponseModel>
+      getMultipleAdvertisementComponents();
 }

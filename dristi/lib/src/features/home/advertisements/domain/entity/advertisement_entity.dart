@@ -1,18 +1,18 @@
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 
-class AdvertisementEntity {
+class MultipleAdvertisementEntity {
   String title;
   String url;
   String image;
 
-  AdvertisementEntity({
+  MultipleAdvertisementEntity({
     required this.title,
     required this.url,
     required this.image,
   });
 
-  AdvertisementEntity.initial()
+  MultipleAdvertisementEntity.initial()
       : title = TextConstants.appName,
         url = Assets.commonWebUrl,
         image = Assets.advertiseBanner;

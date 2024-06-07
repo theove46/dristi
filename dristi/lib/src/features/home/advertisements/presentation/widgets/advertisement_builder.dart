@@ -33,7 +33,7 @@ class _ImageAdvertisementBuilderState
   Widget _buildCarouselAdvertisement() {
     final currentAdvertisementNotifier =
         ref.read(currentAdvertisementProvider.notifier);
-    final carouselItems = ref.watch(advertisementProvider);
+    final carouselItems = ref.watch(multipleAdvertisementProvider);
 
     if (carouselItems.status != AdvertisementStatus.success ||
         carouselItems.data == null) {
@@ -97,7 +97,7 @@ class _ImageAdvertisementBuilderState
 
   Widget _buildAdvertisementIndicator() {
     final currentAdvertisementState = ref.watch(currentAdvertisementProvider);
-    final carouselItems = ref.watch(advertisementProvider);
+    final carouselItems = ref.watch(multipleAdvertisementProvider);
 
     if (carouselItems.status != AdvertisementStatus.success ||
         carouselItems.data == null) {
@@ -127,7 +127,7 @@ class _ImageAdvertisementBuilderState
     );
   }
 
-  void navigateToWebView({required AdvertisementEntity item}) {
+  void navigateToWebView({required MultipleAdvertisementEntity item}) {
     context.pushNamed(AppRoutes.webView, extra: item);
   }
 }

@@ -29,7 +29,7 @@ final sliderProvider = NotifierProvider<SliderNotifier, SliderState>(
   name: 'sliderProvider',
 );
 
-final advertisementProvider =
+final multipleAdvertisementProvider =
     NotifierProvider<AdvertisementNotifier, AdvertisementState>(
   AdvertisementNotifier.new,
   name: 'advertisementProvider',

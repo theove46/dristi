@@ -12,17 +12,15 @@ class AdvertisementNotifier extends Notifier<AdvertisementState> {
     return const AdvertisementState();
   }
 
-  Future<void> getAdvertisementComponents() async {
+  Future<void> getMultipleAdvertisementComponents() async {
     try {
       state = state.copyWith(
         status: AdvertisementStatus.loading,
       );
 
-      final response = await useCase.getAdvertisementComponents();
+      final response = await useCase.getMultipleAdvertisementComponents();
 
       if (response.isNotEmpty) {
-        Log.debug('Come');
-        Log.debug(response.toString());
         state = state.copyWith(
           data: response,
           status: AdvertisementStatus.success,
