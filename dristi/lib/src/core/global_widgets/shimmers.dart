@@ -39,7 +39,7 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: UIColors.onImageShadowText(context),
+      color: UIColors.onImageText(context),
     ),
   );
 }
@@ -97,6 +97,20 @@ Widget buildSliderShimmer(BuildContext context) {
   );
 }
 
+Widget buildSingleAdvertisementShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    height: AppValues.dimen_60.h,
+    width: double.infinity,
+    child: buildShimmerContainer(
+      context: context,
+      height: AppValues.dimen_60.h,
+      width: double.infinity,
+      borderRadius: AppValues.dimen_10.r,
+    ),
+  );
+}
+
 Widget buildMultipleAdvertisementShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
@@ -114,27 +128,10 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
   );
 }
 
-Widget buildSingleAdvertisementShimmer(BuildContext context) {
-  return buildShimmer(
-    context: context,
-    height: AppValues.dimen_60.h,
-    width: double.infinity,
-    child: Padding(
-      padding: EdgeInsets.only(top: AppValues.dimen_16.h),
-      child: buildShimmerContainer(
-        context: context,
-        height: AppValues.dimen_120.h,
-        width: double.infinity,
-        borderRadius: AppValues.dimen_10.r,
-      ),
-    ),
-  );
-}
-
 Widget buildSliderIndicatorShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
-    height: AppValues.dimen_12.h,
+    height: AppValues.dimen_8.r,
     width: double.infinity,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -142,17 +139,15 @@ Widget buildSliderIndicatorShimmer(BuildContext context) {
         double width;
 
         if (index == 0) {
-          width = AppValues.dimen_60.r;
-        } else if (index == 1) {
-          width = AppValues.dimen_24.r;
+          width = AppValues.dimen_40.r;
         } else {
-          width = AppValues.dimen_8.r;
+          width = AppValues.dimen_6.r;
         }
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: buildShimmerContainer(
             context: context,
-            height: AppValues.dimen_8.h,
+            height: AppValues.dimen_6.r,
             width: width,
             borderRadius: AppValues.dimen_5.r,
           ),

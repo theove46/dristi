@@ -24,9 +24,17 @@ class _ImageSliderBuilderState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildCarouselSlider(),
-        SizedBox(height: AppValues.dimen_10.h),
-        _buildSliderIndicator(),
+        Stack(
+          children: [
+            _buildCarouselSlider(),
+            Positioned(
+              bottom: AppValues.dimen_16.h,
+              left: AppValues.dimen_16.w,
+              child: _buildSliderIndicator(),
+            ),
+          ],
+        ),
+        SizedBox(height: AppValues.dimen_4.h),
       ],
     );
   }
@@ -113,29 +121,21 @@ class _ImageSliderBuilderState
           double width;
 
           if (index == currentSliderState) {
-            width = AppValues.dimen_60.r;
-          } else if (index == currentSliderState - 1 ||
-              index == currentSliderState + 1) {
-            width = AppValues.dimen_24.r;
+            width = AppValues.dimen_40.r;
           } else {
-            width = AppValues.dimen_8.r;
+            width = AppValues.dimen_6.r;
           }
 
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
             child: Container(
-              height: AppValues.dimen_8.r,
+              height: AppValues.dimen_6.r,
               width: width,
               decoration: BoxDecoration(
                 color: currentSliderState == index
-                    ? uiColors.primary
-                    : uiColors.primary.withOpacity(0.6),
+                    ? uiColors.onImage
+                    : uiColors.onImage.withOpacity(0.6),
                 borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
-                border: Border.all(
-                  color: currentSliderState == index
-                      ? uiColors.primary
-                      : uiColors.primary.withOpacity(0.2),
-                ),
               ),
             ),
           );

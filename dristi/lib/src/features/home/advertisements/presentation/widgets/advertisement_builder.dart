@@ -109,17 +109,17 @@ class _ImageAdvertisementBuilderState
       children: List.generate(
         carouselItems.data.length,
         (index) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_2.w),
+          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: Container(
-            height: AppValues.dimen_6.h,
+            height: AppValues.dimen_6.r,
             width: currentAdvertisementState == index
-                ? AppValues.dimen_40.w
-                : AppValues.dimen_6.w,
+                ? AppValues.dimen_40.r
+                : AppValues.dimen_6.r,
             decoration: BoxDecoration(
               color: currentAdvertisementState == index
                   ? uiColors.onImage
                   : uiColors.onImage.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(AppValues.dimen_3.r),
+              borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
             ),
           ),
         ),
