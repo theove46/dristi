@@ -2,6 +2,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/top_screen_icons.dart';
@@ -23,6 +24,9 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
     super.initState();
     Future(() {
       ref.read(spotProvider.notifier).getSpotItemsComponents();
+      ref
+          .read(singleAdvertisementProvider.notifier)
+          .getSingleAdvertisementComponents();
     });
   }
 

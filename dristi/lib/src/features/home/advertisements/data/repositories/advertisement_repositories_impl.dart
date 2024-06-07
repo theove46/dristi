@@ -10,8 +10,14 @@ class AdvertisementRepositoryImp implements AdvertisementRepository {
   final AdvertisementDataSource dataSource;
 
   @override
-  Future<List<MultipleAdvertisementEntity>>
-      getMultipleAdvertisementComponents() async {
+  Future<AdvertisementEntity> getSingleAdvertisementComponents() async {
+    final response = await dataSource.getSingleAdvertisementComponents();
+
+    return response.singleAdvertisementItem;
+  }
+
+  @override
+  Future<List<AdvertisementEntity>> getMultipleAdvertisementComponents() async {
     final response = await dataSource.getMultipleAdvertisementComponents();
 
     return response.multipleAdvertisementItems;

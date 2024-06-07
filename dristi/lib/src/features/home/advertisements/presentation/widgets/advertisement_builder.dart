@@ -37,7 +37,7 @@ class _ImageAdvertisementBuilderState
 
     if (carouselItems.status != AdvertisementStatus.success ||
         carouselItems.data == null) {
-      return buildAdvertisementShimmer(context);
+      return buildMultipleAdvertisementShimmer(context);
     }
 
     return Stack(
@@ -127,7 +127,7 @@ class _ImageAdvertisementBuilderState
     );
   }
 
-  void navigateToWebView({required MultipleAdvertisementEntity item}) {
+  void navigateToWebView({required AdvertisementEntity item}) {
     context.pushNamed(AppRoutes.webView, extra: item);
   }
 }

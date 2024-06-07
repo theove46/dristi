@@ -29,10 +29,16 @@ final sliderProvider = NotifierProvider<SliderNotifier, SliderState>(
   name: 'sliderProvider',
 );
 
+final singleAdvertisementProvider =
+    NotifierProvider<AdvertisementNotifier, AdvertisementState>(
+  AdvertisementNotifier.new,
+  name: 'singleAdvertisementProvider',
+);
+
 final multipleAdvertisementProvider =
     NotifierProvider<AdvertisementNotifier, AdvertisementState>(
   AdvertisementNotifier.new,
-  name: 'advertisementProvider',
+  name: 'multipleAdvertisementProvider',
 );
 
 final topDestinationsProvider =

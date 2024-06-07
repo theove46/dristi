@@ -12,6 +12,34 @@ class AdvertisementNotifier extends Notifier<AdvertisementState> {
     return const AdvertisementState();
   }
 
+  Future<void> getSingleAdvertisementComponents() async {
+    try {
+      state = state.copyWith(
+        status: AdvertisementStatus.loading,
+      );
+
+      final response = await useCase.getSingleAdvertisementComponents();
+
+      if (response.image.isNotEmpty) {
+        state = state.copyWith(
+          data: response,
+          status: AdvertisementStatus.success,
+        );
+      } else {
+        state = state.copyWith(
+          status: AdvertisementStatus.failure,
+        );
+      }
+    } catch (e, stackTrace) {
+      Log.error(e.toString());
+      Log.error(stackTrace.toString());
+
+      state = state.copyWith(
+        status: AdvertisementStatus.failure,
+      );
+    }
+  }
+
   Future<void> getMultipleAdvertisementComponents() async {
     try {
       state = state.copyWith(

@@ -1,27 +1,39 @@
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 
+class SingleAdvertisementResponseModel {
+  SingleAdvertisementResponseModel(this.singleAdvertisementItem);
+
+  SingleAdvertisementResponseModel.fromJson(
+      {required Map<String, dynamic> json})
+      : singleAdvertisementItem =
+            AdvertisementData.fromJsonForSingleAdvertisement(json);
+
+  AdvertisementEntity singleAdvertisementItem;
+}
+
 class MultipleAdvertisementResponseModel {
   MultipleAdvertisementResponseModel(this.multipleAdvertisementItems);
 
   MultipleAdvertisementResponseModel.fromJson({
     required List<dynamic> json,
   }) {
-    multipleAdvertisementItems = <MultipleAdvertisementEntity>[];
+    multipleAdvertisementItems = <AdvertisementEntity>[];
     for (var item in json) {
-      multipleAdvertisementItems.add(MultipleAdvertisementData.fromJson(item));
+      multipleAdvertisementItems
+          .add(AdvertisementData.fromJsonForMultipleAdvertisement(item));
     }
   }
 
-  List<MultipleAdvertisementEntity> multipleAdvertisementItems =
-      <MultipleAdvertisementEntity>[];
+  List<AdvertisementEntity> multipleAdvertisementItems =
+      <AdvertisementEntity>[];
 }
 
-class MultipleAdvertisementData extends MultipleAdvertisementEntity {
+class AdvertisementData extends AdvertisementEntity {
   String? advertisementTitle;
   String? advertisementUrl;
   String? advertisementImage;
 
-  MultipleAdvertisementData({
+  AdvertisementData({
     this.advertisementTitle,
     this.advertisementUrl,
     this.advertisementImage,
@@ -31,8 +43,17 @@ class MultipleAdvertisementData extends MultipleAdvertisementEntity {
           image: advertisementImage ?? "",
         );
 
-  factory MultipleAdvertisementData.fromJson(dynamic json) {
-    return MultipleAdvertisementData(
+  factory AdvertisementData.fromJsonForSingleAdvertisement(
+      Map<String, dynamic> json) {
+    return AdvertisementData(
+      advertisementTitle: json['title'],
+      advertisementUrl: json['url'],
+      advertisementImage: json['image'],
+    );
+  }
+
+  factory AdvertisementData.fromJsonForMultipleAdvertisement(dynamic json) {
+    return AdvertisementData(
       advertisementTitle: json['title'],
       advertisementUrl: json['url'],
       advertisementImage: json['image'],

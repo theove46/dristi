@@ -11,6 +11,6 @@ final advertisementRepositoryProvider = Provider<AdvertisementRepository>(
 );
 
 abstract class AdvertisementRepository {
-  Future<List<MultipleAdvertisementEntity>>
-      getMultipleAdvertisementComponents();
+  Future<AdvertisementEntity> getSingleAdvertisementComponents();
+  Future<List<AdvertisementEntity>> getMultipleAdvertisementComponents();
 }

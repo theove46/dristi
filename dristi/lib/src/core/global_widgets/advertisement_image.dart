@@ -1,39 +1,51 @@
-import 'package:dristi/src/core/base/base_stateful_widget.dart';
-import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
+import 'package:dristi/src/features/home/advertisements/presentation/riverpod/advertisement_state.dart';
+import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class AdvertisementImage extends StatefulWidget {
-  const AdvertisementImage({
-    super.key,
-  });
+class AdvertisementImage extends ConsumerStatefulWidget {
+  const AdvertisementImage({super.key});
 
   @override
-  State<AdvertisementImage> createState() => _AdvertisementImageState();
+  ConsumerState createState() => _AdvertisementImageState();
 }
 
-class _AdvertisementImageState extends BaseStatefulWidget<AdvertisementImage> {
+class _AdvertisementImageState
+    extends BaseConsumerStatefulWidget<AdvertisementImage> {
   @override
   Widget build(BuildContext context) {
+    final advertisementState = ref.watch(singleAdvertisementProvider);
+
+    if (advertisementState.status != AdvertisementStatus.success ||
+        advertisementState.data == null) {
+      return buildSingleAdvertisementShimmer(context);
+    }
+
     return GestureDetector(
       onTap: () {
-        navigateToWebView(item: MultipleAdvertisementEntity.initial());
+        navigateToWebView(item: advertisementState.data);
       },
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Container(
-            height: AppValues.dimen_60.r,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-              color: uiColors.background,
-              image: const DecorationImage(
-                image: AssetImage(Assets.advertiseBanner),
+          SizedBox(
+            height: AppValues.dimen_60.h,
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(AppValues.dimen_10.r),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: advertisementState.data.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -44,18 +56,18 @@ class _AdvertisementImageState extends BaseStatefulWidget<AdvertisementImage> {
               padding: EdgeInsets.only(right: AppValues.dimen_20.w),
               child: Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppValues.dimen_8.r,
+                  horizontal: AppValues.dimen_12.r,
                   vertical: AppValues.dimen_8.r,
                 ),
                 decoration: BoxDecoration(
-                  color: uiColors.shadow.withOpacity(0.8),
+                  color: uiColors.onImage.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(
                     AppValues.dimen_10.r,
                   ),
                 ),
                 child: Text(
                   context.localization.visitNow,
-                  style: appTextStyles.onImageNovaRegular12,
+                  style: appTextStyles.primaryNovaRegular12,
                 ),
               ),
             ),
@@ -65,7 +77,7 @@ class _AdvertisementImageState extends BaseStatefulWidget<AdvertisementImage> {
     );
   }
 
-  void navigateToWebView({required MultipleAdvertisementEntity item}) {
+  void navigateToWebView({required AdvertisementEntity item}) {
     context.pushNamed(AppRoutes.webView, extra: item);
   }
 }
