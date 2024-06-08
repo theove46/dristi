@@ -4,6 +4,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,9 @@ class _ImageSliderBuilderState
       itemBuilder: (context, index, realIndex) {
         final item = carouselItems.data[index];
         return GestureDetector(
-          onTap: navigateToSpotPage,
+          onTap: () {
+            navigateToSpotPage(item);
+          },
           child: Stack(
             alignment: Alignment.topRight,
             children: [
@@ -144,7 +147,7 @@ class _ImageSliderBuilderState
     );
   }
 
-  void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+  void navigateToSpotPage(DestinationEntity item) {
+    context.pushNamed(AppRoutes.spot, extra: item);
   }
 }

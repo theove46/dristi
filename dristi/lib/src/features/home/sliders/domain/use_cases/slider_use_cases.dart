@@ -1,4 +1,4 @@
-import 'package:dristi/src/features/home/sliders/domain/entity/slider_entity.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/sliders/domain/repositories/slider_repositories.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class SliderUseCase {
 
   final SliderRepository repository;
 
-  Future<List<SliderEntity>> getSliderComponents() async {
+  Future<List<DestinationEntity>> getSliderComponents() async {
     return repository.getSliderComponents();
   }
 }
