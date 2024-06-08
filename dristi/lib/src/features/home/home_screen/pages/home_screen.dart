@@ -7,6 +7,7 @@ import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/advertisements/presentation/widgets/advertisement_builder.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
@@ -44,6 +45,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
           .getMultipleAdvertisementComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
       ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref.read(districtProvider.notifier).getDistrictComponents();
     }
   }
 

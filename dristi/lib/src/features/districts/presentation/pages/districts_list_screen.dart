@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
-import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/districts/presentation/widgets/districts_app_bar.dart';
 import 'package:dristi/src/features/districts/presentation/widgets/districts_list.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +16,6 @@ class DistrictsScreen extends ConsumerStatefulWidget {
 
 class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   final TextEditingController _searchFieldController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    Future(() {
-      ref.read(districtProvider.notifier).getDistrictComponents();
-    });
-  }
 
   @override
   void dispose() {

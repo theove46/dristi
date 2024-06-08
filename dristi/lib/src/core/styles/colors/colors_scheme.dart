@@ -43,7 +43,7 @@ const lightColorScheme = ColorScheme(
   // surface
   surface: Color(0xFFeff3f6), // set
   onSurface: Color(0xFFeff3f6), // set
-  surfaceDim: Color(0xFF49beb7), // set
+  surfaceDim: Color(0xFFe2ded3), // set
   inverseSurface: Color(0xFFEBEBF4), // set
   onInverseSurface: Color(0xFFF4F4F4), // set
   onSurfaceVariant: Color(0xFF000000),

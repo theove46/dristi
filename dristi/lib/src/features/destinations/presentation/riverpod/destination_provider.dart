@@ -12,3 +12,13 @@ final destinationsSearchField = StateProvider<String>(
   (ref) => '',
   name: 'destinationsSearchField',
 );
+
+final destinationsCategoryField = StateProvider<String>(
+  (ref) => '',
+  name: 'destinationsCategoryField',
+);
+
+final destinationsDistrictField = StateProvider<String>(
+  (ref) => '',
+  name: 'destinationsDistrictField',
+);

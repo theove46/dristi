@@ -129,14 +129,27 @@ class _DestinationsListState
   List<DestinationEntity> searchDestinations() {
     final destinationModelsItems = ref.watch(destinationProvider);
     final searchFieldState = ref.watch(destinationsSearchField);
+    final categoryFieldState = ref.watch(destinationsCategoryField);
+    final districtFieldState = ref.watch(destinationsDistrictField);
 
     List<DestinationEntity> result = destinationModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
       var checkDistrict = u.district.toLowerCase();
       var checkDivision = u.division.toLowerCase();
-      return checkTitle.contains(searchFieldState.toLowerCase()) ||
-          checkDistrict.contains(searchFieldState.toLowerCase()) ||
-          checkDivision.contains(searchFieldState.toLowerCase());
+      var checkCategory = u.category.toLowerCase();
+
+      bool matchesSearch =
+          checkTitle.contains(searchFieldState.toLowerCase()) ||
+              checkDistrict.contains(searchFieldState.toLowerCase()) ||
+              checkDivision.contains(searchFieldState.toLowerCase());
+
+      bool matchesCategory = categoryFieldState.isEmpty ||
+          checkCategory.contains(categoryFieldState.toLowerCase());
+
+      bool matchesDistrict = districtFieldState.isEmpty ||
+          checkDistrict.contains(districtFieldState.toLowerCase());
+
+      return matchesSearch && matchesCategory && matchesDistrict;
     }).toList();
 
     return result;

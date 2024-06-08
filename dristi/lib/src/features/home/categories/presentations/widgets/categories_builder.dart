@@ -122,7 +122,7 @@ class _CategoriesBuilderState
             ),
             SizedBox(height: AppValues.dimen_4.h),
             Text(
-              categoriesItems.data[index].titleEn,
+              categoriesItems.data[index].title,
               style: appTextStyles.secondaryNovaSemiBold10,
               textAlign: TextAlign.end,
             ),
