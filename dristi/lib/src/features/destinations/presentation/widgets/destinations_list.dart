@@ -3,6 +3,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_state.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ class _DestinationsListState
       return buildDestinationListShimmer(context);
     }
 
+    List<DestinationEntity> fetchResult = searchDestinations();
+
     return SliverPadding(
       padding: EdgeInsets.only(
         left: AppValues.dimen_8.r,
@@ -41,33 +44,31 @@ class _DestinationsListState
         ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return _buildDestinationCard(index);
+            return _buildDestinationCard(fetchResult[index]);
           },
-          childCount: destinationModelsItems.data.length,
+          childCount: fetchResult.length,
         ),
       ),
     );
   }
 
-  Widget _buildDestinationCard(int index) {
+  Widget _buildDestinationCard(DestinationEntity item) {
     return GestureDetector(
       onTap: navigateToSpotPage,
       child: Card(
         child: Stack(
           fit: StackFit.expand,
           children: [
-            _buildImage(index),
+            _buildImage(item),
             _buildGradient(),
-            _buildLabels(index),
+            _buildLabels(item),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildImage(int index) {
-    final destinationModelsItems = ref.watch(destinationProvider);
-    final item = destinationModelsItems.data[index];
+  Widget _buildImage(DestinationEntity item) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
@@ -103,10 +104,7 @@ class _DestinationsListState
     );
   }
 
-  Widget _buildLabels(int index) {
-    final destinationModelsItems = ref.watch(destinationProvider);
-    final item = destinationModelsItems.data[index];
-
+  Widget _buildLabels(DestinationEntity item) {
     return Padding(
       padding: EdgeInsets.all(AppValues.dimen_10.w),
       child: Column(
@@ -124,6 +122,22 @@ class _DestinationsListState
         ],
       ),
     );
+  }
+
+  List<DestinationEntity> searchDestinations() {
+    final destinationModelsItems = ref.watch(destinationProvider);
+    final searchFieldState = ref.watch(destinationsSearchField);
+
+    List<DestinationEntity> result = destinationModelsItems.data.where((u) {
+      var checkTitle = u.title.toLowerCase();
+      var checkDistrict = u.district.toLowerCase();
+      var checkDivision = u.division.toLowerCase();
+      return checkTitle.contains(searchFieldState.toLowerCase()) ||
+          checkDistrict.contains(searchFieldState.toLowerCase()) ||
+          checkDivision.contains(searchFieldState.toLowerCase());
+    }).toList();
+
+    return result;
   }
 
   void navigateToSpotPage() {
