@@ -15,8 +15,7 @@ class DistrictUseCase {
 
   final DistrictRepository repository;
 
-  Future<(String, List<DistrictEntity>?)> getDistrictComponents(
-      {required String searchKey}) async {
-    return repository.getDistrictComponents(searchKey: searchKey);
+  Future<(String, List<DistrictEntity>?)> getDistrictComponents() async {
+    return repository.getDistrictComponents();
   }
 }

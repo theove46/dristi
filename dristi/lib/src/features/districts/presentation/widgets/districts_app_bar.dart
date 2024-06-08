@@ -50,9 +50,6 @@ class _DistrictsAppBarState
           controller: _searchFieldController,
           onChanged: (value) {
             searchFieldNotifier.state = value;
-            ref
-                .read(districtProvider.notifier)
-                .getDistrictComponents(searchKey: value);
           },
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus?.unfocus();
@@ -66,9 +63,6 @@ class _DistrictsAppBarState
                     onTap: () {
                       _searchFieldController.clear();
                       searchFieldNotifier.state = '';
-                      ref
-                          .read(districtProvider.notifier)
-                          .getDistrictComponents(searchKey: '');
                     },
                     child: const Icon(Icons.clear),
                   )

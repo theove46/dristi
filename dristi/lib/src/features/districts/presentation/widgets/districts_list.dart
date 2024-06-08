@@ -1,7 +1,9 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
+import 'package:dristi/src/features/districts/domain/entities/district_entity.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,40 +22,39 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
   Widget build(BuildContext context) {
     final districtModelsState = ref.watch(districtProvider);
 
-    return districtModelsState.data != null
-        ? SliverPadding(
-            padding: EdgeInsets.only(
-              left: AppValues.dimen_8.r,
-              right: AppValues.dimen_8.r,
-              bottom: AppValues.dimen_16.r,
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final int startIndex = index * 2;
-                  final int endIndex = startIndex + 1;
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildDistrictCard(startIndex),
-                      if (endIndex < districtModelsState.data.length)
-                        _buildDistrictCard(endIndex),
-                    ],
-                  );
-                },
-                childCount: (districtModelsState.data.length / 2).ceil(),
-              ),
-            ),
-          )
-        : const SliverToBoxAdapter(
-            child: SizedBox.shrink(),
-          );
+    if (districtModelsState.data == null) {
+      return buildDistrictListShimmer(context);
+    }
+
+    List<DistrictEntity> fetchResult = searchDistricts();
+
+    return SliverPadding(
+      padding: EdgeInsets.only(
+        left: AppValues.dimen_8.r,
+        right: AppValues.dimen_8.r,
+        bottom: AppValues.dimen_16.r,
+      ),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            final int startIndex = index * 2;
+            final int endIndex = startIndex + 1;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildDistrictCard(fetchResult[startIndex]),
+                if (endIndex < fetchResult.length)
+                  _buildDistrictCard(fetchResult[endIndex]),
+              ],
+            );
+          },
+          childCount: (fetchResult.length / 2).ceil(),
+        ),
+      ),
+    );
   }
 
-  Widget _buildDistrictCard(int index) {
-    final districtModelsState = ref.watch(districtProvider);
-    final item = districtModelsState.data[index];
-
+  Widget _buildDistrictCard(DistrictEntity item) {
     return Expanded(
       child: Card(
         child: Container(
@@ -86,6 +87,22 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
         ),
       ),
     );
+  }
+
+  List<DistrictEntity> searchDistricts() {
+    final districtModelsState = ref.watch(districtProvider);
+    final searchFieldState = ref.watch(districtsSearchField);
+
+    List<DistrictEntity> result = districtModelsState.data.where((u) {
+      var checkTitle = u.title.toLowerCase();
+      var checkDistrict = u.title.toLowerCase();
+      var checkDivision = u.division.toLowerCase();
+      return checkTitle.contains(searchFieldState.toLowerCase()) ||
+          checkDistrict.contains(searchFieldState.toLowerCase()) ||
+          checkDivision.contains(searchFieldState.toLowerCase());
+    }).toList();
+
+    return result;
   }
 
   void navigateToDestinationsPage() {

@@ -22,7 +22,7 @@ class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
   void initState() {
     super.initState();
     Future(() {
-      ref.read(districtProvider.notifier).getDistrictComponents(searchKey: '');
+      ref.read(districtProvider.notifier).getDistrictComponents();
     });
   }
 

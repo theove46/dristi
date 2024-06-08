@@ -281,3 +281,12 @@ Widget buildDestinationListShimmer(BuildContext context) {
     itemCount: 8,
   );
 }
+
+Widget buildDistrictListShimmer(BuildContext context) {
+  return buildGridViewShimmer(
+    context: context,
+    height: AppValues.dimen_30.r,
+    width: AppValues.dimen_80.r,
+    itemCount: 12,
+  );
+}
