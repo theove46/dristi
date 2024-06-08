@@ -67,7 +67,7 @@ class _AdvertisementImageState
                 ),
                 child: Text(
                   context.localization.visitNow,
-                  style: appTextStyles.primaryNovaRegular12,
+                  style: appTextStyles.onImageShadowNovaRegular12,
                 ),
               ),
             ),

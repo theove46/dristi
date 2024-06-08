@@ -60,6 +60,10 @@ class AppTextStyles {
         color: UIColors.blushText(context),
       );
 
+  TextStyle get onImageShadowNovaRegular => _novaRegular.copyWith(
+        color: UIColors.onImageShadowText(context),
+      );
+
   TextStyle get onImageNovaRegular => _novaRegular.copyWith(
         color: UIColors.onImageText(context),
       );
@@ -132,6 +136,11 @@ class AppTextStyles {
 
   TextStyle get blushNovaRegular12 =>
       blushNovaRegular.copyWith(fontSize: 12.sp);
+
+  // Shadow color
+
+  TextStyle get onImageShadowNovaRegular12 =>
+      onImageShadowNovaRegular.copyWith(fontSize: 12.sp);
 
   // OnImage / Always White Color texts
 
