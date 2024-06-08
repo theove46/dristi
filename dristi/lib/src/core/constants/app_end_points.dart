@@ -13,4 +13,5 @@ class API {
   static const String splash = '/splash_screens.json';
   static const String spotComponents = '/spot_components.json';
   static const String topDestinations = '/top_destinations.json';
+  static const String destinations = '/destinations.json';
 }

@@ -2,18 +2,17 @@ import 'package:dristi/src/features/destinations/data/data_sources/destinations_
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/destinations/domain/repositories/destination_repositories.dart';
 
-class DestinationRepositoryImp implements DestinationRepository {
-  const DestinationRepositoryImp({
+class DestinationsRepositoryImp implements DestinationsRepository {
+  const DestinationsRepositoryImp({
     required this.dataSource,
   });
 
-  final DestinationDataSource dataSource;
+  final DestinationsDataSource dataSource;
 
   @override
-  Future<(String, List<DestinationEntity>?)> getDestinationComponents() async {
-    final response = await dataSource.destinationComponents();
+  Future<List<DestinationEntity>> getDestinationsComponents() async {
+    final response = await dataSource.destinationsComponents();
 
-    return Future.value(
-        (response.statusMessage!, response.data as List<DestinationEntity>?));
+    return response.destinationsItems;
   }
 }

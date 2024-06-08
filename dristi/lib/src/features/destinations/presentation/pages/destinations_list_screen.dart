@@ -50,7 +50,6 @@ class _DestinationPageState
               ),
               // _buildAdvertisement(), // For Future Usage
               DestinationsList(),
-              // _buildDestinationsList(),
             ],
           ),
         ),

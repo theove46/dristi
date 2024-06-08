@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
-import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/destinations/presentation/riverpod/destination_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,31 +21,32 @@ class _DestinationsListState
     extends BaseConsumerStatefulWidget<DestinationsList> {
   @override
   Widget build(BuildContext context) {
-    final destinationModelsState = ref.watch(destinationProvider);
+    final destinationModelsItems = ref.watch(destinationProvider);
 
-    return destinationModelsState.data != null
-        ? SliverPadding(
-            padding: EdgeInsets.only(
-              left: AppValues.dimen_8.r,
-              right: AppValues.dimen_8.r,
-              bottom: AppValues.dimen_16.r,
-            ),
-            sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: AppValues.dimen_80.w / AppValues.dimen_100.w,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return _buildDestinationCard(index);
-                },
-                childCount: destinationModelsState.data.length,
-              ),
-            ),
-          )
-        : const SliverToBoxAdapter(
-            child: SizedBox.shrink(),
-          );
+    if (destinationModelsItems.status != DestinationStatus.success ||
+        destinationModelsItems.data == null) {
+      return buildDestinationListShimmer(context);
+    }
+
+    return SliverPadding(
+      padding: EdgeInsets.only(
+        left: AppValues.dimen_8.r,
+        right: AppValues.dimen_8.r,
+        bottom: AppValues.dimen_16.r,
+      ),
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: AppValues.dimen_80.r / AppValues.dimen_100.r,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return _buildDestinationCard(index);
+          },
+          childCount: destinationModelsItems.data.length,
+        ),
+      ),
+    );
   }
 
   Widget _buildDestinationCard(int index) {
@@ -54,7 +56,7 @@ class _DestinationsListState
         child: Stack(
           fit: StackFit.expand,
           children: [
-            _buildImage(),
+            _buildImage(index),
             _buildGradient(),
             _buildLabels(index),
           ],
@@ -63,7 +65,9 @@ class _DestinationsListState
     );
   }
 
-  Widget _buildImage() {
+  Widget _buildImage(int index) {
+    final destinationModelsItems = ref.watch(destinationProvider);
+    final item = destinationModelsItems.data[index];
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
@@ -73,8 +77,8 @@ class _DestinationsListState
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-        child: const AssetImageView(
-          fileName: Assets.nilgiri,
+        child: CachedNetworkImage(
+          imageUrl: item.image,
           fit: BoxFit.cover,
         ),
       ),
@@ -100,8 +104,8 @@ class _DestinationsListState
   }
 
   Widget _buildLabels(int index) {
-    final destinationModelsState = ref.watch(destinationProvider);
-    final item = destinationModelsState.data[index];
+    final destinationModelsItems = ref.watch(destinationProvider);
+    final item = destinationModelsItems.data[index];
 
     return Padding(
       padding: EdgeInsets.all(AppValues.dimen_10.w),
@@ -114,7 +118,7 @@ class _DestinationsListState
             style: appTextStyles.onImageNovaSemiBold16,
           ),
           Text(
-            item.division,
+            item.district,
             style: appTextStyles.onImageNovaRegular12,
           ),
         ],

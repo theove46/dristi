@@ -1,13 +1,13 @@
-import 'package:dio/dio.dart';
 import 'package:dristi/src/features/destinations/data/data_sources/destinations_data_source_impl.dart';
+import 'package:dristi/src/features/destinations/data/models/destination_response_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final destinationDataSourceProvider = Provider<DestinationDataSource>(
+final destinationsDataSourceProvider = Provider<DestinationsDataSource>(
   (ref) {
-    return const DestinationDataSourceImp();
+    return DestinationsDataSourceImp();
   },
 );
 
-abstract class DestinationDataSource {
-  Future<Response> destinationComponents();
+abstract class DestinationsDataSource {
+  Future<DestinationsResponseModel> destinationsComponents();
 }

@@ -3,13 +3,13 @@ import 'package:dristi/src/features/destinations/data/repositories/destination_r
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final destinationRepositoryProvider = Provider<DestinationRepository>(
+final destinationsRepositoryProvider = Provider<DestinationsRepository>(
   (ref) {
-    final dataSource = ref.read(destinationDataSourceProvider);
-    return DestinationRepositoryImp(dataSource: dataSource);
+    final dataSource = ref.read(destinationsDataSourceProvider);
+    return DestinationsRepositoryImp(dataSource: dataSource);
   },
 );
 
-abstract class DestinationRepository {
-  Future<(String, List<DestinationEntity>?)> getDestinationComponents();
+abstract class DestinationsRepository {
+  Future<List<DestinationEntity>> getDestinationsComponents();
 }
