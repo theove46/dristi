@@ -4,6 +4,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +108,9 @@ class _TopDestinationBuilderState
   }
 
   void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+    context.pushNamed(
+      AppRoutes.spot,
+      extra: DestinationEntity.initial(),
+    );
   }
 }

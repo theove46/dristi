@@ -1,12 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
-import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SpotImage extends StatefulWidget {
-  const SpotImage({super.key});
+  const SpotImage({
+    required this.destination,
+    super.key,
+  });
+
+  final DestinationEntity destination;
 
   @override
   State<SpotImage> createState() => _SpotImageState();
@@ -27,8 +32,8 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
 
   Widget _buildBackgroundImage() {
     return ClipRRect(
-      child: AssetImageView(
-        fileName: Assets.coxsBazar,
+      child: CachedNetworkImage(
+        imageUrl: widget.destination.image,
         fit: BoxFit.cover,
         height: AppValues.dimen_500.h,
         width: double.infinity,
@@ -56,8 +61,8 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
                 borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
-                  child: const AssetImageView(
-                    fileName: Assets.coxsBazar,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.destination.image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -83,7 +88,7 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          "Saint Martins Island",
+          widget.destination.title,
           style: appTextStyles.onImageBoldShadow44,
         ),
       ),

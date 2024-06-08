@@ -54,7 +54,9 @@ class _DestinationsListState
 
   Widget _buildDestinationCard(DestinationEntity item) {
     return GestureDetector(
-      onTap: navigateToSpotPage,
+      onTap: () {
+        navigateToSpotPage(item);
+      },
       child: Card(
         child: Stack(
           fit: StackFit.expand,
@@ -140,7 +142,7 @@ class _DestinationsListState
     return result;
   }
 
-  void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+  void navigateToSpotPage(DestinationEntity item) {
+    context.pushNamed(AppRoutes.spot, extra: item);
   }
 }

@@ -2,6 +2,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
@@ -12,7 +13,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SpotScreen extends ConsumerStatefulWidget {
-  const SpotScreen({super.key});
+  const SpotScreen({
+    required this.destination,
+    super.key,
+  });
+
+  final DestinationEntity destination;
 
   @override
   ConsumerState createState() => _SpotPageState();
@@ -35,7 +41,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          const SpotImage(),
+          SpotImage(destination: widget.destination),
           _buildDescription(),
           const TopScreenIcons(),
         ],
@@ -65,7 +71,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                   const AdvertisementImage(),
                   const DescriptionItemsBuilder(),
                   Text(
-                    "Nil Giri",
+                    widget.destination.title,
                     style: appTextStyles.primaryNovaBold28,
                   ),
                   SizedBox(height: AppValues.dimen_10.h),
@@ -76,7 +82,7 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
                         color: uiColors.primary,
                       ),
                       Text(
-                        ' Bandarban, Chattogram',
+                        "${widget.destination.district}, ${widget.destination.division}",
                         style: appTextStyles.primaryNovaBold16,
                       ),
                     ],
