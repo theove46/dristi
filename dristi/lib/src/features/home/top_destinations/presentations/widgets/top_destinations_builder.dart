@@ -72,7 +72,9 @@ class _TopDestinationBuilderState
           return Padding(
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
-              onTap: navigateToSpotPage,
+              onTap: () {
+                navigateToSpotPage(item);
+              },
               child: Column(
                 children: [
                   ClipRRect(
@@ -87,7 +89,7 @@ class _TopDestinationBuilderState
                   SizedBox(
                     width: AppValues.dimen_75.r,
                     child: Text(
-                      item.titleEn,
+                      item.title,
                       style: appTextStyles.secondaryNovaRegular12,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -107,10 +109,10 @@ class _TopDestinationBuilderState
     context.pushNamed(AppRoutes.destination);
   }
 
-  void navigateToSpotPage() {
+  void navigateToSpotPage(DestinationEntity item) {
     context.pushNamed(
       AppRoutes.spot,
-      extra: DestinationEntity.initial(),
+      extra: item,
     );
   }
 }
