@@ -1,15 +1,15 @@
 [
   {
+    "title": "Plans",
+    "image": "assets/images/spot_items/plans.png"
+  },
+  {
     "title": "Hotels",
     "image": "assets/images/spot_items/hotel.png"
   },
   {
     "title": "Nearest",
     "image": "assets/images/spot_items/nearest.png"
-  },
-  {
-    "title": "Plans",
-    "image": "assets/images/spot_items/plans.png"
   },
   {
     "title": "Seasons",
