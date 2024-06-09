@@ -1,13 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
-import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
+import 'package:dristi/src/features/drawer/presentation/widgets/drawer_builder.dart';
 import 'package:dristi/src/features/home/advertisements/presentation/widgets/advertisement_builder.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
@@ -52,6 +51,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerBuilder(),
       body: RefreshIndicator(
         onRefresh: _getComponents,
         child: CustomScrollView(
@@ -60,26 +60,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
             const SliverToBoxAdapter(
               child: NetworkErrorAlert(),
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: AppValues.dimen_16.r,
-                  right: AppValues.dimen_16.r,
-                  bottom: AppValues.dimen_16.r,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SliderBuilder(),
-                    _buildTitleMessage(),
-                    const CategoriesBuilder(),
-                    const AdvertisementBuilder(),
-                    const TopDestinationBuilder(),
-                    const PopularDistrictsBuilder(),
-                  ],
-                ),
-              ),
-            ),
+            _buildSliverBody(),
           ],
         ),
       ),
@@ -94,21 +75,27 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
         background: _buildAppBar(),
       ),
       expandedHeight: AppValues.dimen_70.h,
+      automaticallyImplyLeading: false,
     );
   }
 
   Widget _buildAppBar() {
     return AppBar(
-      leading: IconButton(
-        icon: AssetImageView(
-          fileName: Assets.menu,
-          fit: BoxFit.cover,
-          height: AppValues.dimen_30.r,
-          width: AppValues.dimen_30.r,
-          color: uiColors.primary,
-        ),
-        onPressed: () {},
-      ),
+      // Leading Icon Image
+
+      // leading: IconButton(
+      //   icon: AssetImageView(
+      //     fileName: Assets.menu,
+      //     fit: BoxFit.cover,
+      //     height: AppValues.dimen_30.r,
+      //     width: AppValues.dimen_30.r,
+      //     color: uiColors.primary,
+      //   ),
+      //   onPressed: () {
+      //     Scaffold.of(context).openDrawer();
+      //   },
+      // ),
+
       title: GestureDetector(
         onTap: () {
           context.pushNamed(AppRoutes.destination);
@@ -143,6 +130,29 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSliverBody() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppValues.dimen_16.r,
+          right: AppValues.dimen_16.r,
+          bottom: AppValues.dimen_16.r,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SliderBuilder(),
+            _buildTitleMessage(),
+            const CategoriesBuilder(),
+            const AdvertisementBuilder(),
+            const TopDestinationBuilder(),
+            const PopularDistrictsBuilder(),
+          ],
         ),
       ),
     );
