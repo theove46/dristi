@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/popular_districts/presentations/riverpod/popular_districts_state.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +74,9 @@ class _PopularCitiesBuilderState
           return Padding(
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
-              onTap: navigateToDestinationsPage,
+              onTap: () {
+                navigateToDestinationsPage(item.titleEn);
+              },
               child: Column(
                 children: [
                   ClipRRect(
@@ -106,7 +111,12 @@ class _PopularCitiesBuilderState
     context.pushNamed(AppRoutes.districts);
   }
 
-  void navigateToDestinationsPage() {
-    context.pushNamed(AppRoutes.destination);
+  void navigateToDestinationsPage(String title) {
+    ref.watch(destinationsDistrictField);
+    ref.read(destinationsDistrictField.notifier).state = title;
+    final networkState = ref.watch(networkStatusProvider);
+    if (networkState.value?.first != ConnectivityResult.none) {
+      context.pushNamed(AppRoutes.destination);
+    }
   }
 }
