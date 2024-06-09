@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesBuilder extends ConsumerStatefulWidget {
   const CategoriesBuilder({super.key});
@@ -104,29 +107,34 @@ class _CategoriesBuilderState
   Widget _buildItems(int index) {
     final categoriesItems = ref.watch(categoriesProvider);
 
-    return SizedBox(
-      width: AppValues.dimen_80.r,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
-              child: CachedNetworkImage(
-                imageUrl: categoriesItems.data[index].image,
-                width: AppValues.dimen_60.r,
-                height: AppValues.dimen_60.r,
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        navigateToDestinationsPage(categoriesItems.data[index].title);
+      },
+      child: SizedBox(
+        width: AppValues.dimen_80.r,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: AppValues.dimen_10.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(AppValues.dimen_6.r),
+                child: CachedNetworkImage(
+                  imageUrl: categoriesItems.data[index].image,
+                  width: AppValues.dimen_60.r,
+                  height: AppValues.dimen_60.r,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(height: AppValues.dimen_4.h),
-            Text(
-              categoriesItems.data[index].title,
-              style: appTextStyles.secondaryNovaSemiBold10,
-              textAlign: TextAlign.end,
-            ),
-          ],
+              SizedBox(height: AppValues.dimen_4.h),
+              Text(
+                categoriesItems.data[index].title,
+                style: appTextStyles.secondaryNovaSemiBold10,
+                textAlign: TextAlign.end,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -138,7 +146,7 @@ class _CategoriesBuilderState
     return Positioned(
       bottom: -AppValues.dimen_8.h,
       child: GestureDetector(
-        onTap: _onTap,
+        onTap: _onTapExpandedButton,
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -162,7 +170,7 @@ class _CategoriesBuilderState
     );
   }
 
-  void _onTap() {
+  void _onTapExpandedButton() {
     final boxNotifier = ref.read(categoriesBoxHeight.notifier);
     final expandNotifier = ref.read(categoriesExpanded.notifier);
 
@@ -172,5 +180,11 @@ class _CategoriesBuilderState
       boxNotifier.state = AppValues.dimen_360.h;
     }
     expandNotifier.state = !expandNotifier.state;
+  }
+
+  void navigateToDestinationsPage(String title) {
+    ref.watch(destinationsCategoryField);
+    ref.read(destinationsCategoryField.notifier).state = title;
+    context.pushNamed(AppRoutes.destination);
   }
 }

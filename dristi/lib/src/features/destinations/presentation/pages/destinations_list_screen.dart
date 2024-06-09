@@ -30,9 +30,19 @@ class _DestinationPageState
   }
 
   Future<void> _getDestinationComponents() async {
-    final state = ref.watch(networkStatusProvider);
-    if (state.value?.first != ConnectivityResult.none) {
+    final networkState = ref.watch(networkStatusProvider);
+    if (networkState.value?.first != ConnectivityResult.none) {
       ref.read(destinationProvider.notifier).getDestinationComponents();
+    }
+
+    final categoryState = ref.watch(destinationsCategoryField);
+    if (categoryState.isNotEmpty) {
+      categoryController.text = categoryState;
+    }
+
+    final districtState = ref.watch(destinationsDistrictField);
+    if (districtState.isNotEmpty) {
+      districtController.text = districtState;
     }
   }
 
