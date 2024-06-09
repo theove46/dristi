@@ -1,6 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
@@ -109,6 +111,9 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
   void navigateToDestinationsPage(String title) {
     ref.watch(destinationsDistrictField);
     ref.read(destinationsDistrictField.notifier).state = title;
-    context.pushNamed(AppRoutes.destination);
+    final networkState = ref.watch(networkStatusProvider);
+    if (networkState.value?.first != ConnectivityResult.none) {
+      context.pushNamed(AppRoutes.destination);
+    }
   }
 }

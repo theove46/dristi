@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
@@ -156,6 +158,9 @@ class _DestinationsListState
   }
 
   void navigateToSpotPage(DestinationEntity item) {
-    context.pushNamed(AppRoutes.spot, extra: item);
+    final networkState = ref.watch(networkStatusProvider);
+    if (networkState.value?.first != ConnectivityResult.none) {
+      context.pushNamed(AppRoutes.spot, extra: item);
+    }
   }
 }
