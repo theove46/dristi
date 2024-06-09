@@ -104,6 +104,7 @@ Widget buildGridViewShimmer({
             padding: EdgeInsets.only(
               left: AppValues.dimen_8.r,
               right: AppValues.dimen_8.r,
+              top: AppValues.dimen_8.r,
               bottom: AppValues.dimen_16.r,
             ),
             child: buildShimmerContainer(
@@ -278,7 +279,7 @@ Widget buildDestinationListShimmer(BuildContext context) {
     context: context,
     height: AppValues.dimen_100.r,
     width: AppValues.dimen_80.r,
-    itemCount: 8,
+    itemCount: 6,
   );
 }
 
