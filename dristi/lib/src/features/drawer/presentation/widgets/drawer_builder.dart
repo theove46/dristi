@@ -1,4 +1,6 @@
+import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/drawer/presentation/riverpod/drawer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
@@ -26,7 +28,6 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
               top: AppValues.dimen_60.r,
               bottom: AppValues.dimen_10.r,
               left: AppValues.dimen_16.r,
-              right: AppValues.dimen_16.r,
             ),
             child: Align(
                 alignment: Alignment.centerLeft,
@@ -48,41 +49,62 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 )),
           ),
           _buildExpansionTile(
-            title: 'Theme',
+            title: context.localization.theme,
             children: [
-              _buildThemeButton('Default', 'theme', 'default'),
-              _buildThemeButton('Light', 'theme', 'light'),
-              _buildThemeButton('Dark', 'theme', 'dark'),
+              _buildThemeButton(
+                context.localization.systemDefault,
+                AppTheme.systemDefault,
+              ),
+              _buildThemeButton(
+                context.localization.light,
+                AppTheme.light,
+              ),
+              _buildThemeButton(
+                context.localization.dark,
+                AppTheme.dark,
+              ),
             ],
           ),
           _buildExpansionTile(
-            title: 'Language',
+            title: context.localization.language,
             children: [
-              _buildLanguageButton('English', 'language', 'en'),
-              _buildLanguageButton('Bengali', 'language', 'bn'),
+              _buildLanguageButton(
+                context.localization.english,
+                AppLanguages.en,
+              ),
+              _buildLanguageButton(
+                context.localization.bengali,
+                AppLanguages.bn,
+              ),
             ],
           ),
           ListTile(
             title: Text(
-              'Favourite places',
-              style: appTextStyles.secondaryNovaSemiBold16,
+              context.localization.favouritePlaces,
+              style: appTextStyles.secondaryNovaRegular16,
             ),
-            trailing: Icon(
-              Icons.favorite_border,
-              color: uiColors.primary,
-              size: AppValues.dimen_20.sp,
+            trailing: Padding(
+              padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+              child: Icon(
+                Icons.favorite_border_outlined,
+                color: uiColors.primary,
+                size: AppValues.dimen_20.sp,
+              ),
             ),
             onTap: () {},
           ),
           ListTile(
             title: Text(
-              'Contact us',
-              style: appTextStyles.secondaryNovaSemiBold16,
+              context.localization.contactUs,
+              style: appTextStyles.secondaryNovaRegular16,
             ),
-            trailing: Icon(
-              Icons.info_outlined,
-              color: uiColors.primary,
-              size: AppValues.dimen_20.sp,
+            trailing: Padding(
+              padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+              child: Icon(
+                Icons.contact_mail_outlined,
+                color: uiColors.primary,
+                size: AppValues.dimen_20.sp,
+              ),
             ),
             onTap: () {},
           ),
@@ -98,7 +120,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     return ExpansionTile(
       title: Text(
         title,
-        style: appTextStyles.secondaryNovaSemiBold16,
+        style: appTextStyles.secondaryNovaRegular16,
       ),
       shape: const Border(),
       collapsedIconColor: uiColors.primary,
@@ -108,8 +130,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
 
   Widget _buildThemeButton(
     String text,
-    String groupValue,
-    String value,
+    AppTheme value,
   ) {
     final selectedThemeState = ref.watch(themeProvider);
     final selectedThemeNotifier = ref.read(themeProvider.notifier);
@@ -117,9 +138,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     return ListTile(
       title: Text(
         text,
-        style: appTextStyles.secondaryNovaSemiBold12,
+        style: appTextStyles.secondaryNovaRegular12,
       ),
-      trailing: Radio<String>(
+      trailing: Radio<AppTheme>(
         value: value,
         groupValue: selectedThemeState,
         onChanged: (val) {
@@ -138,8 +159,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
 
   Widget _buildLanguageButton(
     String text,
-    String groupValue,
-    String value,
+    AppLanguages value,
   ) {
     final selectedLanguageState = ref.watch(languageProvider);
     final selectedLanguageNotifier = ref.read(languageProvider.notifier);
@@ -147,9 +167,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     return ListTile(
       title: Text(
         text,
-        style: appTextStyles.secondaryNovaSemiBold12,
+        style: appTextStyles.secondaryNovaRegular12,
       ),
-      trailing: Radio<String>(
+      trailing: Radio<AppLanguages>(
         value: value,
         groupValue: selectedLanguageState,
         onChanged: (val) {
