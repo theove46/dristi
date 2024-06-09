@@ -9,5 +9,5 @@ final districtDataSourceProvider = Provider<DistrictDataSource>(
 );
 
 abstract class DistrictDataSource {
-  Future<Response> districtComponents();
+  Future<Response> getDistrictComponents();
 }

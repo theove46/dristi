@@ -4,6 +4,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,17 @@ class _ImageSliderBuilderState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildCarouselSlider(),
-        SizedBox(height: AppValues.dimen_10.h),
-        _buildSliderIndicator(),
+        Stack(
+          children: [
+            _buildCarouselSlider(),
+            Positioned(
+              bottom: AppValues.dimen_16.h,
+              left: AppValues.dimen_16.w,
+              child: _buildSliderIndicator(),
+            ),
+          ],
+        ),
+        SizedBox(height: AppValues.dimen_4.h),
       ],
     );
   }
@@ -45,7 +54,9 @@ class _ImageSliderBuilderState
       itemBuilder: (context, index, realIndex) {
         final item = carouselItems.data[index];
         return GestureDetector(
-          onTap: navigateToSpotPage,
+          onTap: () {
+            navigateToSpotPage(item);
+          },
           child: Stack(
             alignment: Alignment.topRight,
             children: [
@@ -109,29 +120,34 @@ class _ImageSliderBuilderState
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         carouselItems.data.length,
-        (index) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
-          child: Container(
-            height: AppValues.dimen_8.h,
-            width: currentSliderState == index
-                ? AppValues.dimen_50.w
-                : AppValues.dimen_30.w,
-            decoration: BoxDecoration(
-              color: currentSliderState == index
-                  ? uiColors.primary
-                  : uiColors.secondary,
-              borderRadius: BorderRadius.circular(AppValues.dimen_2.r),
-              border: Border.all(
-                color: uiColors.primary,
+        (index) {
+          double width;
+
+          if (index == currentSliderState) {
+            width = AppValues.dimen_40.r;
+          } else {
+            width = AppValues.dimen_6.r;
+          }
+
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
+            child: Container(
+              height: AppValues.dimen_6.r,
+              width: width,
+              decoration: BoxDecoration(
+                color: currentSliderState == index
+                    ? uiColors.onImage
+                    : uiColors.onImage.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(AppValues.dimen_5.r),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+  void navigateToSpotPage(DestinationEntity item) {
+    context.pushNamed(AppRoutes.spot, extra: item);
   }
 }

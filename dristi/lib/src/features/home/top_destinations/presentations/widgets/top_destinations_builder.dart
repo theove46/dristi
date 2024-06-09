@@ -4,6 +4,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/top_destinations/presentations/riverpod/top_destinations_state.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,9 @@ class _TopDestinationBuilderState
           return Padding(
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
-              onTap: navigateToSpotPage,
+              onTap: () {
+                navigateToSpotPage(item);
+              },
               child: Column(
                 children: [
                   ClipRRect(
@@ -86,7 +89,7 @@ class _TopDestinationBuilderState
                   SizedBox(
                     width: AppValues.dimen_75.r,
                     child: Text(
-                      item.titleEn,
+                      item.title,
                       style: appTextStyles.secondaryNovaRegular12,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -106,7 +109,10 @@ class _TopDestinationBuilderState
     context.pushNamed(AppRoutes.destination);
   }
 
-  void navigateToSpotPage() {
-    context.pushNamed(AppRoutes.spot);
+  void navigateToSpotPage(DestinationEntity item) {
+    context.pushNamed(
+      AppRoutes.spot,
+      extra: item,
+    );
   }
 }

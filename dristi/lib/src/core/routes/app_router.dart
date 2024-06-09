@@ -1,9 +1,12 @@
 import 'package:dristi/src/core/global_widgets/error_screen.dart';
+import 'package:dristi/src/core/global_widgets/web_view_screen.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
+import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
@@ -16,6 +19,7 @@ abstract class _Path {
   static const String spot = '/spot';
   static const String districts = '/districts';
   static const String destination = '/destination';
+  static const String webView = '/webView';
   static const String error = '/error';
 }
 
@@ -37,7 +41,12 @@ GoRouter appRouter = GoRouter(
     GoRoute(
       path: _Path.spot,
       name: AppRoutes.spot,
-      builder: (context, state) => const SpotScreen(),
+      builder: (BuildContext context, GoRouterState state) {
+        final destination = state.extra as DestinationEntity;
+        return SpotScreen(
+          destination: destination,
+        );
+      },
     ),
     GoRoute(
       path: _Path.districts,
@@ -48,6 +57,16 @@ GoRouter appRouter = GoRouter(
       path: _Path.destination,
       name: AppRoutes.destination,
       builder: (context, state) => const DestinationScreen(),
+    ),
+    GoRoute(
+      path: _Path.webView,
+      name: AppRoutes.webView,
+      builder: (BuildContext context, GoRouterState state) {
+        final name = state.extra as AdvertisementEntity;
+        return WebViewScreen(
+          item: name,
+        );
+      },
     ),
     GoRoute(
       path: _Path.error,

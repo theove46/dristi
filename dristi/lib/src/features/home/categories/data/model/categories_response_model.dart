@@ -16,25 +16,21 @@ class CategoriesResponseModel {
 }
 
 class CategoryData extends CategoryEntity {
-  String? sliderTitleEn;
-  String? sliderTitleBn;
-  String? sliderImage;
+  String? categoryTitle;
+  String? categoryImage;
 
   CategoryData({
-    this.sliderTitleEn,
-    this.sliderTitleBn,
-    this.sliderImage,
+    this.categoryTitle,
+    this.categoryImage,
   }) : super(
-          titleEn: sliderTitleEn ?? "",
-          titleBn: sliderTitleBn ?? "",
-          image: sliderImage ?? "",
+          title: categoryTitle ?? "",
+          image: categoryImage ?? "",
         );
 
   factory CategoryData.fromJson(dynamic json) {
     return CategoryData(
-      sliderTitleEn: json['title_en'],
-      sliderTitleBn: json['title_bn'],
-      sliderImage: json['image'],
+      categoryTitle: json['title'],
+      categoryImage: json['image'],
     );
   }
 }

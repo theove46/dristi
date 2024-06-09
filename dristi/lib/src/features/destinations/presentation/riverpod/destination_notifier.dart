@@ -4,21 +4,26 @@ import 'package:dristi/src/features/destinations/presentation/riverpod/destinati
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DestinationNotifier extends Notifier<DestinationState> {
-  late DestinationUseCase useCase;
+  late DestinationsUseCase useCase;
 
   @override
   DestinationState build() {
-    useCase = ref.read(destinationUseCaseProvider);
+    useCase = ref.read(destinationsUseCaseProvider);
     return const DestinationState();
   }
 
   Future<void> getDestinationComponents() async {
     try {
-      final response = await useCase.getDestinationComponents();
+      state = state.copyWith(
+        status: DestinationStatus.loading,
+      );
 
-      if (response.$1.isEmpty) {
+      final response = await useCase.getDestinationsComponents();
+
+      if (response.isNotEmpty) {
         state = state.copyWith(
-          data: response.$2,
+          data: response,
+          status: DestinationStatus.success,
         );
       } else {
         state = state.copyWith(

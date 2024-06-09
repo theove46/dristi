@@ -11,7 +11,7 @@ class DistrictDataSourceImp implements DistrictDataSource {
   const DistrictDataSourceImp();
 
   @override
-  Future<Response> districtComponents() async {
+  Future<Response> getDistrictComponents() async {
     try {
       String response = await rootBundle.loadString(Assets.districtComponents);
       Log.debug(response.toString());

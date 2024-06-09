@@ -7,6 +7,8 @@ import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
+import 'package:dristi/src/features/home/advertisements/presentation/widgets/advertisement_builder.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
 import 'package:dristi/src/features/home/sliders/presentations/widgets/slider_builder.dart';
@@ -36,10 +38,14 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   Future<void> _getComponents() async {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
-      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
       ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref
+          .read(multipleAdvertisementProvider.notifier)
+          .getMultipleAdvertisementComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref.read(districtProvider.notifier).getDistrictComponents();
     }
   }
 
@@ -67,6 +73,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
                     const SliderBuilder(),
                     _buildTitleMessage(),
                     const CategoriesBuilder(),
+                    const AdvertisementBuilder(),
                     const TopDestinationBuilder(),
                     const PopularDistrictsBuilder(),
                   ],
@@ -109,11 +116,17 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
         child: Padding(
           padding: EdgeInsets.only(right: AppValues.dimen_16.w),
           child: Container(
-            height: AppValues.dimen_56.h,
+            height: AppValues.dimen_50.h,
             width: double.infinity,
             decoration: BoxDecoration(
+              color: uiColors.scrim,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  AppValues.dimen_10.r,
+                ),
+              ),
               border: Border.all(
-                color: uiColors.primary,
+                color: uiColors.scrim,
                 width: 1.0,
               ),
             ),
@@ -124,7 +137,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
                   const Icon(Icons.search),
                   Text(
                     context.localization.search,
-                    style: appTextStyles.blushNovaRegular16,
+                    style: appTextStyles.blushNovaRegular12,
                   ),
                 ],
               ),
@@ -141,9 +154,8 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
       children: [
         Text(
           context.localization.exploreThe,
-          style: appTextStyles.primaryNovaBold24,
+          style: appTextStyles.primaryNovaBold20,
         ),
-        SizedBox(height: AppValues.dimen_10.h),
         Text(
           context.localization.beautifulBD,
           style: appTextStyles.primaryNovaBold28,

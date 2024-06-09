@@ -8,7 +8,17 @@ final destinationProvider =
   name: 'districtProvider',
 );
 
-final destinationsSearchField = StateProvider<String>(
+final destinationsSearchField = StateProvider.autoDispose<String>(
   (ref) => '',
   name: 'destinationsSearchField',
+);
+
+final destinationsCategoryField = StateProvider.autoDispose<String>(
+  (ref) => '',
+  name: 'destinationsCategoryField',
+);
+
+final destinationsDistrictField = StateProvider.autoDispose<String>(
+  (ref) => '',
+  name: 'destinationsDistrictField',
 );

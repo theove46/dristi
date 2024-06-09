@@ -8,7 +8,10 @@ class API {
   static const String districts = '/districts.json';
   static const String popularDistricts = '/popular_districts.json';
   static const String slider = '/sliders.json';
+  static const String singleAdvertisement = '/single_advertisements.json';
+  static const String multipleAdvertisement = '/multiple_advertisements.json';
   static const String splash = '/splash_screens.json';
   static const String spotComponents = '/spot_components.json';
   static const String topDestinations = '/top_destinations.json';
+  static const String destinations = '/destinations.json';
 }

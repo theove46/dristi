@@ -39,7 +39,7 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: UIColors.componentsWhite(context),
+      color: UIColors.onImageText(context),
     ),
   );
 }
@@ -83,6 +83,44 @@ Widget buildSquareHorizontalListShimmer({
   );
 }
 
+Widget buildGridViewShimmer({
+  required BuildContext context,
+  required double height,
+  required double width,
+  required int itemCount,
+}) {
+  return SliverGrid(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      childAspectRatio: width / height,
+    ),
+    delegate: SliverChildBuilderDelegate(
+      (context, index) {
+        return buildShimmer(
+          context: context,
+          height: height,
+          width: width,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_8.r,
+              right: AppValues.dimen_8.r,
+              top: AppValues.dimen_8.r,
+              bottom: AppValues.dimen_16.r,
+            ),
+            child: buildShimmerContainer(
+              context: context,
+              height: height,
+              width: width,
+              borderRadius: AppValues.dimen_16.r,
+            ),
+          ),
+        );
+      },
+      childCount: itemCount,
+    ),
+  );
+}
+
 Widget buildSliderShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
@@ -97,20 +135,58 @@ Widget buildSliderShimmer(BuildContext context) {
   );
 }
 
+Widget buildSingleAdvertisementShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    height: AppValues.dimen_60.h,
+    width: double.infinity,
+    child: buildShimmerContainer(
+      context: context,
+      height: AppValues.dimen_60.h,
+      width: double.infinity,
+      borderRadius: AppValues.dimen_10.r,
+    ),
+  );
+}
+
+Widget buildMultipleAdvertisementShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    height: AppValues.dimen_130.h,
+    width: double.infinity,
+    child: Padding(
+      padding: EdgeInsets.only(top: AppValues.dimen_16.h),
+      child: buildShimmerContainer(
+        context: context,
+        height: AppValues.dimen_120.h,
+        width: double.infinity,
+        borderRadius: AppValues.dimen_10.r,
+      ),
+    ),
+  );
+}
+
 Widget buildSliderIndicatorShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
-    height: AppValues.dimen_12.h,
+    height: AppValues.dimen_8.r,
     width: double.infinity,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
+        double width;
+
+        if (index == 0) {
+          width = AppValues.dimen_40.r;
+        } else {
+          width = AppValues.dimen_6.r;
+        }
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
           child: buildShimmerContainer(
             context: context,
-            height: AppValues.dimen_12.h,
-            width: index == 0 ? AppValues.dimen_50.w : AppValues.dimen_28.w,
+            height: AppValues.dimen_6.r,
+            width: width,
             borderRadius: AppValues.dimen_5.r,
           ),
         );
@@ -195,5 +271,23 @@ Widget buildPopularDistrictsShimmer(BuildContext context) {
     height: AppValues.dimen_150.h,
     itemSize: AppValues.dimen_130.r,
     itemCount: 6,
+  );
+}
+
+Widget buildDestinationListShimmer(BuildContext context) {
+  return buildGridViewShimmer(
+    context: context,
+    height: AppValues.dimen_100.r,
+    width: AppValues.dimen_80.r,
+    itemCount: 6,
+  );
+}
+
+Widget buildDistrictListShimmer(BuildContext context) {
+  return buildGridViewShimmer(
+    context: context,
+    height: AppValues.dimen_30.r,
+    width: AppValues.dimen_80.r,
+    itemCount: 12,
   );
 }

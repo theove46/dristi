@@ -1,6 +1,6 @@
+import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/top_destinations/data/data_sources/top_destinations_data_source.dart';
 import 'package:dristi/src/features/home/top_destinations/data/repositories/top_destinations_repositories_impl.dart';
-import 'package:dristi/src/features/home/top_destinations/domain/entity/top_destinations_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final topDestinationsRepositoryProvider = Provider<TopDestinationsRepository>(
@@ -11,5 +11,5 @@ final topDestinationsRepositoryProvider = Provider<TopDestinationsRepository>(
 );
 
 abstract class TopDestinationsRepository {
-  Future<List<TopDestinationsEntity>> getTopDestinationsComponents();
+  Future<List<DestinationEntity>> getTopDestinationsComponents();
 }

@@ -17,6 +17,7 @@ class AppValues {
   static const double dimen_8 = 8;
   static const double dimen_10 = 10;
   static const double dimen_12 = 12;
+  static const double dimen_14 = 14;
   static const double dimen_16 = 16;
   static const double dimen_20 = 20;
   static const double dimen_24 = 24;
@@ -26,7 +27,6 @@ class AppValues {
   static const double dimen_40 = 40;
   static const double dimen_48 = 48;
   static const double dimen_50 = 50;
-  static const double dimen_56 = 56;
   static const double dimen_60 = 60;
   static const double dimen_70 = 70;
   static const double dimen_75 = 75;

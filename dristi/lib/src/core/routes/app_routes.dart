@@ -6,5 +6,6 @@ abstract class AppRoutes {
   static const String spot = 'spot';
   static const String districts = 'districts';
   static const String destination = 'destination';
+  static const String webView = 'webView';
   static const String error = 'error';
 }

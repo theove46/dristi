@@ -2,20 +2,20 @@ import 'package:dristi/src/features/destinations/domain/entities/destination_ent
 import 'package:dristi/src/features/destinations/domain/repositories/destination_repositories.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final destinationUseCaseProvider = Provider(
+final destinationsUseCaseProvider = Provider(
   (ref) {
-    return DestinationUseCase(
-      ref.read(destinationRepositoryProvider),
+    return DestinationsUseCase(
+      ref.read(destinationsRepositoryProvider),
     );
   },
 );
 
-class DestinationUseCase {
-  DestinationUseCase(this.repository);
+class DestinationsUseCase {
+  DestinationsUseCase(this.repository);
 
-  final DestinationRepository repository;
+  final DestinationsRepository repository;
 
-  Future<(String, List<DestinationEntity>?)> getDestinationComponents() async {
-    return repository.getDestinationComponents();
+  Future<List<DestinationEntity>> getDestinationsComponents() async {
+    return repository.getDestinationsComponents();
   }
 }
