@@ -1,11 +1,9 @@
 class PopularDistrictEntity {
-  String titleEn;
-  String titleBn;
+  String title;
   String image;
 
   PopularDistrictEntity({
-    required this.titleEn,
-    required this.titleBn,
+    required this.title,
     required this.image,
   });
 }

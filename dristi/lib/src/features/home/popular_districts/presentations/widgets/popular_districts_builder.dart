@@ -75,7 +75,7 @@ class _PopularCitiesBuilderState
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
               onTap: () {
-                navigateToDestinationsPage(item.titleEn);
+                navigateToDestinationsPage(item.title);
               },
               child: Column(
                 children: [
@@ -91,7 +91,7 @@ class _PopularCitiesBuilderState
                   SizedBox(
                     width: AppValues.dimen_120.r,
                     child: Text(
-                      item.titleEn,
+                      item.title,
                       style: appTextStyles.secondaryNovaRegular12,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

@@ -16,24 +16,20 @@ class PopularDistrictsResponseModel {
 }
 
 class PopularDistrictData extends PopularDistrictEntity {
-  String? sliderTitleEn;
-  String? sliderTitleBn;
+  String? sliderTitle;
   String? sliderImage;
 
   PopularDistrictData({
-    this.sliderTitleEn,
-    this.sliderTitleBn,
+    this.sliderTitle,
     this.sliderImage,
   }) : super(
-          titleEn: sliderTitleEn ?? "",
-          titleBn: sliderTitleBn ?? "",
+          title: sliderTitle ?? "",
           image: sliderImage ?? "",
         );
 
   factory PopularDistrictData.fromJson(dynamic json) {
     return PopularDistrictData(
-      sliderTitleEn: json['title_en'],
-      sliderTitleBn: json['title_bn'],
+      sliderTitle: json['title'],
       sliderImage: json['image'],
     );
   }
