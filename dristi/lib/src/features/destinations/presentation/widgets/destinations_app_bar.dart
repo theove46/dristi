@@ -1,5 +1,7 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/destinations/presentation/widgets/filtered_bottom_sheet.dart';
@@ -12,7 +14,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class DestinationsAppBar extends ConsumerStatefulWidget {
-  const DestinationsAppBar({super.key});
+  const DestinationsAppBar({
+    required this.searchFieldController,
+    required this.categoryController,
+    required this.districtController,
+    super.key,
+  });
+
+  final TextEditingController searchFieldController;
+  final TextEditingController categoryController;
+  final TextEditingController districtController;
 
   @override
   ConsumerState createState() => _DestinationsAppBarState();
@@ -20,10 +31,6 @@ class DestinationsAppBar extends ConsumerStatefulWidget {
 
 class _DestinationsAppBarState
     extends BaseConsumerStatefulWidget<DestinationsAppBar> {
-  final TextEditingController _searchFieldController = TextEditingController();
-  final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _districtController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -55,7 +62,7 @@ class _DestinationsAppBarState
         },
       ),
       title: TextField(
-        controller: _searchFieldController,
+        controller: widget.searchFieldController,
         onChanged: (value) {
           searchFieldNotifier.state = value;
         },
@@ -66,10 +73,10 @@ class _DestinationsAppBarState
         style: appTextStyles.secondaryNovaRegular16,
         decoration: InputDecoration(
           hintText: context.localization.searchDestination,
-          suffixIcon: _searchFieldController.text.isNotEmpty
+          suffixIcon: widget.searchFieldController.text.isNotEmpty
               ? GestureDetector(
                   onTap: () {
-                    _searchFieldController.clear();
+                    widget.searchFieldController.clear();
                     searchFieldNotifier.state = '';
                   },
                   child: const Icon(Icons.clear),
@@ -84,27 +91,33 @@ class _DestinationsAppBarState
   }
 
   Widget _buildAppBarAction() {
+    final networkState = ref.watch(networkStatusProvider);
+
+    if (networkState.value?.first != ConnectivityResult.none) {}
     return PopupMenuButton<String>(
       icon: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_10.w),
         child: const Icon(Icons.tune),
       ),
-      itemBuilder: (context) => [
-        _buildMenuItem(
-          controller: _categoryController,
-          hintText: context.localization.selectCategory,
-          onTap: () {
-            _showCategoryFilter();
-          },
-        ),
-        _buildMenuItem(
-          controller: _districtController,
-          hintText: context.localization.selectDistrict,
-          onTap: () {
-            _showDistrictFilter();
-          },
-        ),
-      ],
+      itemBuilder: (context) =>
+          networkState.value?.first != ConnectivityResult.none
+              ? [
+                  _buildMenuItem(
+                    controller: widget.categoryController,
+                    hintText: context.localization.selectCategory,
+                    onTap: () {
+                      _showCategoryFilter();
+                    },
+                  ),
+                  _buildMenuItem(
+                    controller: widget.districtController,
+                    hintText: context.localization.selectDistrict,
+                    onTap: () {
+                      _showDistrictFilter();
+                    },
+                  ),
+                ]
+              : [],
     );
   }
 
@@ -151,7 +164,7 @@ class _DestinationsAppBarState
         return FilteredBottomSheet(
           items: categoriesItems.data,
           notifier: categoryFieldNotifier,
-          controller: _categoryController,
+          controller: widget.categoryController,
           text: context.localization.selectCategory,
           type: FilterType.category,
         );
@@ -176,7 +189,7 @@ class _DestinationsAppBarState
         return FilteredBottomSheet(
           items: districtsItems.data,
           notifier: districtFieldNotifier,
-          controller: _districtController,
+          controller: widget.districtController,
           text: context.localization.selectDistrict,
           type: FilterType.district,
         );

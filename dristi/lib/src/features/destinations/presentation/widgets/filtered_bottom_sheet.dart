@@ -69,7 +69,7 @@ class _FilteredBottomSheetState
                   return const SizedBox.shrink();
                 }
 
-                final isSelected = item.title == widget.controller.text;
+                final isSelected = item.title == widget.notifier.state;
 
                 return GestureDetector(
                   onTap: () {

@@ -7,6 +7,7 @@ import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/destinations/presentation/widgets/destinations_app_bar.dart';
 import 'package:dristi/src/features/destinations/presentation/widgets/destinations_list.dart';
+import 'package:dristi/src/features/destinations/presentation/widgets/filtered_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,6 +36,10 @@ class _DestinationPageState
     }
   }
 
+  final TextEditingController searchFieldController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController districtController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,14 +47,22 @@ class _DestinationPageState
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: RefreshIndicator(
           onRefresh: _getDestinationComponents,
-          child: const CustomScrollView(
+          child: CustomScrollView(
             slivers: [
-              DestinationsAppBar(),
-              SliverToBoxAdapter(
+              DestinationsAppBar(
+                searchFieldController: searchFieldController,
+                categoryController: categoryController,
+                districtController: districtController,
+              ),
+              const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
+              FilteredRow(
+                categoryController: categoryController,
+                districtController: districtController,
+              ),
               // _buildAdvertisement(), // For Future Usage
-              DestinationsList(),
+              const DestinationsList(),
             ],
           ),
         ),
