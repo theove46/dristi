@@ -169,8 +169,8 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
 Widget buildSliderIndicatorShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
-    height: AppValues.dimen_8.r,
-    width: double.infinity,
+    height: AppValues.dimen_8.h,
+    width: AppValues.dimen_80.r,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
