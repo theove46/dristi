@@ -1,13 +1,16 @@
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/drawer/presentation/riverpod/drawer_provider.dart';
+import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DrawerBuilder extends ConsumerStatefulWidget {
   const DrawerBuilder({Key? key}) : super(key: key);
@@ -106,7 +109,11 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 size: AppValues.dimen_20.sp,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              navigateToWebView(
+                item: AdvertisementEntity.initial(),
+              );
+            },
           ),
         ],
       ),
@@ -184,5 +191,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
         }),
       ),
     );
+  }
+
+  void navigateToWebView({required AdvertisementEntity item}) {
+    context.pushNamed(AppRoutes.webView, extra: item);
   }
 }
