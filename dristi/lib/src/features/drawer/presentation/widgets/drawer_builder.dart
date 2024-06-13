@@ -22,100 +22,118 @@ class DrawerBuilder extends ConsumerStatefulWidget {
 class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.all(AppValues.dimen_8.r),
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: AppValues.dimen_60.r,
-              bottom: AppValues.dimen_10.r,
-              left: AppValues.dimen_16.r,
-            ),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  padding: EdgeInsets.all(AppValues.dimen_2.r),
-                  decoration: BoxDecoration(
-                    color: uiColors.onImage,
-                    shape: BoxShape.circle,
-                  ),
-                  child: ClipOval(
-                    child: SizedBox.fromSize(
-                      size: Size.fromRadius(AppValues.dimen_40.r),
-                      child: const AssetImageView(
-                        fileName: Assets.logo,
-                        fit: BoxFit.cover,
+    return SizedBox(
+      width: AppValues.dimen_280.w,
+      child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.all(AppValues.dimen_8.r),
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: AppValues.dimen_60.r,
+                bottom: AppValues.dimen_10.r,
+                left: AppValues.dimen_16.r,
+              ),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(AppValues.dimen_2.r),
+                    decoration: BoxDecoration(
+                      color: uiColors.onImage,
+                      shape: BoxShape.circle,
+                    ),
+                    child: ClipOval(
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(AppValues.dimen_40.r),
+                        child: const AssetImageView(
+                          fileName: Assets.logo,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                )),
-          ),
-          _buildExpansionTile(
-            title: context.localization.theme,
-            children: [
-              _buildThemeButton(
-                context.localization.systemDefault,
-                AppTheme.systemDefault,
-              ),
-              _buildThemeButton(
-                context.localization.light,
-                AppTheme.light,
-              ),
-              _buildThemeButton(
-                context.localization.dark,
-                AppTheme.dark,
-              ),
-            ],
-          ),
-          _buildExpansionTile(
-            title: context.localization.language,
-            children: [
-              _buildLanguageButton(
-                context.localization.english,
-                AppLanguages.en,
-              ),
-              _buildLanguageButton(
-                context.localization.bengali,
-                AppLanguages.bn,
-              ),
-            ],
-          ),
-          ListTile(
-            title: Text(
-              context.localization.favouritePlaces,
-              style: appTextStyles.secondaryNovaRegular16,
+                  )),
             ),
-            trailing: Padding(
-              padding: EdgeInsets.only(right: AppValues.dimen_2.w),
-              child: Icon(
-                Icons.favorite_border_outlined,
-                color: uiColors.primary,
-                size: AppValues.dimen_20.sp,
+            _buildExpansionTile(
+              title: context.localization.theme,
+              children: [
+                _buildThemeButton(
+                  context.localization.systemDefault,
+                  AppTheme.systemDefault,
+                ),
+                _buildThemeButton(
+                  context.localization.light,
+                  AppTheme.light,
+                ),
+                _buildThemeButton(
+                  context.localization.dark,
+                  AppTheme.dark,
+                ),
+              ],
+            ),
+            _buildExpansionTile(
+              title: context.localization.language,
+              children: [
+                _buildLanguageButton(
+                  context.localization.english,
+                  AppLanguages.en,
+                ),
+                _buildLanguageButton(
+                  context.localization.bengali,
+                  AppLanguages.bn,
+                ),
+              ],
+            ),
+            ListTile(
+              title: Text(
+                context.localization.favouritePlaces,
+                style: appTextStyles.secondaryNovaRegular16,
               ),
-            ),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text(
-              context.localization.contactUs,
-              style: appTextStyles.secondaryNovaRegular16,
-            ),
-            trailing: Padding(
-              padding: EdgeInsets.only(right: AppValues.dimen_2.w),
-              child: Icon(
-                Icons.contact_mail_outlined,
-                color: uiColors.primary,
-                size: AppValues.dimen_20.sp,
+              trailing: Padding(
+                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+                child: Icon(
+                  Icons.favorite_sharp,
+                  color: uiColors.primary,
+                  size: AppValues.dimen_20.sp,
+                ),
               ),
+              onTap: () {},
             ),
-            onTap: () {
-              navigateToWebView(
-                item: AdvertisementEntity.initial(),
-              );
-            },
-          ),
-        ],
+            ListTile(
+              title: Text(
+                context.localization.settings,
+                style: appTextStyles.secondaryNovaRegular16,
+              ),
+              trailing: Padding(
+                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+                child: Icon(
+                  Icons.settings_sharp,
+                  color: uiColors.primary,
+                  size: AppValues.dimen_20.sp,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                context.localization.contactUs,
+                style: appTextStyles.secondaryNovaRegular16,
+              ),
+              trailing: Padding(
+                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+                child: Icon(
+                  Icons.contact_mail_outlined,
+                  color: uiColors.primary,
+                  size: AppValues.dimen_20.sp,
+                ),
+              ),
+              onTap: () {
+                navigateToWebView(
+                  item: AdvertisementEntity.initial(),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
