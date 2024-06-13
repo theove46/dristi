@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -73,18 +74,21 @@ class _DestinationsListState
   }
 
   Widget _buildImage(DestinationEntity item) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-        border: Border.all(
-          width: 0,
+    return Hero(
+      tag: "${TextConstants.appName}-${item.id}",
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+          border: Border.all(
+            width: 0,
+          ),
         ),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-        child: CachedNetworkImage(
-          imageUrl: item.image,
-          fit: BoxFit.cover,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+          child: CachedNetworkImage(
+            imageUrl: item.image,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

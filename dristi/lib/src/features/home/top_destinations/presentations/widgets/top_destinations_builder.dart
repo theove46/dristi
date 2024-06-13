@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -77,13 +78,16 @@ class _TopDestinationBuilderState
               },
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                    child: CachedNetworkImage(
-                      imageUrl: item.image,
-                      width: AppValues.dimen_80.r,
-                      height: AppValues.dimen_80.r,
-                      fit: BoxFit.cover,
+                  Hero(
+                    tag: "${TextConstants.appName}-${item.id}",
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                      child: CachedNetworkImage(
+                        imageUrl: item.image,
+                        width: AppValues.dimen_80.r,
+                        height: AppValues.dimen_80.r,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(

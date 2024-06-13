@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +32,15 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
   }
 
   Widget _buildBackgroundImage() {
-    return ClipRRect(
-      child: CachedNetworkImage(
-        imageUrl: widget.destination.image,
-        fit: BoxFit.cover,
-        height: AppValues.dimen_500.h,
-        width: double.infinity,
+    return Hero(
+      tag: "${TextConstants.appName}-${widget.destination.id}",
+      child: ClipRRect(
+        child: CachedNetworkImage(
+          imageUrl: widget.destination.image,
+          fit: BoxFit.cover,
+          height: AppValues.dimen_500.h,
+          width: double.infinity,
+        ),
       ),
     );
   }
