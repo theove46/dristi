@@ -30,11 +30,11 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
   void initState() {
     super.initState();
     Future(() {
-      _getComponents();
+      getHomeComponents();
     });
   }
 
-  Future<void> _getComponents() async {
+  Future<void> getHomeComponents() async {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {
       ref.read(sliderProvider.notifier).getSliderComponents();
@@ -53,7 +53,7 @@ class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
     return Scaffold(
       drawer: const DrawerBuilder(),
       body: RefreshIndicator(
-        onRefresh: _getComponents,
+        onRefresh: getHomeComponents,
         child: CustomScrollView(
           slivers: [
             _buildSliverAppBar(),

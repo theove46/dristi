@@ -1,9 +1,13 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/drawer/presentation/riverpod/drawer_provider.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
+import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -20,6 +24,20 @@ class DrawerBuilder extends ConsumerStatefulWidget {
 }
 
 class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
+  Future<void> getHomeComponents() async {
+    final state = ref.watch(networkStatusProvider);
+    if (state.value?.first != ConnectivityResult.none) {
+      ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref
+          .read(multipleAdvertisementProvider.notifier)
+          .getMultipleAdvertisementComponents();
+      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref.read(districtProvider.notifier).getDistrictComponents();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -74,12 +92,12 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
               title: context.localization.language,
               children: [
                 _buildLanguageButton(
-                  context.localization.english,
-                  AppLanguages.en,
+                  text: context.localization.english,
+                  value: AppLanguages.en,
                 ),
                 _buildLanguageButton(
-                  context.localization.bengali,
-                  AppLanguages.bn,
+                  text: context.localization.bengali,
+                  value: AppLanguages.bn,
                 ),
               ],
             ),
@@ -182,10 +200,10 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     );
   }
 
-  Widget _buildLanguageButton(
-    String text,
-    AppLanguages value,
-  ) {
+  Widget _buildLanguageButton({
+    required String text,
+    required AppLanguages value,
+  }) {
     final selectedLanguageState = ref.watch(languageProvider);
     final selectedLanguageNotifier = ref.read(languageProvider.notifier);
 
@@ -199,6 +217,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
         groupValue: selectedLanguageState,
         onChanged: (val) {
           selectedLanguageNotifier.state = val!;
+          Future(() {
+            getHomeComponents();
+          });
         },
         activeColor: uiColors.primary,
         fillColor: WidgetStateColor.resolveWith((states) {
