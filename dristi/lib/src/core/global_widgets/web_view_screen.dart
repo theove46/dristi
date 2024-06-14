@@ -1,5 +1,6 @@
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,7 +100,7 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
       alignment: Alignment.center,
       children: [
         loading
-            ? const CircularProgressIndicator()
+            ? buildWebViewShimmer(context)
             : WebViewWidget(
                 controller: controller,
               ),

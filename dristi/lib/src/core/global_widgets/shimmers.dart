@@ -291,3 +291,16 @@ Widget buildDistrictListShimmer(BuildContext context) {
     itemCount: 12,
   );
 }
+
+Widget buildWebViewShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    width: double.infinity,
+    height: double.infinity,
+    child: Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: UIColors.blushText(context),
+    ),
+  );
+}
