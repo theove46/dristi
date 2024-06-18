@@ -28,115 +28,196 @@ class SettingsScreen extends ConsumerStatefulWidget {
 class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeState = ref.watch(themeProvider);
-    final languageState = ref.watch(languageProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localization.settings),
-      ),
-      body: ListView(
-        padding: EdgeInsets.only(
-          left: AppValues.dimen_16.r,
-          right: AppValues.dimen_16.r,
-          bottom: AppValues.dimen_16.r,
-        ),
-        children: [
-          _buildSettingsItem(
-            icon: Icons.brightness_4,
-            title: context.localization.theme,
-            subTitle: _getThemeText(themeState.theme),
-            onTap: () {
-              _showBottomSheet(
-                title: context.localization.theme,
-                items: [
-                  SheetItem(
-                    title: context.localization.systemDefault,
-                    value: AppTheme.systemDefault,
-                  ),
-                  SheetItem(
-                    title: context.localization.light,
-                    value: AppTheme.light,
-                  ),
-                  SheetItem(
-                    title: context.localization.dark,
-                    value: AppTheme.dark,
-                  ),
-                ],
-                selectedItem: themeState.theme,
-                onItemSelected: (value) {
-                  ref.read(themeProvider.notifier).setTheme(value);
-                },
-              );
-            },
+      body: CustomScrollView(
+        slivers: [
+          _buildSettingsAppBar(),
+          SliverPadding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_16.r,
+              right: AppValues.dimen_16.r,
+              bottom: AppValues.dimen_32.r,
+            ),
+            sliver: _buildSettingsItemsList(),
           ),
-          _buildSettingsItem(
-            icon: Icons.language,
-            title: context.localization.language,
-            subTitle: _getLanguageText(languageState.language),
-            onTap: () {
-              _showBottomSheet(
-                title: context.localization.language,
-                items: [
-                  SheetItem(
-                    title: context.localization.english,
-                    value: AppLanguages.en,
-                  ),
-                  SheetItem(
-                    title: context.localization.bengali,
-                    value: AppLanguages.bn,
-                  ),
-                ],
-                selectedItem: languageState.language,
-                onItemSelected: (value) {
-                  ref.read(languageProvider.notifier).setLanguage(value);
-                  getHomeComponents();
-                },
-              );
-            },
-          ),
-          _buildSettingsItem(
-            icon: Icons.hive,
-            title: context.localization.followDristi,
-            onTap: () {},
-          ),
-          _buildSettingsItem(
-            icon: Icons.share,
-            title: context.localization.shareDristi,
-            onTap: () {},
-          ),
-          _buildSettingsItem(
-            icon: Icons.mail,
-            title: context.localization.contactUs,
-            onTap: () {},
-          ),
-          _buildSettingsItem(
-            icon: Icons.business_center,
-            title: context.localization.makePromotion,
-            onTap: () {
-              navigateToWebView(
-                item: AdvertisementEntity.initial(),
-              );
-            },
-          ),
-          _buildSettingsItem(
-            icon: Icons.volunteer_activism,
-            title: context.localization.helpAndSupport,
-            onTap: () {},
-          ),
-          _buildSettingsItem(
-            icon: Icons.privacy_tip,
-            title: context.localization.privacyAndPolicy,
-            onTap: () {},
-          ),
-          _buildSettingsItem(
-            icon: Icons.info_outlined,
-            title: context.localization.appVersion,
-            subTitle: '1.0',
-            onTap: () {},
-          ),
+          //_buildSettingsItemsList(),
         ],
       ),
     );
+  }
+
+  Widget _buildSettingsAppBar() {
+    return SliverAppBar(
+      floating: true,
+      flexibleSpace: FlexibleSpaceBar(
+        background: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+            ),
+            onPressed: () {
+              context.pop();
+            },
+          ),
+          title: Padding(
+            padding: EdgeInsets.only(
+              right: AppValues.dimen_24.r,
+            ),
+            child: Text(context.localization.settings),
+          ),
+        ),
+      ),
+      automaticallyImplyLeading: false,
+      expandedHeight: AppValues.dimen_70.h,
+    );
+  }
+
+  Widget _buildSettingsItemsList() {
+    final themeState = ref.watch(themeProvider);
+    final languageState = ref.watch(languageProvider);
+
+    final settingsItems = [
+      _buildSettingsItem(
+        icon: Icons.brightness_4,
+        title: context.localization.theme,
+        subTitle: _getThemeText(themeState.theme),
+        onTap: () {
+          _showBottomSheet(
+            title: context.localization.theme,
+            items: [
+              SheetItem(
+                title: context.localization.systemDefault,
+                value: AppTheme.systemDefault,
+              ),
+              SheetItem(
+                title: context.localization.light,
+                value: AppTheme.light,
+              ),
+              SheetItem(
+                title: context.localization.dark,
+                value: AppTheme.dark,
+              ),
+            ],
+            selectedItem: themeState.theme,
+            onItemSelected: (value) {
+              ref.read(themeProvider.notifier).setTheme(value);
+            },
+          );
+        },
+      ),
+      _buildSettingsItem(
+        icon: Icons.language,
+        title: context.localization.language,
+        subTitle: _getLanguageText(languageState.language),
+        onTap: () {
+          _showBottomSheet(
+            title: context.localization.language,
+            items: [
+              SheetItem(
+                title: context.localization.english,
+                value: AppLanguages.en,
+              ),
+              SheetItem(
+                title: context.localization.bengali,
+                value: AppLanguages.bn,
+              ),
+            ],
+            selectedItem: languageState.language,
+            onItemSelected: (value) {
+              ref.read(languageProvider.notifier).setLanguage(value);
+              getHomeComponents();
+            },
+          );
+        },
+      ),
+      _buildSettingsItem(
+        icon: Icons.hive,
+        title: context.localization.followDristi,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.share,
+        title: context.localization.shareDristi,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.mail,
+        title: context.localization.contactUs,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.business_center,
+        title: context.localization.makePromotion,
+        onTap: () {
+          navigateToWebView(
+            item: AdvertisementEntity.initial(),
+          );
+        },
+      ),
+      _buildSettingsItem(
+        icon: Icons.volunteer_activism,
+        title: context.localization.helpAndSupport,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.privacy_tip,
+        title: context.localization.privacyAndPolicy,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.info_outlined,
+        title: context.localization.appVersion,
+        subTitle: '1.0',
+        onTap: () {},
+      ),
+    ];
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => settingsItems[index],
+        childCount: settingsItems.length,
+      ),
+    );
+  }
+
+  Widget _buildSettingsItem({
+    required IconData icon,
+    required String title,
+    String? subTitle,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      color: uiColors.scrim,
+      elevation: 0,
+      margin: EdgeInsets.symmetric(vertical: AppValues.dimen_3.h),
+      child: ListTile(
+        leading: Icon(icon, color: uiColors.primary),
+        title: Text(title),
+        titleTextStyle: appTextStyles.secondaryNovaRegular16,
+        subtitle: subTitle != null ? Text(subTitle) : null,
+        subtitleTextStyle: appTextStyles.secondaryNovaRegular12,
+        onTap: onTap,
+        minTileHeight: AppValues.dimen_60.h,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: AppValues.dimen_16.r,
+          vertical: AppValues.dimen_8.r,
+        ),
+      ),
+    );
+  }
+
+  Future<void> getHomeComponents() async {
+    final state = ref.watch(networkStatusProvider);
+    if (state.value?.first != ConnectivityResult.none) {
+      ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref
+          .read(multipleAdvertisementProvider.notifier)
+          .getMultipleAdvertisementComponents();
+      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref.read(districtProvider.notifier).getDistrictComponents();
+    }
   }
 
   String _getThemeText(AppTheme theme) {
@@ -182,47 +263,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
     );
   }
 
-  Widget _buildSettingsItem({
-    required IconData icon,
-    required String title,
-    String? subTitle,
-    required VoidCallback onTap,
-  }) {
-    return Card(
-      color: uiColors.scrim,
-      elevation: 0,
-      margin: EdgeInsets.symmetric(vertical: AppValues.dimen_3.h),
-      child: ListTile(
-        leading: Icon(icon, color: uiColors.primary),
-        title: Text(title),
-        titleTextStyle: appTextStyles.secondaryNovaRegular16,
-        subtitle: subTitle != null ? Text(subTitle) : null,
-        subtitleTextStyle: appTextStyles.secondaryNovaRegular12,
-        onTap: onTap,
-        minTileHeight: AppValues.dimen_70.h,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: AppValues.dimen_16.r,
-          vertical: AppValues.dimen_8.r,
-        ),
-      ),
-    );
-  }
-
   void navigateToWebView({required AdvertisementEntity item}) {
     context.pushNamed(AppRoutes.webView, extra: item);
-  }
-
-  Future<void> getHomeComponents() async {
-    final state = ref.watch(networkStatusProvider);
-    if (state.value?.first != ConnectivityResult.none) {
-      ref.read(sliderProvider.notifier).getSliderComponents();
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
-      ref
-          .read(multipleAdvertisementProvider.notifier)
-          .getMultipleAdvertisementComponents();
-      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
-      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
-      ref.read(districtProvider.notifier).getDistrictComponents();
-    }
   }
 }
