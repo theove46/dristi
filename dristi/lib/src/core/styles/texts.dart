@@ -121,10 +121,10 @@ class AppTextStyles {
       secondaryNovaRegular.copyWith(fontSize: 16.sp);
 
   TextStyle get secondaryNovaSemiBold10 =>
-      secondaryNovaRegular.copyWith(fontSize: 10.sp);
+      secondaryNovaSemiBold.copyWith(fontSize: 10.sp);
 
-  TextStyle get secondaryNovaSemiBold16 =>
-      secondaryNovaRegular.copyWith(fontSize: 16.sp);
+  TextStyle get secondaryNovaSemiBold20 =>
+      secondaryNovaSemiBold.copyWith(fontSize: 20.sp);
 
   // Tertiary Color texts
 
