@@ -1,9 +1,10 @@
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
+import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/drawer/presentation/riverpod/drawer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,9 +23,16 @@ class App extends ConsumerStatefulWidget {
 
 class _AppState extends BaseConsumerStatefulWidget<App> {
   @override
+  void initState() {
+    super.initState();
+    ref.read(themeProvider.notifier).loadInitialThemeState();
+    ref.read(languageProvider.notifier).loadInitialLanguageState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final languageState = ref.watch(languageProvider).toLanguage;
     final themeState = ref.watch(themeProvider);
+    final languageState = ref.watch(languageProvider);
 
     return ScreenUtilInit(
       designSize:
@@ -35,17 +43,13 @@ class _AppState extends BaseConsumerStatefulWidget<App> {
         return MaterialApp.router(
           routerConfig: appRouter,
           debugShowCheckedModeBanner: false,
-          theme: getLightThemeData(themeState),
-          darkTheme: getDarkThemeData(themeState),
+          theme: getLightThemeData(themeState.theme),
+          darkTheme: getDarkThemeData(themeState.theme),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: _supportedLanguages,
-          locale: languageState,
+          supportedLocales: supportedLanguages,
+          locale: languageState.language.toLanguage,
         );
       },
     );
   }
-
-  List<Locale> get _supportedLanguages => AppLanguages.values
-      .map((AppLanguages language) => language.toLanguage)
-      .toList();
 }

@@ -20,7 +20,7 @@ class OnBoardingDataSourceImp implements OnBoardingDataSource {
 
   @override
   Future<bool> getFirstTimeStatus() async {
-    return await cacheService.getFirstTimeStatus();
+    return await cacheService.getFirstTimeOnBoardingStatus();
   }
 
   @override

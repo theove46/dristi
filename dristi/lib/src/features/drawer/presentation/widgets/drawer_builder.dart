@@ -1,11 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
-import 'package:dristi/src/features/drawer/presentation/riverpod/drawer_provider.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -75,16 +76,16 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
               title: context.localization.theme,
               children: [
                 _buildThemeButton(
-                  context.localization.systemDefault,
-                  AppTheme.systemDefault,
+                  text: context.localization.systemDefault,
+                  value: AppTheme.systemDefault,
                 ),
                 _buildThemeButton(
-                  context.localization.light,
-                  AppTheme.light,
+                  text: context.localization.light,
+                  value: AppTheme.light,
                 ),
                 _buildThemeButton(
-                  context.localization.dark,
-                  AppTheme.dark,
+                  text: context.localization.dark,
+                  value: AppTheme.dark,
                 ),
               ],
             ),
@@ -171,12 +172,12 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     );
   }
 
-  Widget _buildThemeButton(
-    String text,
-    AppTheme value,
-  ) {
-    final selectedThemeState = ref.watch(themeProvider);
-    final selectedThemeNotifier = ref.read(themeProvider.notifier);
+  Widget _buildThemeButton({
+    required String text,
+    required AppTheme value,
+  }) {
+    final selectedTheme = ref.watch(themeProvider);
+    final themeNotifier = ref.read(themeProvider.notifier);
 
     return ListTile(
       title: Text(
@@ -185,9 +186,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
       ),
       trailing: Radio<AppTheme>(
         value: value,
-        groupValue: selectedThemeState,
+        groupValue: selectedTheme.theme,
         onChanged: (val) {
-          selectedThemeNotifier.state = val!;
+          themeNotifier.setTheme(val!);
         },
         activeColor: uiColors.primary,
         fillColor: WidgetStateColor.resolveWith((states) {
@@ -204,8 +205,8 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
     required String text,
     required AppLanguages value,
   }) {
-    final selectedLanguageState = ref.watch(languageProvider);
-    final selectedLanguageNotifier = ref.read(languageProvider.notifier);
+    final selectedLanguage = ref.watch(languageProvider);
+    final languageNotifier = ref.read(languageProvider.notifier);
 
     return ListTile(
       title: Text(
@@ -214,9 +215,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
       ),
       trailing: Radio<AppLanguages>(
         value: value,
-        groupValue: selectedLanguageState,
+        groupValue: selectedLanguage.language,
         onChanged: (val) {
-          selectedLanguageNotifier.state = val!;
+          languageNotifier.setLanguage(val!);
           Future(() {
             getHomeComponents();
           });
