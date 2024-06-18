@@ -78,16 +78,13 @@ class _TopDestinationBuilderState
               },
               child: Column(
                 children: [
-                  Hero(
-                    tag: "${TextConstants.appName}-${item.id}",
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
-                      child: CachedNetworkImage(
-                        imageUrl: item.image,
-                        width: AppValues.dimen_80.r,
-                        height: AppValues.dimen_80.r,
-                        fit: BoxFit.cover,
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppValues.dimen_16.r),
+                    child: CachedNetworkImage(
+                      imageUrl: item.image,
+                      width: AppValues.dimen_80.r,
+                      height: AppValues.dimen_80.r,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   SizedBox(
