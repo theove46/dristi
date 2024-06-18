@@ -12,10 +12,11 @@ class DistrictsScreen extends ConsumerStatefulWidget {
   const DistrictsScreen({super.key});
 
   @override
-  ConsumerState createState() => _DistrictsPageState();
+  ConsumerState createState() => _DistrictsScreenState();
 }
 
-class _DistrictsPageState extends BaseConsumerStatefulWidget<DistrictsScreen> {
+class _DistrictsScreenState
+    extends BaseConsumerStatefulWidget<DistrictsScreen> {
   final TextEditingController _searchFieldController = TextEditingController();
 
   @override

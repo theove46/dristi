@@ -16,10 +16,10 @@ class DestinationScreen extends ConsumerStatefulWidget {
   const DestinationScreen({super.key});
 
   @override
-  ConsumerState createState() => _DestinationPageState();
+  ConsumerState createState() => _DestinationScreenState();
 }
 
-class _DestinationPageState
+class _DestinationScreenState
     extends BaseConsumerStatefulWidget<DestinationScreen> {
   @override
   void initState() {

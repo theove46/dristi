@@ -22,10 +22,10 @@ class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  ConsumerState createState() => _HomePageState();
+  ConsumerState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends BaseConsumerStatefulWidget<HomeScreen> {
+class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
   @override
   void initState() {
     super.initState();
