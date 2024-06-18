@@ -76,7 +76,7 @@ const darkColorScheme = ColorScheme(
 
   // tertiary
   tertiary: Color(0xFFfacf5a), // set
-  onTertiary: Color(0xFF072448), // set
+  onTertiary: Color(0xFFdaeaf6), // set
   tertiaryContainer: Color(0xFF000000),
   onTertiaryContainer: Color(0xFF000000),
 

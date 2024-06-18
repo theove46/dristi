@@ -11,18 +11,18 @@ class CustomElevatedButtonTheme extends ButtonStyle {
             (states) {
               if (states.contains(WidgetState.disabled) ||
                   states.contains(WidgetState.selected)) {
-                return scheme.surface;
+                return scheme.onSurface;
               } else {
-                return scheme.primary;
+                return scheme.shadow;
               }
             },
           ),
           foregroundColor: WidgetStateProperty.resolveWith(
             (states) {
               if (states.contains(WidgetState.disabled)) {
-                return scheme.shadow;
+                return scheme.onSurface;
               } else {
-                return scheme.primary;
+                return scheme.shadow;
               }
             },
           ),
@@ -30,9 +30,9 @@ class CustomElevatedButtonTheme extends ButtonStyle {
             (states) {
               if (states.contains(WidgetState.disabled) ||
                   states.contains(WidgetState.selected)) {
-                return scheme.shadow;
+                return scheme.onSurface;
               } else {
-                return scheme.surface;
+                return scheme.shadow;
               }
             },
           ),
