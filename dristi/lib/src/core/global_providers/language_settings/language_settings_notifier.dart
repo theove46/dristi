@@ -28,7 +28,7 @@ class LanguageNotifier extends Notifier<LanguageState> {
   Future<void> getHomeComponents(String appLanguage) async {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {
-      ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(sliderProvider.notifier).getSliderComponents(appLanguage);
       ref
           .read(categoriesProvider.notifier)
           .getCategoriesComponents(appLanguage);

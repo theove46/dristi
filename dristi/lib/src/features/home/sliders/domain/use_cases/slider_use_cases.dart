@@ -15,7 +15,8 @@ class SliderUseCase {
 
   final SliderRepository repository;
 
-  Future<List<DestinationEntity>> getSliderComponents() async {
-    return repository.getSliderComponents();
+  Future<List<DestinationEntity>> getSliderComponents(
+      String appLanguage) async {
+    return repository.getSliderComponents(appLanguage);
   }
 }

@@ -10,8 +10,9 @@ class SliderRepositoryImp implements SliderRepository {
   final SliderDataSource dataSource;
 
   @override
-  Future<List<DestinationEntity>> getSliderComponents() async {
-    final response = await dataSource.sliderComponents();
+  Future<List<DestinationEntity>> getSliderComponents(
+      String appLanguage) async {
+    final response = await dataSource.sliderComponents(appLanguage);
 
     return response.destinationsItems;
   }

@@ -41,7 +41,7 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
     final state = ref.watch(networkStatusProvider);
 
     if (state.value?.first != ConnectivityResult.none) {
-      ref.read(sliderProvider.notifier).getSliderComponents();
+      ref.read(sliderProvider.notifier).getSliderComponents(appLanguageState);
       ref
           .read(categoriesProvider.notifier)
           .getCategoriesComponents(appLanguageState);
