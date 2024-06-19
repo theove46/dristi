@@ -42,7 +42,9 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
 
     if (state.value?.first != ConnectivityResult.none) {
       ref.read(sliderProvider.notifier).getSliderComponents();
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref
+          .read(categoriesProvider.notifier)
+          .getCategoriesComponents(appLanguageState);
       ref
           .read(multipleAdvertisementProvider.notifier)
           .getMultipleAdvertisementComponents();

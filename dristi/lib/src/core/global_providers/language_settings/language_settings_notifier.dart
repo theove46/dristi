@@ -29,7 +29,9 @@ class LanguageNotifier extends Notifier<LanguageState> {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {
       ref.read(sliderProvider.notifier).getSliderComponents();
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
+      ref
+          .read(categoriesProvider.notifier)
+          .getCategoriesComponents(appLanguage);
       ref
           .read(multipleAdvertisementProvider.notifier)
           .getMultipleAdvertisementComponents();

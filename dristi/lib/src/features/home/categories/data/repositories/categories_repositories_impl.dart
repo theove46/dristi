@@ -10,8 +10,9 @@ class CategoriesRepositoryImp implements CategoriesRepository {
   final CategoriesDataSource dataSource;
 
   @override
-  Future<List<CategoryEntity>> getCategoriesComponents() async {
-    final response = await dataSource.categoriesComponents();
+  Future<List<CategoryEntity>> getCategoriesComponents(
+      String appLanguage) async {
+    final response = await dataSource.categoriesComponents(appLanguage);
 
     return response.categoryItems;
   }

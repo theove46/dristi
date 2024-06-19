@@ -17,7 +17,8 @@ class CategoriesUseCase {
 
   final CategoriesRepository categoriesRepository;
 
-  Future<List<CategoryEntity>> getCategoriesComponents() async {
-    return categoriesRepository.getCategoriesComponents();
+  Future<List<CategoryEntity>> getCategoriesComponents(
+      String appLanguage) async {
+    return categoriesRepository.getCategoriesComponents(appLanguage);
   }
 }

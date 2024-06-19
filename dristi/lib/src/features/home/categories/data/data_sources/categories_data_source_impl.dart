@@ -8,8 +8,9 @@ import 'package:dristi/src/features/home/categories/data/model/categories_respon
 class CategoriesDataSourceImp extends BaseRemoteSource
     implements CategoriesDataSource {
   @override
-  Future<CategoriesResponseModel> categoriesComponents() {
-    final String endpoint = DioProvider.baseUrl + API.categories;
+  Future<CategoriesResponseModel> categoriesComponents(String appLanguage) {
+    final String endpoint =
+        '${DioProvider.baseUrl}/$appLanguage${API.categories}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

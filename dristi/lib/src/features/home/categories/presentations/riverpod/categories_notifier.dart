@@ -12,13 +12,13 @@ class CategoriesNotifier extends Notifier<CategoriesState> {
     return const CategoriesState();
   }
 
-  Future<void> getCategoriesComponents() async {
+  Future<void> getCategoriesComponents(String appLanguage) async {
     try {
       state = state.copyWith(
         status: CategoriesStatus.loading,
       );
 
-      final response = await useCase.getCategoriesComponents();
+      final response = await useCase.getCategoriesComponents(appLanguage);
 
       if (response.isNotEmpty) {
         state = state.copyWith(

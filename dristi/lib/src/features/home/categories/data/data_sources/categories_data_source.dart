@@ -9,5 +9,5 @@ final categoriesDataSourceProvider = Provider<CategoriesDataSource>(
 );
 
 abstract class CategoriesDataSource {
-  Future<CategoriesResponseModel> categoriesComponents();
+  Future<CategoriesResponseModel> categoriesComponents(String appLanguage);
 }
