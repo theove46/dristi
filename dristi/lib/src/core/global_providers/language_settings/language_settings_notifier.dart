@@ -35,7 +35,9 @@ class LanguageNotifier extends Notifier<LanguageState> {
       ref
           .read(multipleAdvertisementProvider.notifier)
           .getMultipleAdvertisementComponents();
-      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref
+          .read(topDestinationsProvider.notifier)
+          .topDestinationsComponents(appLanguage);
       ref
           .read(popularDistrictProvider.notifier)
           .getPopularDistrictComponents(appLanguage);

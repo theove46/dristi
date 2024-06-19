@@ -13,13 +13,13 @@ class TopDestinationsNotifier extends Notifier<TopDestinationsState> {
     return const TopDestinationsState();
   }
 
-  Future<void> topDestinationsComponents() async {
+  Future<void> topDestinationsComponents(String appLanguage) async {
     try {
       state = state.copyWith(
         status: TopDestinationsStatus.loading,
       );
 
-      final response = await useCase.getTopDestinationsComponents();
+      final response = await useCase.getTopDestinationsComponents(appLanguage);
 
       if (response.isNotEmpty) {
         state = state.copyWith(

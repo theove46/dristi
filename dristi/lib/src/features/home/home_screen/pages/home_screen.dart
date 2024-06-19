@@ -48,7 +48,9 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
       ref
           .read(multipleAdvertisementProvider.notifier)
           .getMultipleAdvertisementComponents();
-      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
+      ref
+          .read(topDestinationsProvider.notifier)
+          .topDestinationsComponents(appLanguageState);
       ref
           .read(popularDistrictProvider.notifier)
           .getPopularDistrictComponents(appLanguageState);

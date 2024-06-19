@@ -9,5 +9,6 @@ final topDestinationsDataSourceProvider = Provider<TopDestinationsDataSource>(
 );
 
 abstract class TopDestinationsDataSource {
-  Future<DestinationsResponseModel> getTopDestinationsComponents();
+  Future<DestinationsResponseModel> getTopDestinationsComponents(
+      String appLanguage);
 }
