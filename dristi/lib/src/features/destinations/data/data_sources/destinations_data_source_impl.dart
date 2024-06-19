@@ -8,8 +8,9 @@ import 'package:dristi/src/features/destinations/data/models/destination_respons
 class DestinationsDataSourceImp extends BaseRemoteSource
     implements DestinationsDataSource {
   @override
-  Future<DestinationsResponseModel> destinationsComponents() {
-    final String endpoint = DioProvider.baseUrl + API.destinations;
+  Future<DestinationsResponseModel> destinationsComponents(String appLanguage) {
+    final String endpoint =
+        '${DioProvider.baseUrl}/$appLanguage${API.destinations}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

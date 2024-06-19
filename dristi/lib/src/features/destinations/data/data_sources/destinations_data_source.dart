@@ -9,5 +9,5 @@ final destinationsDataSourceProvider = Provider<DestinationsDataSource>(
 );
 
 abstract class DestinationsDataSource {
-  Future<DestinationsResponseModel> destinationsComponents();
+  Future<DestinationsResponseModel> destinationsComponents(String appLanguage);
 }

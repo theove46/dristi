@@ -1,9 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:dristi/src/features/destinations/presentation/widgets/destinations_app_bar.dart';
 import 'package:dristi/src/features/destinations/presentation/widgets/destinations_list.dart';
@@ -30,9 +32,14 @@ class _DestinationScreenState
   }
 
   Future<void> _getDestinationComponents() async {
+    final appLanguageState =
+        ref.watch(languageProvider).language.toLanguage.languageCode;
     final networkState = ref.watch(networkStatusProvider);
+
     if (networkState.value?.first != ConnectivityResult.none) {
-      ref.read(destinationProvider.notifier).getDestinationComponents();
+      ref
+          .read(destinationProvider.notifier)
+          .getDestinationComponents(appLanguageState);
     }
 
     final categoryState = ref.watch(destinationsCategoryField);
