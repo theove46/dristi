@@ -92,7 +92,7 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          widget.destination.title,
+          widget.destination.onImageTitle,
           style: appTextStyles.onImageBoldShadow44,
         ),
       ),
