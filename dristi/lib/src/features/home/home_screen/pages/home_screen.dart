@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
@@ -35,7 +36,10 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
   }
 
   Future<void> getHomeComponents() async {
+    final appLanguageState =
+        ref.watch(languageProvider).language.toLanguage.languageCode;
     final state = ref.watch(networkStatusProvider);
+
     if (state.value?.first != ConnectivityResult.none) {
       ref.read(sliderProvider.notifier).getSliderComponents();
       ref.read(categoriesProvider.notifier).getCategoriesComponents();
@@ -43,7 +47,9 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
           .read(multipleAdvertisementProvider.notifier)
           .getMultipleAdvertisementComponents();
       ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
-      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
+      ref
+          .read(popularDistrictProvider.notifier)
+          .getPopularDistrictComponents(appLanguageState);
       ref.read(districtProvider.notifier).getDistrictComponents();
     }
   }

@@ -9,5 +9,6 @@ final popularDistrictDataSourceProvider = Provider<PopularDistrictDataSource>(
 );
 
 abstract class PopularDistrictDataSource {
-  Future<PopularDistrictsResponseModel> popularDistrictComponents();
+  Future<PopularDistrictsResponseModel> popularDistrictComponents(
+      String appLanguage);
 }

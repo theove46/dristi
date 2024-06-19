@@ -1,15 +1,11 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
-import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
-import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/settings/presentation/widgets/settings_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -125,7 +121,6 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             selectedItem: languageState.language,
             onItemSelected: (value) {
               ref.read(languageProvider.notifier).setLanguage(value);
-              getHomeComponents();
             },
           );
         },
@@ -204,20 +199,6 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> getHomeComponents() async {
-    final state = ref.watch(networkStatusProvider);
-    if (state.value?.first != ConnectivityResult.none) {
-      ref.read(sliderProvider.notifier).getSliderComponents();
-      ref.read(categoriesProvider.notifier).getCategoriesComponents();
-      ref
-          .read(multipleAdvertisementProvider.notifier)
-          .getMultipleAdvertisementComponents();
-      ref.read(topDestinationsProvider.notifier).topDestinationsComponents();
-      ref.read(popularDistrictProvider.notifier).getPopularDistrictComponents();
-      ref.read(districtProvider.notifier).getDistrictComponents();
-    }
   }
 
   String _getThemeText(AppTheme theme) {
