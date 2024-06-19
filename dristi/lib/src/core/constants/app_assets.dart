@@ -22,8 +22,10 @@ class Assets {
   static const String nilgiri = '$itemsPath/nilgiri.jpg';
 
   /// JSON Assets
-  static const String districtComponents =
-      '$jsonAssets/district_components.json';
+  static const String districtComponentsEn =
+      '$jsonAssets/district_components_en.json';
+  static const String districtComponentsBn =
+      '$jsonAssets/district_components_bn.json';
   static const String onBoardingComponents =
       '$jsonAssets/on_boarding_components.json';
   static const String spotComponents = '$jsonAssets/spot_components.json';

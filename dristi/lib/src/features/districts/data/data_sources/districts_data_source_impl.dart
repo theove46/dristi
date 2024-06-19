@@ -10,9 +10,13 @@ class DistrictDataSourceImp implements DistrictDataSource {
   const DistrictDataSourceImp();
 
   @override
-  Future<Response> getDistrictComponents() async {
+  Future<Response> getDistrictComponents(String appLanguage) async {
     try {
-      String response = await rootBundle.loadString(Assets.districtComponents);
+      String endpoint = appLanguage == 'en'
+          ? Assets.districtComponentsEn
+          : Assets.districtComponentsBn;
+
+      String response = await rootBundle.loadString(endpoint);
       final List<dynamic> jsonList = json.decode(response);
       DistrictResponseModel districtResponse =
           DistrictResponseModel.fromJson(jsonList);
