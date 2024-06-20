@@ -39,6 +39,8 @@ class _DistrictsAppBarState
           Icons.arrow_back_ios,
         ),
         onPressed: () {
+          _searchFieldController.clear();
+          searchFieldNotifier.state = '';
           context.pop();
         },
       ),

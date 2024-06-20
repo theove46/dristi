@@ -11,6 +11,7 @@ class Assets {
   static const String logo = '$itemsPath/logo.png';
   static const String menu = '$itemsPath/menu.png';
   static const String forestCard = '$itemsPath/forest_card.png';
+  static const String emptyList = '$itemsPath/empty_list.png';
   static const String error = '$itemsPath/error.svg';
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';

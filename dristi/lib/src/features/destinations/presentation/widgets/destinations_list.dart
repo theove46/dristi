@@ -4,6 +4,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
@@ -33,6 +34,10 @@ class _DestinationsListState
     }
 
     List<DestinationEntity> fetchResult = searchDestinations();
+
+    if (fetchResult.isEmpty) {
+      return const EmptyListImage();
+    }
 
     return SliverPadding(
       padding: EdgeInsets.only(
