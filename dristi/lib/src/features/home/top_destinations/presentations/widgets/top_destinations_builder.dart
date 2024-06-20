@@ -63,7 +63,7 @@ class _TopDestinationBuilderState
     }
 
     return SizedBox(
-      height: AppValues.dimen_100.h,
+      height: AppValues.dimen_110.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: topDestinationItems.data.length,

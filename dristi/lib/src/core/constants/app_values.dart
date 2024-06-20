@@ -32,6 +32,7 @@ class AppValues {
   static const double dimen_75 = 75;
   static const double dimen_80 = 80;
   static const double dimen_100 = 100;
+  static const double dimen_110 = 110;
   static const double dimen_120 = 120;
   static const double dimen_130 = 130;
   static const double dimen_150 = 150;

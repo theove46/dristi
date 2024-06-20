@@ -35,24 +35,21 @@ class _PopularCitiesBuilderState
   }
 
   Widget _buildTopHeadings() {
-    return Padding(
-      padding: EdgeInsets.only(top: AppValues.dimen_16.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            context.localization.popularDistricts,
-            style: appTextStyles.primaryNovaBold16,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          context.localization.popularDistricts,
+          style: appTextStyles.primaryNovaBold16,
+        ),
+        TextButton(
+          onPressed: navigateToDistrictPage,
+          child: Text(
+            context.localization.viewAll,
+            style: appTextStyles.primaryNovaSemiBold12,
           ),
-          TextButton(
-            onPressed: navigateToDistrictPage,
-            child: Text(
-              context.localization.explore,
-              style: appTextStyles.primaryNovaSemiBold12,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
