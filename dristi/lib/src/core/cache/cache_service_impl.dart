@@ -54,6 +54,6 @@ class CacheServiceImpl implements CacheService {
   Future<AppLanguages> getLanguage() async {
     final box = await Hive.openBox<int>(_languageBox);
     int? languageIndex = box.get(_languageKey);
-    return AppLanguages.values[languageIndex ?? AppLanguages.en.index];
+    return AppLanguages.values[languageIndex ?? AppLanguages.bn.index];
   }
 }

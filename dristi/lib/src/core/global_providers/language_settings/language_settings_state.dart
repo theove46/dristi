@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class LanguageState extends Equatable {
   const LanguageState({
-    this.language = AppLanguages.en,
+    this.language = AppLanguages.bn,
   });
 
   final AppLanguages language;
