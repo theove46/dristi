@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
-import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/spot/data/data_sources/spot_items_data_source.dart';
 import 'package:dristi/src/features/spot/data/models/spot_items_response_model.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +13,6 @@ class SpotItemsDataSourceImp implements SpotItemsDataSource {
   Future<Response> spotItemsComponents() async {
     try {
       String response = await rootBundle.loadString(Assets.spotComponents);
-      Log.debug(response.toString());
       final List<dynamic> jsonList = json.decode(response);
       SpotItemResponseModel splashResponse =
           SpotItemResponseModel.fromJson(jsonList);

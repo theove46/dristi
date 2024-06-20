@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -16,7 +17,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class DestinationsList extends ConsumerStatefulWidget {
-  const DestinationsList({super.key});
+  const DestinationsList({
+    this.isShowFavouritesList,
+    super.key,
+  });
+
+  final bool? isShowFavouritesList;
 
   @override
   ConsumerState createState() => _DestinationsListState();
@@ -142,6 +148,7 @@ class _DestinationsListState
     final searchFieldState = ref.watch(destinationsSearchField);
     final categoryFieldState = ref.watch(destinationsCategoryField);
     final districtFieldState = ref.watch(destinationsDistrictField);
+    final favoriteDestinationsState = ref.watch(favoritesProvider).data;
 
     List<DestinationEntity> result = destinationModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
@@ -160,7 +167,13 @@ class _DestinationsListState
       bool matchesDistrict = districtFieldState.isEmpty ||
           checkDistrict.contains(districtFieldState.toLowerCase());
 
-      return matchesSearch && matchesCategory && matchesDistrict;
+      bool matchesFavourites = !widget.isShowFavouritesList! ||
+          favoriteDestinationsState.contains(u.id);
+
+      return matchesSearch &&
+          matchesCategory &&
+          matchesDistrict &&
+          matchesFavourites;
     }).toList();
 
     return result;

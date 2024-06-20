@@ -15,7 +15,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
-  const DestinationScreen({super.key});
+  const DestinationScreen({
+    this.isShowFavouritesList,
+    super.key,
+  });
+
+  final bool? isShowFavouritesList;
 
   @override
   ConsumerState createState() => _DestinationScreenState();
@@ -79,7 +84,9 @@ class _DestinationScreenState
                 districtController: districtController,
               ),
               // _buildAdvertisement(), // For Future Usage
-              const DestinationsList(),
+              DestinationsList(
+                isShowFavouritesList: widget.isShowFavouritesList,
+              ),
             ],
           ),
         ),

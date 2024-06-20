@@ -58,7 +58,12 @@ GoRouter appRouter = GoRouter(
     GoRoute(
       path: _Path.destination,
       name: AppRoutes.destination,
-      builder: (context, state) => const DestinationScreen(),
+      builder: (context, state) {
+        final isShowFavouritesList = state.extra as bool? ?? false;
+        return DestinationScreen(
+          isShowFavouritesList: isShowFavouritesList,
+        );
+      },
     ),
     GoRoute(
       path: _Path.settings,

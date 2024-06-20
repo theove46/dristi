@@ -43,7 +43,9 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
         children: [
           SpotImage(destination: widget.destination),
           _buildDescription(),
-          const TopScreenIcons(),
+          TopScreenIcons(
+            destinationId: widget.destination.id,
+          ),
         ],
       ),
     );

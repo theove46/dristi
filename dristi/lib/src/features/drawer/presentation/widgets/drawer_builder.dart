@@ -63,7 +63,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                   size: AppValues.dimen_20.sp,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(AppRoutes.destination, extra: true);
+              },
             ),
             ListTile(
               title: Text(
