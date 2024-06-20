@@ -126,11 +126,14 @@ Widget buildSliderShimmer(BuildContext context) {
     context: context,
     height: AppValues.dimen_220.h,
     width: double.infinity,
-    child: buildShimmerContainer(
-      context: context,
-      height: AppValues.dimen_220.h,
-      width: double.infinity,
-      borderRadius: AppValues.dimen_10.r,
+    child: Container(
+      margin: EdgeInsets.all(AppValues.dimen_1.r),
+      child: buildShimmerContainer(
+        context: context,
+        height: AppValues.dimen_220.h,
+        width: double.infinity,
+        borderRadius: AppValues.dimen_10.r,
+      ),
     ),
   );
 }
@@ -154,7 +157,8 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
     context: context,
     height: AppValues.dimen_130.h,
     width: double.infinity,
-    child: Padding(
+    child: Container(
+      margin: EdgeInsets.all(AppValues.dimen_1.r),
       padding: EdgeInsets.only(top: AppValues.dimen_16.h),
       child: buildShimmerContainer(
         context: context,
