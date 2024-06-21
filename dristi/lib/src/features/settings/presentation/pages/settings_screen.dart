@@ -131,6 +131,11 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         onTap: () {},
       ),
       _buildSettingsItem(
+        icon: Icons.stars,
+        title: context.localization.ratingsAndReview,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
         icon: Icons.share,
         title: context.localization.shareDristi,
         onTap: () {},
@@ -151,16 +156,21 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
       ),
       _buildSettingsItem(
         icon: Icons.volunteer_activism,
-        title: context.localization.helpAndSupport,
+        title: context.localization.support,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.privacy_tip,
-        title: context.localization.privacyAndPolicy,
+        icon: Icons.policy,
+        title: context.localization.privacyPolicy,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.info_outlined,
+        icon: Icons.article,
+        title: context.localization.termsAndCondition,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
+        icon: Icons.history,
         title: context.localization.appVersion,
         subTitle: '1.0',
         onTap: () {},
