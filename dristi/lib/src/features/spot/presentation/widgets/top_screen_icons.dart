@@ -1,7 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
-import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,10 +48,9 @@ class _TopScreenIconsState extends BaseConsumerStatefulWidget<TopScreenIcons> {
             icon: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
               color: uiColors.error,
-              size: AppValues.dimen_20.h,
+              size: AppValues.dimen_30.h,
             ),
             onTap: () {
-              Log.debug("tap here");
               ref
                   .read(favoritesProvider.notifier)
                   .toggleFavorite(widget.destinationId);

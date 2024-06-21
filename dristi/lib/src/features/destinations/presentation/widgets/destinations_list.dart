@@ -77,6 +77,7 @@ class _DestinationsListState
           children: [
             _buildImage(item),
             _buildGradient(),
+            _buildFavouriteIcon(item),
             _buildLabels(item),
           ],
         ),
@@ -117,6 +118,38 @@ class _DestinationsListState
             uiColors.shadow,
             uiColors.shadow.withOpacity(0.25),
             uiColors.transparent,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFavouriteIcon(DestinationEntity item) {
+    final isFavorite = ref.watch(favoritesProvider).data.contains(item.id);
+
+    return GestureDetector(
+      onTap: () {
+        ref.read(favoritesProvider.notifier).toggleFavorite(item.id);
+      },
+      child: Padding(
+        padding: EdgeInsets.all(AppValues.dimen_10.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              height: AppValues.dimen_24.r,
+              width: AppValues.dimen_24.r,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: uiColors.onImage.withOpacity(0.7),
+              ),
+              child: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
+                color: uiColors.error,
+                size: AppValues.dimen_16.r,
+              ),
+            ),
           ],
         ),
       ),

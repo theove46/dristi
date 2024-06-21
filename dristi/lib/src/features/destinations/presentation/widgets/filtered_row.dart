@@ -9,11 +9,13 @@ class FilteredRow extends ConsumerStatefulWidget {
   const FilteredRow({
     required this.categoryController,
     required this.districtController,
+    this.isShowFavouritesList,
     super.key,
   });
 
   final TextEditingController categoryController;
   final TextEditingController districtController;
+  final bool? isShowFavouritesList;
 
   @override
   ConsumerState<FilteredRow> createState() => _FilteredRowState();
@@ -30,10 +32,16 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
 
     return SliverToBoxAdapter(
       child: categoryFieldNotifier.state.isNotEmpty ||
-              districtFieldNotifier.state.isNotEmpty
+              districtFieldNotifier.state.isNotEmpty ||
+              widget.isShowFavouritesList == true
           ? Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                if (widget.isShowFavouritesList == true)
+                  _buildFilterItem(
+                    text: "Favourite Places",
+                    isCloseIcon: false,
+                  ),
                 if (districtFieldState.isNotEmpty)
                   _buildFilterItem(
                     text: districtFieldState,
@@ -41,6 +49,7 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
                       districtFieldNotifier.state = '';
                       widget.districtController.clear();
                     },
+                    isCloseIcon: true,
                   ),
                 if (categoryFieldState.isNotEmpty)
                   _buildFilterItem(
@@ -49,6 +58,7 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
                       categoryFieldNotifier.state = '';
                       widget.categoryController.clear();
                     },
+                    isCloseIcon: true,
                   ),
               ],
             )
@@ -58,7 +68,8 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
 
   Widget _buildFilterItem({
     required String text,
-    required VoidCallback onTap,
+    VoidCallback? onTap,
+    required bool isCloseIcon,
   }) {
     return Container(
       margin: EdgeInsets.only(left: AppValues.dimen_16.w),
@@ -82,7 +93,7 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
           GestureDetector(
             onTap: onTap,
             child: Icon(
-              Icons.close,
+              isCloseIcon ? Icons.close : Icons.favorite,
               size: AppValues.dimen_16.sp,
             ),
           ),
