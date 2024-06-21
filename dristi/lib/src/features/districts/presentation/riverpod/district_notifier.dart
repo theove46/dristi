@@ -12,9 +12,9 @@ class DistrictNotifier extends Notifier<DistrictState> {
     return const DistrictState();
   }
 
-  Future<void> getDistrictComponents() async {
+  Future<void> getDistrictComponents(String appLanguage) async {
     try {
-      final response = await useCase.getDistrictComponents();
+      final response = await useCase.getDistrictComponents(appLanguage);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(

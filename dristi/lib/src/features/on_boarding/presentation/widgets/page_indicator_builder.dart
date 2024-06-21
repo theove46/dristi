@@ -53,7 +53,7 @@ class _PageIndicatorBuilderState
                         width: width,
                         decoration: BoxDecoration(
                           color: currentOnBoardingScreenState == index
-                              ? uiColors.primary
+                              ? uiColors.shadow
                               : uiColors.onImage.withOpacity(0.8),
                           borderRadius:
                               BorderRadius.circular(AppValues.dimen_5.r),

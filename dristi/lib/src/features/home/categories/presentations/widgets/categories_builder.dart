@@ -184,7 +184,9 @@ class _CategoriesBuilderState
 
   void navigateToDestinationsPage(String title) {
     ref.watch(destinationsCategoryField);
-    ref.read(destinationsCategoryField.notifier).state = title;
+    if (title != context.localization.allCategories) {
+      ref.read(destinationsCategoryField.notifier).state = title;
+    }
     context.pushNamed(AppRoutes.destination);
   }
 }

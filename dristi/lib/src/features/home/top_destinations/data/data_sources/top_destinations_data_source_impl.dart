@@ -8,8 +8,10 @@ import 'package:dristi/src/features/home/top_destinations/data/data_sources/top_
 class TopDestinationsDataSourceImp extends BaseRemoteSource
     implements TopDestinationsDataSource {
   @override
-  Future<DestinationsResponseModel> getTopDestinationsComponents() {
-    final String endpoint = DioProvider.baseUrl + API.topDestinations;
+  Future<DestinationsResponseModel> getTopDestinationsComponents(
+      String appLanguage) {
+    final String endpoint =
+        '${DioProvider.baseUrl}/$appLanguage${API.topDestinations}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

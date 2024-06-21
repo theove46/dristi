@@ -1,21 +1,39 @@
 import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
+import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
-import 'package:dristi/src/core/styles/themes/app_theme.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class App extends StatelessWidget {
+class App extends ConsumerStatefulWidget {
   const App({
     Key? key,
   }) : super(key: key);
 
   @override
+  ConsumerState<App> createState() => _AppState();
+}
+
+class _AppState extends BaseConsumerStatefulWidget<App> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(themeProvider.notifier).loadInitialThemeState();
+    ref.read(languageProvider.notifier).loadInitialLanguageState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final themeState = ref.watch(themeProvider);
+    final languageState = ref.watch(languageProvider);
+
     return ScreenUtilInit(
       designSize:
           const Size(AppValues.dimenDefaultWidth, AppValues.dimenDefaultHeight),
@@ -25,17 +43,13 @@ class App extends StatelessWidget {
         return MaterialApp.router(
           routerConfig: appRouter,
           debugShowCheckedModeBanner: false,
-          theme: AppThemeData.lightTheme,
-          darkTheme: AppThemeData.darkTheme,
+          theme: getLightThemeData(themeState.theme),
+          darkTheme: getDarkThemeData(themeState.theme),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: _supportedLocales,
-          locale: AppLanguages.bn.toLocale,
+          supportedLocales: supportedLanguages,
+          locale: languageState.language.toLanguage,
         );
       },
     );
   }
-
-  List<Locale> get _supportedLocales => AppLanguages.values
-      .map((AppLanguages language) => language.toLocale)
-      .toList();
 }

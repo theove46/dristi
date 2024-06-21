@@ -15,7 +15,8 @@ class DestinationsUseCase {
 
   final DestinationsRepository repository;
 
-  Future<List<DestinationEntity>> getDestinationsComponents() async {
-    return repository.getDestinationsComponents();
+  Future<List<DestinationEntity>> getDestinationsComponents(
+      String appLanguage) async {
+    return repository.getDestinationsComponents(appLanguage);
   }
 }

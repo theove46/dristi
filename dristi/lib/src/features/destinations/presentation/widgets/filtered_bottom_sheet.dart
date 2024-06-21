@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/presentation/widgets/destinations_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +22,7 @@ class FilteredBottomSheet extends ConsumerStatefulWidget {
   final StateController<String> notifier;
   final TextEditingController controller;
   final String text;
-  final FilterType type;
+  final DestinationFilters type;
 
   @override
   ConsumerState<FilteredBottomSheet> createState() =>
@@ -105,7 +105,7 @@ class _FilteredBottomSheetState
                             ),
 
                             // Division only for District Filtering
-                            if (widget.type == FilterType.district)
+                            if (widget.type == DestinationFilters.district)
                               Text(
                                 item.division,
                                 style: appTextStyles.secondaryNovaRegular12,
@@ -114,7 +114,7 @@ class _FilteredBottomSheetState
                         ),
 
                         // Image only for Category Filtering
-                        if (widget.type == FilterType.category)
+                        if (widget.type == DestinationFilters.category)
                           CachedNetworkImage(
                             imageUrl: item.image,
                             width: AppValues.dimen_40.r,

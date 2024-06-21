@@ -11,5 +11,6 @@ final topDestinationsRepositoryProvider = Provider<TopDestinationsRepository>(
 );
 
 abstract class TopDestinationsRepository {
-  Future<List<DestinationEntity>> getTopDestinationsComponents();
+  Future<List<DestinationEntity>> getTopDestinationsComponents(
+      String appLanguage);
 }

@@ -11,5 +11,5 @@ final sliderRepositoryProvider = Provider<SliderRepository>(
 );
 
 abstract class SliderRepository {
-  Future<List<DestinationEntity>> getSliderComponents();
+  Future<List<DestinationEntity>> getSliderComponents(String appLanguage);
 }

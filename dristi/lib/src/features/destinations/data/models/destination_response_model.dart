@@ -18,6 +18,7 @@ class DestinationsResponseModel {
 class DestinationData extends DestinationEntity {
   String? destinationId;
   String? destinationTitle;
+  String? destinationOnImageTitle;
   String? destinationDistrict;
   String? destinationDivision;
   String? destinationCategory;
@@ -26,6 +27,7 @@ class DestinationData extends DestinationEntity {
   DestinationData({
     this.destinationId,
     this.destinationTitle,
+    this.destinationOnImageTitle,
     this.destinationDistrict,
     this.destinationDivision,
     this.destinationCategory,
@@ -33,6 +35,7 @@ class DestinationData extends DestinationEntity {
   }) : super(
           id: destinationId ?? "",
           title: destinationTitle ?? "",
+          onImageTitle: destinationOnImageTitle ?? "",
           district: destinationDistrict ?? "",
           division: destinationDivision ?? "",
           category: destinationCategory ?? "",
@@ -43,6 +46,7 @@ class DestinationData extends DestinationEntity {
     return DestinationData(
       destinationId: json['id'],
       destinationTitle: json['title'],
+      destinationOnImageTitle: json['onImageTitle'],
       destinationDistrict: json['district'],
       destinationDivision: json['division'],
       destinationCategory: json['category'],

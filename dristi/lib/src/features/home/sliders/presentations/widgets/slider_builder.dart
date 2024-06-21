@@ -78,7 +78,7 @@ class _ImageSliderBuilderState
                 child: Transform.rotate(
                   angle: -15 * (3.1415926535 / 180),
                   child: Text(
-                    carouselItems.data[index].title,
+                    carouselItems.data[index].onImageTitle,
                     style: appTextStyles.onImageBoldShadow32,
                   ),
                 ),

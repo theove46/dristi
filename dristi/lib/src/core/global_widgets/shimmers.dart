@@ -126,11 +126,14 @@ Widget buildSliderShimmer(BuildContext context) {
     context: context,
     height: AppValues.dimen_220.h,
     width: double.infinity,
-    child: buildShimmerContainer(
-      context: context,
-      height: AppValues.dimen_220.h,
-      width: double.infinity,
-      borderRadius: AppValues.dimen_10.r,
+    child: Container(
+      margin: EdgeInsets.all(AppValues.dimen_1.r),
+      child: buildShimmerContainer(
+        context: context,
+        height: AppValues.dimen_220.h,
+        width: double.infinity,
+        borderRadius: AppValues.dimen_10.r,
+      ),
     ),
   );
 }
@@ -154,7 +157,8 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
     context: context,
     height: AppValues.dimen_130.h,
     width: double.infinity,
-    child: Padding(
+    child: Container(
+      margin: EdgeInsets.all(AppValues.dimen_1.r),
       padding: EdgeInsets.only(top: AppValues.dimen_16.h),
       child: buildShimmerContainer(
         context: context,
@@ -169,8 +173,8 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
 Widget buildSliderIndicatorShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
-    height: AppValues.dimen_8.r,
-    width: double.infinity,
+    height: AppValues.dimen_8.h,
+    width: AppValues.dimen_80.r,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
@@ -289,5 +293,18 @@ Widget buildDistrictListShimmer(BuildContext context) {
     height: AppValues.dimen_30.r,
     width: AppValues.dimen_80.r,
     itemCount: 12,
+  );
+}
+
+Widget buildWebViewShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    width: double.infinity,
+    height: double.infinity,
+    child: Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: UIColors.blushText(context),
+    ),
   );
 }

@@ -15,7 +15,8 @@ class TopDestinationsUseCase {
 
   final TopDestinationsRepository repository;
 
-  Future<List<DestinationEntity>> getTopDestinationsComponents() async {
-    return repository.getTopDestinationsComponents();
+  Future<List<DestinationEntity>> getTopDestinationsComponents(
+      String appLanguage) async {
+    return repository.getTopDestinationsComponents(appLanguage);
   }
 }

@@ -11,5 +11,5 @@ final categoriesRepositoryProvider = Provider<CategoriesRepository>(
 );
 
 abstract class CategoriesRepository {
-  Future<List<CategoryEntity>> getCategoriesComponents();
+  Future<List<CategoryEntity>> getCategoriesComponents(String appLanguage);
 }

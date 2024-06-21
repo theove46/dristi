@@ -10,8 +10,9 @@ class DestinationsRepositoryImp implements DestinationsRepository {
   final DestinationsDataSource dataSource;
 
   @override
-  Future<List<DestinationEntity>> getDestinationsComponents() async {
-    final response = await dataSource.destinationsComponents();
+  Future<List<DestinationEntity>> getDestinationsComponents(
+      String appLanguage) async {
+    final response = await dataSource.destinationsComponents(appLanguage);
 
     return response.destinationsItems;
   }

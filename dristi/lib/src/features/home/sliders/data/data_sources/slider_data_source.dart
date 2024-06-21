@@ -9,5 +9,5 @@ final sliderDataSourceProvider = Provider<SliderDataSource>(
 );
 
 abstract class SliderDataSource {
-  Future<DestinationsResponseModel> sliderComponents();
+  Future<DestinationsResponseModel> sliderComponents(String appLanguage);
 }

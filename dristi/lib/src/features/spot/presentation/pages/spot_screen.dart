@@ -21,10 +21,10 @@ class SpotScreen extends ConsumerStatefulWidget {
   final DestinationEntity destination;
 
   @override
-  ConsumerState createState() => _SpotPageState();
+  ConsumerState createState() => _SpotScreenState();
 }
 
-class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
+class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,7 +43,9 @@ class _SpotPageState extends BaseConsumerStatefulWidget<SpotScreen> {
         children: [
           SpotImage(destination: widget.destination),
           _buildDescription(),
-          const TopScreenIcons(),
+          TopScreenIcons(
+            destinationId: widget.destination.id,
+          ),
         ],
       ),
     );

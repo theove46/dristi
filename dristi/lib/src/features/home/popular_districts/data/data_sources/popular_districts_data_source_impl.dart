@@ -8,8 +8,10 @@ import 'package:dristi/src/features/home/popular_districts/data/model/popular_di
 class PopularDistrictDataSourceImp extends BaseRemoteSource
     implements PopularDistrictDataSource {
   @override
-  Future<PopularDistrictsResponseModel> popularDistrictComponents() {
-    final String endpoint = DioProvider.baseUrl + API.popularDistricts;
+  Future<PopularDistrictsResponseModel> popularDistrictComponents(
+      String appLanguage) {
+    final String endpoint =
+        '${DioProvider.baseUrl}/$appLanguage${API.popularDistricts}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

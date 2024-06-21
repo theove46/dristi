@@ -12,13 +12,13 @@ class DestinationNotifier extends Notifier<DestinationState> {
     return const DestinationState();
   }
 
-  Future<void> getDestinationComponents() async {
+  Future<void> getDestinationComponents(String appLanguage) async {
     try {
       state = state.copyWith(
         status: DestinationStatus.loading,
       );
 
-      final response = await useCase.getDestinationsComponents();
+      final response = await useCase.getDestinationsComponents(appLanguage);
 
       if (response.isNotEmpty) {
         state = state.copyWith(

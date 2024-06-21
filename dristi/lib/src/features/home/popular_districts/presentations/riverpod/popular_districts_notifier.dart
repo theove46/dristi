@@ -12,13 +12,13 @@ class PopularDistrictNotifier extends Notifier<PopularDistrictState> {
     return const PopularDistrictState();
   }
 
-  Future<void> getPopularDistrictComponents() async {
+  Future<void> getPopularDistrictComponents(String appLanguage) async {
     try {
       state = state.copyWith(
         status: PopularDistrictsStatus.loading,
       );
 
-      final response = await useCase.getPopularDistrictComponents();
+      final response = await useCase.getPopularDistrictComponents(appLanguage);
 
       if (response.isNotEmpty) {
         state = state.copyWith(

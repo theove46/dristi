@@ -10,8 +10,9 @@ class TopDestinationsRepositoryImp implements TopDestinationsRepository {
   final TopDestinationsDataSource dataSource;
 
   @override
-  Future<List<DestinationEntity>> getTopDestinationsComponents() async {
-    final response = await dataSource.getTopDestinationsComponents();
+  Future<List<DestinationEntity>> getTopDestinationsComponents(
+      String appLanguage) async {
+    final response = await dataSource.getTopDestinationsComponents(appLanguage);
 
     return response.destinationsItems;
   }

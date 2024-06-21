@@ -15,7 +15,8 @@ class DistrictUseCase {
 
   final DistrictRepository repository;
 
-  Future<(String, List<DistrictEntity>?)> getDistrictComponents() async {
-    return repository.getDistrictComponents();
+  Future<(String, List<DistrictEntity>?)> getDistrictComponents(
+      String appLanguage) async {
+    return repository.getDistrictComponents(appLanguage);
   }
 }

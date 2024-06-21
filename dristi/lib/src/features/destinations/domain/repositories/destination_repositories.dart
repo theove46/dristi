@@ -11,5 +11,5 @@ final destinationsRepositoryProvider = Provider<DestinationsRepository>(
 );
 
 abstract class DestinationsRepository {
-  Future<List<DestinationEntity>> getDestinationsComponents();
+  Future<List<DestinationEntity>> getDestinationsComponents(String appLanguage);
 }

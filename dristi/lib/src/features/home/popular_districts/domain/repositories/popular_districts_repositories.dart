@@ -11,5 +11,6 @@ final popularDistrictRepositoryProvider = Provider<PopularDistrictRepository>(
 );
 
 abstract class PopularDistrictRepository {
-  Future<List<PopularDistrictEntity>> getPopularDistrictComponents();
+  Future<List<PopularDistrictEntity>> getPopularDistrictComponents(
+      String appLanguage);
 }

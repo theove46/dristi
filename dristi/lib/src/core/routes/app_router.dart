@@ -9,6 +9,7 @@ import 'package:dristi/src/features/districts/presentation/pages/districts_list_
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
+import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,7 @@ abstract class _Path {
   static const String spot = '/spot';
   static const String districts = '/districts';
   static const String destination = '/destination';
+  static const String settings = '/settings';
   static const String webView = '/webView';
   static const String error = '/error';
 }
@@ -56,7 +58,17 @@ GoRouter appRouter = GoRouter(
     GoRoute(
       path: _Path.destination,
       name: AppRoutes.destination,
-      builder: (context, state) => const DestinationScreen(),
+      builder: (context, state) {
+        final isShowFavouritesList = state.extra as bool? ?? false;
+        return DestinationScreen(
+          isShowFavouritesList: isShowFavouritesList,
+        );
+      },
+    ),
+    GoRoute(
+      path: _Path.settings,
+      name: AppRoutes.settings,
+      builder: (context, state) => const SettingsScreen(),
     ),
     GoRoute(
       path: _Path.webView,

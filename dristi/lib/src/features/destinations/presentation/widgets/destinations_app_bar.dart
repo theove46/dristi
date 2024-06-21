@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
@@ -166,7 +167,7 @@ class _DestinationsAppBarState
           notifier: categoryFieldNotifier,
           controller: widget.categoryController,
           text: context.localization.selectCategory,
-          type: FilterType.category,
+          type: DestinationFilters.category,
         );
       },
     );
@@ -191,14 +192,9 @@ class _DestinationsAppBarState
           notifier: districtFieldNotifier,
           controller: widget.districtController,
           text: context.localization.selectDistrict,
-          type: FilterType.district,
+          type: DestinationFilters.district,
         );
       },
     );
   }
-}
-
-enum FilterType {
-  category,
-  district,
 }
