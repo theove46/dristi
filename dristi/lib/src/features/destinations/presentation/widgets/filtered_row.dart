@@ -1,5 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,7 +40,7 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
               children: [
                 if (widget.isShowFavouritesList == true)
                   _buildFilterItem(
-                    text: "Favourite Places",
+                    text: context.localization.favouritePlaces,
                     isCloseIcon: false,
                   ),
                 if (districtFieldState.isNotEmpty)

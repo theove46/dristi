@@ -11,10 +11,12 @@ class CacheServiceImpl implements CacheService {
   static const String _appSettingsBox = 'appSettingsBox';
   static const String _themeBox = 'themeBox';
   static const String _languageBox = 'languageBox';
+  static const String _favoritesBox = 'favoritesBox';
 
   static const String _isFirstTimeKey = 'isFirstTime';
   static const String _themeKey = 'theme';
   static const String _languageKey = 'language';
+  static const String _favoritesKey = 'favorites';
 
   @override
   Future<void> setFirstTimeOnBoardingFalse() async {
@@ -55,5 +57,18 @@ class CacheServiceImpl implements CacheService {
     final box = await Hive.openBox<int>(_languageBox);
     int? languageIndex = box.get(_languageKey);
     return AppLanguages.values[languageIndex ?? AppLanguages.bn.index];
+  }
+
+  @override
+  Future<void> setFavoritesList(Set<String> favoritesList) async {
+    final box = await Hive.openBox<List<String>>(_favoritesBox);
+    await box.put(_favoritesKey, favoritesList.toList());
+  }
+
+  @override
+  Future<Set<String>> getFavoritesList() async {
+    final box = await Hive.openBox<List<String>>(_favoritesBox);
+    List<String>? favoritesList = box.get(_favoritesKey);
+    return favoritesList?.toSet() ?? {};
   }
 }

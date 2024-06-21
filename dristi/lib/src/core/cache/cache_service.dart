@@ -19,4 +19,8 @@ abstract class CacheService {
   Future<void> setLanguage(AppLanguages language);
 
   Future<AppLanguages> getLanguage();
+
+  Future<void> setFavoritesList(Set<String> favoritesList);
+
+  Future<Set<String>> getFavoritesList();
 }
