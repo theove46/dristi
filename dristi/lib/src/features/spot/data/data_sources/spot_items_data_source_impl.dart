@@ -10,9 +10,13 @@ class SpotItemsDataSourceImp implements SpotItemsDataSource {
   const SpotItemsDataSourceImp();
 
   @override
-  Future<Response> spotItemsComponents() async {
+  Future<Response> spotItemsComponents(String appLanguage) async {
     try {
-      String response = await rootBundle.loadString(Assets.spotComponents);
+      String endpoint = appLanguage == 'en'
+          ? Assets.spotComponentsEn
+          : Assets.spotComponentsBn;
+
+      String response = await rootBundle.loadString(endpoint);
       final List<dynamic> jsonList = json.decode(response);
       SpotItemResponseModel splashResponse =
           SpotItemResponseModel.fromJson(jsonList);

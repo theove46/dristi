@@ -9,5 +9,5 @@ final spotItemsDataSourceProvider = Provider<SpotItemsDataSource>(
 );
 
 abstract class SpotItemsDataSource {
-  Future<Response> spotItemsComponents();
+  Future<Response> spotItemsComponents(String appLanguage);
 }

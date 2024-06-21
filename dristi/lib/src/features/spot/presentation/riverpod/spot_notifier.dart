@@ -13,9 +13,9 @@ class SpotNotifier extends Notifier<SpotState> {
     return const SpotState();
   }
 
-  Future<void> getSpotItemsComponents() async {
+  Future<void> getSpotItemsComponents(String appLanguage) async {
     try {
-      final response = await useCase.getSpotItemsComponents();
+      final response = await useCase.getSpotItemsComponents(appLanguage);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(

@@ -1,7 +1,7 @@
 [
   {
-    "title": "Plans",
-    "image": "assets/images/spot_items/plans.png"
+    "title": "Details",
+    "image": "assets/images/spot_items/details.png"
   },
   {
     "title": "Hotels",
@@ -22,5 +22,9 @@
   {
     "title": "Cautions",
     "image": "assets/images/spot_items/caution.png"
+  },
+  {
+    "title": "Blogs",
+    "image": "assets/images/spot_items/blogs.png"
   }
 ]

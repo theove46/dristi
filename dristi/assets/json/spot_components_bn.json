@@ -1,0 +1,30 @@
+[
+  {
+    "title": "বিস্তারিত",
+    "image": "assets/images/spot_items/details.png"
+  },
+  {
+    "title": "হোটেল",
+    "image": "assets/images/spot_items/hotel.png"
+  },
+  {
+    "title": "নিকটবর্তী",
+    "image": "assets/images/spot_items/nearest.png"
+  },
+  {
+    "title": "উপযুক্ত সময়",
+    "image": "assets/images/spot_items/seasons.png"
+  },
+  {
+    "title": "স্থানীয় বিশেষ",
+    "image": "assets/images/spot_items/specials.png"
+  },
+  {
+    "title": "সতর্কতা",
+    "image": "assets/images/spot_items/caution.png"
+  },
+  {
+    "title": "ব্লগস",
+    "image": "assets/images/spot_items/blogs.png"
+  }
+]

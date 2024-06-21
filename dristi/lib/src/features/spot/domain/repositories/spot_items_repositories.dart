@@ -11,5 +11,6 @@ final spotItemsRepositoryProvider = Provider<SpotItemsRepository>(
 );
 
 abstract class SpotItemsRepository {
-  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents();
+  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents(
+      String appLanguage);
 }

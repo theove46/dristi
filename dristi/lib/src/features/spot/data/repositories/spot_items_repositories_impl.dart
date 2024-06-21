@@ -10,8 +10,9 @@ class SpotItemsRepositoryImp implements SpotItemsRepository {
   final SpotItemsDataSource dataSource;
 
   @override
-  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents() async {
-    final response = await dataSource.spotItemsComponents();
+  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents(
+      String appLanguage) async {
+    final response = await dataSource.spotItemsComponents(appLanguage);
 
     return Future.value(
         (response.statusMessage!, response.data as List<SpotItemsEntity>?));

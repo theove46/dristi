@@ -15,7 +15,8 @@ class SpotItemsUseCase {
 
   final SpotItemsRepository repository;
 
-  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents() async {
-    return repository.getSpotItemsComponents();
+  Future<(String, List<SpotItemsEntity>?)> getSpotItemsComponents(
+      String appLanguage) async {
+    return repository.getSpotItemsComponents(appLanguage);
   }
 }
