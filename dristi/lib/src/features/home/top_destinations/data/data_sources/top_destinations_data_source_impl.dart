@@ -11,7 +11,7 @@ class TopDestinationsDataSourceImp extends BaseRemoteSource
   Future<DestinationsResponseModel> getTopDestinationsComponents(
       String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}/$appLanguage${API.topDestinations}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.topDestinations}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

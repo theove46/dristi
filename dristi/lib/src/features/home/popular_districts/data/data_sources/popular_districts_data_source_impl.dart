@@ -11,7 +11,7 @@ class PopularDistrictDataSourceImp extends BaseRemoteSource
   Future<PopularDistrictsResponseModel> popularDistrictComponents(
       String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}/$appLanguage${API.popularDistricts}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.popularDistricts}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

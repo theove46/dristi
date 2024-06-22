@@ -8,7 +8,8 @@ import 'package:dristi/src/features/home/sliders/data/data_sources/slider_data_s
 class SliderDataSourceImp extends BaseRemoteSource implements SliderDataSource {
   @override
   Future<DestinationsResponseModel> sliderComponents(String appLanguage) {
-    final String endpoint = '${DioProvider.baseUrl}/$appLanguage${API.slider}';
+    final String endpoint =
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.slider}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

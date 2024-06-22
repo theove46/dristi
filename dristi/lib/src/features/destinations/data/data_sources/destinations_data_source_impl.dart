@@ -10,7 +10,7 @@ class DestinationsDataSourceImp extends BaseRemoteSource
   @override
   Future<DestinationsResponseModel> destinationsComponents(String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}/$appLanguage${API.destinations}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.destinations}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

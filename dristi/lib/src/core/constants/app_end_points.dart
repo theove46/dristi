@@ -4,6 +4,9 @@ class API {
 
   static const base = dev;
 
+  static const String components = '/components';
+  static const String language = '/language_';
+
   static const String categories = '/categories.json';
   // static const String districts = '/districts.json';
   static const String popularDistricts = '/popular_districts.json';
