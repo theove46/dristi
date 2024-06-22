@@ -112,7 +112,7 @@ class _TopDestinationBuilderState
   void navigateToSpotPage(DestinationEntity item) {
     context.pushNamed(
       AppRoutes.spot,
-      extra: item,
+      extra: item.id,
     );
   }
 }

@@ -20,6 +20,7 @@ class SpotData extends SpotEntity {
   String? spotsDivision;
   String? spotsCategory;
   String? spotsImage;
+  String? spotsDetails;
 
   SpotData({
     this.spotsId,
@@ -29,6 +30,7 @@ class SpotData extends SpotEntity {
     this.spotsDivision,
     this.spotsCategory,
     this.spotsImage,
+    this.spotsDetails,
   }) : super(
           id: spotsId ?? "",
           title: spotsTitle ?? "",
@@ -37,6 +39,7 @@ class SpotData extends SpotEntity {
           division: spotsDivision ?? "",
           category: spotsCategory ?? "",
           image: spotsImage ?? "",
+          details: spotsDetails ?? "",
         );
 
   factory SpotData.fromJson(dynamic json) {
@@ -48,6 +51,7 @@ class SpotData extends SpotEntity {
       spotsDivision: json['division'],
       spotsCategory: json['category'],
       spotsImage: json['image'],
+      spotsDetails: json['details'],
     );
   }
 }

@@ -215,7 +215,7 @@ class _DestinationsListState
   void navigateToSpotPage(DestinationEntity item) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      context.pushNamed(AppRoutes.spot, extra: item);
+      context.pushNamed(AppRoutes.spot, extra: item.id);
     }
   }
 }

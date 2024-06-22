@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
+import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,7 +12,7 @@ class SpotImage extends StatefulWidget {
     super.key,
   });
 
-  final DestinationEntity destination;
+  final SpotEntity destination;
 
   @override
   State<SpotImage> createState() => _SpotImageState();

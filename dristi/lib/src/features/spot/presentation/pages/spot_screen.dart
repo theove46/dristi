@@ -3,11 +3,10 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
-import 'package:dristi/src/features/spot/presentation/widgets/description_items_builder.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_items_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/top_screen_icons.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_image.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +15,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SpotScreen extends ConsumerStatefulWidget {
   const SpotScreen({
-    required this.destination,
+    required this.id,
     super.key,
   });
 
-  final DestinationEntity destination;
+  final String id;
 
   @override
   ConsumerState createState() => _SpotScreenState();
@@ -35,7 +34,7 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
           ref.watch(languageProvider).language.toLanguage.languageCode;
       ref.read(spotProvider.notifier).getSpotData(
             appLanguageState,
-            widget.destination.id,
+            widget.id,
           );
       ref.read(spotItemsProvider.notifier).getSpotItems(appLanguageState);
       ref
@@ -46,13 +45,21 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final destinationDataState = ref.watch(spotProvider);
+
+    if (destinationDataState.data == null) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return Scaffold(
       body: Stack(
         children: [
-          SpotImage(destination: widget.destination),
+          SpotImage(destination: destinationDataState.data),
           _buildDescription(),
           TopScreenIcons(
-            destinationId: widget.destination.id,
+            destinationId: widget.id,
           ),
         ],
       ),
@@ -60,6 +67,8 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
   }
 
   Widget _buildDescription() {
+    final destinationDataState = ref.watch(spotProvider);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +89,7 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
                 children: [
                   const AdvertisementImage(),
                   DescriptionItemsBuilder(
-                    destination: widget.destination,
+                    destination: destinationDataState.data,
                   ),
                 ],
               ),

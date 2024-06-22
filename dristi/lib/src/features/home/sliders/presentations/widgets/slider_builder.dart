@@ -148,6 +148,6 @@ class _ImageSliderBuilderState
   }
 
   void navigateToSpotPage(DestinationEntity item) {
-    context.pushNamed(AppRoutes.spot, extra: item);
+    context.pushNamed(AppRoutes.spot, extra: item.id);
   }
 }
