@@ -17,6 +17,16 @@ enum DestinationFilters {
   district,
 }
 
+enum SpotScreenType {
+  detailsScreen,
+  hotelsScreen,
+  nearestScreen,
+  seasonsScreen,
+  specialsScreen,
+  cautionsScreen,
+  blogsScreen,
+}
+
 List<Locale> get supportedLanguages => AppLanguages.values
     .map((AppLanguages language) => language.toLanguage)
     .toList();

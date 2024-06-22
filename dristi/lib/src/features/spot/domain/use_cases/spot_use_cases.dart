@@ -15,6 +15,10 @@ class SpotUseCase {
 
   final SpotRepository repository;
 
+  Future<SpotEntity> getSpotData(String appLanguage, String spotId) async {
+    return repository.getSpotData(appLanguage, spotId);
+  }
+
   Future<(String, List<SpotItemsEntity>?)> getSpotItems(
       String appLanguage) async {
     return repository.getSpotItems(appLanguage);

@@ -10,6 +10,13 @@ class SpotRepositoryImp implements SpotRepository {
   final SpotDataSource dataSource;
 
   @override
+  Future<SpotEntity> getSpotData(String appLanguage, String spotId) async {
+    final response = await dataSource.getSpotData(appLanguage, spotId);
+
+    return response.spots;
+  }
+
+  @override
   Future<(String, List<SpotItemsEntity>?)> getSpotItems(
       String appLanguage) async {
     final response = await dataSource.getSpotItems(appLanguage);

@@ -5,6 +5,7 @@ class API {
   static const base = dev;
 
   static const String components = '/components';
+  static const String spots = '/spots';
   static const String language = '/language_';
 
   static const String categories = '/categories.json';

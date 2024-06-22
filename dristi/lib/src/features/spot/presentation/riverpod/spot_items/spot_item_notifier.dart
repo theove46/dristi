@@ -1,6 +1,6 @@
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/spot/domain/use_cases/spot_use_cases.dart';
-import 'package:dristi/src/features/spot/presentation/riverpod/spot_state.dart';
+import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_state.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
