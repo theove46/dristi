@@ -2,15 +2,15 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
-import 'package:dristi/src/features/spot/data/data_sources/spot_items_data_source.dart';
-import 'package:dristi/src/features/spot/data/models/spot_items_response_model.dart';
+import 'package:dristi/src/features/spot/data/data_sources/spot_data_source.dart';
+import 'package:dristi/src/features/spot/data/models/spot_response_model.dart';
 import 'package:flutter/services.dart';
 
-class SpotItemsDataSourceImp implements SpotItemsDataSource {
-  const SpotItemsDataSourceImp();
+class SpotDataSourceImp implements SpotDataSource {
+  const SpotDataSourceImp();
 
   @override
-  Future<Response> spotItemsComponents(String appLanguage) async {
+  Future<Response> getSpotItems(String appLanguage) async {
     try {
       String endpoint = appLanguage == 'en'
           ? Assets.spotComponentsEn
@@ -18,8 +18,8 @@ class SpotItemsDataSourceImp implements SpotItemsDataSource {
 
       String response = await rootBundle.loadString(endpoint);
       final List<dynamic> jsonList = json.decode(response);
-      SpotItemResponseModel splashResponse =
-          SpotItemResponseModel.fromJson(jsonList);
+      SpotItemsResponseModel splashResponse =
+          SpotItemsResponseModel.fromJson(jsonList);
 
       return Response(
         requestOptions: RequestOptions(),

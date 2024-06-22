@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-enum SpotStatus { initial, loading, success, failure }
+enum SpotItemsStatus { initial, loading, success, failure }
 
-class SpotState<T> extends Equatable {
-  const SpotState({
-    this.status = SpotStatus.initial,
+class SpotItemsState<T> extends Equatable {
+  const SpotItemsState({
+    this.status = SpotItemsStatus.initial,
     this.data,
     this.errorMessage,
   });
 
-  final SpotStatus status;
+  final SpotItemsStatus status;
   final T? data;
   final String? errorMessage;
 
-  SpotState copyWith({
-    SpotStatus? status,
+  SpotItemsState copyWith({
+    SpotItemsStatus? status,
     T? data,
     String? errorMessage,
   }) {
-    return SpotState(
+    return SpotItemsState(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

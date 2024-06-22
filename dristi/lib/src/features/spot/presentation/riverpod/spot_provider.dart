@@ -2,7 +2,12 @@ import 'package:dristi/src/features/spot/presentation/riverpod/spot_notifier.dar
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final spotProvider = NotifierProvider<SpotNotifier, SpotState>(
-  SpotNotifier.new,
-  name: 'districtProvider',
+final spotItemsProvider = NotifierProvider<SpotItemsNotifier, SpotItemsState>(
+  SpotItemsNotifier.new,
+  name: 'spotItemsProvider',
+);
+
+final currentPageProvider = StateProvider<int>(
+  (ref) => 0,
+  name: 'currentPageProvider',
 );

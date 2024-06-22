@@ -1,21 +1,21 @@
 import 'package:dristi/src/core/loggers/logger.dart';
-import 'package:dristi/src/features/spot/domain/use_cases/spot_items_use_cases.dart';
+import 'package:dristi/src/features/spot/domain/use_cases/spot_use_cases.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_state.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SpotNotifier extends Notifier<SpotState> {
-  late SpotItemsUseCase useCase;
+class SpotItemsNotifier extends Notifier<SpotItemsState> {
+  late SpotUseCase useCase;
 
   @override
-  SpotState build() {
-    useCase = ref.read(spotItemsUseCaseProvider);
-    return const SpotState();
+  SpotItemsState build() {
+    useCase = ref.read(spotUseCaseProvider);
+    return const SpotItemsState();
   }
 
-  Future<void> getSpotItemsComponents(String appLanguage) async {
+  Future<void> getSpotItems(String appLanguage) async {
     try {
-      final response = await useCase.getSpotItemsComponents(appLanguage);
+      final response = await useCase.getSpotItems(appLanguage);
 
       if (response.$1.isEmpty) {
         state = state.copyWith(
@@ -23,7 +23,7 @@ class SpotNotifier extends Notifier<SpotState> {
         );
       } else {
         state = state.copyWith(
-          status: SpotStatus.failure,
+          status: SpotItemsStatus.failure,
         );
       }
     } catch (e, stackTrace) {
@@ -31,7 +31,7 @@ class SpotNotifier extends Notifier<SpotState> {
       Log.error(stackTrace.toString());
 
       state = state.copyWith(
-        status: SpotStatus.failure,
+        status: SpotItemsStatus.failure,
       );
     }
   }
