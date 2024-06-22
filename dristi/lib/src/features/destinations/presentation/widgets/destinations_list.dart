@@ -5,7 +5,7 @@ import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
-import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
@@ -42,7 +42,7 @@ class _DestinationsListState
     List<DestinationEntity> fetchResult = searchDestinations();
 
     if (fetchResult.isEmpty) {
-      return const EmptyListImage();
+      return const SliverEmptyListImage();
     }
 
     return SliverPadding(
@@ -69,7 +69,7 @@ class _DestinationsListState
   Widget _buildDestinationCard(DestinationEntity item) {
     return GestureDetector(
       onTap: () {
-        navigateToSpotPage(item);
+        navigateToSpotPage(item.id);
       },
       child: Card(
         child: Stack(
@@ -212,10 +212,10 @@ class _DestinationsListState
     return result;
   }
 
-  void navigateToSpotPage(DestinationEntity item) {
+  void navigateToSpotPage(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      context.pushNamed(AppRoutes.spot, extra: item.id);
+      context.pushNamed(AppRoutes.spot, extra: id);
     }
   }
 }

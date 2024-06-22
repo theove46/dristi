@@ -30,17 +30,21 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
   void initState() {
     super.initState();
     Future(() {
-      final appLanguageState =
-          ref.watch(languageProvider).language.toLanguage.languageCode;
-      ref.read(spotProvider.notifier).getSpotData(
-            appLanguageState,
-            widget.id,
-          );
-      ref.read(spotItemsProvider.notifier).getSpotItems(appLanguageState);
-      ref
-          .read(singleAdvertisementProvider.notifier)
-          .getSingleAdvertisementComponents();
+      fetchComponents();
     });
+  }
+
+  Future<void> fetchComponents() async {
+    final appLanguageState =
+        ref.watch(languageProvider).language.toLanguage.languageCode;
+    ref.read(spotProvider.notifier).getSpotData(
+          appLanguageState,
+          widget.id,
+        );
+    ref.read(spotItemsProvider.notifier).getSpotItems(appLanguageState);
+    ref
+        .read(singleAdvertisementProvider.notifier)
+        .getSingleAdvertisementComponents();
   }
 
   @override

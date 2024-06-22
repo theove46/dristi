@@ -3,7 +3,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
-import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
@@ -33,7 +33,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     List<DistrictEntity> fetchResult = searchDistricts();
 
     if (fetchResult.isEmpty) {
-      return const EmptyListImage();
+      return const SliverEmptyListImage();
     }
 
     return SliverPadding(

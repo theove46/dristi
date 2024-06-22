@@ -6,6 +6,7 @@ import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_details_builder.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_nearest_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -78,7 +79,7 @@ class _DescriptionItemsBuilderState
                           width: AppValues.dimen_70.w,
                           color: currentPageState == index
                               ? uiColors.primary
-                              : uiColors.shadow,
+                              : uiColors.background,
                         ),
                       ),
                     ],
@@ -100,6 +101,8 @@ class _DescriptionItemsBuilderState
     switch (screenType) {
       case SpotScreenType.detailsScreen:
         return SpotScreenDetailsBuilder(destination: widget.destination);
+      case SpotScreenType.nearestScreen:
+        return SpotScreenNearestBuilder(destination: widget.destination);
       default:
         return _buildPageBuilderImage(image);
     }
