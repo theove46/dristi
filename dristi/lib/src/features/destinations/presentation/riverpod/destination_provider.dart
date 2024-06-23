@@ -22,3 +22,8 @@ final destinationsDistrictField = StateProvider.autoDispose<String>(
   (ref) => '',
   name: 'destinationsDistrictField',
 );
+
+final favouriteDestinationList = StateProvider.autoDispose<bool>(
+  (ref) => false,
+  name: 'favouriteDestinationList',
+);

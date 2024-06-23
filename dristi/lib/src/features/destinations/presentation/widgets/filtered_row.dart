@@ -10,13 +10,11 @@ class FilteredRow extends ConsumerStatefulWidget {
   const FilteredRow({
     required this.categoryController,
     required this.districtController,
-    this.isShowFavouritesList,
     super.key,
   });
 
   final TextEditingController categoryController;
   final TextEditingController districtController;
-  final bool? isShowFavouritesList;
 
   @override
   ConsumerState<FilteredRow> createState() => _FilteredRowState();
@@ -31,14 +29,17 @@ class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
     final categoryFieldNotifier = ref.read(destinationsCategoryField.notifier);
     final districtFieldNotifier = ref.read(destinationsDistrictField.notifier);
 
+    final isShowFavouriteDestinationsState =
+        ref.watch(favouriteDestinationList);
+
     return SliverToBoxAdapter(
       child: categoryFieldNotifier.state.isNotEmpty ||
               districtFieldNotifier.state.isNotEmpty ||
-              widget.isShowFavouritesList == true
+              isShowFavouriteDestinationsState
           ? Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (widget.isShowFavouritesList == true)
+                if (isShowFavouriteDestinationsState)
                   _buildFilterItem(
                     text: context.localization.favouritePlaces,
                     isCloseIcon: false,

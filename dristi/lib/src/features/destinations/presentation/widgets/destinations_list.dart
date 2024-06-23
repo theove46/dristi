@@ -18,11 +18,8 @@ import 'package:go_router/go_router.dart';
 
 class DestinationsList extends ConsumerStatefulWidget {
   const DestinationsList({
-    this.isShowFavouritesList,
     super.key,
   });
-
-  final bool? isShowFavouritesList;
 
   @override
   ConsumerState createState() => _DestinationsListState();
@@ -182,6 +179,8 @@ class _DestinationsListState
     final categoryFieldState = ref.watch(destinationsCategoryField);
     final districtFieldState = ref.watch(destinationsDistrictField);
     final favoriteDestinationsState = ref.watch(favoritesProvider).data;
+    final isShowFavouriteDestinationsState =
+        ref.watch(favouriteDestinationList);
 
     List<DestinationEntity> result = destinationModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
@@ -200,7 +199,8 @@ class _DestinationsListState
       bool matchesDistrict = districtFieldState.isEmpty ||
           checkDistrict.contains(districtFieldState.toLowerCase());
 
-      bool matchesFavourites = !widget.isShowFavouritesList! ||
+      bool matchesFavourites = !isShowFavouriteDestinationsState ||
+          // !widget.isShowFavouritesList! ||
           favoriteDestinationsState.contains(u.id);
 
       return matchesSearch &&

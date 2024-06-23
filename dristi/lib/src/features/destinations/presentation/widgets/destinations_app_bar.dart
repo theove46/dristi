@@ -5,7 +5,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
-import 'package:dristi/src/features/destinations/presentation/widgets/filtered_bottom_sheet.dart';
+import 'package:dristi/src/core/global_widgets/filtered_bottom_sheet.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -117,6 +117,7 @@ class _DestinationsAppBarState
                       _showDistrictFilter();
                     },
                   ),
+                  _favouriteMenuItem(),
                 ]
               : [],
     );
@@ -130,6 +131,7 @@ class _DestinationsAppBarState
     return PopupMenuItem(
       padding: EdgeInsets.all(AppValues.dimen_10.r),
       child: TextField(
+        onTap: onTap,
         controller: controller,
         readOnly: true,
         style: appTextStyles.secondaryNovaRegular12,
@@ -142,6 +144,37 @@ class _DestinationsAppBarState
               size: AppValues.dimen_24.r,
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  PopupMenuItem<String> _favouriteMenuItem() {
+    final isShowFavouriteDestinationState = ref.watch(favouriteDestinationList);
+    final isShowFavouriteDestinationNotifier =
+        ref.read(favouriteDestinationList.notifier);
+
+    return PopupMenuItem(
+      child: Padding(
+        padding: EdgeInsets.only(left: AppValues.dimen_10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.localization.favouritePlaces,
+              style: appTextStyles.secondaryNovaRegular12,
+            ),
+            Transform.scale(
+              scale: 0.75,
+              child: Switch(
+                value: isShowFavouriteDestinationState,
+                onChanged: (value) {
+                  isShowFavouriteDestinationNotifier.state = value;
+                  context.pop();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

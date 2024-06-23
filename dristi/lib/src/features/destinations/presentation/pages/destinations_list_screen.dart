@@ -84,12 +84,9 @@ class _DestinationScreenState
               FilteredRow(
                 categoryController: categoryController,
                 districtController: districtController,
-                isShowFavouritesList: widget.isShowFavouritesList,
               ),
               // _buildAdvertisement(), // For Future Usage
-              DestinationsList(
-                isShowFavouritesList: widget.isShowFavouritesList,
-              ),
+              const DestinationsList(),
             ],
           ),
         ),
