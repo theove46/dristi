@@ -338,7 +338,7 @@ Widget buildDistrictListShimmer(BuildContext context) {
   );
 }
 
-Widget buildWebViewShimmer(BuildContext context) {
+Widget buildFullViewShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
     width: double.infinity,
