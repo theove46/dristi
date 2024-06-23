@@ -3,32 +3,31 @@ import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/filtered_bottom_sheet.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
-import 'package:dristi/src/features/hotels_list/presentation/widgets/hotels_list_filtered_bottom_sheet.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelsAppBar extends ConsumerStatefulWidget {
-  const HotelsAppBar({
+class HotelsListScreenAppBar extends ConsumerStatefulWidget {
+  const HotelsListScreenAppBar({
     required this.searchFieldController,
-    required this.categoryController,
     required this.districtController,
     super.key,
   });
 
   final TextEditingController searchFieldController;
-  final TextEditingController categoryController;
   final TextEditingController districtController;
 
   @override
   ConsumerState createState() => _HotelsAppBarState();
 }
 
-class _HotelsAppBarState extends BaseConsumerStatefulWidget<HotelsAppBar> {
+class _HotelsAppBarState
+    extends BaseConsumerStatefulWidget<HotelsListScreenAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -104,6 +103,7 @@ class _HotelsAppBarState extends BaseConsumerStatefulWidget<HotelsAppBar> {
                       _showDistrictFilter();
                     },
                   ),
+                  _favouriteMenuItem(),
                 ]
               : [],
     );
@@ -117,18 +117,47 @@ class _HotelsAppBarState extends BaseConsumerStatefulWidget<HotelsAppBar> {
     return PopupMenuItem(
       padding: EdgeInsets.all(AppValues.dimen_10.r),
       child: TextField(
+        onTap: onTap,
         controller: controller,
         readOnly: true,
         style: appTextStyles.secondaryNovaRegular12,
         decoration: InputDecoration(
           hintText: hintText,
-          suffixIcon: GestureDetector(
-            onTap: onTap,
-            child: Icon(
-              Icons.arrow_drop_down_outlined,
-              size: AppValues.dimen_24.r,
-            ),
+          suffixIcon: Icon(
+            Icons.arrow_drop_down_outlined,
+            size: AppValues.dimen_24.r,
           ),
+        ),
+      ),
+    );
+  }
+
+  PopupMenuItem<String> _favouriteMenuItem() {
+    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
+    final isShowFavouriteHotelsNotifier =
+        ref.read(favouriteHotelsList.notifier);
+
+    return PopupMenuItem(
+      child: Padding(
+        padding: EdgeInsets.only(left: AppValues.dimen_10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.localization.favouritePlaces,
+              style: appTextStyles.secondaryNovaRegular12,
+            ),
+            Transform.scale(
+              scale: 0.75,
+              child: Switch(
+                value: isShowFavouriteHotelsState,
+                onChanged: (value) {
+                  isShowFavouriteHotelsNotifier.state = value;
+                  context.pop();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

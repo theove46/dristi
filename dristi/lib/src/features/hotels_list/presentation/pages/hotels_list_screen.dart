@@ -53,7 +53,6 @@ class _HotelsListScreenState
   }
 
   final TextEditingController searchFieldController = TextEditingController();
-  final TextEditingController categoryController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
 
   @override
@@ -65,16 +64,14 @@ class _HotelsListScreenState
           onRefresh: _getHotelsListComponents,
           child: CustomScrollView(
             slivers: [
-              HotelsAppBar(
+              HotelsListScreenAppBar(
                 searchFieldController: searchFieldController,
-                categoryController: categoryController,
                 districtController: districtController,
               ),
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
-              HotelsFilteredRow(
-                categoryController: categoryController,
+              HotelsListScreenFilteredRow(
                 districtController: districtController,
               ),
               // _buildAdvertisement(), // For Future Usage

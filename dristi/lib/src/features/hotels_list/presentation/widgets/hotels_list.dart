@@ -24,15 +24,13 @@ class HotelsList extends ConsumerStatefulWidget {
 }
 
 class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
-  final bool isShowFavouritesList = false;
-
   @override
   Widget build(BuildContext context) {
     final hotelsModelsItems = ref.watch(hotelsListProvider);
 
     if (hotelsModelsItems.status != HotelsListStatus.success ||
         hotelsModelsItems.data == null) {
-      return buildDestinationListShimmer(context);
+      return buildHotelsListShimmer(context);
     }
 
     List<HotelEntity> fetchResult = searchHotels();
@@ -43,15 +41,11 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
 
     return SliverPadding(
       padding: EdgeInsets.only(
-        left: AppValues.dimen_8.r,
-        right: AppValues.dimen_8.r,
+        left: AppValues.dimen_16.r,
+        right: AppValues.dimen_16.r,
         bottom: AppValues.dimen_16.r,
       ),
-      sliver: SliverGrid(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: AppValues.dimen_80.r / AppValues.dimen_100.r,
-        ),
+      sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             return _buildHotelsCard(fetchResult[index]);
@@ -68,14 +62,18 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
         navigateToHotelPage(item.id);
       },
       child: Card(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            _buildImage(item),
-            _buildGradient(),
-            _buildFavouriteIcon(item),
-            _buildLabels(item),
-          ],
+        margin: EdgeInsets.symmetric(vertical: AppValues.dimen_8.r),
+        child: SizedBox(
+          height: AppValues.dimen_160.r,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              _buildImage(item),
+              _buildGradient(),
+              _buildFavouriteIcon(item),
+              _buildLabels(item),
+            ],
+          ),
         ),
       ),
     );
@@ -128,7 +126,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
         ref.read(favoritesProvider.notifier).toggleFavorite(item.id);
       },
       child: Padding(
-        padding: EdgeInsets.all(AppValues.dimen_10.w),
+        padding: EdgeInsets.all(AppValues.dimen_16.r),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -154,7 +152,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
 
   Widget _buildLabels(HotelEntity item) {
     return Padding(
-      padding: EdgeInsets.all(AppValues.dimen_10.w),
+      padding: EdgeInsets.all(AppValues.dimen_16.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,6 +175,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     final searchFieldState = ref.watch(hotelsListSearchField);
     final districtFieldState = ref.watch(hotelsListDistrictField);
     final favoriteHotelsState = ref.watch(favoritesProvider).data;
+    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
 
     List<HotelEntity> result = hotelsModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
@@ -192,7 +191,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
           checkDistrict.contains(districtFieldState.toLowerCase());
 
       bool matchesFavourites =
-          !isShowFavouritesList || favoriteHotelsState.contains(u.id);
+          !isShowFavouriteHotelsState || favoriteHotelsState.contains(u.id);
 
       return matchesSearch && matchesDistrict && matchesFavourites;
     }).toList();

@@ -6,38 +6,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HotelsFilteredRow extends ConsumerStatefulWidget {
-  const HotelsFilteredRow({
-    required this.categoryController,
+class HotelsListScreenFilteredRow extends ConsumerStatefulWidget {
+  const HotelsListScreenFilteredRow({
     required this.districtController,
     super.key,
   });
 
-  final TextEditingController categoryController;
   final TextEditingController districtController;
 
   @override
-  ConsumerState<HotelsFilteredRow> createState() => _FilteredRowState();
+  ConsumerState<HotelsListScreenFilteredRow> createState() =>
+      _FilteredRowState();
 }
 
-class _FilteredRowState extends BaseConsumerStatefulWidget<HotelsFilteredRow> {
-  final bool isShowFavouritesList = false;
-
+class _FilteredRowState
+    extends BaseConsumerStatefulWidget<HotelsListScreenFilteredRow> {
   @override
   Widget build(BuildContext context) {
     final districtFieldState = ref.watch(hotelsListDistrictField);
-
     final districtFieldNotifier = ref.read(hotelsListDistrictField.notifier);
+
+    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
 
     return SliverToBoxAdapter(
       child:
-          districtFieldNotifier.state.isNotEmpty || isShowFavouritesList == true
+          districtFieldNotifier.state.isNotEmpty || isShowFavouriteHotelsState
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    if (isShowFavouritesList == true)
+                    if (isShowFavouriteHotelsState)
                       _buildFilterItem(
-                        text: context.localization.favouritePlaces,
+                        text: context.localization.favouriteHotels,
                         isCloseIcon: false,
                       ),
                     if (districtFieldState.isNotEmpty)

@@ -7,6 +7,7 @@ import 'package:dristi/src/core/styles/themes/elevated_button_theme.dart';
 import 'package:dristi/src/core/styles/texts.dart';
 import 'package:dristi/src/core/styles/themes/card_theme.dart';
 import 'package:dristi/src/core/styles/themes/divider_theme.dart';
+import 'package:dristi/src/core/styles/themes/switct_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppThemeData {
@@ -32,6 +33,7 @@ class AppThemeData {
     ),
     iconTheme: CustomIconTheme(scheme: lightColorScheme),
     inputDecorationTheme: CustomInputDecorationTheme(scheme: lightColorScheme),
+    switchTheme: CustomSwitchTheme(scheme: lightColorScheme),
   );
 
   static final ThemeData _darkTheme = ThemeData(
@@ -52,5 +54,6 @@ class AppThemeData {
     ),
     iconTheme: CustomIconTheme(scheme: darkColorScheme),
     inputDecorationTheme: CustomInputDecorationTheme(scheme: darkColorScheme),
+    switchTheme: CustomSwitchTheme(scheme: darkColorScheme),
   );
 }
