@@ -40,5 +40,6 @@
   "appVersion": "App version",
   "noResults": "No results found",
   "plantTrees": "Plant trees to save the environment",
-  "findOnMap": "Find on map"
+  "findOnMap": "Find on map",
+  "hotels": "Hotels"
 }

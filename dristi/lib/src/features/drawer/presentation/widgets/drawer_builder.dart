@@ -69,6 +69,23 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
             ),
             ListTile(
               title: Text(
+                context.localization.hotels,
+                style: appTextStyles.secondaryNovaRegular16,
+              ),
+              trailing: Padding(
+                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+                child: Icon(
+                  Icons.apartment_rounded,
+                  color: uiColors.primary,
+                  size: AppValues.dimen_20.sp,
+                ),
+              ),
+              onTap: () {
+                context.pushNamed(AppRoutes.hotelsList);
+              },
+            ),
+            ListTile(
+              title: Text(
                 context.localization.settings,
                 style: appTextStyles.secondaryNovaRegular16,
               ),

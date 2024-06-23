@@ -7,6 +7,7 @@ import 'package:dristi/src/features/destinations/presentation/pages/destinations
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
+import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
@@ -19,6 +20,7 @@ abstract class _Path {
   static const String spot = '/spot';
   static const String districts = '/districts';
   static const String destination = '/destination';
+  static const String hotelsList = '/hotelsList';
   static const String settings = '/settings';
   static const String webView = '/webView';
   static const String error = '/error';
@@ -62,6 +64,13 @@ GoRouter appRouter = GoRouter(
         return DestinationScreen(
           isShowFavouritesList: isShowFavouritesList,
         );
+      },
+    ),
+    GoRoute(
+      path: _Path.hotelsList,
+      name: AppRoutes.hotelsList,
+      builder: (context, state) {
+        return const HotelsListScreen();
       },
     ),
     GoRoute(

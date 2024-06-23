@@ -6,6 +6,7 @@ import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_details_builder.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_hotels_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_nearest_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -101,6 +102,8 @@ class _DescriptionItemsBuilderState
     switch (screenType) {
       case SpotScreenType.detailsScreen:
         return SpotScreenDetailsBuilder(destination: widget.destination);
+      case SpotScreenType.hotelsScreen:
+        return SpotScreenHotelsBuilder(destination: widget.destination);
       case SpotScreenType.nearestScreen:
         return SpotScreenNearestBuilder(destination: widget.destination);
       default:

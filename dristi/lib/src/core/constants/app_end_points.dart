@@ -18,4 +18,5 @@ class API {
   // static const String spotComponents = '/spot_components_en.json';
   static const String topDestinations = '/top_destinations.json';
   static const String destinations = '/destinations.json';
+  static const String hotelsList = '/hotels_list.json';
 }
