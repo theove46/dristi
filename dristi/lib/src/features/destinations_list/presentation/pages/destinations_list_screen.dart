@@ -7,16 +7,16 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
-import 'package:dristi/src/features/destinations/presentation/widgets/destinations_app_bar.dart';
-import 'package:dristi/src/features/destinations/presentation/widgets/destinations_list.dart';
-import 'package:dristi/src/features/destinations/presentation/widgets/filtered_row.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list_app_bar.dart';
+import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list.dart';
+import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list_filtered_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DestinationScreen extends ConsumerStatefulWidget {
-  const DestinationScreen({
+class DestinationsListScreen extends ConsumerStatefulWidget {
+  const DestinationsListScreen({
     this.isShowFavouritesList,
     super.key,
   });
@@ -24,11 +24,11 @@ class DestinationScreen extends ConsumerStatefulWidget {
   final bool? isShowFavouritesList;
 
   @override
-  ConsumerState createState() => _DestinationScreenState();
+  ConsumerState createState() => _DestinationListScreenState();
 }
 
-class _DestinationScreenState
-    extends BaseConsumerStatefulWidget<DestinationScreen> {
+class _DestinationListScreenState
+    extends BaseConsumerStatefulWidget<DestinationsListScreen> {
   @override
   void initState() {
     super.initState();
@@ -45,16 +45,16 @@ class _DestinationScreenState
 
     if (networkState.value?.first != ConnectivityResult.none) {
       ref
-          .read(destinationProvider.notifier)
-          .getDestinationComponents(appLanguageState);
+          .read(destinationsListProvider.notifier)
+          .getDestinationsListComponents(appLanguageState);
     }
 
-    final categoryState = ref.watch(destinationsCategoryField);
+    final categoryState = ref.watch(destinationsListCategoryField);
     if (categoryState.isNotEmpty) {
       categoryController.text = categoryState;
     }
 
-    final districtState = ref.watch(destinationsDistrictField);
+    final districtState = ref.watch(destinationsListDistrictField);
     if (districtState.isNotEmpty) {
       districtController.text = districtState;
     }

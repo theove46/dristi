@@ -7,7 +7,7 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,13 +41,13 @@ class _SpotScreenNearestBuilderState
         ref.watch(languageProvider).language.toLanguage.languageCode;
 
     ref
-        .read(destinationProvider.notifier)
-        .getDestinationComponents(appLanguageState);
+        .read(destinationsListProvider.notifier)
+        .getDestinationsListComponents(appLanguageState);
   }
 
   @override
   Widget build(BuildContext context) {
-    final destinationModelsItems = ref.watch(destinationProvider);
+    final destinationModelsItems = ref.watch(destinationsListProvider);
 
     if (destinationModelsItems.data == null) {
       return const SizedBox.shrink();

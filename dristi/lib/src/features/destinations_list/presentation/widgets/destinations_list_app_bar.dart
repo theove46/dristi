@@ -4,7 +4,7 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/core/global_widgets/filtered_bottom_sheet.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
@@ -45,12 +45,14 @@ class _DestinationsAppBarState
   }
 
   Widget _buildAppBar() {
-    ref.watch(destinationsSearchField);
-    ref.watch(destinationsCategoryField);
-    ref.watch(destinationsDistrictField);
-    final searchFieldNotifier = ref.read(destinationsSearchField.notifier);
-    final categoryFieldNotifier = ref.read(destinationsCategoryField.notifier);
-    final districtFieldNotifier = ref.read(destinationsDistrictField.notifier);
+    ref.watch(destinationsListSearchField);
+    ref.watch(destinationsListCategoryField);
+    ref.watch(destinationsListDistrictField);
+    final searchFieldNotifier = ref.read(destinationsListSearchField.notifier);
+    final categoryFieldNotifier =
+        ref.read(destinationsListCategoryField.notifier);
+    final districtFieldNotifier =
+        ref.read(destinationsListDistrictField.notifier);
 
     return AppBar(
       leading: IconButton(
@@ -150,9 +152,10 @@ class _DestinationsAppBarState
   }
 
   PopupMenuItem<String> _favouriteMenuItem() {
-    final isShowFavouriteDestinationState = ref.watch(favouriteDestinationList);
+    final isShowFavouriteDestinationState =
+        ref.watch(isShowFavouriteDestinationList);
     final isShowFavouriteDestinationNotifier =
-        ref.read(favouriteDestinationList.notifier);
+        ref.read(isShowFavouriteDestinationList.notifier);
 
     return PopupMenuItem(
       child: Padding(
@@ -181,7 +184,8 @@ class _DestinationsAppBarState
   }
 
   void _showCategoryFilter() {
-    final categoryFieldNotifier = ref.read(destinationsCategoryField.notifier);
+    final categoryFieldNotifier =
+        ref.read(destinationsListCategoryField.notifier);
     final categoriesItems = ref.read(categoriesProvider);
 
     showModalBottomSheet(
@@ -207,7 +211,8 @@ class _DestinationsAppBarState
   }
 
   void _showDistrictFilter() {
-    final districtFieldNotifier = ref.read(destinationsDistrictField.notifier);
+    final districtFieldNotifier =
+        ref.read(destinationsListDistrictField.notifier);
     final districtsItems = ref.read(districtProvider);
 
     showModalBottomSheet(

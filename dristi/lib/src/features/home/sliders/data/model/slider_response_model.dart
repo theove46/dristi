@@ -1,4 +1,4 @@
-// import 'package:dristi/src/features/destinations/domain/entities/hotels_list_entity.dart';
+// import 'package:dristi/src/features/destinations_list/domain/entities/hotels_list_entity.dart';
 // import 'package:dristi/src/features/home/sliders/domain/entity/slider_entity.dart';
 //
 // class SliderResponseModel {

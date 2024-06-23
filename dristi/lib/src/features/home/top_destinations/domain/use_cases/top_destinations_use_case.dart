@@ -1,4 +1,4 @@
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
+import 'package:dristi/src/features/destinations_list/domain/entities/destinations_list_entity.dart';
 import 'package:dristi/src/features/home/top_destinations/domain/repositories/top_destinations_repositories.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class TopDestinationsUseCase {
 
   final TopDestinationsRepository repository;
 
-  Future<List<DestinationEntity>> getTopDestinationsComponents(
+  Future<List<DestinationsListEntity>> getTopDestinationsComponents(
       String appLanguage) async {
     return repository.getTopDestinationsComponents(appLanguage);
   }

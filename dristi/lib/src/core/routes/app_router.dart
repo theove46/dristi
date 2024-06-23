@@ -3,7 +3,7 @@ import 'package:dristi/src/core/global_widgets/web_view_screen.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_screen.dart';
+import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
@@ -60,7 +60,7 @@ GoRouter appRouter = GoRouter(
       path: _Path.destination,
       name: AppRoutes.destination,
       builder: (context, state) {
-        return const DestinationScreen();
+        return const DestinationsListScreen();
       },
     ),
     GoRoute(

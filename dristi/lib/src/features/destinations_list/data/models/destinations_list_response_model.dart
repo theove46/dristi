@@ -1,21 +1,22 @@
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
+import 'package:dristi/src/features/destinations_list/domain/entities/destinations_list_entity.dart';
 
-class DestinationsResponseModel {
-  DestinationsResponseModel(this.destinationsItems);
+class DestinationsListResponseModel {
+  DestinationsListResponseModel(this.destinationsListItems);
 
-  DestinationsResponseModel.fromJson({
+  DestinationsListResponseModel.fromJson({
     required List<dynamic> json,
   }) {
-    destinationsItems = <DestinationEntity>[];
+    destinationsListItems = <DestinationsListEntity>[];
     for (var item in json) {
-      destinationsItems.add(DestinationData.fromJson(item));
+      destinationsListItems.add(DestinationsListData.fromJson(item));
     }
   }
 
-  List<DestinationEntity> destinationsItems = <DestinationEntity>[];
+  List<DestinationsListEntity> destinationsListItems =
+      <DestinationsListEntity>[];
 }
 
-class DestinationData extends DestinationEntity {
+class DestinationsListData extends DestinationsListEntity {
   String? destinationId;
   String? destinationTitle;
   String? destinationOnImageTitle;
@@ -24,7 +25,7 @@ class DestinationData extends DestinationEntity {
   String? destinationCategory;
   String? destinationImage;
 
-  DestinationData({
+  DestinationsListData({
     this.destinationId,
     this.destinationTitle,
     this.destinationOnImageTitle,
@@ -42,8 +43,8 @@ class DestinationData extends DestinationEntity {
           image: destinationImage ?? "",
         );
 
-  factory DestinationData.fromJson(dynamic json) {
-    return DestinationData(
+  factory DestinationsListData.fromJson(dynamic json) {
+    return DestinationsListData(
       destinationId: json['id'],
       destinationTitle: json['title'],
       destinationOnImageTitle: json['onImageTitle'],

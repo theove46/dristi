@@ -2,13 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:dristi/src/core/base/base_remote_source.dart';
 import 'package:dristi/src/core/constants/app_end_points.dart';
 import 'package:dristi/src/core/network/dio_provider.dart';
-import 'package:dristi/src/features/destinations/data/data_sources/destinations_data_source.dart';
-import 'package:dristi/src/features/destinations/data/models/destination_response_model.dart';
+import 'package:dristi/src/features/destinations_list/data/data_sources/destinations_list_data_source.dart';
+import 'package:dristi/src/features/destinations_list/data/models/destinations_list_response_model.dart';
 
-class DestinationsDataSourceImp extends BaseRemoteSource
-    implements DestinationsDataSource {
+class DestinationsListDataSourceImp extends BaseRemoteSource
+    implements DestinationsListDataSource {
   @override
-  Future<DestinationsResponseModel> destinationsComponents(String appLanguage) {
+  Future<DestinationsListResponseModel> getDestinationsListComponents(
+      String appLanguage) {
     final String endpoint =
         '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.destinations}';
 
@@ -16,7 +17,7 @@ class DestinationsDataSourceImp extends BaseRemoteSource
 
     try {
       return callApiWithErrorParser(dioCall).then((Response response) {
-        return DestinationsResponseModel.fromJson(json: response.data);
+        return DestinationsListResponseModel.fromJson(json: response.data);
       });
     } catch (e) {
       rethrow;

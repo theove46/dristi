@@ -1,5 +1,5 @@
-class DestinationEntity {
-  DestinationEntity({
+class DestinationsListEntity {
+  DestinationsListEntity({
     required this.id,
     required this.title,
     required this.onImageTitle,

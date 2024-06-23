@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-enum DestinationStatus { initial, loading, success, failure }
+enum DestinationListStatus { initial, loading, success, failure }
 
-class DestinationState<T> extends Equatable {
-  const DestinationState({
-    this.status = DestinationStatus.initial,
+class DestinationsListState<T> extends Equatable {
+  const DestinationsListState({
+    this.status = DestinationListStatus.initial,
     this.data,
     this.errorMessage,
   });
 
-  final DestinationStatus status;
+  final DestinationListStatus status;
   final T? data;
   final String? errorMessage;
 
-  DestinationState copyWith({
-    DestinationStatus? status,
+  DestinationsListState copyWith({
+    DestinationListStatus? status,
     T? data,
     String? errorMessage,
   }) {
-    return DestinationState(
+    return DestinationsListState(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

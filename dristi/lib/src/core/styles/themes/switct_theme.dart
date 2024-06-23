@@ -10,7 +10,7 @@ class CustomSwitchTheme extends SwitchThemeData {
             return scheme.primary;
           }),
           trackColor: WidgetStateProperty.resolveWith((states) {
-            return scheme.shadow;
+            return scheme.surface;
           }),
           trackOutlineColor: WidgetStateProperty.resolveWith((states) {
             return scheme.primary;
