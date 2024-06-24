@@ -110,3 +110,15 @@ GoRouter appRouter = GoRouter(
     );
   },
 );
+
+void popUntilHome(BuildContext context) {
+  final router = GoRouter.of(context);
+  while (
+      router.routerDelegate.currentConfiguration.matches.last.matchedLocation !=
+          _Path.home) {
+    if (!context.canPop()) {
+      return;
+    }
+    context.pop();
+  }
+}
