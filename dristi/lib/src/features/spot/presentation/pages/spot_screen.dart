@@ -17,10 +17,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SpotScreen extends ConsumerStatefulWidget {
   const SpotScreen({
     required this.id,
+    required this.instanceId,
     super.key,
   });
 
   final String id;
+  final String instanceId;
 
   @override
   ConsumerState createState() => _SpotScreenState();
@@ -70,8 +72,6 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
   }
 
   Widget _buildDescription() {
-    final destinationDataState = ref.watch(spotProvider);
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,8 +91,8 @@ class _SpotScreenState extends BaseConsumerStatefulWidget<SpotScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const AdvertisementImage(),
-                  DescriptionItemsBuilder(
-                    destination: destinationDataState.data,
+                  SpotScreenItemsBuilder(
+                    instanceId: widget.instanceId,
                   ),
                 ],
               ),

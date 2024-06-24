@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -109,6 +110,13 @@ class _TopDestinationBuilderState
   }
 
   void navigateToSpotPage(String id) {
-    context.pushNamed(AppRoutes.spot, extra: id);
+    final instanceId = UniqueKey().toString();
+    context.pushNamed(
+      AppRoutes.spot,
+      pathParameters: {
+        PathParameter.spotId: id,
+        PathParameter.instanceId: instanceId
+      },
+    );
   }
 }

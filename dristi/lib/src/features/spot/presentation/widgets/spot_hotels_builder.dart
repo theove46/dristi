@@ -7,18 +7,15 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
-import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
+import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SpotScreenHotelsBuilder extends ConsumerStatefulWidget {
   const SpotScreenHotelsBuilder({
-    required this.destination,
     super.key,
   });
-
-  final SpotEntity destination;
 
   @override
   ConsumerState createState() => _SpotScreenHotelsBuilderState();
@@ -51,8 +48,10 @@ class _SpotScreenHotelsBuilderState
       return const SizedBox.shrink();
     }
 
+    final destinationDataState = ref.watch(spotProvider);
+
     final nearestDestinations = hotelModelsItems.data
-        .where((dest) => dest.district == widget.destination.district)
+        .where((dest) => dest.district == destinationDataState.data.district)
         .toList();
 
     if (nearestDestinations.isEmpty) {

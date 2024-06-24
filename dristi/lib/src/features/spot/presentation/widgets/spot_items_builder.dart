@@ -2,7 +2,6 @@ import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
-import 'package:dristi/src/features/spot/domain/entities/spot_entities.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_details_builder.dart';
@@ -13,25 +12,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DescriptionItemsBuilder extends ConsumerStatefulWidget {
-  const DescriptionItemsBuilder({
-    required this.destination,
+class SpotScreenItemsBuilder extends ConsumerStatefulWidget {
+  const SpotScreenItemsBuilder({
+    required this.instanceId,
     super.key,
   });
 
-  final SpotEntity destination;
+  final String instanceId;
 
   @override
-  ConsumerState createState() => _DescriptionItemsBuilderState();
+  ConsumerState createState() => _SpotScreenItemsBuilderState();
 }
 
-class _DescriptionItemsBuilderState
-    extends BaseConsumerStatefulWidget<DescriptionItemsBuilder> {
+class _SpotScreenItemsBuilderState
+    extends BaseConsumerStatefulWidget<SpotScreenItemsBuilder> {
   @override
   Widget build(BuildContext context) {
     final spotItemsModelsState = ref.watch(spotItemsProvider);
-    final currentPageNotifier = ref.read(currentPageProvider.notifier);
-    final currentPageState = ref.watch(currentPageProvider);
+
+    final currentPageState = ref.watch(currentPageProvider(widget.instanceId));
+    final currentPageNotifier =
+        ref.read(currentPageProvider(widget.instanceId).notifier);
 
     if (spotItemsModelsState.data == null) {
       return const SizedBox.shrink();
@@ -101,11 +102,11 @@ class _DescriptionItemsBuilderState
   Widget _buildPageView(SpotScreenType screenType, String image) {
     switch (screenType) {
       case SpotScreenType.detailsScreen:
-        return SpotScreenDetailsBuilder(destination: widget.destination);
+        return const SpotScreenDetailsBuilder();
       case SpotScreenType.hotelsScreen:
-        return SpotScreenHotelsBuilder(destination: widget.destination);
+        return const SpotScreenHotelsBuilder();
       case SpotScreenType.nearestScreen:
-        return SpotScreenNearestBuilder(destination: widget.destination);
+        return const SpotScreenNearestBuilder();
       default:
         return _buildPageBuilderImage(image);
     }

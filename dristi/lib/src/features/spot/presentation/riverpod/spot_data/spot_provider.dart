@@ -7,7 +7,9 @@ final spotProvider = NotifierProvider<SpotNotifier, SpotState>(
   name: 'spotProvider',
 );
 
-final currentPageProvider = StateProvider<int>(
-  (ref) => 0,
+final currentPageProvider = StateProvider.autoDispose.family<int, String>(
+  (ref, instanceId) {
+    return 0;
+  },
   name: 'currentPageProvider',
 );

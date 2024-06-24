@@ -17,13 +17,18 @@ import 'package:go_router/go_router.dart';
 abstract class _Path {
   static const String home = '/home';
   static const String splash = '/splash';
-  static const String spot = '/spot';
+  static const String spot = '/spot/:spotId/:instanceId';
   static const String districts = '/districts';
   static const String destination = '/destination';
   static const String hotelsList = '/hotelsList';
   static const String settings = '/settings';
   static const String webView = '/webView';
   static const String error = '/error';
+}
+
+abstract class PathParameter {
+  static const String spotId = 'spotId';
+  static const String instanceId = 'instanceId';
 }
 
 GoRouter appRouter = GoRouter(
@@ -42,12 +47,14 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: _Path.spot,
       name: AppRoutes.spot,
-      builder: (BuildContext context, GoRouterState state) {
-        final id = state.extra as String;
+      path: _Path.spot,
+      builder: (context, state) {
+        final spotId = state.pathParameters[PathParameter.spotId]!;
+        final instanceId = state.pathParameters[PathParameter.instanceId]!;
         return SpotScreen(
-          id: id,
+          id: spotId,
+          instanceId: instanceId,
         );
       },
     ),

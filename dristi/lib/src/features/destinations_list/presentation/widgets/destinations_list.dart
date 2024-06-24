@@ -7,6 +7,7 @@ import 'package:dristi/src/core/global_providers/favourite_places/favourites_pro
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destinations_list/domain/entities/destinations_list_entity.dart';
 import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
@@ -216,7 +217,14 @@ class _DestinationsListState
   void navigateToSpotPage(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      context.pushNamed(AppRoutes.spot, extra: id);
+      final instanceId = UniqueKey().toString();
+      context.pushNamed(
+        AppRoutes.spot,
+        pathParameters: {
+          PathParameter.spotId: id,
+          PathParameter.instanceId: instanceId
+        },
+      );
     }
   }
 }
