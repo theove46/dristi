@@ -29,6 +29,7 @@ dependencies:
   cached_network_image: 3.3.1
   connectivity_plus: 6.0.3
   webview_flutter: 4.8.0
+  rive_animated_icon: 2.0.0
 
 # Run fvm flutter gen-l10n / flutter gen-l10n if Localization error
 
