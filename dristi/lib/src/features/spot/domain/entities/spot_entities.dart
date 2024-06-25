@@ -7,6 +7,10 @@ class SpotEntity {
   String category;
   String image;
   String details;
+  List<String>? seasons;
+  List<String>? cautions;
+  List<String>? specials;
+  List<BlogsEntity>? blogs;
 
   SpotEntity({
     required this.id,
@@ -17,6 +21,10 @@ class SpotEntity {
     required this.category,
     required this.image,
     required this.details,
+    required this.seasons,
+    required this.cautions,
+    required this.specials,
+    required this.blogs,
   });
 
   SpotEntity.initial()
@@ -27,7 +35,11 @@ class SpotEntity {
         division = "",
         category = "",
         image = "",
-        details = "";
+        details = "",
+        seasons = [],
+        cautions = [],
+        specials = [],
+        blogs = [];
 }
 
 class SpotItemsEntity {
@@ -38,4 +50,16 @@ class SpotItemsEntity {
 
   String title;
   String image;
+}
+
+class BlogsEntity {
+  BlogsEntity({
+    required this.title,
+    required this.url,
+    required this.site,
+  });
+
+  String title;
+  String url;
+  String site;
 }

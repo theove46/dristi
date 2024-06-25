@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:dristi/src/core/base/base_remote_source.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_end_points.dart';
-import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/core/network/dio_provider.dart';
 import 'package:dristi/src/features/spot/data/data_sources/spot_data_source.dart';
 import 'package:dristi/src/features/spot/data/models/spot_response_model.dart';
@@ -20,7 +19,6 @@ class SpotDataSourceImp extends BaseRemoteSource implements SpotDataSource {
 
     try {
       return callApiWithErrorParser(dioCall).then((Response response) {
-        Log.debug("response: $response");
         return SpotResponseModel.fromJson(json: response.data);
       });
     } catch (e) {

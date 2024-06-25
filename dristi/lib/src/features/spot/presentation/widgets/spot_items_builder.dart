@@ -4,9 +4,12 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_cautions_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_details_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_hotels_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_nearest_builder.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_seasons_builder.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_specials_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -107,6 +110,12 @@ class _SpotScreenItemsBuilderState
         return const SpotScreenHotelsBuilder();
       case SpotScreenType.nearestScreen:
         return const SpotScreenNearestBuilder();
+      case SpotScreenType.seasonsScreen:
+        return const SpotScreenSeasonsBuilder();
+      case SpotScreenType.specialsScreen:
+        return const SpotScreenSpecialsBuilder();
+      case SpotScreenType.cautionsScreen:
+        return const SpotScreenCautionsBuilder();
       default:
         return _buildPageBuilderImage(image);
     }

@@ -17,11 +17,8 @@ import 'package:go_router/go_router.dart';
 
 class SpotScreenNearestBuilder extends ConsumerStatefulWidget {
   const SpotScreenNearestBuilder({
-    // required this.destination,
     super.key,
   });
-
-  // final SpotEntity destination;
 
   @override
   ConsumerState createState() => _SpotScreenNearestBuilderState();

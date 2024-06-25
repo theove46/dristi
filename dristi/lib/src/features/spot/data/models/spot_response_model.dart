@@ -21,6 +21,10 @@ class SpotData extends SpotEntity {
   String? spotsCategory;
   String? spotsImage;
   String? spotsDetails;
+  List<String>? spotsSeasons;
+  List<String>? spotsCautions;
+  List<String>? spotsSpecials;
+  List<BlogsData>? spotsBlogs;
 
   SpotData({
     this.spotsId,
@@ -31,6 +35,10 @@ class SpotData extends SpotEntity {
     this.spotsCategory,
     this.spotsImage,
     this.spotsDetails,
+    this.spotsSeasons,
+    this.spotsCautions,
+    this.spotsSpecials,
+    this.spotsBlogs,
   }) : super(
           id: spotsId ?? "",
           title: spotsTitle ?? "",
@@ -40,9 +48,17 @@ class SpotData extends SpotEntity {
           category: spotsCategory ?? "",
           image: spotsImage ?? "",
           details: spotsDetails ?? "",
+          seasons: spotsSeasons ?? [],
+          cautions: spotsCautions ?? [],
+          specials: spotsSpecials ?? [],
+          blogs: spotsBlogs ?? [],
         );
 
   factory SpotData.fromJson(dynamic json) {
+    List<dynamic>? blogsJson = json['blogs'];
+    List<BlogsData>? blogsDataList =
+        blogsJson?.map((v) => BlogsData.fromJson(v)).toList();
+
     return SpotData(
       spotsId: json['id'],
       spotsTitle: json['title'],
@@ -52,6 +68,37 @@ class SpotData extends SpotEntity {
       spotsCategory: json['category'],
       spotsImage: json['image'],
       spotsDetails: json['details'],
+      spotsSeasons:
+          json['seasons'] != null ? json['seasons'].cast<String>() : [],
+      spotsCautions:
+          json['cautions'] != null ? json['cautions'].cast<String>() : [],
+      spotsSpecials:
+          json['specials'] != null ? json['specials'].cast<String>() : [],
+      spotsBlogs: blogsDataList,
+    );
+  }
+}
+
+class BlogsData extends BlogsEntity {
+  String? blogsTitle;
+  String? blogsUrl;
+  String? blogsSite;
+
+  BlogsData({
+    this.blogsTitle,
+    this.blogsUrl,
+    this.blogsSite,
+  }) : super(
+          title: blogsTitle ?? "",
+          url: blogsUrl ?? "",
+          site: blogsSite ?? "",
+        );
+
+  factory BlogsData.fromJson(dynamic json) {
+    return BlogsData(
+      blogsTitle: json['title'],
+      blogsUrl: json['url'],
+      blogsSite: json['site'],
     );
   }
 }

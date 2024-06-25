@@ -52,7 +52,7 @@ class _TopScreenIconsState extends BaseConsumerStatefulWidget<TopScreenIcons> {
                 icon: Icon(
                   Icons.home_rounded,
                   color: uiColors.primary,
-                  size: AppValues.dimen_30.r,
+                  size: AppValues.dimen_20.r,
                 ),
                 onTap: () {
                   popUntilHome(context);
@@ -64,7 +64,7 @@ class _TopScreenIconsState extends BaseConsumerStatefulWidget<TopScreenIcons> {
             icon: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
               color: uiColors.error,
-              size: AppValues.dimen_30.r,
+              size: AppValues.dimen_20.r,
             ),
             onTap: () {
               ref
