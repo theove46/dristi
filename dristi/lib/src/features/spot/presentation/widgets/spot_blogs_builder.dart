@@ -1,11 +1,13 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SpotScreenBlogsBuilder extends ConsumerStatefulWidget {
   const SpotScreenBlogsBuilder({
@@ -46,7 +48,7 @@ class _SpotScreenBlogsBuilderState
         final blog = blogs[index];
         return GestureDetector(
           onTap: () {
-            navigateToWebView();
+            navigateToWebView(url: blog.url);
           },
           child: Card(
             color: uiColors.scrim,
@@ -102,5 +104,7 @@ class _SpotScreenBlogsBuilderState
     );
   }
 
-  void navigateToWebView() {}
+  void navigateToWebView({required String url}) {
+    context.pushNamed(AppRoutes.webView, extra: url);
+  }
 }

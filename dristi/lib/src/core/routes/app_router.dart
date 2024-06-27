@@ -47,8 +47,8 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      name: AppRoutes.spot,
       path: _Path.spot,
+      name: AppRoutes.spot,
       builder: (context, state) {
         final spotId = state.pathParameters[PathParameter.spotId]!;
         final instanceId = state.pathParameters[PathParameter.instanceId]!;
@@ -86,9 +86,19 @@ GoRouter appRouter = GoRouter(
       path: _Path.webView,
       name: AppRoutes.webView,
       builder: (BuildContext context, GoRouterState state) {
-        final name = state.extra as AdvertisementEntity;
+        final extra = state.extra;
+        AdvertisementEntity? item;
+        String? url;
+
+        if (extra is AdvertisementEntity) {
+          item = extra;
+        } else if (extra is String) {
+          url = extra;
+        }
+
         return WebViewScreen(
-          item: name,
+          item: item,
+          url: url,
         );
       },
     ),

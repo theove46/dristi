@@ -1,4 +1,5 @@
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
@@ -9,11 +10,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
   const WebViewScreen({
-    required this.item,
+    this.item,
+    this.url,
     super.key,
   });
 
-  final AdvertisementEntity item;
+  final AdvertisementEntity? item;
+  final String? url;
 
   @override
   State<WebViewScreen> createState() => _WebViewScreenState();
@@ -42,7 +45,7 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
           onWebResourceError: (WebResourceError error) {},
         ),
       )
-      ..loadRequest(Uri.parse(widget.item.url));
+      ..loadRequest(Uri.parse(widget.url ?? widget.item?.url ?? ''));
   }
 
   @override
@@ -88,7 +91,7 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
         },
       ),
       title: Text(
-        widget.item.title,
+        widget.item?.title ?? TextConstants.appName,
         style: appTextStyles.primaryNovaSemiBold16,
       ),
       centerTitle: true,
