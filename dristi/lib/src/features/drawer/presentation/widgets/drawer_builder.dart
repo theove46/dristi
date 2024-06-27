@@ -1,6 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -64,7 +65,30 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 ),
               ),
               onTap: () {
-                context.pushNamed(AppRoutes.destination, extra: true);
+                ref.watch(isShowFavouriteDestinationList);
+                final isShowFavouriteHotelsNotifier =
+                    ref.read(isShowFavouriteDestinationList.notifier);
+
+                isShowFavouriteHotelsNotifier.state = true;
+
+                context.pushNamed(AppRoutes.destination);
+              },
+            ),
+            ListTile(
+              title: Text(
+                context.localization.hotels,
+                style: appTextStyles.secondaryNovaRegular16,
+              ),
+              trailing: Padding(
+                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
+                child: Icon(
+                  Icons.apartment_rounded,
+                  color: uiColors.primary,
+                  size: AppValues.dimen_20.sp,
+                ),
+              ),
+              onTap: () {
+                context.pushNamed(AppRoutes.hotelsList);
               },
             ),
             ListTile(

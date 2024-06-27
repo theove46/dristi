@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/sliders/presentations/riverpod/slider_state.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,7 @@ class _ImageSliderBuilderState
         final item = carouselItems.data[index];
         return GestureDetector(
           onTap: () {
-            navigateToSpotPage(item);
+            navigateToSpotPage(item.id);
           },
           child: Stack(
             alignment: Alignment.topRight,
@@ -147,7 +147,14 @@ class _ImageSliderBuilderState
     );
   }
 
-  void navigateToSpotPage(DestinationEntity item) {
-    context.pushNamed(AppRoutes.spot, extra: item);
+  void navigateToSpotPage(String id) {
+    final instanceId = UniqueKey().toString();
+    context.pushNamed(
+      AppRoutes.spot,
+      pathParameters: {
+        PathParameter.spotId: id,
+        PathParameter.instanceId: instanceId
+      },
+    );
   }
 }

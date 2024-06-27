@@ -4,6 +4,10 @@ class API {
 
   static const base = dev;
 
+  static const String components = '/components';
+  static const String spots = '/spots';
+  static const String language = '/language_';
+
   static const String categories = '/categories.json';
   // static const String districts = '/districts.json';
   static const String popularDistricts = '/popular_districts.json';
@@ -11,7 +15,8 @@ class API {
   static const String singleAdvertisement = '/single_advertisements.json';
   static const String multipleAdvertisement = '/multiple_advertisements.json';
   // static const String onBoarding = '/on_boarding_screens.json';
-  // static const String spotComponents = '/spot_components.json';
+  // static const String spotComponents = '/spot_components_en.json';
   static const String topDestinations = '/top_destinations.json';
   static const String destinations = '/destinations.json';
+  static const String hotelsList = '/hotels_list.json';
 }

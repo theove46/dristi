@@ -3,11 +3,11 @@ import 'package:dristi/src/core/global_widgets/web_view_screen.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations/domain/entities/destination_entity.dart';
-import 'package:dristi/src/features/destinations/presentation/pages/destinations_list_screen.dart';
+import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
+import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
@@ -17,12 +17,18 @@ import 'package:go_router/go_router.dart';
 abstract class _Path {
   static const String home = '/home';
   static const String splash = '/splash';
-  static const String spot = '/spot';
+  static const String spot = '/spot/:spotId/:instanceId';
   static const String districts = '/districts';
   static const String destination = '/destination';
+  static const String hotelsList = '/hotelsList';
   static const String settings = '/settings';
   static const String webView = '/webView';
   static const String error = '/error';
+}
+
+abstract class PathParameter {
+  static const String spotId = 'spotId';
+  static const String instanceId = 'instanceId';
 }
 
 GoRouter appRouter = GoRouter(
@@ -43,10 +49,12 @@ GoRouter appRouter = GoRouter(
     GoRoute(
       path: _Path.spot,
       name: AppRoutes.spot,
-      builder: (BuildContext context, GoRouterState state) {
-        final destination = state.extra as DestinationEntity;
+      builder: (context, state) {
+        final spotId = state.pathParameters[PathParameter.spotId]!;
+        final instanceId = state.pathParameters[PathParameter.instanceId]!;
         return SpotScreen(
-          destination: destination,
+          id: spotId,
+          instanceId: instanceId,
         );
       },
     ),
@@ -59,10 +67,14 @@ GoRouter appRouter = GoRouter(
       path: _Path.destination,
       name: AppRoutes.destination,
       builder: (context, state) {
-        final isShowFavouritesList = state.extra as bool? ?? false;
-        return DestinationScreen(
-          isShowFavouritesList: isShowFavouritesList,
-        );
+        return const DestinationsListScreen();
+      },
+    ),
+    GoRoute(
+      path: _Path.hotelsList,
+      name: AppRoutes.hotelsList,
+      builder: (context, state) {
+        return const HotelsListScreen();
       },
     ),
     GoRoute(
@@ -74,9 +86,19 @@ GoRouter appRouter = GoRouter(
       path: _Path.webView,
       name: AppRoutes.webView,
       builder: (BuildContext context, GoRouterState state) {
-        final name = state.extra as AdvertisementEntity;
+        final extra = state.extra;
+        AdvertisementEntity? item;
+        String? url;
+
+        if (extra is AdvertisementEntity) {
+          item = extra;
+        } else if (extra is String) {
+          url = extra;
+        }
+
         return WebViewScreen(
-          item: name,
+          item: item,
+          url: url,
         );
       },
     ),
@@ -98,3 +120,15 @@ GoRouter appRouter = GoRouter(
     );
   },
 );
+
+void popUntilHome(BuildContext context) {
+  final router = GoRouter.of(context);
+  while (
+      router.routerDelegate.currentConfiguration.matches.last.matchedLocation !=
+          _Path.home) {
+    if (!context.canPop()) {
+      return;
+    }
+    context.pop();
+  }
+}

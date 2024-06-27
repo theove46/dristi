@@ -10,7 +10,7 @@ class CategoriesDataSourceImp extends BaseRemoteSource
   @override
   Future<CategoriesResponseModel> categoriesComponents(String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}/$appLanguage${API.categories}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.categories}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

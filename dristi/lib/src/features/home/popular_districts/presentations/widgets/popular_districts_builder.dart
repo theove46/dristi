@@ -6,7 +6,7 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/popular_districts/presentations/riverpod/popular_districts_state.dart';
 import 'package:flutter/material.dart';
@@ -109,8 +109,8 @@ class _PopularCitiesBuilderState
   }
 
   void navigateToDestinationsPage(String title) {
-    ref.watch(destinationsDistrictField);
-    ref.read(destinationsDistrictField.notifier).state = title;
+    ref.watch(destinationsListDistrictField);
+    ref.read(destinationsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       context.pushNamed(AppRoutes.destination);

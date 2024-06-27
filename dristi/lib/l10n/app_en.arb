@@ -23,6 +23,7 @@
   "theme": "Theme",
   "language": "Language",
   "favouritePlaces": "Favourite places",
+  "favouriteHotels": "Favourite hotels",
   "settings": "Settings",
   "contactUs": "Contact us",
   "systemDefault": "System Default",
@@ -33,6 +34,7 @@
   "shareDristi": "Share Dristi",
   "makePromotion": "Make Promotion",
   "support": "Support",
+  "contribution": "Contribution",
   "ratingsAndReview": "Ratings & Review",
   "followDristi": "Follow Dristi",
   "privacyPolicy": "Privacy Policy",
@@ -40,8 +42,9 @@
   "appVersion": "App version",
   "noResults": "No results found",
   "plantTrees": "Plant trees to save the environment",
-
-  "boiler": "Nilgiri is a collection of multiple variable sizes hill area in Bandarban. Bandarban itself is a hill district in Banglades. The mountains with Covering trees look very beautiful from Nilgiri.The journey with locally called Chader gari (Moon Car) is very much enjoyble and full of thrills. The Nilgiri tourist area is very clean and is under supervision of Bangladesh Army.Clean wash rooms and cafeteria also availabl. The road distance from Dhaka is 326 km and from Chittagong is 85 km. Any one from any corner of world may come to Dhaka or Chittagong by air and then may go to Nilgiri by luxurious bus with very reasonable cost. Nilgiri is a collection of multiple variable sizes hill area in Bandarban. Bandarban itself is a hill district in Banglades. The mountains with Covering trees look very beautiful from Nilgiri.The journey with locally called Chader gari (Moon Car) is very much enjoyble and full of thrills. The Nilgiri tourist area is very clean and is under supervision of Bangladesh Army.Clean wash rooms and cafeteria also availabl. The road distance from Dhaka is 326 km and from Chittagong is 85 km. Any one from any corner of world may come to Dhaka or Chittagong by air and then may go to Nilgiri by luxurious bus with very reasonable cost. Nilgiri is a collection of multiple variable sizes hill area in Bandarban. Bandarban itself is a hill district in Banglades. The mountains with Covering trees look very beautiful from Nilgiri.The journey with locally called Chader gari (Moon Car) is very much enjoyble and full of thrills. The Nilgiri tourist area is very clean and is under supervision of Bangladesh Army.Clean wash rooms and cafeteria also availabl. The road distance from Dhaka is 326 km and from Chittagong is 85 km. Any one from any corner of world may come to Dhaka or Chittagong by air and then may go to Nilgiri by luxurious bus with very reasonable cost. Nilgiri is a collection of multiple variable sizes hill area in Bandarban. Bandarban itself is a hill district in Banglades. The mountains with Covering trees look very beautiful from Nilgiri.The journey with locally called Chader gari (Moon Car) is very much enjoyble and full of thrills. The Nilgiri tourist area is very clean and is under supervision of Bangladesh Army.Clean wash rooms and cafeteria also availabl. The road distance from Dhaka is 326 km and from Chittagong is 85 km. Any one from any corner of world may come to Dhaka or Chittagong by air and then may go to Nilgiri by luxurious bus with very reasonable cost."
-
-
+  "findOnMap": "Find on map",
+  "hotels": "Hotels",
+  "couldNotLaunchMap": "Could not launch map",
+  "commonCaution": "The prices of hotels, resorts, transportation, and other expenses available on our site may change over time. Therefore, before you travel to any destination, please check the current prices and expenses. For your convenience, we have provided phone numbers for hotels, resorts, transportation, and various communication channels from different sources. The Dristi authority will not be responsible for any financial transactions or other issues with any organization.",
+  "commonBlogMessage": "If you wish, you can also share your written blogs or videos with us to reach a wider audience. To share your blog with us, please contact us."
 }

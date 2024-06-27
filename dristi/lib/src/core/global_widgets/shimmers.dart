@@ -83,6 +83,39 @@ Widget buildSquareHorizontalListShimmer({
   );
 }
 
+Widget buildListViewShimmer({
+  required BuildContext context,
+  required double height,
+  required double width,
+  required int itemCount,
+}) {
+  return SliverList(
+    delegate: SliverChildBuilderDelegate(
+      (context, index) {
+        return buildShimmer(
+          context: context,
+          height: height,
+          width: width,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: AppValues.dimen_16.r,
+              right: AppValues.dimen_16.r,
+              top: AppValues.dimen_16.r,
+            ),
+            child: buildShimmerContainer(
+              context: context,
+              height: height,
+              width: width,
+              borderRadius: AppValues.dimen_16.r,
+            ),
+          ),
+        );
+      },
+      childCount: itemCount,
+    ),
+  );
+}
+
 Widget buildGridViewShimmer({
   required BuildContext context,
   required double height,
@@ -287,6 +320,15 @@ Widget buildDestinationListShimmer(BuildContext context) {
   );
 }
 
+Widget buildHotelsListShimmer(BuildContext context) {
+  return buildListViewShimmer(
+    context: context,
+    height: AppValues.dimen_160.r,
+    width: double.infinity,
+    itemCount: 6,
+  );
+}
+
 Widget buildDistrictListShimmer(BuildContext context) {
   return buildGridViewShimmer(
     context: context,
@@ -296,7 +338,7 @@ Widget buildDistrictListShimmer(BuildContext context) {
   );
 }
 
-Widget buildWebViewShimmer(BuildContext context) {
+Widget buildFullViewShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
     width: double.infinity,

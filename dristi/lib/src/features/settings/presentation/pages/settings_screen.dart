@@ -141,12 +141,17 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         onTap: () {},
       ),
       _buildSettingsItem(
+        icon: Icons.edit_note_rounded,
+        title: context.localization.contribution,
+        onTap: () {},
+      ),
+      _buildSettingsItem(
         icon: Icons.mail,
         title: context.localization.contactUs,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.business_center,
+        icon: Icons.workspace_premium,
         title: context.localization.makePromotion,
         onTap: () {
           navigateToWebView(

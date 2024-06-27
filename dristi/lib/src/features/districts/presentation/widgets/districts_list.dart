@@ -3,10 +3,10 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
-import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/features/destinations/presentation/riverpod/destination_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/districts/domain/entities/district_entity.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     List<DistrictEntity> fetchResult = searchDistricts();
 
     if (fetchResult.isEmpty) {
-      return const EmptyListImage();
+      return const SliverEmptyListImage();
     }
 
     return SliverPadding(
@@ -114,8 +114,8 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
   }
 
   void navigateToDestinationsPage(String title) {
-    ref.watch(destinationsDistrictField);
-    ref.read(destinationsDistrictField.notifier).state = title;
+    ref.watch(destinationsListDistrictField);
+    ref.read(destinationsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       context.pushNamed(AppRoutes.destination);
