@@ -82,15 +82,18 @@ class SpotData extends SpotEntity {
 class BlogsData extends BlogsEntity {
   String? blogsTitle;
   String? blogsUrl;
+  String? blogsAuthor;
   String? blogsSite;
 
   BlogsData({
     this.blogsTitle,
     this.blogsUrl,
+    this.blogsAuthor,
     this.blogsSite,
   }) : super(
           title: blogsTitle ?? "",
           url: blogsUrl ?? "",
+          author: blogsAuthor ?? "",
           site: blogsSite ?? "",
         );
 
@@ -98,6 +101,7 @@ class BlogsData extends BlogsEntity {
     return BlogsData(
       blogsTitle: json['title'],
       blogsUrl: json['url'],
+      blogsAuthor: json['author'],
       blogsSite: json['site'],
     );
   }

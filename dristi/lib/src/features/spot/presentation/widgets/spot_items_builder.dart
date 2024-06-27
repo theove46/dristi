@@ -4,6 +4,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_data/spot_provider.dart';
 import 'package:dristi/src/features/spot/presentation/riverpod/spot_items/spot_item_provider.dart';
+import 'package:dristi/src/features/spot/presentation/widgets/spot_blogs_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_cautions_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_details_builder.dart';
 import 'package:dristi/src/features/spot/presentation/widgets/spot_hotels_builder.dart';
@@ -116,20 +117,8 @@ class _SpotScreenItemsBuilderState
         return const SpotScreenSpecialsBuilder();
       case SpotScreenType.cautionsScreen:
         return const SpotScreenCautionsBuilder();
-      default:
-        return _buildPageBuilderImage(image);
+      case SpotScreenType.blogsScreen:
+        return const SpotScreenBlogsBuilder();
     }
-  }
-
-  Widget _buildPageBuilderImage(String image) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(6.r),
-      child: AssetImageView(
-        fileName: image,
-        fit: BoxFit.contain,
-        height: AppValues.dimen_100.r,
-        width: AppValues.dimen_100.r,
-      ),
-    );
   }
 }
