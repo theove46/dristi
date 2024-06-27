@@ -7,6 +7,7 @@ class SpotEntity {
   String category;
   String image;
   String details;
+  String mapUrl;
   List<String>? seasons;
   List<String>? cautions;
   List<String>? specials;
@@ -21,6 +22,7 @@ class SpotEntity {
     required this.category,
     required this.image,
     required this.details,
+    required this.mapUrl,
     required this.seasons,
     required this.cautions,
     required this.specials,
@@ -35,6 +37,7 @@ class SpotEntity {
         division = "",
         category = "",
         image = "",
+        mapUrl = "",
         details = "",
         seasons = [],
         cautions = [],

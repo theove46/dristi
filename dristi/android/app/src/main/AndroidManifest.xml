@@ -33,4 +33,12 @@
    </application>
     <uses-permission android:name="android.permission.INTERNET"/> <!-- Used for Cached Network Image package -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- Used for Cached Network Image package -->
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="google.navigation" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent>
+    </queries> <!-- Used for Find On Map Services -->
 </manifest>

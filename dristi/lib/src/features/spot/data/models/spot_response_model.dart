@@ -21,6 +21,7 @@ class SpotData extends SpotEntity {
   String? spotsCategory;
   String? spotsImage;
   String? spotsDetails;
+  String? spotsMapUrl;
   List<String>? spotsSeasons;
   List<String>? spotsCautions;
   List<String>? spotsSpecials;
@@ -34,6 +35,7 @@ class SpotData extends SpotEntity {
     this.spotsDivision,
     this.spotsCategory,
     this.spotsImage,
+    this.spotsMapUrl,
     this.spotsDetails,
     this.spotsSeasons,
     this.spotsCautions,
@@ -47,6 +49,7 @@ class SpotData extends SpotEntity {
           division: spotsDivision ?? "",
           category: spotsCategory ?? "",
           image: spotsImage ?? "",
+          mapUrl: spotsMapUrl ?? "",
           details: spotsDetails ?? "",
           seasons: spotsSeasons ?? [],
           cautions: spotsCautions ?? [],
@@ -67,6 +70,7 @@ class SpotData extends SpotEntity {
       spotsDivision: json['division'],
       spotsCategory: json['category'],
       spotsImage: json['image'],
+      spotsMapUrl: json['mapUrl'],
       spotsDetails: json['details'],
       spotsSeasons:
           json['seasons'] != null ? json['seasons'].cast<String>() : [],
