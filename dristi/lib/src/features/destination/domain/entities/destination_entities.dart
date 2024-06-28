@@ -8,6 +8,7 @@ class DestinationEntity {
   String image;
   String details;
   String mapUrl;
+  List<String>? images;
   List<String>? seasons;
   List<String>? cautions;
   List<String>? specials;
@@ -23,6 +24,7 @@ class DestinationEntity {
     required this.image,
     required this.details,
     required this.mapUrl,
+    required this.images,
     required this.seasons,
     required this.cautions,
     required this.specials,
@@ -39,6 +41,7 @@ class DestinationEntity {
         image = "",
         mapUrl = "",
         details = "",
+        images = [],
         seasons = [],
         cautions = [],
         specials = [],

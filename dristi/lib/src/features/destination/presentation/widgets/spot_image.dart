@@ -36,7 +36,7 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
       tag: "${TextConstants.appName}-${widget.destination.id}",
       child: ClipRRect(
         child: CachedNetworkImage(
-          imageUrl: widget.destination.image,
+          imageUrl: widget.destination.images!.first,
           fit: BoxFit.cover,
           height: AppValues.dimen_500.h,
           width: double.infinity,
@@ -66,7 +66,7 @@ class _SpotImageState extends BaseStatefulWidget<SpotImage> {
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
                   child: CachedNetworkImage(
-                    imageUrl: widget.destination.image,
+                    imageUrl: widget.destination.images!.first,
                     fit: BoxFit.cover,
                   ),
                 ),

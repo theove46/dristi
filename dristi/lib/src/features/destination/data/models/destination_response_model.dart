@@ -22,6 +22,7 @@ class DestinationData extends DestinationEntity {
   String? destinationImage;
   String? destinationDetails;
   String? destinationMapUrl;
+  List<String>? destinationImages;
   List<String>? destinationSeasons;
   List<String>? destinationCautions;
   List<String>? destinationSpecials;
@@ -37,6 +38,7 @@ class DestinationData extends DestinationEntity {
     this.destinationImage,
     this.destinationMapUrl,
     this.destinationDetails,
+    this.destinationImages,
     this.destinationSeasons,
     this.destinationCautions,
     this.destinationSpecials,
@@ -51,6 +53,7 @@ class DestinationData extends DestinationEntity {
           image: destinationImage ?? "",
           mapUrl: destinationMapUrl ?? "",
           details: destinationDetails ?? "",
+          images: destinationImages ?? [],
           seasons: destinationSeasons ?? [],
           cautions: destinationCautions ?? [],
           specials: destinationSpecials ?? [],
@@ -72,6 +75,8 @@ class DestinationData extends DestinationEntity {
       destinationImage: json['image'],
       destinationMapUrl: json['mapUrl'],
       destinationDetails: json['details'],
+      destinationImages:
+          json['images'] != null ? json['images'].cast<String>() : [],
       destinationSeasons:
           json['seasons'] != null ? json['seasons'].cast<String>() : [],
       destinationCautions:
