@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class TopScreenIcons extends ConsumerStatefulWidget {
-  const TopScreenIcons({
+class DestinationScreenTopIcons extends ConsumerStatefulWidget {
+  const DestinationScreenTopIcons({
     required this.destinationId,
     super.key,
   });
@@ -16,10 +16,11 @@ class TopScreenIcons extends ConsumerStatefulWidget {
   final String destinationId;
 
   @override
-  ConsumerState createState() => _TopScreenIconsState();
+  ConsumerState createState() => _DestinationScreenTopIconsState();
 }
 
-class _TopScreenIconsState extends BaseConsumerStatefulWidget<TopScreenIcons> {
+class _DestinationScreenTopIconsState
+    extends BaseConsumerStatefulWidget<DestinationScreenTopIcons> {
   @override
   Widget build(BuildContext context) {
     final isFavorite =

@@ -55,7 +55,7 @@ class _ImageSliderBuilderState
         final item = carouselItems.data[index];
         return GestureDetector(
           onTap: () {
-            navigateToSpotPage(item.id);
+            navigateToDestinationPage(item.id);
           },
           child: Stack(
             alignment: Alignment.topRight,
@@ -147,7 +147,7 @@ class _ImageSliderBuilderState
     );
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationPage(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
       AppRoutes.spot,

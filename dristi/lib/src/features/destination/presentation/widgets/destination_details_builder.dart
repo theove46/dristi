@@ -8,17 +8,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SpotScreenDetailsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenDetailsBuilder({
+class DestinationScreenDetailsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenDetailsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _SpotScreenDetailsBuilderState();
+  ConsumerState createState() => _DestinationScreenDetailsBuilderState();
 }
 
-class _SpotScreenDetailsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenDetailsBuilder> {
+class _DestinationScreenDetailsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenDetailsBuilder> {
   @override
   Widget build(BuildContext context) {
     final destinationDataState = ref.watch(destinationProvider);

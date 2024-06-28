@@ -7,24 +7,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpotScreenSpecialsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenSpecialsBuilder({
+class DestinationScreenSeasonsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenSeasonsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _SpotScreenSpecialsBuilderState();
+  ConsumerState createState() => _DestinationScreenSeasonsBuilderState();
 }
 
-class _SpotScreenSpecialsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenSpecialsBuilder> {
+class _DestinationScreenSeasonsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenSeasonsBuilder> {
   @override
   Widget build(BuildContext context) {
     final destinationDataState = ref.watch(destinationProvider);
 
-    final specials = destinationDataState.data.specials;
+    final seasons = destinationDataState.data.seasons;
 
-    if (specials.isEmpty) {
+    if (seasons.isEmpty) {
       return const EmptyListImage();
     }
 
@@ -35,7 +35,7 @@ class _SpotScreenSpecialsBuilderState
           shrinkWrap: true,
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: specials.length,
+          itemCount: seasons.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(
@@ -51,7 +51,7 @@ class _SpotScreenSpecialsBuilderState
                   ),
                   Expanded(
                     child: Text(
-                      specials[index],
+                      seasons[index],
                       style: appTextStyles.secondaryNovaRegular16,
                     ),
                   ),

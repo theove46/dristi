@@ -9,17 +9,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SpotScreenBlogsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenBlogsBuilder({
+class DestinationScreenBlogsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenBlogsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _SpotScreenBlogsBuilderState();
+  ConsumerState createState() => _DestinationScreenBlogsBuilderState();
 }
 
-class _SpotScreenBlogsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenBlogsBuilder> {
+class _DestinationScreenBlogsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenBlogsBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -67,7 +67,7 @@ class _DestinationsListState
   Widget _buildDestinationCard(DestinationsListEntity item) {
     return GestureDetector(
       onTap: () {
-        navigateToSpotPage(item.id);
+        navigateToDestinationPage(item.id);
       },
       child: Card(
         child: Stack(
@@ -214,7 +214,7 @@ class _DestinationsListState
     return result;
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationPage(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();

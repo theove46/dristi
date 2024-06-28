@@ -7,9 +7,9 @@ import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_items/destination_item_provider.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_items_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/top_screen_icons.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_image.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_items_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_top_icons.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,9 +62,9 @@ class _DestinationScreenState
     return Scaffold(
       body: Stack(
         children: [
-          SpotImage(destination: destinationDataState.data),
+          DestinationImage(destination: destinationDataState.data),
           _buildDescription(),
-          TopScreenIcons(
+          DestinationScreenTopIcons(
             destinationId: widget.id,
           ),
         ],
@@ -92,7 +92,7 @@ class _DestinationScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const AdvertisementImage(),
-                  SpotScreenItemsBuilder(
+                  DestinationScreenItemsBuilder(
                     instanceId: widget.instanceId,
                   ),
                 ],

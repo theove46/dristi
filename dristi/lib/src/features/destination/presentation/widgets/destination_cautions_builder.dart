@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpotScreenCautionsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenCautionsBuilder({
+class DestinationScreenCautionsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenCautionsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _SpotScreenCautionsBuilderState();
+  ConsumerState createState() => _DestinationScreenCautionsBuilderState();
 }
 
-class _SpotScreenCautionsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenCautionsBuilder> {
+class _DestinationScreenCautionsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenCautionsBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(

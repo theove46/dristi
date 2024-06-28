@@ -4,20 +4,20 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/asset_image_view.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_items/destination_item_provider.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_blogs_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_cautions_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_details_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_hotels_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_nearest_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_seasons_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/spot_specials_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_blogs_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_cautions_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_details_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_hotels_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_nearest_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_seasons_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_specials_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpotScreenItemsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenItemsBuilder({
+class DestinationScreenItemsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenItemsBuilder({
     required this.instanceId,
     super.key,
   });
@@ -25,11 +25,11 @@ class SpotScreenItemsBuilder extends ConsumerStatefulWidget {
   final String instanceId;
 
   @override
-  ConsumerState createState() => _SpotScreenItemsBuilderState();
+  ConsumerState createState() => _DestinationScreenItemsBuilderState();
 }
 
-class _SpotScreenItemsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenItemsBuilder> {
+class _DestinationScreenItemsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenItemsBuilder> {
   @override
   Widget build(BuildContext context) {
     final spotItemsModelsState = ref.watch(spotItemsProvider);
@@ -106,19 +106,19 @@ class _SpotScreenItemsBuilderState
   Widget _buildPageView(SpotScreenType screenType, String image) {
     switch (screenType) {
       case SpotScreenType.detailsScreen:
-        return const SpotScreenDetailsBuilder();
+        return const DestinationScreenDetailsBuilder();
       case SpotScreenType.hotelsScreen:
-        return const SpotScreenHotelsBuilder();
+        return const DestinationScreenHotelsBuilder();
       case SpotScreenType.nearestScreen:
-        return const SpotScreenNearestBuilder();
+        return const DestinationScreenNearestBuilder();
       case SpotScreenType.seasonsScreen:
-        return const SpotScreenSeasonsBuilder();
+        return const DestinationScreenSeasonsBuilder();
       case SpotScreenType.specialsScreen:
-        return const SpotScreenSpecialsBuilder();
+        return const DestinationScreenSpecialsBuilder();
       case SpotScreenType.cautionsScreen:
-        return const SpotScreenCautionsBuilder();
+        return const DestinationScreenCautionsBuilder();
       case SpotScreenType.blogsScreen:
-        return const SpotScreenBlogsBuilder();
+        return const DestinationScreenBlogsBuilder();
     }
   }
 }

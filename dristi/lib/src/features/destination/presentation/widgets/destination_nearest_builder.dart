@@ -5,24 +5,27 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
+import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class SpotScreenHotelsBuilder extends ConsumerStatefulWidget {
-  const SpotScreenHotelsBuilder({
+class DestinationScreenNearestBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenNearestBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _SpotScreenHotelsBuilderState();
+  ConsumerState createState() => _DestinationScreenNearestBuilderState();
 }
 
-class _SpotScreenHotelsBuilderState
-    extends BaseConsumerStatefulWidget<SpotScreenHotelsBuilder> {
+class _DestinationScreenNearestBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenNearestBuilder> {
   @override
   void initState() {
     super.initState();
@@ -36,22 +39,23 @@ class _SpotScreenHotelsBuilderState
         ref.watch(languageProvider).language.toLanguage.languageCode;
 
     ref
-        .read(hotelsListProvider.notifier)
-        .getHotelsListComponents(appLanguageState);
+        .read(destinationsListProvider.notifier)
+        .getDestinationsListComponents(appLanguageState);
   }
 
   @override
   Widget build(BuildContext context) {
-    final hotelModelsItems = ref.watch(hotelsListProvider);
+    final destinationModelsItems = ref.watch(destinationsListProvider);
 
-    if (hotelModelsItems.data == null) {
+    if (destinationModelsItems.data == null) {
       return const SizedBox.shrink();
     }
 
     final destinationDataState = ref.watch(destinationProvider);
 
-    final nearestDestinations = hotelModelsItems.data
-        .where((dest) => dest.district == destinationDataState.data.district)
+    final nearestDestinations = destinationModelsItems.data
+        .where((dest) => (dest.district == destinationDataState.data.district &&
+            dest.title != destinationDataState.data.title))
         .toList();
 
     if (nearestDestinations.isEmpty) {
@@ -70,7 +74,7 @@ class _SpotScreenHotelsBuilderState
             final nearestDestination = nearestDestinations[index];
             return GestureDetector(
               onTap: () {
-                navigateToSpotPage(nearestDestination.id);
+                navigateToDestinationPage(nearestDestination.id);
               },
               child: Card(
                 color: uiColors.scrim,
@@ -118,10 +122,17 @@ class _SpotScreenHotelsBuilderState
     );
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationPage(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      //context.pushNamed(AppRoutes.hotelScreen, extra: id);
+      final instanceId = UniqueKey().toString();
+      context.pushNamed(
+        AppRoutes.spot,
+        pathParameters: {
+          PathParameter.spotId: id,
+          PathParameter.instanceId: instanceId
+        },
+      );
     }
   }
 }

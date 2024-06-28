@@ -73,7 +73,7 @@ class _TopDestinationBuilderState
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
               onTap: () {
-                navigateToSpotPage(item.id);
+                navigateToDestinationPage(item.id);
               },
               child: Column(
                 children: [
@@ -109,7 +109,7 @@ class _TopDestinationBuilderState
     context.pushNamed(AppRoutes.destination);
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationPage(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
       AppRoutes.spot,

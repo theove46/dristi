@@ -6,8 +6,8 @@ import 'package:dristi/src/features/destination/domain/entities/destination_enti
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpotImage extends StatefulWidget {
-  const SpotImage({
+class DestinationImage extends StatefulWidget {
+  const DestinationImage({
     required this.destination,
     super.key,
   });
@@ -15,10 +15,10 @@ class SpotImage extends StatefulWidget {
   final DestinationEntity destination;
 
   @override
-  State<SpotImage> createState() => _SpotImageState();
+  State<DestinationImage> createState() => _DestinationImageState();
 }
 
-class _SpotImageState extends BaseStatefulWidget<SpotImage> {
+class _DestinationImageState extends BaseStatefulWidget<DestinationImage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
