@@ -10,7 +10,7 @@ import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
-import 'package:dristi/src/features/spot/presentation/pages/spot_screen.dart';
+import 'package:dristi/src/features/destination/presentation/pages/destination_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -52,7 +52,7 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final spotId = state.pathParameters[PathParameter.spotId]!;
         final instanceId = state.pathParameters[PathParameter.instanceId]!;
-        return SpotScreen(
+        return DestinationScreen(
           id: spotId,
           instanceId: instanceId,
         );
