@@ -5,8 +5,8 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
-import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +17,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class ImageViewerScreen extends ConsumerStatefulWidget {
-  final GalleryScreenArguments? arguments;
+  final GalleryScreenEntity? arguments;
 
   const ImageViewerScreen({
     required this.arguments,
@@ -55,8 +55,8 @@ class _ImageViewerScreenState
             icon: const Icon(Icons.download),
             onPressed: () async {
               final path =
-                  '${Directory.systemTemp.path}/${widget.arguments!.galleryName}_${currentIndex}_Credit_name.jpg';
-              final url = widget.arguments!.images[currentIndex];
+                  '${Directory.systemTemp.path}/${widget.arguments!.galleryName}_${currentIndex}_${context.localization.credit}.jpg';
+              final url = widget.arguments!.images[currentIndex].url;
               await Dio().download(url, path);
               await Gal.putImage(path, album: TextConstants.appName);
               successSnackBar();
@@ -80,7 +80,7 @@ class _ImageViewerScreenState
       bottom: AppValues.dimen_80.r,
       left: AppValues.dimen_16.r,
       child: Text(
-        'Credit: name',
+        '${context.localization.credit} ${widget.arguments!.images[currentIndex].credit}',
         style: appTextStyles.secondaryNovaRegular16,
       ),
     );
@@ -93,7 +93,7 @@ class _ImageViewerScreenState
       builder: (context, index) {
         return PhotoViewGalleryPageOptions(
           imageProvider: CachedNetworkImageProvider(
-            widget.arguments!.images[index],
+            widget.arguments!.images[index].url,
           ),
           minScale: PhotoViewComputedScale.contained * 0.6,
           maxScale: PhotoViewComputedScale.covered * 2,

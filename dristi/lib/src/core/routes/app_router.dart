@@ -3,6 +3,7 @@ import 'package:dristi/src/core/global_widgets/web_view_screen.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/gallery/presentation/pages/gallery_screen.dart';
@@ -93,7 +94,7 @@ GoRouter appRouter = GoRouter(
       name: AppRoutes.gallery,
       builder: (context, state) {
         return GalleryScreen(
-          arguments: state.extra as GalleryScreenArguments,
+          arguments: state.extra as GalleryScreenEntity,
         );
       },
     ),
@@ -102,7 +103,7 @@ GoRouter appRouter = GoRouter(
       name: AppRoutes.imageView,
       builder: (context, state) {
         return ImageViewerScreen(
-          arguments: state.extra as GalleryScreenArguments,
+          arguments: state.extra as GalleryScreenEntity,
         );
       },
     ),
@@ -144,19 +145,6 @@ GoRouter appRouter = GoRouter(
     );
   },
 );
-
-class GalleryScreenArguments {
-  final Key? key;
-  final String galleryName;
-  final List<String> images;
-  final int initialIndex;
-  GalleryScreenArguments({
-    this.key,
-    required this.galleryName,
-    required this.images,
-    this.initialIndex = 0,
-  });
-}
 
 void popUntilHome(BuildContext context) {
   final router = GoRouter.of(context);

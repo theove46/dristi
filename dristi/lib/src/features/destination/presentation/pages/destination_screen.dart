@@ -3,9 +3,9 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
+import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_items/destination_item_provider.dart';
@@ -119,10 +119,10 @@ class _DestinationScreenState
 
   void navigateToGallery() {
     final destinationDataState = ref.watch(destinationProvider);
-    final List<String> images = destinationDataState.data.images ?? [];
+    final List<ImagesEntity> images = destinationDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,
-      extra: GalleryScreenArguments(
+      extra: GalleryScreenEntity(
         galleryName: destinationDataState.data.title,
         images: images,
       ),

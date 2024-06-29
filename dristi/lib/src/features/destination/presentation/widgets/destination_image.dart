@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
@@ -42,7 +41,7 @@ class _DestinationImageState
       tag: "${TextConstants.appName}-${widget.destination.id}",
       child: ClipRRect(
         child: CachedNetworkImage(
-          imageUrl: widget.destination.images!.first,
+          imageUrl: widget.destination.images!.first.url,
           fit: BoxFit.cover,
           height: AppValues.dimen_500.h,
           width: double.infinity,
@@ -75,7 +74,7 @@ class _DestinationImageState
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
                   child: CachedNetworkImage(
-                    imageUrl: widget.destination.images!.first,
+                    imageUrl: widget.destination.images!.first.url,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -110,10 +109,10 @@ class _DestinationImageState
 
   void navigateToGallery() {
     final destinationDataState = ref.watch(destinationProvider);
-    final List<String> images = destinationDataState.data.images ?? [];
+    final List<ImagesEntity> images = destinationDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,
-      extra: GalleryScreenArguments(
+      extra: GalleryScreenEntity(
         galleryName: destinationDataState.data.title,
         images: images,
       ),

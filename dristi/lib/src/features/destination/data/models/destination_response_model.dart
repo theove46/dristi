@@ -22,7 +22,7 @@ class DestinationData extends DestinationEntity {
   String? destinationImage;
   String? destinationDetails;
   String? destinationMapUrl;
-  List<String>? destinationImages;
+  List<ImagesData>? destinationImages;
   List<String>? destinationSeasons;
   List<String>? destinationCautions;
   List<String>? destinationSpecials;
@@ -61,6 +61,10 @@ class DestinationData extends DestinationEntity {
         );
 
   factory DestinationData.fromJson(dynamic json) {
+    List<dynamic>? imagesJson = json['images'];
+    List<ImagesData>? imagesDataList =
+        imagesJson?.map((v) => ImagesData.fromJson(v)).toList();
+
     List<dynamic>? blogsJson = json['blogs'];
     List<BlogsData>? blogsDataList =
         blogsJson?.map((v) => BlogsData.fromJson(v)).toList();
@@ -75,8 +79,7 @@ class DestinationData extends DestinationEntity {
       destinationImage: json['image'],
       destinationMapUrl: json['mapUrl'],
       destinationDetails: json['details'],
-      destinationImages:
-          json['images'] != null ? json['images'].cast<String>() : [],
+      destinationImages: imagesDataList,
       destinationSeasons:
           json['seasons'] != null ? json['seasons'].cast<String>() : [],
       destinationCautions:
@@ -84,6 +87,26 @@ class DestinationData extends DestinationEntity {
       destinationSpecials:
           json['specials'] != null ? json['specials'].cast<String>() : [],
       destinationBlogs: blogsDataList,
+    );
+  }
+}
+
+class ImagesData extends ImagesEntity {
+  String? imageUrl;
+  String? imageCredit;
+
+  ImagesData({
+    this.imageUrl,
+    this.imageCredit,
+  }) : super(
+          url: imageUrl ?? "",
+          credit: imageCredit ?? "",
+        );
+
+  factory ImagesData.fromJson(dynamic json) {
+    return ImagesData(
+      imageUrl: json['url'],
+      imageCredit: json['credit'],
     );
   }
 }

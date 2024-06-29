@@ -1,8 +1,8 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
+import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 
 class GalleryScreen extends ConsumerStatefulWidget {
-  final GalleryScreenArguments? arguments;
+  final GalleryScreenEntity? arguments;
 
   const GalleryScreen({
     super.key,
@@ -80,7 +80,7 @@ class _GalleryScreenState extends BaseConsumerStatefulWidget<GalleryScreen> {
               borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
               child: SizedBox.fromSize(
                 child: CachedNetworkImage(
-                  imageUrl: widget.arguments!.images[index],
+                  imageUrl: widget.arguments!.images[index].url,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -94,7 +94,7 @@ class _GalleryScreenState extends BaseConsumerStatefulWidget<GalleryScreen> {
   void navigateToImageView(int index) {
     context.pushNamed(
       AppRoutes.imageView,
-      extra: GalleryScreenArguments(
+      extra: GalleryScreenEntity(
         galleryName: widget.arguments!.galleryName,
         images: widget.arguments!.images,
         initialIndex: index,
