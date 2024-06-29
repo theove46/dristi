@@ -3,6 +3,8 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
@@ -13,6 +15,7 @@ import 'package:dristi/src/features/destination/presentation/widgets/destination
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
   const DestinationScreen({
@@ -62,7 +65,9 @@ class _DestinationScreenState
     return Scaffold(
       body: Stack(
         children: [
-          DestinationImage(destination: destinationDataState.data),
+          DestinationImage(
+            destination: destinationDataState.data,
+          ),
           _buildDescription(),
           DestinationScreenTopIcons(
             destinationId: widget.id,
@@ -77,7 +82,15 @@ class _DestinationScreenState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: AppValues.dimen_480.h),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              navigateToGallery();
+            },
+            child: Container(
+              height: AppValues.dimen_480.h,
+            ),
+          ),
           Container(
             decoration: BoxDecoration(
               color: uiColors.secondary,
@@ -100,6 +113,18 @@ class _DestinationScreenState
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void navigateToGallery() {
+    final destinationDataState = ref.watch(destinationProvider);
+    final List<String> images = destinationDataState.data.images ?? [];
+    context.pushNamed(
+      AppRoutes.gallery,
+      extra: GalleryScreenArguments(
+        galleryName: destinationDataState.data.title,
+        images: images,
       ),
     );
   }

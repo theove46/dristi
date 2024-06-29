@@ -5,6 +5,8 @@ import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
+import 'package:dristi/src/features/gallery/presentation/pages/gallery_screen.dart';
+import 'package:dristi/src/features/gallery/presentation/pages/image_view_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
@@ -22,6 +24,8 @@ abstract class _Path {
   static const String destination = '/destination';
   static const String hotelsList = '/hotelsList';
   static const String settings = '/settings';
+  static const String gallery = '/gallery';
+  static const String imageView = '/imageView';
   static const String webView = '/webView';
   static const String error = '/error';
 }
@@ -29,6 +33,8 @@ abstract class _Path {
 abstract class PathParameter {
   static const String spotId = 'spotId';
   static const String instanceId = 'instanceId';
+  static const String name = 'name';
+  static const String images = 'images';
 }
 
 GoRouter appRouter = GoRouter(
@@ -83,6 +89,24 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) => const SettingsScreen(),
     ),
     GoRoute(
+      path: _Path.gallery,
+      name: AppRoutes.gallery,
+      builder: (context, state) {
+        return GalleryScreen(
+          arguments: state.extra as GalleryScreenArguments,
+        );
+      },
+    ),
+    GoRoute(
+      path: _Path.imageView,
+      name: AppRoutes.imageView,
+      builder: (context, state) {
+        return ImageViewerScreen(
+          arguments: state.extra as GalleryScreenArguments,
+        );
+      },
+    ),
+    GoRoute(
       path: _Path.webView,
       name: AppRoutes.webView,
       builder: (BuildContext context, GoRouterState state) {
@@ -120,6 +144,19 @@ GoRouter appRouter = GoRouter(
     );
   },
 );
+
+class GalleryScreenArguments {
+  final Key? key;
+  final String galleryName;
+  final List<String> images;
+  final int initialIndex;
+  GalleryScreenArguments({
+    this.key,
+    required this.galleryName,
+    required this.images,
+    this.initialIndex = 0,
+  });
+}
 
 void popUntilHome(BuildContext context) {
   final router = GoRouter.of(context);
