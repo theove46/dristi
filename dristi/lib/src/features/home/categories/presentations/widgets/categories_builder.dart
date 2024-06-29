@@ -177,7 +177,7 @@ class _CategoriesBuilderState
     if (expandNotifier.state) {
       boxNotifier.state = AppValues.dimen_240.h;
     } else {
-      boxNotifier.state = AppValues.dimen_360.h;
+      boxNotifier.state = AppValues.dimen_480.h;
     }
     expandNotifier.state = !expandNotifier.state;
   }
