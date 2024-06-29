@@ -32,6 +32,7 @@ dependencies:
   url_launcher: 6.3.0
   photo_view: 0.15.0
   flutter_staggered_grid_view: 0.7.0
+  gal: 2.3.0
   rive_animated_icon: 2.0.0
 
 # Run fvm flutter gen-l10n / flutter gen-l10n if Localization error

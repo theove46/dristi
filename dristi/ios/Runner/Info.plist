@@ -52,5 +52,7 @@
       <string>http</string>
       <string>https</string>
     </array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <key>NSPhotoLibraryUsageDescription</key>
 </dict>
 </plist>
