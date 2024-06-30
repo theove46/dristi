@@ -76,7 +76,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
             ),
             ListTile(
               title: Text(
-                context.localization.hotels,
+                context.localization.hotelsAndResorts,
                 style: appTextStyles.secondaryNovaRegular16,
               ),
               trailing: Padding(
