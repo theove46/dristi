@@ -14,6 +14,6 @@ class DestinationsListEntity {
   String onImageTitle;
   String district;
   String division;
-  String category;
+  List<String> category;
   String image;
 }

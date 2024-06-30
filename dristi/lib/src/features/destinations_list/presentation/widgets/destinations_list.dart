@@ -184,11 +184,12 @@ class _DestinationsListState
         ref.watch(isShowFavouriteDestinationList);
 
     List<DestinationsListEntity> result =
-        destinationModelsItems.data.where((u) {
-      var checkTitle = u.title.toLowerCase();
-      var checkDistrict = u.district.toLowerCase();
-      var checkDivision = u.division.toLowerCase();
-      var checkCategory = u.category.toLowerCase();
+        destinationModelsItems.data.where((destinationData) {
+      var checkTitle = destinationData.title.toLowerCase();
+      var checkDistrict = destinationData.district.toLowerCase();
+      var checkDivision = destinationData.division.toLowerCase();
+      var checkCategory =
+          destinationData.category.map((c) => c.toLowerCase()).toList();
 
       bool matchesSearch =
           checkTitle.contains(searchFieldState.toLowerCase()) ||
@@ -202,8 +203,7 @@ class _DestinationsListState
           checkDistrict.contains(districtFieldState.toLowerCase());
 
       bool matchesFavourites = !isShowFavouriteDestinationsState ||
-          // !widget.isShowFavouritesList! ||
-          favoriteDestinationsState.contains(u.id);
+          favoriteDestinationsState.contains(destinationData.id);
 
       return matchesSearch &&
           matchesCategory &&

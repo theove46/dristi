@@ -18,7 +18,7 @@ class DestinationData extends DestinationEntity {
   String? destinationOnImageTitle;
   String? destinationDistricts;
   String? destinationDivision;
-  String? destinationCategory;
+  List<String>? destinationCategory;
   String? destinationImage;
   String? destinationDetails;
   String? destinationMapUrl;
@@ -49,7 +49,7 @@ class DestinationData extends DestinationEntity {
           onImageTitle: destinationOnImageTitle ?? "",
           district: destinationDistricts ?? "",
           division: destinationDivision ?? "",
-          category: destinationCategory ?? "",
+          category: destinationCategory ?? [],
           image: destinationImage ?? "",
           mapUrl: destinationMapUrl ?? "",
           details: destinationDetails ?? "",
@@ -75,7 +75,8 @@ class DestinationData extends DestinationEntity {
       destinationOnImageTitle: json['onImageTitle'],
       destinationDistricts: json['district'],
       destinationDivision: json['division'],
-      destinationCategory: json['category'],
+      destinationCategory:
+          json['category'] != null ? json['category'].cast<String>() : [],
       destinationImage: json['image'],
       destinationMapUrl: json['mapUrl'],
       destinationDetails: json['details'],

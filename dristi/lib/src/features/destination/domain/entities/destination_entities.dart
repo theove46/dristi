@@ -6,7 +6,7 @@ class DestinationEntity {
   String onImageTitle;
   String district;
   String division;
-  String category;
+  List<String>? category;
   String image;
   String details;
   String mapUrl;
@@ -39,7 +39,7 @@ class DestinationEntity {
         onImageTitle = "",
         district = "",
         division = "",
-        category = "",
+        category = [],
         image = "",
         mapUrl = "",
         details = "",
