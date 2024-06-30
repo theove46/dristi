@@ -4,6 +4,7 @@ import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,9 +98,18 @@ class _DestinationScreenBlogsBuilderState
         border: Border.all(color: uiColors.primary),
         borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
       ),
-      child: Text(
-        context.localization.commonBlogMessage,
-        style: appTextStyles.secondaryNovaRegular12,
+      child: RichText(
+        text: TextSpan(
+          text: '${context.localization.commonBlogMessage} ',
+          style: appTextStyles.secondaryNovaRegular12,
+          children: [
+            TextSpan(
+              text: context.localization.contactUs,
+              style: appTextStyles.primaryNovaRegular12,
+              recognizer: TapGestureRecognizer()..onTap = () {},
+            ),
+          ],
+        ),
       ),
     );
   }
