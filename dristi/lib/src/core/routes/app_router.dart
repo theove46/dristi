@@ -10,6 +10,7 @@ import 'package:dristi/src/features/gallery/presentation/pages/gallery_screen.da
 import 'package:dristi/src/features/gallery/presentation/pages/image_view_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
+import 'package:dristi/src/features/hotel/presentation/pages/hotel_screen.dart';
 import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
@@ -21,6 +22,7 @@ abstract class _Path {
   static const String home = '/home';
   static const String splash = '/splash';
   static const String spot = '/spot/:spotId/:instanceId';
+  static const String hotel = '/hotel/:hotelId/:instanceId';
   static const String districts = '/districts';
   static const String destination = '/destination';
   static const String hotelsList = '/hotelsList';
@@ -33,6 +35,7 @@ abstract class _Path {
 
 abstract class PathParameter {
   static const String spotId = 'spotId';
+  static const String hotelId = 'hotelId';
   static const String instanceId = 'instanceId';
   static const String name = 'name';
   static const String images = 'images';
@@ -60,6 +63,18 @@ GoRouter appRouter = GoRouter(
         final spotId = state.pathParameters[PathParameter.spotId]!;
         final instanceId = state.pathParameters[PathParameter.instanceId]!;
         return DestinationScreen(
+          id: spotId,
+          instanceId: instanceId,
+        );
+      },
+    ),
+    GoRoute(
+      path: _Path.hotel,
+      name: AppRoutes.hotel,
+      builder: (context, state) {
+        final spotId = state.pathParameters[PathParameter.hotelId]!;
+        final instanceId = state.pathParameters[PathParameter.instanceId]!;
+        return HotelScreen(
           id: spotId,
           instanceId: instanceId,
         );

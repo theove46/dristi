@@ -88,7 +88,7 @@ class _DestinationScreenDetailsBuilderState
 
   void errorSnackBar() async {
     ShowSnackBarMessage.showErrorSnackBar(
-      message: context.localization.couldNotLaunchMap,
+      message: context.localization.couldNotLaunchUrl,
       context: context,
     );
   }

@@ -6,6 +6,7 @@ class API {
 
   static const String components = '/components';
   static const String spots = '/spots';
+  static const String hotelsAndResorts = '/hotels_and_resorts';
   static const String language = '/language_';
 
   static const String categories = '/categories.json';

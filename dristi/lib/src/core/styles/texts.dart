@@ -100,6 +100,9 @@ class AppTextStyles {
   TextStyle get primaryNovaSemiBold12 =>
       primaryNovaSemiBold.copyWith(fontSize: 12.sp);
 
+  TextStyle get primaryNovaRegular16 =>
+      primaryNovaRegular.copyWith(fontSize: 16.sp);
+
   TextStyle get primaryNovaSemiBold16 =>
       primaryNovaSemiBold.copyWith(fontSize: 16.sp);
 
