@@ -10,7 +10,8 @@ class HotelsListRepositoryImp implements HotelsListRepository {
   final HotelsListDataSource dataSource;
 
   @override
-  Future<List<HotelEntity>> getHotelsListComponents(String appLanguage) async {
+  Future<List<HotelsListEntity>> getHotelsListComponents(
+      String appLanguage) async {
     final response = await dataSource.getHotelsListComponents(appLanguage);
 
     return response.hotelsItems;

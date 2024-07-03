@@ -11,5 +11,5 @@ final hotelsListRepositoryProvider = Provider<HotelsListRepository>(
 );
 
 abstract class HotelsListRepository {
-  Future<List<HotelEntity>> getHotelsListComponents(String appLanguage);
+  Future<List<HotelsListEntity>> getHotelsListComponents(String appLanguage);
 }

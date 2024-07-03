@@ -15,7 +15,8 @@ class HotelsListUseCase {
 
   final HotelsListRepository repository;
 
-  Future<List<HotelEntity>> getHotelsListComponents(String appLanguage) async {
+  Future<List<HotelsListEntity>> getHotelsListComponents(
+      String appLanguage) async {
     return repository.getHotelsListComponents(appLanguage);
   }
 }

@@ -7,12 +7,15 @@ import 'package:dristi/src/core/global_providers/favourite_places/favourites_pro
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/hotels_list/domain/entities/hotels_list_entity.dart';
 import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
 import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class HotelsList extends ConsumerStatefulWidget {
   const HotelsList({
@@ -33,7 +36,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
       return buildHotelsListShimmer(context);
     }
 
-    List<HotelEntity> fetchResult = searchHotels();
+    List<HotelsListEntity> fetchResult = searchHotels();
 
     if (fetchResult.isEmpty) {
       return const SliverEmptyListImage();
@@ -56,7 +59,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildHotelsCard(HotelEntity item) {
+  Widget _buildHotelsCard(HotelsListEntity item) {
     return GestureDetector(
       onTap: () {
         navigateToHotelPage(item.id);
@@ -79,7 +82,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildImage(HotelEntity item) {
+  Widget _buildImage(HotelsListEntity item) {
     return Hero(
       tag: "${TextConstants.appName}-${item.id}",
       child: Container(
@@ -118,7 +121,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildFavouriteIcon(HotelEntity item) {
+  Widget _buildFavouriteIcon(HotelsListEntity item) {
     final isFavorite = ref.watch(favoritesProvider).data.contains(item.id);
 
     return GestureDetector(
@@ -150,7 +153,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildLabels(HotelEntity item) {
+  Widget _buildLabels(HotelsListEntity item) {
     return Padding(
       padding: EdgeInsets.all(AppValues.dimen_16.w),
       child: Column(
@@ -170,14 +173,14 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  List<HotelEntity> searchHotels() {
+  List<HotelsListEntity> searchHotels() {
     final hotelsModelsItems = ref.watch(hotelsListProvider);
     final searchFieldState = ref.watch(hotelsListSearchField);
     final districtFieldState = ref.watch(hotelsListDistrictField);
     final favoriteHotelsState = ref.watch(favoritesProvider).data;
     final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
 
-    List<HotelEntity> result = hotelsModelsItems.data.where((u) {
+    List<HotelsListEntity> result = hotelsModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
       var checkDistrict = u.district.toLowerCase();
       var checkDivision = u.division.toLowerCase();
@@ -202,7 +205,14 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
   void navigateToHotelPage(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      //context.pushNamed(AppRoutes.hotelScreen, extra: id);
+      final instanceId = UniqueKey().toString();
+      context.pushNamed(
+        AppRoutes.hotel,
+        pathParameters: {
+          PathParameter.hotelId: id,
+          PathParameter.instanceId: instanceId
+        },
+      );
     }
   }
 }

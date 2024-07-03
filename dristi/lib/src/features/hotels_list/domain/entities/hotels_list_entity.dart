@@ -1,5 +1,5 @@
-class HotelEntity {
-  HotelEntity({
+class HotelsListEntity {
+  HotelsListEntity({
     required this.id,
     required this.title,
     required this.onImageTitle,

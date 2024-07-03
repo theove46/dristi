@@ -6,16 +6,16 @@ class HotelsListResponseModel {
   HotelsListResponseModel.fromJson({
     required List<dynamic> json,
   }) {
-    hotelsItems = <HotelEntity>[];
+    hotelsItems = <HotelsListEntity>[];
     for (var item in json) {
       hotelsItems.add(HotelData.fromJson(item));
     }
   }
 
-  List<HotelEntity> hotelsItems = <HotelEntity>[];
+  List<HotelsListEntity> hotelsItems = <HotelsListEntity>[];
 }
 
-class HotelData extends HotelEntity {
+class HotelData extends HotelsListEntity {
   String? hotelsId;
   String? hotelsTitle;
   String? hotelsOnImageTitle;
