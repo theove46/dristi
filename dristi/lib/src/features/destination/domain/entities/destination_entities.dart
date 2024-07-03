@@ -1,3 +1,4 @@
+import 'package:dristi/src/core/global_entity/global_entity.dart';
 import 'package:flutter/material.dart';
 
 class DestinationEntity {
@@ -48,16 +49,6 @@ class DestinationEntity {
         cautions = [],
         specials = [],
         blogs = [];
-}
-
-class ImagesEntity {
-  ImagesEntity({
-    required this.url,
-    required this.credit,
-  });
-
-  String url;
-  String credit;
 }
 
 class BlogsEntity {

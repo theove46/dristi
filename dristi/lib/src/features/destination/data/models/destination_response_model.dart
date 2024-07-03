@@ -1,3 +1,4 @@
+import 'package:dristi/src/core/global_entity/global_entity.dart';
 import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 
 class DestinationResponseModel {
