@@ -11,8 +11,8 @@ class DestinationRepositoryImp implements DestinationRepository {
 
   @override
   Future<DestinationEntity> getDestinationData(
-      String appLanguage, String spotId) async {
-    final response = await dataSource.getDestinationData(appLanguage, spotId);
+      String appLanguage, String id) async {
+    final response = await dataSource.getDestinationData(appLanguage, id);
 
     return response.destination;
   }

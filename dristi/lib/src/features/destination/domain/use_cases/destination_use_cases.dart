@@ -16,8 +16,8 @@ class DestinationUseCase {
   final DestinationRepository repository;
 
   Future<DestinationEntity> getDestinationData(
-      String appLanguage, String spotId) async {
-    return repository.getDestinationData(appLanguage, spotId);
+      String appLanguage, String id) async {
+    return repository.getDestinationData(appLanguage, id);
   }
 
   Future<(String, List<DestinationItemsEntity>?)> getDestinationItems(

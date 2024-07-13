@@ -13,13 +13,13 @@ class DestinationNotifier extends Notifier<DestinationState> {
     return const DestinationState();
   }
 
-  Future<void> getDestinationData(String appLanguage, String spotId) async {
+  Future<void> getDestinationData(String appLanguage, String id) async {
     try {
       state = state.copyWith(
         status: DestinationStatus.loading,
       );
 
-      final response = await useCase.getDestinationData(appLanguage, spotId);
+      final response = await useCase.getDestinationData(appLanguage, id);
 
       if (response.id.isNotEmpty) {
         state = state.copyWith(

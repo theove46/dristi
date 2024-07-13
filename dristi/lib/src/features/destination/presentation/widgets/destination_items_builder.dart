@@ -7,7 +7,7 @@ import 'package:dristi/src/features/destination/presentation/riverpod/destinatio
 import 'package:dristi/src/features/destination/presentation/widgets/destination_blogs_builder.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_cautions_builder.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_details_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/destination_hotels_builder.dart';
+import 'package:dristi/src/features/destination/presentation/widgets/destination_accommodation_builder.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_nearest_builder.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_seasons_builder.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_specials_builder.dart';
@@ -32,13 +32,13 @@ class _DestinationScreenItemsBuilderState
     extends BaseConsumerStatefulWidget<DestinationScreenItemsBuilder> {
   @override
   Widget build(BuildContext context) {
-    final spotItemsModelsState = ref.watch(spotItemsProvider);
+    final destinationItemsModelsState = ref.watch(destinationItemsProvider);
 
     final currentPageState = ref.watch(currentPageProvider(widget.instanceId));
     final currentPageNotifier =
         ref.read(currentPageProvider(widget.instanceId).notifier);
 
-    if (spotItemsModelsState.data == null) {
+    if (destinationItemsModelsState.data == null) {
       return const SizedBox.shrink();
     }
 
@@ -49,9 +49,9 @@ class _DestinationScreenItemsBuilderState
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            itemCount: spotItemsModelsState.data.length,
+            itemCount: destinationItemsModelsState.data.length,
             itemBuilder: (context, index) {
-              final item = spotItemsModelsState.data[index];
+              final item = destinationItemsModelsState.data[index];
 
               return GestureDetector(
                 onTap: () {
@@ -96,28 +96,28 @@ class _DestinationScreenItemsBuilderState
           ),
         ),
         _buildPageView(
-          SpotScreenType.values[currentPageState],
-          spotItemsModelsState.data[currentPageState].image,
+          DestinationScreenItemType.values[currentPageState],
+          destinationItemsModelsState.data[currentPageState].image,
         ),
       ],
     );
   }
 
-  Widget _buildPageView(SpotScreenType screenType, String image) {
+  Widget _buildPageView(DestinationScreenItemType screenType, String image) {
     switch (screenType) {
-      case SpotScreenType.detailsScreen:
+      case DestinationScreenItemType.detailsScreen:
         return const DestinationScreenDetailsBuilder();
-      case SpotScreenType.hotelsScreen:
-        return const DestinationScreenHotelsBuilder();
-      case SpotScreenType.nearestScreen:
+      case DestinationScreenItemType.hotelsScreen:
+        return const DestinationScreenAccommodationsBuilder();
+      case DestinationScreenItemType.nearestScreen:
         return const DestinationScreenNearestBuilder();
-      case SpotScreenType.seasonsScreen:
+      case DestinationScreenItemType.seasonsScreen:
         return const DestinationScreenSeasonsBuilder();
-      case SpotScreenType.specialsScreen:
+      case DestinationScreenItemType.specialsScreen:
         return const DestinationScreenSpecialsBuilder();
-      case SpotScreenType.cautionsScreen:
+      case DestinationScreenItemType.cautionsScreen:
         return const DestinationScreenCautionsBuilder();
-      case SpotScreenType.blogsScreen:
+      case DestinationScreenItemType.blogsScreen:
         return const DestinationScreenBlogsBuilder();
     }
   }

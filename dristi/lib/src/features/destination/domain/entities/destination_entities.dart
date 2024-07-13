@@ -1,5 +1,5 @@
+import 'package:dristi/src/core/global_entities/blogs_entity.dart';
 import 'package:dristi/src/core/global_entities/images_entity.dart';
-import 'package:flutter/material.dart';
 
 class DestinationEntity {
   String id;
@@ -51,20 +51,6 @@ class DestinationEntity {
         blogs = [];
 }
 
-class BlogsEntity {
-  BlogsEntity({
-    required this.title,
-    required this.url,
-    required this.author,
-    required this.site,
-  });
-
-  String title;
-  String url;
-  String author;
-  String site;
-}
-
 class DestinationItemsEntity {
   DestinationItemsEntity({
     required this.title,
@@ -73,17 +59,4 @@ class DestinationItemsEntity {
 
   String title;
   String image;
-}
-
-class GalleryScreenEntity {
-  final Key? key;
-  final String galleryName;
-  final List<ImagesEntity> images;
-  final int initialIndex;
-  GalleryScreenEntity({
-    this.key,
-    required this.galleryName,
-    required this.images,
-    this.initialIndex = 0,
-  });
 }

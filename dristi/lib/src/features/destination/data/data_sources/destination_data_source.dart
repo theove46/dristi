@@ -11,7 +11,7 @@ final destinationDataSourceProvider = Provider<DestinationDataSource>(
 
 abstract class DestinationDataSource {
   Future<DestinationResponseModel> getDestinationData(
-      String appLanguage, String spotId);
+      String appLanguage, String id);
 
   Future<Response> getDestinationItems(String appLanguage);
 }

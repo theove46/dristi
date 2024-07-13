@@ -11,8 +11,7 @@ final destinationRepositoryProvider = Provider<DestinationRepository>(
 );
 
 abstract class DestinationRepository {
-  Future<DestinationEntity> getDestinationData(
-      String appLanguage, String spotId);
+  Future<DestinationEntity> getDestinationData(String appLanguage, String id);
 
   Future<(String, List<DestinationItemsEntity>?)> getDestinationItems(
       String appLanguage);

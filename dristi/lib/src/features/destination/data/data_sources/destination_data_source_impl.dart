@@ -13,9 +13,9 @@ class DestinationDataSourceImp extends BaseRemoteSource
     implements DestinationDataSource {
   @override
   Future<DestinationResponseModel> getDestinationData(
-      String appLanguage, String spotId) {
+      String appLanguage, String id) {
     final String endpoint =
-        '${DioProvider.baseUrl}${API.destination}${API.language}$appLanguage${'/spot_0001.json'}';
+        '${DioProvider.baseUrl}${API.destinations}${API.language}$appLanguage${'/ds_0001.json'}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 
@@ -32,8 +32,8 @@ class DestinationDataSourceImp extends BaseRemoteSource
   Future<Response> getDestinationItems(String appLanguage) async {
     try {
       String endpoint = appLanguage == 'en'
-          ? Assets.spotComponentsEn
-          : Assets.spotComponentsBn;
+          ? Assets.destinationComponentsEn
+          : Assets.destinationComponentsBn;
 
       String response = await rootBundle.loadString(endpoint);
       final List<dynamic> jsonList = json.decode(response);

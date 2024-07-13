@@ -11,7 +11,7 @@ class AccommodationDataSourceImp extends BaseRemoteSource
   Future<AccommodationResponseModel> getAccommodationData(
       String appLanguage, String id) {
     final String endpoint =
-        '${DioProvider.baseUrl}${API.accommodation}${API.language}$appLanguage${'/hr0001.json'}';
+        '${DioProvider.baseUrl}${API.accommodations}${API.language}$appLanguage${'/hr0001.json'}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

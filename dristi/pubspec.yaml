@@ -49,7 +49,7 @@ flutter:
   generate: true
 
   assets:
-    - assets/images/spot_items/
+    - assets/images/destination_items/
     - assets/images/items/
     - assets/images/on_boarding/
     - assets/json/

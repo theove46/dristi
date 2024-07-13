@@ -17,7 +17,7 @@ enum DestinationFilters {
   district,
 }
 
-enum SpotScreenType {
+enum DestinationScreenItemType {
   detailsScreen,
   hotelsScreen,
   nearestScreen,

@@ -20,6 +20,8 @@ class Assets {
       '$jsonAssets/district_components_bn.json';
   static const String onBoardingComponents =
       '$jsonAssets/on_boarding_components.json';
-  static const String spotComponentsEn = '$jsonAssets/spot_components_en.json';
-  static const String spotComponentsBn = '$jsonAssets/spot_components_bn.json';
+  static const String destinationComponentsEn =
+      '$jsonAssets/destination_components_en.json';
+  static const String destinationComponentsBn =
+      '$jsonAssets/destination_components_bn.json';
 }

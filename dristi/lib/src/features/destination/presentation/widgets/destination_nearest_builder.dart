@@ -74,7 +74,7 @@ class _DestinationScreenNearestBuilderState
             final nearestDestination = nearestDestinations[index];
             return GestureDetector(
               onTap: () {
-                navigateToDestinationPage(nearestDestination.id);
+                navigateToDestinationScreen(nearestDestination.id);
               },
               child: Card(
                 color: uiColors.scrim,
@@ -122,7 +122,7 @@ class _DestinationScreenNearestBuilderState
     );
   }
 
-  void navigateToDestinationPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();

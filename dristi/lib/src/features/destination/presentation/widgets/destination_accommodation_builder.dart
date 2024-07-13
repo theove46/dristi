@@ -5,33 +5,36 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
+import 'package:dristi/src/core/routes/app_router.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class DestinationScreenHotelsBuilder extends ConsumerStatefulWidget {
-  const DestinationScreenHotelsBuilder({
+class DestinationScreenAccommodationsBuilder extends ConsumerStatefulWidget {
+  const DestinationScreenAccommodationsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _DestinationScreenHotelsBuilderState();
+  ConsumerState createState() => _DestinationScreenAccommodationsBuilderState();
 }
 
-class _DestinationScreenHotelsBuilderState
-    extends BaseConsumerStatefulWidget<DestinationScreenHotelsBuilder> {
+class _DestinationScreenAccommodationsBuilderState
+    extends BaseConsumerStatefulWidget<DestinationScreenAccommodationsBuilder> {
   @override
   void initState() {
     super.initState();
     Future(() {
-      _getDestinationComponents();
+      _getAccommodationComponents();
     });
   }
 
-  Future<void> _getDestinationComponents() async {
+  Future<void> _getAccommodationComponents() async {
     final appLanguageState =
         ref.watch(languageProvider).language.toLanguage.languageCode;
 
@@ -42,15 +45,15 @@ class _DestinationScreenHotelsBuilderState
 
   @override
   Widget build(BuildContext context) {
-    final hotelModelsItems = ref.watch(accommodationsListProvider);
+    final accommodationsModelsItems = ref.watch(accommodationsListProvider);
 
-    if (hotelModelsItems.data == null) {
+    if (accommodationsModelsItems.data == null) {
       return const SizedBox.shrink();
     }
 
     final destinationDataState = ref.watch(destinationProvider);
 
-    final nearestDestinations = hotelModelsItems.data
+    final nearestDestinations = accommodationsModelsItems.data
         .where((dest) => dest.district == destinationDataState.data.district)
         .toList();
 
@@ -70,7 +73,7 @@ class _DestinationScreenHotelsBuilderState
             final nearestDestination = nearestDestinations[index];
             return GestureDetector(
               onTap: () {
-                navigateToDestinationPage(nearestDestination.id);
+                navigateToAccommodationScreen(nearestDestination.id);
               },
               child: Card(
                 color: uiColors.scrim,
@@ -118,10 +121,17 @@ class _DestinationScreenHotelsBuilderState
     );
   }
 
-  void navigateToDestinationPage(String id) {
+  void navigateToAccommodationScreen(String id) {
     final networkState = ref.watch(networkStatusProvider);
+    final instanceId = UniqueKey().toString();
     if (networkState.value?.first != ConnectivityResult.none) {
-      //context.pushNamed(AppRoutes.hotelScreen, extra: id);
+      context.pushNamed(
+        AppRoutes.accommodation,
+        pathParameters: {
+          PathParameter.accommodationId: id,
+          PathParameter.instanceId: instanceId
+        },
+      );
     }
   }
 }
