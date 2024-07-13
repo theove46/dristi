@@ -93,21 +93,6 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
 
   Widget _buildAppBar() {
     return AppBar(
-      // Leading Icon Image
-
-      // leading: IconButton(
-      //   icon: AssetImageView(
-      //     fileName: Assets.menu,
-      //     fit: BoxFit.cover,
-      //     height: AppValues.dimen_30.r,
-      //     width: AppValues.dimen_30.r,
-      //     color: uiColors.primary,
-      //   ),
-      //   onPressed: () {
-      //     Scaffold.of(context).openDrawer();
-      //   },
-      // ),
-
       title: GestureDetector(
         onTap: () {
           context.pushNamed(AppRoutes.destinationsList);

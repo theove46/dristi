@@ -34,7 +34,7 @@ class _OnBoardingScreenState
         await ref.read(onBoardingProvider.notifier).getFirstTimeStatus();
 
     if (!isFirstTime) {
-      navigateToHomePage();
+      navigateToHomeScreen();
     } else {
       ref.read(onBoardingProvider.notifier).getOnBoardingComponents();
     }
@@ -48,7 +48,7 @@ class _OnBoardingScreenState
       onBoardingProvider,
       (_, next) {
         if (next.status == OnBoardingStatus.success) {
-          navigateToHomePage();
+          navigateToHomeScreen();
         } else if (next.status == OnBoardingStatus.failure) {
           ShowSnackBarMessage.showErrorSnackBar(
             message: next.errorMessage!,
@@ -109,7 +109,7 @@ class _OnBoardingScreenState
     );
   }
 
-  void navigateToHomePage() {
+  void navigateToHomeScreen() {
     context.pushReplacementNamed(AppRoutes.home);
   }
 }

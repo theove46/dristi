@@ -43,7 +43,7 @@ class _TopDestinationBuilderState
             style: appTextStyles.primaryNovaBold16,
           ),
           TextButton(
-            onPressed: navigateToDestinationsPage,
+            onPressed: navigateToDestinationsScreen,
             child: Text(
               context.localization.viewAll,
               style: appTextStyles.primaryNovaSemiBold12,
@@ -73,7 +73,7 @@ class _TopDestinationBuilderState
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
               onTap: () {
-                navigateToDestinationPage(item.id);
+                navigateToDestinationScreen(item.id);
               },
               child: Column(
                 children: [
@@ -105,11 +105,11 @@ class _TopDestinationBuilderState
     );
   }
 
-  void navigateToDestinationsPage() {
+  void navigateToDestinationsScreen() {
     context.pushNamed(AppRoutes.destinationsList);
   }
 
-  void navigateToDestinationPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
       AppRoutes.destination,

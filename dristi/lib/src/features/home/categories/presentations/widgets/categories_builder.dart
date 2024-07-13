@@ -109,7 +109,7 @@ class _CategoriesBuilderState
 
     return GestureDetector(
       onTap: () {
-        navigateToDestinationsPage(categoriesItems.data[index].title);
+        navigateToDestinationsScreen(categoriesItems.data[index].title);
       },
       child: SizedBox(
         width: AppValues.dimen_80.r,
@@ -182,7 +182,7 @@ class _CategoriesBuilderState
     expandNotifier.state = !expandNotifier.state;
   }
 
-  void navigateToDestinationsPage(String title) {
+  void navigateToDestinationsScreen(String title) {
     ref.watch(destinationsListCategoryField);
     if (title != context.localization.allCategories) {
       ref.read(destinationsListCategoryField.notifier).state = title;

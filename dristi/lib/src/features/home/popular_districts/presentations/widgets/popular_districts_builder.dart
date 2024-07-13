@@ -43,7 +43,7 @@ class _PopularCitiesBuilderState
           style: appTextStyles.primaryNovaBold16,
         ),
         TextButton(
-          onPressed: navigateToDistrictPage,
+          onPressed: navigateToDistrictScreen,
           child: Text(
             context.localization.viewAll,
             style: appTextStyles.primaryNovaSemiBold12,
@@ -72,7 +72,7 @@ class _PopularCitiesBuilderState
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
               onTap: () {
-                navigateToDestinationsPage(item.title);
+                navigateToDestinationsScreen(item.title);
               },
               child: Column(
                 children: [
@@ -104,11 +104,11 @@ class _PopularCitiesBuilderState
     );
   }
 
-  void navigateToDistrictPage() {
+  void navigateToDistrictScreen() {
     context.pushNamed(AppRoutes.districts);
   }
 
-  void navigateToDestinationsPage(String title) {
+  void navigateToDestinationsScreen(String title) {
     ref.watch(destinationsListDistrictField);
     ref.read(destinationsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);

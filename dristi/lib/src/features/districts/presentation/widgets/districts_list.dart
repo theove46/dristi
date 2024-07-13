@@ -89,7 +89,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
               style: appTextStyles.secondaryNovaRegular12,
             ),
             onTap: () {
-              navigateToDestinationsPage(item.title);
+              navigateToDestinationsScreen(item.title);
             },
           ),
         ),
@@ -113,7 +113,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     return result;
   }
 
-  void navigateToDestinationsPage(String title) {
+  void navigateToDestinationsScreen(String title) {
     ref.watch(destinationsListDistrictField);
     ref.read(destinationsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);
