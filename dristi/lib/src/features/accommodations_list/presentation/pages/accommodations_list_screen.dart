@@ -7,10 +7,10 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
-import 'package:dristi/src/features/hotels_list/presentation/widgets/hotels_list_filtered_row.dart';
-import 'package:dristi/src/features/hotels_list/presentation/widgets/hotels_list_app_bar.dart';
-import 'package:dristi/src/features/hotels_list/presentation/widgets/hotels_list.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list_filtered_row.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list_app_bar.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,11 +42,11 @@ class _AccommodationsListScreenState
 
     if (networkState.value?.first != ConnectivityResult.none) {
       ref
-          .read(hotelsListProvider.notifier)
-          .getHotelsListComponents(appLanguageState);
+          .read(accommodationsListProvider.notifier)
+          .getAccommodationsListComponents(appLanguageState);
     }
 
-    final districtState = ref.watch(hotelsListDistrictField);
+    final districtState = ref.watch(accommodationsListDistrictField);
     if (districtState.isNotEmpty) {
       districtController.text = districtState;
     }
@@ -64,18 +64,18 @@ class _AccommodationsListScreenState
           onRefresh: _getHotelsListComponents,
           child: CustomScrollView(
             slivers: [
-              HotelsListScreenAppBar(
+              AccommodationsListScreenAppBar(
                 searchFieldController: searchFieldController,
                 districtController: districtController,
               ),
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
-              HotelsListScreenFilteredRow(
+              AccommodationsListScreenFilteredRow(
                 districtController: districtController,
               ),
               // _buildAdvertisement(), // For Future Usage
-              const HotelsList(),
+              const AccommodationsList(),
             ],
           ),
         ),

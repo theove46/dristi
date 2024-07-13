@@ -11,7 +11,7 @@ import 'package:dristi/src/features/gallery/presentation/pages/image_view_screen
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/accommodation/presentation/pages/accommodation_screen.dart';
-import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/pages/accommodations_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/destination/presentation/pages/destination_screen.dart';

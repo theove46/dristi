@@ -6,7 +6,7 @@ import 'package:dristi/src/core/global_providers/language_settings/language_sett
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/empty_list_image.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,13 +36,13 @@ class _DestinationScreenHotelsBuilderState
         ref.watch(languageProvider).language.toLanguage.languageCode;
 
     ref
-        .read(hotelsListProvider.notifier)
-        .getHotelsListComponents(appLanguageState);
+        .read(accommodationsListProvider.notifier)
+        .getAccommodationsListComponents(appLanguageState);
   }
 
   @override
   Widget build(BuildContext context) {
-    final hotelModelsItems = ref.watch(hotelsListProvider);
+    final hotelModelsItems = ref.watch(accommodationsListProvider);
 
     if (hotelModelsItems.data == null) {
       return const SizedBox.shrink();

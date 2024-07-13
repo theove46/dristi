@@ -1,13 +1,13 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HotelsListScreenFilteredRow extends ConsumerStatefulWidget {
-  const HotelsListScreenFilteredRow({
+class AccommodationsListScreenFilteredRow extends ConsumerStatefulWidget {
+  const AccommodationsListScreenFilteredRow({
     required this.districtController,
     super.key,
   });
@@ -15,18 +15,19 @@ class HotelsListScreenFilteredRow extends ConsumerStatefulWidget {
   final TextEditingController districtController;
 
   @override
-  ConsumerState<HotelsListScreenFilteredRow> createState() =>
-      _FilteredRowState();
+  ConsumerState<AccommodationsListScreenFilteredRow> createState() =>
+      _AccommodationsListScreenFilteredRowState();
 }
 
-class _FilteredRowState
-    extends BaseConsumerStatefulWidget<HotelsListScreenFilteredRow> {
+class _AccommodationsListScreenFilteredRowState
+    extends BaseConsumerStatefulWidget<AccommodationsListScreenFilteredRow> {
   @override
   Widget build(BuildContext context) {
-    final districtFieldState = ref.watch(hotelsListDistrictField);
-    final districtFieldNotifier = ref.read(hotelsListDistrictField.notifier);
+    final districtFieldState = ref.watch(accommodationsListDistrictField);
+    final districtFieldNotifier =
+        ref.read(accommodationsListDistrictField.notifier);
 
-    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
+    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
 
     return SliverToBoxAdapter(
       child:

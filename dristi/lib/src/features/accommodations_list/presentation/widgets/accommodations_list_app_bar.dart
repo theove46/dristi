@@ -5,15 +5,15 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/filtered_bottom_sheet.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelsListScreenAppBar extends ConsumerStatefulWidget {
-  const HotelsListScreenAppBar({
+class AccommodationsListScreenAppBar extends ConsumerStatefulWidget {
+  const AccommodationsListScreenAppBar({
     required this.searchFieldController,
     required this.districtController,
     super.key,
@@ -23,11 +23,11 @@ class HotelsListScreenAppBar extends ConsumerStatefulWidget {
   final TextEditingController districtController;
 
   @override
-  ConsumerState createState() => _HotelsAppBarState();
+  ConsumerState createState() => _AccommodationsAppBarState();
 }
 
-class _HotelsAppBarState
-    extends BaseConsumerStatefulWidget<HotelsListScreenAppBar> {
+class _AccommodationsAppBarState
+    extends BaseConsumerStatefulWidget<AccommodationsListScreenAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -41,10 +41,12 @@ class _HotelsAppBarState
   }
 
   Widget _buildAppBar() {
-    ref.watch(hotelsListSearchField);
-    ref.watch(hotelsListDistrictField);
-    final searchFieldNotifier = ref.read(hotelsListSearchField.notifier);
-    final districtFieldNotifier = ref.read(hotelsListDistrictField.notifier);
+    ref.watch(accommodationsListSearchField);
+    ref.watch(accommodationsListDistrictField);
+    final searchFieldNotifier =
+        ref.read(accommodationsListSearchField.notifier);
+    final districtFieldNotifier =
+        ref.read(accommodationsListDistrictField.notifier);
 
     return AppBar(
       leading: IconButton(
@@ -133,9 +135,9 @@ class _HotelsAppBarState
   }
 
   PopupMenuItem<String> _favouriteMenuItem() {
-    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
+    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
     final isShowFavouriteHotelsNotifier =
-        ref.read(favouriteHotelsList.notifier);
+        ref.read(favouriteAccommodationsList.notifier);
 
     return PopupMenuItem(
       child: Padding(
@@ -164,7 +166,8 @@ class _HotelsAppBarState
   }
 
   void _showDistrictFilter() {
-    final districtFieldNotifier = ref.read(hotelsListDistrictField.notifier);
+    final districtFieldNotifier =
+        ref.read(accommodationsListDistrictField.notifier);
     final districtsItems = ref.read(districtProvider);
 
     showModalBottomSheet(

@@ -9,34 +9,35 @@ import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/features/hotels_list/domain/entities/hotels_list_entity.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_provider.dart';
-import 'package:dristi/src/features/hotels_list/presentation/riverpod/hotels_list_state.dart';
+import 'package:dristi/src/features/accommodations_list/domain/entities/accommodations_list_entity.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
+import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelsList extends ConsumerStatefulWidget {
-  const HotelsList({
+class AccommodationsList extends ConsumerStatefulWidget {
+  const AccommodationsList({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _HotelsListState();
+  ConsumerState createState() => _AccommodationsListState();
 }
 
-class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
+class _AccommodationsListState
+    extends BaseConsumerStatefulWidget<AccommodationsList> {
   @override
   Widget build(BuildContext context) {
-    final hotelsModelsItems = ref.watch(hotelsListProvider);
+    final hotelsModelsItems = ref.watch(accommodationsListProvider);
 
-    if (hotelsModelsItems.status != HotelsListStatus.success ||
+    if (hotelsModelsItems.status != AccommodationsListStatus.success ||
         hotelsModelsItems.data == null) {
       return buildHotelsListShimmer(context);
     }
 
-    List<HotelsListEntity> fetchResult = searchHotels();
+    List<AccommodationsListEntity> fetchResult = searchHotels();
 
     if (fetchResult.isEmpty) {
       return const SliverEmptyListImage();
@@ -59,7 +60,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildHotelsCard(HotelsListEntity item) {
+  Widget _buildHotelsCard(AccommodationsListEntity item) {
     return GestureDetector(
       onTap: () {
         navigateToHotelPage(item.id);
@@ -82,7 +83,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildImage(HotelsListEntity item) {
+  Widget _buildImage(AccommodationsListEntity item) {
     return Hero(
       tag: "${TextConstants.appName}-${item.id}",
       child: Container(
@@ -121,7 +122,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildFavouriteIcon(HotelsListEntity item) {
+  Widget _buildFavouriteIcon(AccommodationsListEntity item) {
     final isFavorite = ref.watch(favoritesProvider).data.contains(item.id);
 
     return GestureDetector(
@@ -153,7 +154,7 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  Widget _buildLabels(HotelsListEntity item) {
+  Widget _buildLabels(AccommodationsListEntity item) {
     return Padding(
       padding: EdgeInsets.all(AppValues.dimen_16.w),
       child: Column(
@@ -173,14 +174,14 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     );
   }
 
-  List<HotelsListEntity> searchHotels() {
-    final hotelsModelsItems = ref.watch(hotelsListProvider);
-    final searchFieldState = ref.watch(hotelsListSearchField);
-    final districtFieldState = ref.watch(hotelsListDistrictField);
+  List<AccommodationsListEntity> searchHotels() {
+    final hotelsModelsItems = ref.watch(accommodationsListProvider);
+    final searchFieldState = ref.watch(accommodationsListSearchField);
+    final districtFieldState = ref.watch(accommodationsListDistrictField);
     final favoriteHotelsState = ref.watch(favoritesProvider).data;
-    final isShowFavouriteHotelsState = ref.watch(favouriteHotelsList);
+    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
 
-    List<HotelsListEntity> result = hotelsModelsItems.data.where((u) {
+    List<AccommodationsListEntity> result = hotelsModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
       var checkDistrict = u.district.toLowerCase();
       var checkDivision = u.division.toLowerCase();
