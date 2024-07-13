@@ -3,7 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
+import 'package:dristi/src/core/global_providers/saved_items/saved_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -123,11 +123,11 @@ class _DestinationsListState
   }
 
   Widget _buildFavouriteIcon(DestinationsListEntity item) {
-    final isFavorite = ref.watch(favoritesProvider).data.contains(item.id);
+    final isFavorite = ref.watch(savedItemsProvider).data.contains(item.id);
 
     return GestureDetector(
       onTap: () {
-        ref.read(favoritesProvider.notifier).toggleFavorite(item.id);
+        ref.read(savedItemsProvider.notifier).toggleSavedItems(item.id);
       },
       child: Padding(
         padding: EdgeInsets.all(AppValues.dimen_10.w),
@@ -179,7 +179,7 @@ class _DestinationsListState
     final searchFieldState = ref.watch(destinationsListSearchField);
     final categoryFieldState = ref.watch(destinationsListCategoryField);
     final districtFieldState = ref.watch(destinationsListDistrictField);
-    final favoriteDestinationsState = ref.watch(favoritesProvider).data;
+    final favoriteDestinationsState = ref.watch(savedItemsProvider).data;
     final isShowFavouriteDestinationsState =
         ref.watch(isShowFavouriteDestinationList);
 

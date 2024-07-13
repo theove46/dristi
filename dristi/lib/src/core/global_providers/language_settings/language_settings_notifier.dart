@@ -25,6 +25,7 @@ class LanguageNotifier extends Notifier<LanguageState> {
     );
   }
 
+  /// TODO  Make a common Get Home Components
   Future<void> getHomeComponents(String appLanguage) async {
     final state = ref.watch(networkStatusProvider);
     if (state.value?.first != ConnectivityResult.none) {

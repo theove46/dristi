@@ -1,6 +1,6 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
+import 'package:dristi/src/core/global_providers/saved_items/saved_items_provider.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +24,7 @@ class _AccommodationScreenTopIconsState
   @override
   Widget build(BuildContext context) {
     final isFavorite =
-        ref.watch(favoritesProvider).data.contains(widget.hotelId);
+        ref.watch(savedItemsProvider).data.contains(widget.hotelId);
 
     return Positioned(
       top: AppValues.dimen_40.r,
@@ -69,8 +69,8 @@ class _AccommodationScreenTopIconsState
             ),
             onTap: () {
               ref
-                  .read(favoritesProvider.notifier)
-                  .toggleFavorite(widget.hotelId);
+                  .read(savedItemsProvider.notifier)
+                  .toggleSavedItems(widget.hotelId);
             },
           ),
         ],

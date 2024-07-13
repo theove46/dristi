@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/global_entity/global_entity.dart';
+import 'package:dristi/src/core/global_entities/images_entity.dart';
 
 class AccommodationEntity {
   String id;
