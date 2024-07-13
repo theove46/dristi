@@ -33,12 +33,12 @@ class _DestinationListScreenState
   void initState() {
     super.initState();
     Future(() {
-      _getDestinationComponents();
-      ref.read(savedItemsProvider.notifier).loadSavedItems();
+      _getDestinationsListComponents();
+      ref.read(favouriteItemsProvider.notifier).loadSavedItems();
     });
   }
 
-  Future<void> _getDestinationComponents() async {
+  Future<void> _getDestinationsListComponents() async {
     final appLanguageState =
         ref.watch(languageProvider).language.toLanguage.languageCode;
     final networkState = ref.watch(networkStatusProvider);
@@ -70,7 +70,7 @@ class _DestinationListScreenState
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: RefreshIndicator(
-          onRefresh: _getDestinationComponents,
+          onRefresh: _getDestinationsListComponents,
           child: CustomScrollView(
             slivers: [
               DestinationsAppBar(
@@ -96,6 +96,7 @@ class _DestinationListScreenState
 
   // For Future Usage
   // ignore: unused_element
+  /// TODO Common Advertisement Widget
   Widget _buildAdvertisement() {
     return SliverToBoxAdapter(
       child: Padding(

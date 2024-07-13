@@ -124,11 +124,13 @@ class _AccommodationsListState
   }
 
   Widget _buildFavouriteIcon(AccommodationsListEntity item) {
-    final isFavorite = ref.watch(savedItemsProvider).data.contains(item.id);
+    final isFavorite = ref.watch(favouriteItemsProvider).data.contains(item.id);
 
     return GestureDetector(
       onTap: () {
-        ref.read(savedItemsProvider.notifier).toggleSavedItems(item.id);
+        ref
+            .read(favouriteItemsProvider.notifier)
+            .toggleFavouritesItems(item.id);
       },
       child: Padding(
         padding: EdgeInsets.all(AppValues.dimen_16.r),
@@ -179,7 +181,7 @@ class _AccommodationsListState
     final accommodationsModelsItems = ref.watch(accommodationsListProvider);
     final searchFieldState = ref.watch(accommodationsListSearchField);
     final districtFieldState = ref.watch(accommodationsListDistrictField);
-    final favoriteState = ref.watch(savedItemsProvider).data;
+    final favoriteState = ref.watch(favouriteItemsProvider).data;
     final isShowFavouriteState = ref.watch(favouriteAccommodationsList);
 
     List<AccommodationsListEntity> result =

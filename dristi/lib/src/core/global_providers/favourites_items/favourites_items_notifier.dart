@@ -2,24 +2,24 @@ import 'package:dristi/src/core/cache/cache_service.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SavedItemsNotifier extends Notifier<SavedItemsState> {
+class FavouritesItemsNotifier extends Notifier<FavouritesItemsState> {
   late CacheService cacheService;
 
   @override
-  SavedItemsState build() {
+  FavouritesItemsState build() {
     cacheService = ref.read(cacheServiceProvider);
-    return const SavedItemsState();
+    return const FavouritesItemsState();
   }
 
   void loadSavedItems() async {
-    final savedList = await cacheService.getFavouritesItemsList();
+    final favouritesList = await cacheService.getFavouritesItemsList();
 
     state = state.copyWith(
-      data: savedList,
+      data: favouritesList,
     );
   }
 
-  void toggleSavedItems(String id) async {
+  void toggleFavouritesItems(String id) async {
     if (state.data.contains(id)) {
       state = state.copyWith(data: {...state.data}..remove(id));
     } else {

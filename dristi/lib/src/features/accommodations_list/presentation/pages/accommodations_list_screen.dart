@@ -31,7 +31,7 @@ class _AccommodationsListScreenState
     super.initState();
     Future(() {
       _getHotelsListComponents();
-      ref.read(savedItemsProvider.notifier).loadSavedItems();
+      ref.read(favouriteItemsProvider.notifier).loadSavedItems();
     });
   }
 

@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-enum SavedItemsStatus { initial, loading, success, failure }
+enum FavouritesItemsStatus { initial, loading, success, failure }
 
-class SavedItemsState<T> extends Equatable {
-  const SavedItemsState({
-    this.status = SavedItemsStatus.initial,
+class FavouritesItemsState<T> extends Equatable {
+  const FavouritesItemsState({
+    this.status = FavouritesItemsStatus.initial,
     this.data = const {},
     this.errorMessage,
   });
 
-  final SavedItemsStatus status;
+  final FavouritesItemsStatus status;
   final Set<String> data;
   final String? errorMessage;
 
-  SavedItemsState copyWith({
-    SavedItemsStatus? status,
+  FavouritesItemsState copyWith({
+    FavouritesItemsStatus? status,
     Set<String>? data,
     String? errorMessage,
   }) {
-    return SavedItemsState(
+    return FavouritesItemsState(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

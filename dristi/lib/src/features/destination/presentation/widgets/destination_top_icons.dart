@@ -24,7 +24,7 @@ class _DestinationScreenTopIconsState
   @override
   Widget build(BuildContext context) {
     final isFavorite =
-        ref.watch(savedItemsProvider).data.contains(widget.destinationId);
+        ref.watch(favouriteItemsProvider).data.contains(widget.destinationId);
 
     return Positioned(
       top: AppValues.dimen_40.r,
@@ -69,8 +69,8 @@ class _DestinationScreenTopIconsState
             ),
             onTap: () {
               ref
-                  .read(savedItemsProvider.notifier)
-                  .toggleSavedItems(widget.destinationId);
+                  .read(favouriteItemsProvider.notifier)
+                  .toggleFavouritesItems(widget.destinationId);
             },
           ),
         ],

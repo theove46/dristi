@@ -17,42 +17,42 @@ class DestinationsListResponseModel {
 }
 
 class DestinationsListData extends DestinationsListEntity {
-  String? destinationId;
-  String? destinationTitle;
-  String? destinationOnImageTitle;
-  String? destinationDistrict;
-  String? destinationDivision;
-  List<String>? destinationCategory;
-  String? destinationImage;
+  String? listId;
+  String? listTitle;
+  String? listOnImageTitle;
+  String? listDistrict;
+  String? listDivision;
+  List<String>? listCategory;
+  String? listImage;
 
   DestinationsListData({
-    this.destinationId,
-    this.destinationTitle,
-    this.destinationOnImageTitle,
-    this.destinationDistrict,
-    this.destinationDivision,
-    this.destinationCategory,
-    this.destinationImage,
+    this.listId,
+    this.listTitle,
+    this.listOnImageTitle,
+    this.listDistrict,
+    this.listDivision,
+    this.listCategory,
+    this.listImage,
   }) : super(
-          id: destinationId ?? "",
-          title: destinationTitle ?? "",
-          onImageTitle: destinationOnImageTitle ?? "",
-          district: destinationDistrict ?? "",
-          division: destinationDivision ?? "",
-          category: destinationCategory ?? [],
-          image: destinationImage ?? "",
+          id: listId ?? "",
+          title: listTitle ?? "",
+          onImageTitle: listOnImageTitle ?? "",
+          district: listDistrict ?? "",
+          division: listDivision ?? "",
+          category: listCategory ?? [],
+          image: listImage ?? "",
         );
 
   factory DestinationsListData.fromJson(dynamic json) {
     return DestinationsListData(
-      destinationId: json['id'],
-      destinationTitle: json['title'],
-      destinationOnImageTitle: json['onImageTitle'],
-      destinationDistrict: json['district'],
-      destinationDivision: json['division'],
-      destinationCategory:
+      listId: json['id'],
+      listTitle: json['title'],
+      listOnImageTitle: json['onImageTitle'],
+      listDistrict: json['district'],
+      listDivision: json['division'],
+      listCategory:
           json['category'] != null ? json['category'].cast<String>() : [],
-      destinationImage: json['image'],
+      listImage: json['image'],
     );
   }
 }

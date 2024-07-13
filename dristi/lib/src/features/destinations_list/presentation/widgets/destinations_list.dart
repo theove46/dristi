@@ -30,10 +30,10 @@ class _DestinationsListState
     extends BaseConsumerStatefulWidget<DestinationsList> {
   @override
   Widget build(BuildContext context) {
-    final destinationModelsItems = ref.watch(destinationsListProvider);
+    final destinationsListItems = ref.watch(destinationsListProvider);
 
-    if (destinationModelsItems.status != DestinationListStatus.success ||
-        destinationModelsItems.data == null) {
+    if (destinationsListItems.status != DestinationListStatus.success ||
+        destinationsListItems.data == null) {
       return buildDestinationsListShimmer(context);
     }
 
@@ -67,7 +67,7 @@ class _DestinationsListState
   Widget _buildDestinationCard(DestinationsListEntity item) {
     return GestureDetector(
       onTap: () {
-        navigateToDestinationPage(item.id);
+        navigateToDestinationScreen(item.id);
       },
       child: Card(
         child: Stack(
@@ -123,11 +123,13 @@ class _DestinationsListState
   }
 
   Widget _buildFavouriteIcon(DestinationsListEntity item) {
-    final isFavorite = ref.watch(savedItemsProvider).data.contains(item.id);
+    final isFavorite = ref.watch(favouriteItemsProvider).data.contains(item.id);
 
     return GestureDetector(
       onTap: () {
-        ref.read(savedItemsProvider.notifier).toggleSavedItems(item.id);
+        ref
+            .read(favouriteItemsProvider.notifier)
+            .toggleFavouritesItems(item.id);
       },
       child: Padding(
         padding: EdgeInsets.all(AppValues.dimen_10.w),
@@ -175,16 +177,16 @@ class _DestinationsListState
   }
 
   List<DestinationsListEntity> searchDestinations() {
-    final destinationModelsItems = ref.watch(destinationsListProvider);
+    final destinationsListItems = ref.watch(destinationsListProvider);
     final searchFieldState = ref.watch(destinationsListSearchField);
     final categoryFieldState = ref.watch(destinationsListCategoryField);
     final districtFieldState = ref.watch(destinationsListDistrictField);
-    final favoriteDestinationsState = ref.watch(savedItemsProvider).data;
+    final favoriteDestinationsState = ref.watch(favouriteItemsProvider).data;
     final isShowFavouriteDestinationsState =
         ref.watch(isShowFavouriteDestinationList);
 
     List<DestinationsListEntity> result =
-        destinationModelsItems.data.where((destinationData) {
+        destinationsListItems.data.where((destinationData) {
       var checkTitle = destinationData.title.toLowerCase();
       var checkDistrict = destinationData.district.toLowerCase();
       var checkDivision = destinationData.division.toLowerCase();
@@ -214,7 +216,7 @@ class _DestinationsListState
     return result;
   }
 
-  void navigateToDestinationPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();
