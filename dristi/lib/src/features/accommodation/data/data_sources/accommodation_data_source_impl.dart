@@ -9,7 +9,7 @@ class AccommodationDataSourceImp extends BaseRemoteSource
     implements AccommodationDataSource {
   @override
   Future<AccommodationResponseModel> getAccommodationData(
-      String appLanguage, String spotId) {
+      String appLanguage, String id) {
     final String endpoint =
         '${DioProvider.baseUrl}${API.accommodation}${API.language}$appLanguage${'/hr0001.json'}';
 

@@ -12,5 +12,5 @@ final accommodationRepositoryProvider = Provider<AccommodationRepository>(
 
 abstract class AccommodationRepository {
   Future<AccommodationEntity> getAccommodationData(
-      String appLanguage, String spotId);
+      String appLanguage, String id);
 }

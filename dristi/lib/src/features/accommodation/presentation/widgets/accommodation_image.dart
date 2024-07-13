@@ -14,11 +14,11 @@ import 'package:go_router/go_router.dart';
 
 class AccommodationImage extends ConsumerStatefulWidget {
   const AccommodationImage({
-    required this.hotel,
+    required this.accommodation,
     super.key,
   });
 
-  final AccommodationEntity hotel;
+  final AccommodationEntity accommodation;
 
   @override
   ConsumerState createState() => _AccommodationImageState();
@@ -40,10 +40,10 @@ class _AccommodationImageState
 
   Widget _buildBackgroundImage() {
     return Hero(
-      tag: "${TextConstants.appName}-${widget.hotel.id}",
+      tag: "${TextConstants.appName}-${widget.accommodation.id}",
       child: ClipRRect(
         child: CachedNetworkImage(
-          imageUrl: widget.hotel.images!.first.url,
+          imageUrl: widget.accommodation.images!.first.url,
           fit: BoxFit.cover,
           height: AppValues.dimen_500.h,
           width: double.infinity,
@@ -76,7 +76,7 @@ class _AccommodationImageState
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
                   child: CachedNetworkImage(
-                    imageUrl: widget.hotel.images!.first.url,
+                    imageUrl: widget.accommodation.images!.first.url,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -102,7 +102,7 @@ class _AccommodationImageState
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          widget.hotel.onImageTitle,
+          widget.accommodation.onImageTitle,
           style: appTextStyles.onImageBoldShadow44,
         ),
       ),
@@ -110,12 +110,12 @@ class _AccommodationImageState
   }
 
   void navigateToGallery() {
-    final hotelDataState = ref.watch(accommodationProvider);
-    final List<ImagesEntity> images = hotelDataState.data.images ?? [];
+    final accommodationDataState = ref.watch(accommodationProvider);
+    final List<ImagesEntity> images = accommodationDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,
       extra: GalleryScreenEntity(
-        galleryName: hotelDataState.data.title,
+        galleryName: accommodationDataState.data.title,
         images: images,
       ),
     );

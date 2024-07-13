@@ -12,13 +12,13 @@ class AccommodationNotifier extends Notifier<AccommodationState> {
     return const AccommodationState();
   }
 
-  Future<void> getAccommodationData(String appLanguage, String spotId) async {
+  Future<void> getAccommodationData(String appLanguage, String id) async {
     try {
       state = state.copyWith(
         status: AccommodationStatus.loading,
       );
 
-      final response = await useCase.getAccommodationData(appLanguage, spotId);
+      final response = await useCase.getAccommodationData(appLanguage, id);
 
       if (response.id.isNotEmpty) {
         state = state.copyWith(

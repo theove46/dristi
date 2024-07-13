@@ -11,9 +11,9 @@ class AccommodationRepositoryImp implements AccommodationRepository {
 
   @override
   Future<AccommodationEntity> getAccommodationData(
-      String appLanguage, String spotId) async {
-    final response = await dataSource.getAccommodationData(appLanguage, spotId);
+      String appLanguage, String id) async {
+    final response = await dataSource.getAccommodationData(appLanguage, id);
 
-    return response.accommodation;
+    return response.response;
   }
 }

@@ -10,5 +10,5 @@ final accommodationDataSourceProvider = Provider<AccommodationDataSource>(
 
 abstract class AccommodationDataSource {
   Future<AccommodationResponseModel> getAccommodationData(
-      String appLanguage, String spotId);
+      String appLanguage, String id);
 }

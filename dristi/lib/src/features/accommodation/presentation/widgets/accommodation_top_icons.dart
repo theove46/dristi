@@ -9,11 +9,11 @@ import 'package:go_router/go_router.dart';
 
 class AccommodationScreenTopIcons extends ConsumerStatefulWidget {
   const AccommodationScreenTopIcons({
-    required this.hotelId,
+    required this.accommodationId,
     super.key,
   });
 
-  final String hotelId;
+  final String accommodationId;
 
   @override
   ConsumerState createState() => _AccommodationScreenTopIconsState();
@@ -24,7 +24,7 @@ class _AccommodationScreenTopIconsState
   @override
   Widget build(BuildContext context) {
     final isFavorite =
-        ref.watch(savedItemsProvider).data.contains(widget.hotelId);
+        ref.watch(savedItemsProvider).data.contains(widget.accommodationId);
 
     return Positioned(
       top: AppValues.dimen_40.r,
@@ -70,7 +70,7 @@ class _AccommodationScreenTopIconsState
             onTap: () {
               ref
                   .read(savedItemsProvider.notifier)
-                  .toggleSavedItems(widget.hotelId);
+                  .toggleSavedItems(widget.accommodationId);
             },
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:dristi/src/core/global_entities/images_entity.dart';
+import 'package:dristi/src/core/global_entities/website_entity.dart';
 
 class AccommodationEntity {
   String id;
@@ -42,14 +43,4 @@ class AccommodationEntity {
         images = [],
         phones = [],
         websites = [];
-}
-
-class WebsiteEntity {
-  WebsiteEntity({
-    required this.url,
-    required this.site,
-  });
-
-  String url;
-  String site;
 }

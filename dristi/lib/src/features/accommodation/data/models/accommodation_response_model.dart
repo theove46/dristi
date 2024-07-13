@@ -1,16 +1,17 @@
 import 'package:dristi/src/core/global_entities/images_entity.dart';
+import 'package:dristi/src/core/global_entities/website_entity.dart';
 import 'package:dristi/src/features/accommodation/domain/entities/accommodation_entities.dart';
 
 class AccommodationResponseModel {
-  AccommodationResponseModel(this.accommodation);
+  AccommodationResponseModel(this.response);
 
   AccommodationResponseModel.fromJson({
     required dynamic json,
   }) {
-    accommodation = AccommodationData.fromJson(json);
+    response = AccommodationData.fromJson(json);
   }
 
-  AccommodationEntity accommodation = AccommodationEntity.initial();
+  AccommodationEntity response = AccommodationEntity.initial();
 }
 
 class AccommodationData extends AccommodationEntity {

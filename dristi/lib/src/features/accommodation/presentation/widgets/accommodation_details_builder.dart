@@ -1,8 +1,8 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_entities/website_entity.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/accommodation/domain/entities/accommodation_entities.dart';
 import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +22,7 @@ class _AccommodationScreenDetailsBuilderState
     extends BaseConsumerStatefulWidget<AccommodationScreenDetailsBuilder> {
   @override
   Widget build(BuildContext context) {
-    final hotelDataState = ref.watch(accommodationProvider);
+    final accommodationDataState = ref.watch(accommodationProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +30,7 @@ class _AccommodationScreenDetailsBuilderState
       children: [
         SizedBox(height: AppValues.dimen_16.h),
         Text(
-          hotelDataState.data.title,
+          accommodationDataState.data.title,
           style: appTextStyles.primaryNovaBold28,
         ),
         SizedBox(height: AppValues.dimen_10.h),
@@ -38,7 +38,7 @@ class _AccommodationScreenDetailsBuilderState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "${hotelDataState.data.district}, ${hotelDataState.data.division}",
+              "${accommodationDataState.data.district}, ${accommodationDataState.data.division}",
               style: appTextStyles.primaryNovaBold16,
             ),
             _buildFindOnMapButton(),
@@ -46,14 +46,14 @@ class _AccommodationScreenDetailsBuilderState
         ),
         SizedBox(height: AppValues.dimen_10.h),
         Text(
-          "${context.localization.address} ${hotelDataState.data.address}",
+          "${context.localization.address} ${accommodationDataState.data.address}",
           style: appTextStyles.primaryNovaRegular16,
         ),
         SizedBox(height: AppValues.dimen_10.h),
         _buildWebsiteList(),
         SizedBox(height: AppValues.dimen_10.h),
         Text(
-          hotelDataState.data.description,
+          accommodationDataState.data.description,
           style: appTextStyles.secondaryNovaRegular16,
         ),
         SizedBox(height: AppValues.dimen_16.h),
@@ -62,11 +62,11 @@ class _AccommodationScreenDetailsBuilderState
   }
 
   Widget _buildFindOnMapButton() {
-    final hotelDataState = ref.watch(accommodationProvider);
+    final accommodationDataState = ref.watch(accommodationProvider);
 
     return GestureDetector(
       onTap: () {
-        openUrls(hotelDataState.data.mapUrl);
+        openUrls(accommodationDataState.data.mapUrl);
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -98,8 +98,8 @@ class _AccommodationScreenDetailsBuilderState
   }
 
   Widget _buildWebsiteList() {
-    final hotelDataState = ref.watch(accommodationProvider);
-    final List<WebsiteEntity> websites = hotelDataState.data.websites;
+    final accommodationDataState = ref.watch(accommodationProvider);
+    final List<WebsiteEntity> websites = accommodationDataState.data.websites;
 
     if (websites.isEmpty) {
       return const SizedBox.shrink();

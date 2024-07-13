@@ -55,9 +55,9 @@ class _AccommodationScreenState
 
   @override
   Widget build(BuildContext context) {
-    final hotelDataState = ref.watch(accommodationProvider);
+    final accommodationDataState = ref.watch(accommodationProvider);
 
-    if (hotelDataState.data == null) {
+    if (accommodationDataState.data == null) {
       return buildFullScreenShimmer(context);
     }
 
@@ -65,11 +65,11 @@ class _AccommodationScreenState
       body: Stack(
         children: [
           AccommodationImage(
-            hotel: hotelDataState.data,
+            accommodation: accommodationDataState.data,
           ),
           _buildDescription(),
           AccommodationScreenTopIcons(
-            hotelId: widget.id,
+            accommodationId: widget.id,
           ),
         ],
       ),
@@ -115,12 +115,12 @@ class _AccommodationScreenState
   }
 
   void navigateToGallery() {
-    final hotelDataState = ref.watch(accommodationProvider);
-    final List<ImagesEntity> images = hotelDataState.data.images ?? [];
+    final accommodationDataState = ref.watch(accommodationProvider);
+    final List<ImagesEntity> images = accommodationDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,
       extra: GalleryScreenEntity(
-        galleryName: hotelDataState.data.title,
+        galleryName: accommodationDataState.data.title,
         images: images,
       ),
     );

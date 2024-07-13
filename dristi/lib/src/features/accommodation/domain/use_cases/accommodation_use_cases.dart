@@ -16,7 +16,7 @@ class AccommodationUseCase {
   final AccommodationRepository repository;
 
   Future<AccommodationEntity> getAccommodationData(
-      String appLanguage, String spotId) async {
-    return repository.getAccommodationData(appLanguage, spotId);
+      String appLanguage, String id) async {
+    return repository.getAccommodationData(appLanguage, id);
   }
 }
