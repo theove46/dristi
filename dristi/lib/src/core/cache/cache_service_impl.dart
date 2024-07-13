@@ -60,13 +60,13 @@ class CacheServiceImpl implements CacheService {
   }
 
   @override
-  Future<void> setSavedItemsList(Set<String> favoritesList) async {
+  Future<void> setFavouritesItemsList(Set<String> favoritesList) async {
     final box = await Hive.openBox<List<String>>(_favoritesBox);
     await box.put(_favoritesKey, favoritesList.toList());
   }
 
   @override
-  Future<Set<String>> getSavedItemsList() async {
+  Future<Set<String>> getFavouritesItemsList() async {
     final box = await Hive.openBox<List<String>>(_favoritesBox);
     List<String>? favoritesList = box.get(_favoritesKey);
     return favoritesList?.toSet() ?? {};

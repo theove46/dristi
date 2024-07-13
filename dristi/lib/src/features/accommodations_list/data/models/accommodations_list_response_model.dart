@@ -1,57 +1,56 @@
 import 'package:dristi/src/features/accommodations_list/domain/entities/accommodations_list_entity.dart';
 
 class AccommodationsListResponseModel {
-  AccommodationsListResponseModel(this.accommodationsListItems);
+  AccommodationsListResponseModel(this.response);
 
   AccommodationsListResponseModel.fromJson({
     required List<dynamic> json,
   }) {
-    accommodationsListItems = <AccommodationsListEntity>[];
+    response = <AccommodationsListEntity>[];
     for (var item in json) {
-      accommodationsListItems.add(AccommodationsListData.fromJson(item));
+      response.add(AccommodationsListData.fromJson(item));
     }
   }
 
-  List<AccommodationsListEntity> accommodationsListItems =
-      <AccommodationsListEntity>[];
+  List<AccommodationsListEntity> response = <AccommodationsListEntity>[];
 }
 
 class AccommodationsListData extends AccommodationsListEntity {
-  String? accommodationsListId;
-  String? accommodationsListTitle;
-  String? accommodationsListOnImageTitle;
-  String? accommodationsListDistrict;
-  String? accommodationsListDivision;
-  String? accommodationsListCategory;
-  String? accommodationsListImage;
+  String? listId;
+  String? listTitle;
+  String? listOnImageTitle;
+  String? listDistrict;
+  String? listDivision;
+  String? listCategory;
+  String? listImage;
 
   AccommodationsListData({
-    this.accommodationsListId,
-    this.accommodationsListTitle,
-    this.accommodationsListOnImageTitle,
-    this.accommodationsListDistrict,
-    this.accommodationsListDivision,
-    this.accommodationsListCategory,
-    this.accommodationsListImage,
+    this.listId,
+    this.listTitle,
+    this.listOnImageTitle,
+    this.listDistrict,
+    this.listDivision,
+    this.listCategory,
+    this.listImage,
   }) : super(
-          id: accommodationsListId ?? "",
-          title: accommodationsListTitle ?? "",
-          onImageTitle: accommodationsListOnImageTitle ?? "",
-          district: accommodationsListDistrict ?? "",
-          division: accommodationsListDivision ?? "",
-          category: accommodationsListCategory ?? "",
-          image: accommodationsListImage ?? "",
+          id: listId ?? "",
+          title: listTitle ?? "",
+          onImageTitle: listOnImageTitle ?? "",
+          district: listDistrict ?? "",
+          division: listDivision ?? "",
+          category: listCategory ?? "",
+          image: listImage ?? "",
         );
 
   factory AccommodationsListData.fromJson(dynamic json) {
     return AccommodationsListData(
-      accommodationsListId: json['id'],
-      accommodationsListTitle: json['title'],
-      accommodationsListOnImageTitle: json['onImageTitle'],
-      accommodationsListDistrict: json['district'],
-      accommodationsListDivision: json['division'],
-      accommodationsListCategory: json['category'],
-      accommodationsListImage: json['image'],
+      listId: json['id'],
+      listTitle: json['title'],
+      listOnImageTitle: json['onImageTitle'],
+      listDistrict: json['district'],
+      listDivision: json['division'],
+      listCategory: json['category'],
+      listImage: json['image'],
     );
   }
 }

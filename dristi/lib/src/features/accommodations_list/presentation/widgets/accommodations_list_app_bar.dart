@@ -15,12 +15,12 @@ import 'package:go_router/go_router.dart';
 class AccommodationsListScreenAppBar extends ConsumerStatefulWidget {
   const AccommodationsListScreenAppBar({
     required this.searchFieldController,
-    required this.districtController,
+    required this.accommodationsController,
     super.key,
   });
 
   final TextEditingController searchFieldController;
-  final TextEditingController districtController;
+  final TextEditingController accommodationsController;
 
   @override
   ConsumerState createState() => _AccommodationsAppBarState();
@@ -99,7 +99,7 @@ class _AccommodationsAppBarState
           networkState.value?.first != ConnectivityResult.none
               ? [
                   _buildMenuItem(
-                    controller: widget.districtController,
+                    controller: widget.accommodationsController,
                     hintText: context.localization.selectDistrict,
                     onTap: () {
                       _showDistrictFilter();
@@ -135,8 +135,8 @@ class _AccommodationsAppBarState
   }
 
   PopupMenuItem<String> _favouriteMenuItem() {
-    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
-    final isShowFavouriteHotelsNotifier =
+    final isShowFavouriteState = ref.watch(favouriteAccommodationsList);
+    final isShowFavouriteNotifier =
         ref.read(favouriteAccommodationsList.notifier);
 
     return PopupMenuItem(
@@ -152,9 +152,9 @@ class _AccommodationsAppBarState
             Transform.scale(
               scale: 0.75,
               child: Switch(
-                value: isShowFavouriteHotelsState,
+                value: isShowFavouriteState,
                 onChanged: (value) {
-                  isShowFavouriteHotelsNotifier.state = value;
+                  isShowFavouriteNotifier.state = value;
                   context.pop();
                 },
               ),
@@ -183,7 +183,7 @@ class _AccommodationsAppBarState
         return FilteredBottomSheet(
           items: districtsItems.data,
           notifier: districtFieldNotifier,
-          controller: widget.districtController,
+          controller: widget.accommodationsController,
           text: context.localization.selectDistrict,
           type: DestinationFilters.district,
         );

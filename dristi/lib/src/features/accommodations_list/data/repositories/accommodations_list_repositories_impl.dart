@@ -15,6 +15,6 @@ class AccommodationsListRepositoryImp implements AccommodationsListRepository {
     final response =
         await dataSource.getAccommodationsListComponents(appLanguage);
 
-    return response.accommodationsListItems;
+    return response.response;
   }
 }

@@ -3,7 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/global_providers/saved_items/saved_items_provider.dart';
+import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -30,14 +30,15 @@ class _AccommodationsListState
     extends BaseConsumerStatefulWidget<AccommodationsList> {
   @override
   Widget build(BuildContext context) {
-    final hotelsModelsItems = ref.watch(accommodationsListProvider);
+    final accommodationsListModelsItems = ref.watch(accommodationsListProvider);
 
-    if (hotelsModelsItems.status != AccommodationsListStatus.success ||
-        hotelsModelsItems.data == null) {
+    if (accommodationsListModelsItems.status !=
+            AccommodationsListStatus.success ||
+        accommodationsListModelsItems.data == null) {
       return buildAccommodationsListShimmer(context);
     }
 
-    List<AccommodationsListEntity> fetchResult = searchHotels();
+    List<AccommodationsListEntity> fetchResult = searchResults();
 
     if (fetchResult.isEmpty) {
       return const SliverEmptyListImage();
@@ -52,7 +53,7 @@ class _AccommodationsListState
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return _buildHotelsCard(fetchResult[index]);
+            return _buildAccommodationCard(fetchResult[index]);
           },
           childCount: fetchResult.length,
         ),
@@ -60,10 +61,10 @@ class _AccommodationsListState
     );
   }
 
-  Widget _buildHotelsCard(AccommodationsListEntity item) {
+  Widget _buildAccommodationCard(AccommodationsListEntity item) {
     return GestureDetector(
       onTap: () {
-        navigateToHotelPage(item.id);
+        navigateToAccommodationScreen(item.id);
       },
       child: Card(
         margin: EdgeInsets.symmetric(vertical: AppValues.dimen_8.r),
@@ -174,14 +175,15 @@ class _AccommodationsListState
     );
   }
 
-  List<AccommodationsListEntity> searchHotels() {
-    final hotelsModelsItems = ref.watch(accommodationsListProvider);
+  List<AccommodationsListEntity> searchResults() {
+    final accommodationsModelsItems = ref.watch(accommodationsListProvider);
     final searchFieldState = ref.watch(accommodationsListSearchField);
     final districtFieldState = ref.watch(accommodationsListDistrictField);
-    final favoriteHotelsState = ref.watch(savedItemsProvider).data;
-    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
+    final favoriteState = ref.watch(savedItemsProvider).data;
+    final isShowFavouriteState = ref.watch(favouriteAccommodationsList);
 
-    List<AccommodationsListEntity> result = hotelsModelsItems.data.where((u) {
+    List<AccommodationsListEntity> result =
+        accommodationsModelsItems.data.where((u) {
       var checkTitle = u.title.toLowerCase();
       var checkDistrict = u.district.toLowerCase();
       var checkDivision = u.division.toLowerCase();
@@ -195,7 +197,7 @@ class _AccommodationsListState
           checkDistrict.contains(districtFieldState.toLowerCase());
 
       bool matchesFavourites =
-          !isShowFavouriteHotelsState || favoriteHotelsState.contains(u.id);
+          !isShowFavouriteState || favoriteState.contains(u.id);
 
       return matchesSearch && matchesDistrict && matchesFavourites;
     }).toList();
@@ -203,7 +205,7 @@ class _AccommodationsListState
     return result;
   }
 
-  void navigateToHotelPage(String id) {
+  void navigateToAccommodationScreen(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();

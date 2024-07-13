@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/global_providers/saved_items/saved_items_provider.dart';
+import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
@@ -46,14 +46,15 @@ class _AccommodationsListScreenState
           .getAccommodationsListComponents(appLanguageState);
     }
 
-    final districtState = ref.watch(accommodationsListDistrictField);
-    if (districtState.isNotEmpty) {
-      districtController.text = districtState;
+    final accommodationsListState = ref.watch(accommodationsListDistrictField);
+    if (accommodationsListState.isNotEmpty) {
+      accommodationsController.text = accommodationsListState;
     }
   }
 
   final TextEditingController searchFieldController = TextEditingController();
-  final TextEditingController districtController = TextEditingController();
+  final TextEditingController accommodationsController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +67,13 @@ class _AccommodationsListScreenState
             slivers: [
               AccommodationsListScreenAppBar(
                 searchFieldController: searchFieldController,
-                districtController: districtController,
+                accommodationsController: accommodationsController,
               ),
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
               AccommodationsListScreenFilteredRow(
-                districtController: districtController,
+                accommodationsController: accommodationsController,
               ),
               // _buildAdvertisement(), // For Future Usage
               const AccommodationsList(),

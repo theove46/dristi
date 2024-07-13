@@ -8,11 +8,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AccommodationsListScreenFilteredRow extends ConsumerStatefulWidget {
   const AccommodationsListScreenFilteredRow({
-    required this.districtController,
+    required this.accommodationsController,
     super.key,
   });
 
-  final TextEditingController districtController;
+  final TextEditingController accommodationsController;
 
   @override
   ConsumerState<AccommodationsListScreenFilteredRow> createState() =>
@@ -27,31 +27,30 @@ class _AccommodationsListScreenFilteredRowState
     final districtFieldNotifier =
         ref.read(accommodationsListDistrictField.notifier);
 
-    final isShowFavouriteHotelsState = ref.watch(favouriteAccommodationsList);
+    final isShowFavouriteState = ref.watch(favouriteAccommodationsList);
 
     return SliverToBoxAdapter(
-      child:
-          districtFieldNotifier.state.isNotEmpty || isShowFavouriteHotelsState
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    if (isShowFavouriteHotelsState)
-                      _buildFilterItem(
-                        text: context.localization.favouriteHotels,
-                        isCloseIcon: false,
-                      ),
-                    if (districtFieldState.isNotEmpty)
-                      _buildFilterItem(
-                        text: districtFieldState,
-                        onTap: () {
-                          districtFieldNotifier.state = '';
-                          widget.districtController.clear();
-                        },
-                        isCloseIcon: true,
-                      ),
-                  ],
-                )
-              : const SizedBox.shrink(),
+      child: districtFieldNotifier.state.isNotEmpty || isShowFavouriteState
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if (isShowFavouriteState)
+                  _buildFilterItem(
+                    text: context.localization.favouritePlaces,
+                    isCloseIcon: false,
+                  ),
+                if (districtFieldState.isNotEmpty)
+                  _buildFilterItem(
+                    text: districtFieldState,
+                    onTap: () {
+                      districtFieldNotifier.state = '';
+                      widget.accommodationsController.clear();
+                    },
+                    isCloseIcon: true,
+                  ),
+              ],
+            )
+          : const SizedBox.shrink(),
     );
   }
 
