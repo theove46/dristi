@@ -43,6 +43,7 @@ class _DistrictsScreenState
 
   // For Future Usage
   // ignore: unused_element
+  /// TODO Common Advertisement Widget
   Widget _buildAdvertisement() {
     return SliverToBoxAdapter(
       child: Padding(
