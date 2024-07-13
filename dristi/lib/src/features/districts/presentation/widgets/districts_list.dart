@@ -118,7 +118,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     ref.read(destinationsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      context.pushNamed(AppRoutes.destination);
+      context.pushNamed(AppRoutes.destinationsList);
     }
   }
 }

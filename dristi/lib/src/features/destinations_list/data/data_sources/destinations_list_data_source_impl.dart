@@ -11,7 +11,7 @@ class DestinationsListDataSourceImp extends BaseRemoteSource
   Future<DestinationsListResponseModel> getDestinationsListComponents(
       String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.destinations}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.destinationsList}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

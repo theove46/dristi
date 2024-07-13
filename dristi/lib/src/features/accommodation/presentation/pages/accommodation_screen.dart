@@ -8,17 +8,17 @@ import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
-import 'package:dristi/src/features/hotel/presentation/riverpod/hotel_data/hotel_provider.dart';
-import 'package:dristi/src/features/hotel/presentation/widgets/hotel_details_builder.dart';
-import 'package:dristi/src/features/hotel/presentation/widgets/hotel_image.dart';
-import 'package:dristi/src/features/hotel/presentation/widgets/hotel_top_icons.dart';
+import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
+import 'package:dristi/src/features/accommodation/presentation/widgets/accommodation_details_builder.dart';
+import 'package:dristi/src/features/accommodation/presentation/widgets/accommodation_image.dart';
+import 'package:dristi/src/features/accommodation/presentation/widgets/accommodation_top_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelScreen extends ConsumerStatefulWidget {
-  const HotelScreen({
+class AccommodationScreen extends ConsumerStatefulWidget {
+  const AccommodationScreen({
     required this.id,
     required this.instanceId,
     super.key,
@@ -28,10 +28,11 @@ class HotelScreen extends ConsumerStatefulWidget {
   final String instanceId;
 
   @override
-  ConsumerState createState() => _HotelScreenState();
+  ConsumerState createState() => _AccommodationScreenState();
 }
 
-class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
+class _AccommodationScreenState
+    extends BaseConsumerStatefulWidget<AccommodationScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,7 +44,7 @@ class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
   Future<void> fetchComponents() async {
     final appLanguageState =
         ref.watch(languageProvider).language.toLanguage.languageCode;
-    ref.read(hotelProvider.notifier).getHotelData(
+    ref.read(accommodationProvider.notifier).getAccommodationData(
           appLanguageState,
           widget.id,
         );
@@ -54,7 +55,7 @@ class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
 
     if (hotelDataState.data == null) {
       return buildFullViewShimmer(context);
@@ -63,11 +64,11 @@ class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          HotelImage(
+          AccommodationImage(
             hotel: hotelDataState.data,
           ),
           _buildDescription(),
-          HotelScreenTopIcons(
+          AccommodationScreenTopIcons(
             hotelId: widget.id,
           ),
         ],
@@ -103,7 +104,7 @@ class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AdvertisementImage(),
-                  HotelScreenDetailsBuilder(),
+                  AccommodationScreenDetailsBuilder(),
                 ],
               ),
             ),
@@ -114,7 +115,7 @@ class _HotelScreenState extends BaseConsumerStatefulWidget<HotelScreen> {
   }
 
   void navigateToGallery() {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
     final List<ImagesEntity> images = hotelDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,

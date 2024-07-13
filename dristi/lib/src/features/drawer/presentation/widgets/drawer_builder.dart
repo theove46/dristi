@@ -71,7 +71,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
 
                 isShowFavouriteHotelsNotifier.state = true;
 
-                context.pushNamed(AppRoutes.destination);
+                context.pushNamed(AppRoutes.destinationsList);
               },
             ),
             ListTile(
@@ -88,7 +88,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 ),
               ),
               onTap: () {
-                context.pushNamed(AppRoutes.hotelsList);
+                context.pushNamed(AppRoutes.accommodationsList);
               },
             ),
             ListTile(

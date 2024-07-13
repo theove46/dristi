@@ -15,7 +15,7 @@ class DestinationDataSourceImp extends BaseRemoteSource
   Future<DestinationResponseModel> getDestinationData(
       String appLanguage, String spotId) {
     final String endpoint =
-        '${DioProvider.baseUrl}${API.spots}${API.language}$appLanguage${'/spot_0001.json'}';
+        '${DioProvider.baseUrl}${API.destination}${API.language}$appLanguage${'/spot_0001.json'}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 

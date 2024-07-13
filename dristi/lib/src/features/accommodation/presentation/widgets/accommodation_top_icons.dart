@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelScreenTopIcons extends ConsumerStatefulWidget {
-  const HotelScreenTopIcons({
+class AccommodationScreenTopIcons extends ConsumerStatefulWidget {
+  const AccommodationScreenTopIcons({
     required this.hotelId,
     super.key,
   });
@@ -16,11 +16,11 @@ class HotelScreenTopIcons extends ConsumerStatefulWidget {
   final String hotelId;
 
   @override
-  ConsumerState createState() => _HotelScreenTopIconsState();
+  ConsumerState createState() => _AccommodationScreenTopIconsState();
 }
 
-class _HotelScreenTopIconsState
-    extends BaseConsumerStatefulWidget<HotelScreenTopIcons> {
+class _AccommodationScreenTopIconsState
+    extends BaseConsumerStatefulWidget<AccommodationScreenTopIcons> {
   @override
   Widget build(BuildContext context) {
     final isFavorite =

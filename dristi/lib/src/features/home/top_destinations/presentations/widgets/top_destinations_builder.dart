@@ -106,15 +106,15 @@ class _TopDestinationBuilderState
   }
 
   void navigateToDestinationsPage() {
-    context.pushNamed(AppRoutes.destination);
+    context.pushNamed(AppRoutes.destinationsList);
   }
 
   void navigateToDestinationPage(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
-      AppRoutes.spot,
+      AppRoutes.destination,
       pathParameters: {
-        PathParameter.spotId: id,
+        PathParameter.destinationId: id,
         PathParameter.instanceId: instanceId
       },
     );

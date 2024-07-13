@@ -15,17 +15,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HotelsListScreen extends ConsumerStatefulWidget {
-  const HotelsListScreen({
+class AccommodationsListScreen extends ConsumerStatefulWidget {
+  const AccommodationsListScreen({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _HotelsListScreenState();
+  ConsumerState createState() => _AccommodationsListScreenState();
 }
 
-class _HotelsListScreenState
-    extends BaseConsumerStatefulWidget<HotelsListScreen> {
+class _AccommodationsListScreenState
+    extends BaseConsumerStatefulWidget<AccommodationsListScreen> {
   @override
   void initState() {
     super.initState();

@@ -127,9 +127,9 @@ class _DestinationScreenNearestBuilderState
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();
       context.pushNamed(
-        AppRoutes.spot,
+        AppRoutes.destination,
         pathParameters: {
-          PathParameter.spotId: id,
+          PathParameter.destinationId: id,
           PathParameter.instanceId: instanceId
         },
       );

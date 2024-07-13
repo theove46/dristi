@@ -2,27 +2,27 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/hotel/domain/entities/hotel_entities.dart';
-import 'package:dristi/src/features/hotel/presentation/riverpod/hotel_data/hotel_provider.dart';
+import 'package:dristi/src/features/accommodation/domain/entities/accommodation_entities.dart';
+import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HotelScreenDetailsBuilder extends ConsumerStatefulWidget {
-  const HotelScreenDetailsBuilder({
+class AccommodationScreenDetailsBuilder extends ConsumerStatefulWidget {
+  const AccommodationScreenDetailsBuilder({
     super.key,
   });
 
   @override
-  ConsumerState createState() => _HotelScreenDetailsBuilderState();
+  ConsumerState createState() => _AccommodationScreenDetailsBuilderState();
 }
 
-class _HotelScreenDetailsBuilderState
-    extends BaseConsumerStatefulWidget<HotelScreenDetailsBuilder> {
+class _AccommodationScreenDetailsBuilderState
+    extends BaseConsumerStatefulWidget<AccommodationScreenDetailsBuilder> {
   @override
   Widget build(BuildContext context) {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class _HotelScreenDetailsBuilderState
   }
 
   Widget _buildFindOnMapButton() {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
 
     return GestureDetector(
       onTap: () {
@@ -98,7 +98,7 @@ class _HotelScreenDetailsBuilderState
   }
 
   Widget _buildWebsiteList() {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
     final List<WebsiteEntity> websites = hotelDataState.data.websites;
 
     if (websites.isEmpty) {

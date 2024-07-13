@@ -1,24 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-enum HotelStatus { initial, loading, success, failure }
+enum AccommodationStatus { initial, loading, success, failure }
 
-class HotelState<T> extends Equatable {
-  const HotelState({
-    this.status = HotelStatus.initial,
+class AccommodationState<T> extends Equatable {
+  const AccommodationState({
+    this.status = AccommodationStatus.initial,
     this.data,
     this.errorMessage,
   });
 
-  final HotelStatus status;
+  final AccommodationStatus status;
   final T? data;
   final String? errorMessage;
 
-  HotelState copyWith({
-    HotelStatus? status,
+  AccommodationState copyWith({
+    AccommodationStatus? status,
     T? data,
     String? errorMessage,
   }) {
-    return HotelState(
+    return AccommodationState(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

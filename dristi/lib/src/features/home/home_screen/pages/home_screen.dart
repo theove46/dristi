@@ -110,7 +110,7 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
 
       title: GestureDetector(
         onTap: () {
-          context.pushNamed(AppRoutes.destination);
+          context.pushNamed(AppRoutes.destinationsList);
         },
         child: Padding(
           padding: EdgeInsets.only(right: AppValues.dimen_16.w),

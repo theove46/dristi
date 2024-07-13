@@ -187,6 +187,6 @@ class _CategoriesBuilderState
     if (title != context.localization.allCategories) {
       ref.read(destinationsListCategoryField.notifier).state = title;
     }
-    context.pushNamed(AppRoutes.destination);
+    context.pushNamed(AppRoutes.destinationsList);
   }
 }

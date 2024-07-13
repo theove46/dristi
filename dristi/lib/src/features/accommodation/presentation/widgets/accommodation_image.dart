@@ -5,26 +5,27 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entity/global_entity.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/features/destination/domain/entities/destination_entities.dart';
-import 'package:dristi/src/features/hotel/domain/entities/hotel_entities.dart';
-import 'package:dristi/src/features/hotel/presentation/riverpod/hotel_data/hotel_provider.dart';
+import 'package:dristi/src/features/accommodation/domain/entities/accommodation_entities.dart';
+import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class HotelImage extends ConsumerStatefulWidget {
-  const HotelImage({
+class AccommodationImage extends ConsumerStatefulWidget {
+  const AccommodationImage({
     required this.hotel,
     super.key,
   });
 
-  final HotelEntity hotel;
+  final AccommodationEntity hotel;
 
   @override
-  ConsumerState createState() => _HotelImageState();
+  ConsumerState createState() => _AccommodationImageState();
 }
 
-class _HotelImageState extends BaseConsumerStatefulWidget<HotelImage> {
+class _AccommodationImageState
+    extends BaseConsumerStatefulWidget<AccommodationImage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -109,7 +110,7 @@ class _HotelImageState extends BaseConsumerStatefulWidget<HotelImage> {
   }
 
   void navigateToGallery() {
-    final hotelDataState = ref.watch(hotelProvider);
+    final hotelDataState = ref.watch(accommodationProvider);
     final List<ImagesEntity> images = hotelDataState.data.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,

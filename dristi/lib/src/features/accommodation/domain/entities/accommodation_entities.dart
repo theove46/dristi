@@ -1,6 +1,6 @@
 import 'package:dristi/src/core/global_entity/global_entity.dart';
 
-class HotelEntity {
+class AccommodationEntity {
   String id;
   String title;
   String onImageTitle;
@@ -14,7 +14,7 @@ class HotelEntity {
   List<String>? phones;
   List<WebsiteEntity>? websites;
 
-  HotelEntity({
+  AccommodationEntity({
     required this.id,
     required this.title,
     required this.onImageTitle,
@@ -29,7 +29,7 @@ class HotelEntity {
     required this.websites,
   });
 
-  HotelEntity.initial()
+  AccommodationEntity.initial()
       : id = "",
         title = "",
         onImageTitle = "",
@@ -52,14 +52,4 @@ class WebsiteEntity {
 
   String url;
   String site;
-}
-
-class HotelItemsEntity {
-  HotelItemsEntity({
-    required this.title,
-    required this.image,
-  });
-
-  String title;
-  String image;
 }

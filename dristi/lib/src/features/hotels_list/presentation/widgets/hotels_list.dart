@@ -207,9 +207,9 @@ class _HotelsListState extends BaseConsumerStatefulWidget<HotelsList> {
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();
       context.pushNamed(
-        AppRoutes.hotel,
+        AppRoutes.accommodation,
         pathParameters: {
-          PathParameter.hotelId: id,
+          PathParameter.accommodationId: id,
           PathParameter.instanceId: instanceId
         },
       );

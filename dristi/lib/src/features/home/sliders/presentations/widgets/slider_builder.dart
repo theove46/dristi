@@ -150,9 +150,9 @@ class _ImageSliderBuilderState
   void navigateToDestinationPage(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
-      AppRoutes.spot,
+      AppRoutes.destination,
       pathParameters: {
-        PathParameter.spotId: id,
+        PathParameter.destinationId: id,
         PathParameter.instanceId: instanceId
       },
     );

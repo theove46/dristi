@@ -10,7 +10,7 @@ class HotelsListDataSourceImp extends BaseRemoteSource
   @override
   Future<HotelsListResponseModel> getHotelsListComponents(String appLanguage) {
     final String endpoint =
-        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.hotelsList}';
+        '${DioProvider.baseUrl}${API.components}${API.language}$appLanguage${API.accommodationsList}';
 
     final Future<Response> dioCall = dioClient.get(endpoint);
 
