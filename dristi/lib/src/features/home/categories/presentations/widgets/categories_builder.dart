@@ -58,7 +58,7 @@ class _CategoriesBuilderState
 
     if (categoriesItems.status != CategoriesStatus.success ||
         categoriesItems.data == null) {
-      return buildCategoriesShimmer(context);
+      return buildHomeScreenCategoriesShimmer(context);
     }
 
     return AnimatedContainer(

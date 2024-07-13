@@ -27,7 +27,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     final districtModelsState = ref.watch(districtProvider);
 
     if (districtModelsState.data == null) {
-      return buildDistrictListShimmer(context);
+      return buildDistrictsListShimmer(context);
     }
 
     List<DistrictEntity> fetchResult = searchDistricts();

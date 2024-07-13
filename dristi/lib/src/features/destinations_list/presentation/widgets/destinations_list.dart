@@ -34,7 +34,7 @@ class _DestinationsListState
 
     if (destinationModelsItems.status != DestinationListStatus.success ||
         destinationModelsItems.data == null) {
-      return buildDestinationListShimmer(context);
+      return buildDestinationsListShimmer(context);
     }
 
     List<DestinationsListEntity> fetchResult = searchDestinations();

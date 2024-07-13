@@ -58,7 +58,7 @@ class _AccommodationScreenState
     final hotelDataState = ref.watch(accommodationProvider);
 
     if (hotelDataState.data == null) {
-      return buildFullViewShimmer(context);
+      return buildFullScreenShimmer(context);
     }
 
     return Scaffold(

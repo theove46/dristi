@@ -64,7 +64,7 @@ class _FilteredBottomSheetState
               itemBuilder: (context, index) {
                 final item = widget.items[index];
 
-                // Remove All Category Option
+                // Removed All Category Option
                 if (item.title == context.localization.allCategories) {
                   return const SizedBox.shrink();
                 }
@@ -104,7 +104,7 @@ class _FilteredBottomSheetState
                               style: appTextStyles.secondaryNovaRegular16,
                             ),
 
-                            // Division only for District Filtering
+                            // Divisions only for District Filtering
                             if (widget.type == DestinationFilters.district)
                               Text(
                                 item.division,
@@ -113,7 +113,7 @@ class _FilteredBottomSheetState
                           ],
                         ),
 
-                        // Image only for Category Filtering
+                        // Images only for Category Filtering
                         if (widget.type == DestinationFilters.category)
                           CachedNetworkImage(
                             imageUrl: item.image,

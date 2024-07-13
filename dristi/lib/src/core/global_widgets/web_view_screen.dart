@@ -103,7 +103,7 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
       alignment: Alignment.center,
       children: [
         loading
-            ? buildFullViewShimmer(context)
+            ? buildFullScreenShimmer(context)
             : WebViewWidget(
                 controller: controller,
               ),

@@ -59,7 +59,7 @@ class _TopDestinationBuilderState
 
     if (topDestinationItems.status != TopDestinationsStatus.success ||
         topDestinationItems.data == null) {
-      return buildTopDestinationsShimmer(context);
+      return buildHomeScreenTopDestinationsShimmer(context);
     }
 
     return SizedBox(

@@ -35,7 +35,7 @@ class _ImageAdvertisementBuilderState
 
     if (carouselItems.status != AdvertisementStatus.success ||
         carouselItems.data == null) {
-      return buildMultipleAdvertisementShimmer(context);
+      return buildHomeScreenAdvertisementShimmer(context);
     }
 
     return Stack(

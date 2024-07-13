@@ -4,7 +4,7 @@ import 'package:dristi/src/core/styles/themes/outlined_button_theme.dart';
 import 'package:dristi/src/core/styles/themes/app_bar_theme.dart';
 import 'package:dristi/src/core/styles/colors/colors_scheme.dart';
 import 'package:dristi/src/core/styles/themes/elevated_button_theme.dart';
-import 'package:dristi/src/core/styles/texts.dart';
+import 'package:dristi/src/core/styles/texts/texts.dart';
 import 'package:dristi/src/core/styles/themes/card_theme.dart';
 import 'package:dristi/src/core/styles/themes/divider_theme.dart';
 import 'package:dristi/src/core/styles/themes/switct_theme.dart';

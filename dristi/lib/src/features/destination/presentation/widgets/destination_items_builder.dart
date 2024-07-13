@@ -1,7 +1,7 @@
 import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_items/destination_item_provider.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_blogs_builder.dart';

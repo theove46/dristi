@@ -60,7 +60,7 @@ class _GalleryScreenState extends BaseConsumerStatefulWidget<GalleryScreen> {
   Widget _buildImageGallery() {
     if (widget.arguments == null) {
       return SliverToBoxAdapter(
-        child: buildFullViewShimmer(context),
+        child: buildFullScreenShimmer(context),
       );
     }
 

@@ -154,7 +154,7 @@ Widget buildGridViewShimmer({
   );
 }
 
-Widget buildSliderShimmer(BuildContext context) {
+Widget buildHomeScreenSliderShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
     height: AppValues.dimen_220.h,
@@ -185,7 +185,7 @@ Widget buildSingleAdvertisementShimmer(BuildContext context) {
   );
 }
 
-Widget buildMultipleAdvertisementShimmer(BuildContext context) {
+Widget buildHomeScreenAdvertisementShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
     height: AppValues.dimen_130.h,
@@ -203,36 +203,7 @@ Widget buildMultipleAdvertisementShimmer(BuildContext context) {
   );
 }
 
-Widget buildSliderIndicatorShimmer(BuildContext context) {
-  return buildShimmer(
-    context: context,
-    height: AppValues.dimen_8.h,
-    width: AppValues.dimen_80.r,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(5, (index) {
-        double width;
-
-        if (index == 0) {
-          width = AppValues.dimen_40.r;
-        } else {
-          width = AppValues.dimen_6.r;
-        }
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
-          child: buildShimmerContainer(
-            context: context,
-            height: AppValues.dimen_6.r,
-            width: width,
-            borderRadius: AppValues.dimen_5.r,
-          ),
-        );
-      }),
-    ),
-  );
-}
-
-Widget buildCategoriesShimmer(BuildContext context) {
+Widget buildHomeScreenCategoriesShimmer(BuildContext context) {
   return Container(
     height: AppValues.dimen_240.h,
     width: AppValues.dimen_1.sw,
@@ -293,7 +264,7 @@ Widget buildCategoriesShimmer(BuildContext context) {
   );
 }
 
-Widget buildTopDestinationsShimmer(BuildContext context) {
+Widget buildHomeScreenTopDestinationsShimmer(BuildContext context) {
   return buildSquareHorizontalListShimmer(
     context: context,
     height: AppValues.dimen_100.h,
@@ -302,7 +273,7 @@ Widget buildTopDestinationsShimmer(BuildContext context) {
   );
 }
 
-Widget buildPopularDistrictsShimmer(BuildContext context) {
+Widget buildHomeScreenPopularDistrictsShimmer(BuildContext context) {
   return buildSquareHorizontalListShimmer(
     context: context,
     height: AppValues.dimen_150.h,
@@ -311,7 +282,36 @@ Widget buildPopularDistrictsShimmer(BuildContext context) {
   );
 }
 
-Widget buildDestinationListShimmer(BuildContext context) {
+Widget buildSliderIndicatorShimmer(BuildContext context) {
+  return buildShimmer(
+    context: context,
+    height: AppValues.dimen_8.h,
+    width: AppValues.dimen_80.r,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(5, (index) {
+        double width;
+
+        if (index == 0) {
+          width = AppValues.dimen_40.r;
+        } else {
+          width = AppValues.dimen_6.r;
+        }
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_1.w),
+          child: buildShimmerContainer(
+            context: context,
+            height: AppValues.dimen_6.r,
+            width: width,
+            borderRadius: AppValues.dimen_5.r,
+          ),
+        );
+      }),
+    ),
+  );
+}
+
+Widget buildDestinationsListShimmer(BuildContext context) {
   return buildGridViewShimmer(
     context: context,
     height: AppValues.dimen_100.r,
@@ -320,7 +320,7 @@ Widget buildDestinationListShimmer(BuildContext context) {
   );
 }
 
-Widget buildHotelsListShimmer(BuildContext context) {
+Widget buildAccommodationsListShimmer(BuildContext context) {
   return buildListViewShimmer(
     context: context,
     height: AppValues.dimen_160.r,
@@ -329,7 +329,7 @@ Widget buildHotelsListShimmer(BuildContext context) {
   );
 }
 
-Widget buildDistrictListShimmer(BuildContext context) {
+Widget buildDistrictsListShimmer(BuildContext context) {
   return buildGridViewShimmer(
     context: context,
     height: AppValues.dimen_30.r,
@@ -338,7 +338,7 @@ Widget buildDistrictListShimmer(BuildContext context) {
   );
 }
 
-Widget buildFullViewShimmer(BuildContext context) {
+Widget buildFullScreenShimmer(BuildContext context) {
   return buildShimmer(
     context: context,
     width: double.infinity,

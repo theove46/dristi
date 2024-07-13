@@ -58,7 +58,7 @@ class _PopularCitiesBuilderState
 
     if (popularDistricts.status != PopularDistrictsStatus.success ||
         popularDistricts.data == null) {
-      return buildPopularDistrictsShimmer(context);
+      return buildHomeScreenPopularDistrictsShimmer(context);
     }
 
     return SizedBox(

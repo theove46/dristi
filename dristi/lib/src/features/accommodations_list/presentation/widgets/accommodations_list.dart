@@ -34,7 +34,7 @@ class _AccommodationsListState
 
     if (hotelsModelsItems.status != AccommodationsListStatus.success ||
         hotelsModelsItems.data == null) {
-      return buildHotelsListShimmer(context);
+      return buildAccommodationsListShimmer(context);
     }
 
     List<AccommodationsListEntity> fetchResult = searchHotels();

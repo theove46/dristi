@@ -60,7 +60,7 @@ class _DestinationScreenState
     final destinationDataState = ref.watch(destinationProvider);
 
     if (destinationDataState.data == null) {
-      return buildFullViewShimmer(context);
+      return buildFullScreenShimmer(context);
     }
 
     return Scaffold(

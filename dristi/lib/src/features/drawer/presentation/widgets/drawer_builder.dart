@@ -5,7 +5,7 @@ import 'package:dristi/src/features/destinations_list/presentation/riverpod/dest
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/utils/asset_image_view.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

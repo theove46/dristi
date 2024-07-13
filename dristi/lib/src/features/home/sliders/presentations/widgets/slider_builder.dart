@@ -46,7 +46,7 @@ class _ImageSliderBuilderState
 
     if (carouselItems.status != SliderStatus.success ||
         carouselItems.data == null) {
-      return buildSliderShimmer(context);
+      return buildHomeScreenSliderShimmer(context);
     }
 
     return CarouselSlider.builder(
