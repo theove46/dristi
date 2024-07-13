@@ -10,7 +10,7 @@ import 'package:dristi/src/features/gallery/presentation/pages/gallery_screen.da
 import 'package:dristi/src/features/gallery/presentation/pages/image_view_screen.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
-import 'package:dristi/src/features/hotel/presentation/pages/hotel_screen.dart';
+import 'package:dristi/src/features/accommodation/presentation/pages/accommodation_screen.dart';
 import 'package:dristi/src/features/hotels_list/presentation/pages/hotels_list_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
@@ -21,11 +21,12 @@ import 'package:go_router/go_router.dart';
 abstract class _Path {
   static const String home = '/home';
   static const String splash = '/splash';
-  static const String spot = '/spot/:spotId/:instanceId';
-  static const String hotel = '/hotel/:hotelId/:instanceId';
+  static const String destination = '/destination/:destinationId/:instanceId';
+  static const String destinationsList = '/destinationsList';
+  static const String accommodation =
+      '/accommodation/:accommodationId/:instanceId';
+  static const String accommodationsList = '/accommodationsList';
   static const String districts = '/districts';
-  static const String destination = '/destination';
-  static const String hotelsList = '/hotelsList';
   static const String settings = '/settings';
   static const String gallery = '/gallery';
   static const String imageView = '/imageView';
@@ -34,8 +35,8 @@ abstract class _Path {
 }
 
 abstract class PathParameter {
-  static const String spotId = 'spotId';
-  static const String hotelId = 'hotelId';
+  static const String destinationId = 'destinationId';
+  static const String accommodationId = 'accommodationId';
   static const String instanceId = 'instanceId';
   static const String name = 'name';
   static const String images = 'images';
@@ -57,47 +58,47 @@ GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: _Path.spot,
-      name: AppRoutes.spot,
+      path: _Path.destination,
+      name: AppRoutes.destination,
       builder: (context, state) {
-        final spotId = state.pathParameters[PathParameter.spotId]!;
+        final id = state.pathParameters[PathParameter.destinationId]!;
         final instanceId = state.pathParameters[PathParameter.instanceId]!;
         return DestinationScreen(
-          id: spotId,
+          id: id,
           instanceId: instanceId,
         );
       },
     ),
     GoRoute(
-      path: _Path.hotel,
-      name: AppRoutes.hotel,
+      path: _Path.destinationsList,
+      name: AppRoutes.destinationsList,
       builder: (context, state) {
-        final spotId = state.pathParameters[PathParameter.hotelId]!;
+        return const DestinationsListScreen();
+      },
+    ),
+    GoRoute(
+      path: _Path.accommodation,
+      name: AppRoutes.accommodation,
+      builder: (context, state) {
+        final id = state.pathParameters[PathParameter.accommodationId]!;
         final instanceId = state.pathParameters[PathParameter.instanceId]!;
-        return HotelScreen(
-          id: spotId,
+        return AccommodationScreen(
+          id: id,
           instanceId: instanceId,
         );
+      },
+    ),
+    GoRoute(
+      path: _Path.accommodationsList,
+      name: AppRoutes.accommodationsList,
+      builder: (context, state) {
+        return const AccommodationsListScreen();
       },
     ),
     GoRoute(
       path: _Path.districts,
       name: AppRoutes.districts,
       builder: (context, state) => const DistrictsScreen(),
-    ),
-    GoRoute(
-      path: _Path.destination,
-      name: AppRoutes.destination,
-      builder: (context, state) {
-        return const DestinationsListScreen();
-      },
-    ),
-    GoRoute(
-      path: _Path.hotelsList,
-      name: AppRoutes.hotelsList,
-      builder: (context, state) {
-        return const HotelsListScreen();
-      },
     ),
     GoRoute(
       path: _Path.settings,
