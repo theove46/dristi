@@ -41,7 +41,6 @@ class _DistrictsScreenState
     );
   }
 
-  /// TODO Common Advertisement Widget
   // For Future Usage
   // ignore: unused_element
   Widget _buildAdvertisement() {

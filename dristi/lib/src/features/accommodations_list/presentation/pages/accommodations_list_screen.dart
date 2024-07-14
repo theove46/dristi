@@ -8,9 +8,9 @@ import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/global_widgets/spot_list_screen_appbar.dart';
+import 'package:dristi/src/core/global_widgets/spot_list_screen_filtered_row.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
-import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list_filtered_row.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,8 +72,8 @@ class _AccommodationsListScreenState
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
-              AccommodationsListScreenFilteredRow(
-                accommodationsController: districtController,
+              SpotListScreenFilteredRow(
+                districtController: districtController,
               ),
               // _buildAdvertisement(), // For Future Usage
               const AccommodationsList(),

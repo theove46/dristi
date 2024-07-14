@@ -6,34 +6,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AccommodationsListScreenFilteredRow extends ConsumerStatefulWidget {
-  const AccommodationsListScreenFilteredRow({
-    required this.accommodationsController,
+class SpotListScreenFilteredRow extends ConsumerStatefulWidget {
+  const SpotListScreenFilteredRow({
+    required this.districtController,
+    this.categoryController,
     super.key,
   });
 
-  final TextEditingController accommodationsController;
+  final TextEditingController districtController;
+  final TextEditingController? categoryController;
 
   @override
-  ConsumerState<AccommodationsListScreenFilteredRow> createState() =>
-      _AccommodationsListScreenFilteredRowState();
+  ConsumerState<SpotListScreenFilteredRow> createState() => _FilteredRowState();
 }
 
-class _AccommodationsListScreenFilteredRowState
-    extends BaseConsumerStatefulWidget<AccommodationsListScreenFilteredRow> {
+class _FilteredRowState
+    extends BaseConsumerStatefulWidget<SpotListScreenFilteredRow> {
   @override
   Widget build(BuildContext context) {
+    final categoryFieldState = ref.watch(spotsListCategoryField);
     final districtFieldState = ref.watch(spotsListDistrictField);
+
+    final categoryFieldNotifier = ref.read(spotsListCategoryField.notifier);
     final districtFieldNotifier = ref.read(spotsListDistrictField.notifier);
 
-    final isShowFavouriteState = ref.watch(spotsListIsShowFavourite);
+    final isShowFavouriteDestinationsState =
+        ref.watch(spotsListIsShowFavourite);
 
     return SliverToBoxAdapter(
-      child: districtFieldNotifier.state.isNotEmpty || isShowFavouriteState
+      child: categoryFieldNotifier.state.isNotEmpty ||
+              districtFieldNotifier.state.isNotEmpty ||
+              isShowFavouriteDestinationsState
           ? Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (isShowFavouriteState)
+                if (isShowFavouriteDestinationsState)
                   _buildFilterItem(
                     text: context.localization.favouritePlaces,
                     isCloseIcon: false,
@@ -43,7 +50,16 @@ class _AccommodationsListScreenFilteredRowState
                     text: districtFieldState,
                     onTap: () {
                       districtFieldNotifier.state = '';
-                      widget.accommodationsController.clear();
+                      widget.districtController.clear();
+                    },
+                    isCloseIcon: true,
+                  ),
+                if (categoryFieldState.isNotEmpty)
+                  _buildFilterItem(
+                    text: categoryFieldState,
+                    onTap: () {
+                      categoryFieldNotifier.state = '';
+                      widget.categoryController?.clear();
                     },
                     isCloseIcon: true,
                   ),
