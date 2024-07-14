@@ -3,8 +3,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
-import 'package:dristi/src/core/global_providers/favourite_places/favourites_provider.dart';
+import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
@@ -30,11 +31,11 @@ class _DestinationsListState
     extends BaseConsumerStatefulWidget<DestinationsList> {
   @override
   Widget build(BuildContext context) {
-    final destinationModelsItems = ref.watch(destinationsListProvider);
+    final destinationsListItems = ref.watch(destinationsListProvider);
 
-    if (destinationModelsItems.status != DestinationListStatus.success ||
-        destinationModelsItems.data == null) {
-      return buildDestinationListShimmer(context);
+    if (destinationsListItems.status != DestinationListStatus.success ||
+        destinationsListItems.data == null) {
+      return buildDestinationsListShimmer(context);
     }
 
     List<DestinationsListEntity> fetchResult = searchDestinations();
@@ -67,7 +68,7 @@ class _DestinationsListState
   Widget _buildDestinationCard(DestinationsListEntity item) {
     return GestureDetector(
       onTap: () {
-        navigateToSpotPage(item.id);
+        navigateToDestinationScreen(item.id);
       },
       child: Card(
         child: Stack(
@@ -123,11 +124,13 @@ class _DestinationsListState
   }
 
   Widget _buildFavouriteIcon(DestinationsListEntity item) {
-    final isFavorite = ref.watch(favoritesProvider).data.contains(item.id);
+    final isFavorite = ref.watch(favouriteItemsProvider).data.contains(item.id);
 
     return GestureDetector(
       onTap: () {
-        ref.read(favoritesProvider.notifier).toggleFavorite(item.id);
+        ref
+            .read(favouriteItemsProvider.notifier)
+            .toggleFavouritesItems(item.id);
       },
       child: Padding(
         padding: EdgeInsets.all(AppValues.dimen_10.w),
@@ -175,20 +178,21 @@ class _DestinationsListState
   }
 
   List<DestinationsListEntity> searchDestinations() {
-    final destinationModelsItems = ref.watch(destinationsListProvider);
-    final searchFieldState = ref.watch(destinationsListSearchField);
-    final categoryFieldState = ref.watch(destinationsListCategoryField);
-    final districtFieldState = ref.watch(destinationsListDistrictField);
-    final favoriteDestinationsState = ref.watch(favoritesProvider).data;
+    final destinationsListItems = ref.watch(destinationsListProvider);
+    final searchFieldState = ref.watch(spotsListSearchField);
+    final categoryFieldState = ref.watch(spotsListCategoryField);
+    final districtFieldState = ref.watch(spotsListDistrictField);
+    final favoriteDestinationsState = ref.watch(favouriteItemsProvider).data;
     final isShowFavouriteDestinationsState =
-        ref.watch(isShowFavouriteDestinationList);
+        ref.watch(spotsListIsShowFavourite);
 
     List<DestinationsListEntity> result =
-        destinationModelsItems.data.where((u) {
-      var checkTitle = u.title.toLowerCase();
-      var checkDistrict = u.district.toLowerCase();
-      var checkDivision = u.division.toLowerCase();
-      var checkCategory = u.category.toLowerCase();
+        destinationsListItems.data.where((destinationData) {
+      var checkTitle = destinationData.title.toLowerCase();
+      var checkDistrict = destinationData.district.toLowerCase();
+      var checkDivision = destinationData.division.toLowerCase();
+      var checkCategory =
+          destinationData.category.map((c) => c.toLowerCase()).toList();
 
       bool matchesSearch =
           checkTitle.contains(searchFieldState.toLowerCase()) ||
@@ -202,8 +206,7 @@ class _DestinationsListState
           checkDistrict.contains(districtFieldState.toLowerCase());
 
       bool matchesFavourites = !isShowFavouriteDestinationsState ||
-          // !widget.isShowFavouritesList! ||
-          favoriteDestinationsState.contains(u.id);
+          favoriteDestinationsState.contains(destinationData.id);
 
       return matchesSearch &&
           matchesCategory &&
@@ -214,14 +217,14 @@ class _DestinationsListState
     return result;
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
       final instanceId = UniqueKey().toString();
       context.pushNamed(
-        AppRoutes.spot,
+        AppRoutes.destination,
         pathParameters: {
-          PathParameter.spotId: id,
+          PathParameter.destinationId: id,
           PathParameter.instanceId: instanceId
         },
       );

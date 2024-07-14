@@ -46,7 +46,7 @@ class _ImageSliderBuilderState
 
     if (carouselItems.status != SliderStatus.success ||
         carouselItems.data == null) {
-      return buildSliderShimmer(context);
+      return buildHomeScreenSliderShimmer(context);
     }
 
     return CarouselSlider.builder(
@@ -55,7 +55,7 @@ class _ImageSliderBuilderState
         final item = carouselItems.data[index];
         return GestureDetector(
           onTap: () {
-            navigateToSpotPage(item.id);
+            navigateToDestinationScreen(item.id);
           },
           child: Stack(
             alignment: Alignment.topRight,
@@ -147,12 +147,12 @@ class _ImageSliderBuilderState
     );
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
-      AppRoutes.spot,
+      AppRoutes.destination,
       pathParameters: {
-        PathParameter.spotId: id,
+        PathParameter.destinationId: id,
         PathParameter.instanceId: instanceId
       },
     );

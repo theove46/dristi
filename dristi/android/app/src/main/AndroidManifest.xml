@@ -41,4 +41,7 @@
             <category android:name="android.intent.category.DEFAULT" />
         </intent>
     </queries> <!-- Used for Find On Map Services -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+
 </manifest>

@@ -6,4 +6,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final networkStatusProvider =
     NotifierProvider<NetworkStatusNotifier, NetworkState>(
   NetworkStatusNotifier.new,
+  name: 'networkStatusProvider',
 );

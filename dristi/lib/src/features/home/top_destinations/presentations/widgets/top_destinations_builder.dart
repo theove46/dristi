@@ -43,7 +43,7 @@ class _TopDestinationBuilderState
             style: appTextStyles.primaryNovaBold16,
           ),
           TextButton(
-            onPressed: navigateToDestinationsPage,
+            onPressed: navigateToDestinationsScreen,
             child: Text(
               context.localization.viewAll,
               style: appTextStyles.primaryNovaSemiBold12,
@@ -59,7 +59,7 @@ class _TopDestinationBuilderState
 
     if (topDestinationItems.status != TopDestinationsStatus.success ||
         topDestinationItems.data == null) {
-      return buildTopDestinationsShimmer(context);
+      return buildHomeScreenTopDestinationsShimmer(context);
     }
 
     return SizedBox(
@@ -73,7 +73,7 @@ class _TopDestinationBuilderState
             padding: EdgeInsets.only(right: AppValues.dimen_8.w),
             child: GestureDetector(
               onTap: () {
-                navigateToSpotPage(item.id);
+                navigateToDestinationScreen(item.id);
               },
               child: Column(
                 children: [
@@ -105,16 +105,16 @@ class _TopDestinationBuilderState
     );
   }
 
-  void navigateToDestinationsPage() {
-    context.pushNamed(AppRoutes.destination);
+  void navigateToDestinationsScreen() {
+    context.pushNamed(AppRoutes.destinationsList);
   }
 
-  void navigateToSpotPage(String id) {
+  void navigateToDestinationScreen(String id) {
     final instanceId = UniqueKey().toString();
     context.pushNamed(
-      AppRoutes.spot,
+      AppRoutes.destination,
       pathParameters: {
-        PathParameter.spotId: id,
+        PathParameter.destinationId: id,
         PathParameter.instanceId: instanceId
       },
     );

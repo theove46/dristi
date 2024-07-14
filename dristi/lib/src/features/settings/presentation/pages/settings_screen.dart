@@ -171,7 +171,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
       ),
       _buildSettingsItem(
         icon: Icons.article,
-        title: context.localization.termsAndCondition,
+        title: context.localization.termsOfService,
         onTap: () {},
       ),
       _buildSettingsItem(

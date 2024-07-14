@@ -1,4 +1,4 @@
-import 'package:dristi/src/core/styles/texts.dart';
+import 'package:dristi/src/core/styles/texts/texts.dart';
 import 'package:dristi/src/core/styles/themes/icon_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

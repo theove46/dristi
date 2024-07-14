@@ -3,10 +3,10 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/districts/domain/entities/district_entity.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     final districtModelsState = ref.watch(districtProvider);
 
     if (districtModelsState.data == null) {
-      return buildDistrictListShimmer(context);
+      return buildDistrictsListShimmer(context);
     }
 
     List<DistrictEntity> fetchResult = searchDistricts();
@@ -89,7 +89,7 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
               style: appTextStyles.secondaryNovaRegular12,
             ),
             onTap: () {
-              navigateToDestinationsPage(item.title);
+              navigateToDestinationsScreen(item.title);
             },
           ),
         ),
@@ -113,12 +113,12 @@ class _DistrictsListState extends BaseConsumerStatefulWidget<DistrictsList> {
     return result;
   }
 
-  void navigateToDestinationsPage(String title) {
-    ref.watch(destinationsListDistrictField);
-    ref.read(destinationsListDistrictField.notifier).state = title;
+  void navigateToDestinationsScreen(String title) {
+    ref.watch(spotsListDistrictField);
+    ref.read(spotsListDistrictField.notifier).state = title;
     final networkState = ref.watch(networkStatusProvider);
     if (networkState.value?.first != ConnectivityResult.none) {
-      context.pushNamed(AppRoutes.destination);
+      context.pushNamed(AppRoutes.destinationsList);
     }
   }
 }

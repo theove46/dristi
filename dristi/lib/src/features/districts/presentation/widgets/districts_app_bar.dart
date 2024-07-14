@@ -17,6 +17,7 @@ class DistrictsAppBar extends ConsumerStatefulWidget {
 class _DistrictsAppBarState
     extends BaseConsumerStatefulWidget<DistrictsAppBar> {
   final TextEditingController _searchFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
