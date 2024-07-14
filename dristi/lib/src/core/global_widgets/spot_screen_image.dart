@@ -5,27 +5,25 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entities/gallery_screen_entity.dart';
 import 'package:dristi/src/core/global_entities/images_entity.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/features/accommodation/domain/entities/accommodation_entities.dart';
-import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class AccommodationImage extends ConsumerStatefulWidget {
-  const AccommodationImage({
-    required this.accommodation,
+class SpotScreenImage extends ConsumerStatefulWidget {
+  const SpotScreenImage({
+    required this.stateData,
     super.key,
   });
 
-  final AccommodationEntity accommodation;
+  final dynamic stateData;
 
   @override
-  ConsumerState createState() => _AccommodationImageState();
+  ConsumerState createState() => _SpotScreenImageState();
 }
 
-class _AccommodationImageState
-    extends BaseConsumerStatefulWidget<AccommodationImage> {
+class _SpotScreenImageState
+    extends BaseConsumerStatefulWidget<SpotScreenImage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,10 +38,10 @@ class _AccommodationImageState
 
   Widget _buildBackgroundImage() {
     return Hero(
-      tag: "${TextConstants.appName}-${widget.accommodation.id}",
+      tag: "${TextConstants.appName}-${widget.stateData.id}",
       child: ClipRRect(
         child: CachedNetworkImage(
-          imageUrl: widget.accommodation.images!.first.url,
+          imageUrl: widget.stateData.images!.first.url,
           fit: BoxFit.cover,
           height: AppValues.dimen_500.h,
           width: double.infinity,
@@ -68,15 +66,13 @@ class _AccommodationImageState
           children: [
             GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () {
-                navigateToGallery();
-              },
+              onTap: navigateToGallery,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(AppValues.dimen_10.r),
                 child: SizedBox.fromSize(
                   size: Size.fromRadius(AppValues.dimen_48.r),
                   child: CachedNetworkImage(
-                    imageUrl: widget.accommodation.images!.first.url,
+                    imageUrl: widget.stateData.images!.first.url,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -102,7 +98,7 @@ class _AccommodationImageState
       child: Transform.rotate(
         angle: -15 * (3.1415926535 / 180),
         child: Text(
-          widget.accommodation.onImageTitle,
+          widget.stateData.onImageTitle,
           style: appTextStyles.onImageBoldShadow44,
         ),
       ),
@@ -110,12 +106,11 @@ class _AccommodationImageState
   }
 
   void navigateToGallery() {
-    final accommodationDataState = ref.watch(accommodationProvider);
-    final List<ImagesEntity> images = accommodationDataState.data.images ?? [];
+    final List<ImagesEntity> images = widget.stateData.images ?? [];
     context.pushNamed(
       AppRoutes.gallery,
       extra: GalleryScreenEntity(
-        galleryName: accommodationDataState.data.title,
+        galleryName: widget.stateData.title,
         images: images,
       ),
     );

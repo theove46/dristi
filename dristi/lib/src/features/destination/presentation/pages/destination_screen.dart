@@ -6,6 +6,7 @@ import 'package:dristi/src/core/global_providers/favourites_items/favourites_ite
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
+import 'package:dristi/src/core/global_widgets/spot_screen_image.dart';
 import 'package:dristi/src/core/global_widgets/spot_screen_top_icons.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -13,7 +14,6 @@ import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_data/destination_provider.dart';
 import 'package:dristi/src/features/destination/presentation/riverpod/destination_items/destination_item_provider.dart';
 import 'package:dristi/src/features/destination/presentation/widgets/destination_items_builder.dart';
-import 'package:dristi/src/features/destination/presentation/widgets/destination_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,8 +69,8 @@ class _DestinationScreenState
     return Scaffold(
       body: Stack(
         children: [
-          DestinationImage(
-            destination: destinationDataState.data,
+          SpotScreenImage(
+            stateData: destinationDataState.data,
           ),
           _buildDescription(),
           SpotScreenTopIcons(
