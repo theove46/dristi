@@ -5,6 +5,7 @@ import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
@@ -178,12 +179,12 @@ class _DestinationsListState
 
   List<DestinationsListEntity> searchDestinations() {
     final destinationsListItems = ref.watch(destinationsListProvider);
-    final searchFieldState = ref.watch(destinationsListSearchField);
-    final categoryFieldState = ref.watch(destinationsListCategoryField);
-    final districtFieldState = ref.watch(destinationsListDistrictField);
+    final searchFieldState = ref.watch(spotsListSearchField);
+    final categoryFieldState = ref.watch(spotsListCategoryField);
+    final districtFieldState = ref.watch(spotsListDistrictField);
     final favoriteDestinationsState = ref.watch(favouriteItemsProvider).data;
     final isShowFavouriteDestinationsState =
-        ref.watch(isShowFavouriteDestinationList);
+        ref.watch(spotsListIsShowFavourite);
 
     List<DestinationsListEntity> result =
         destinationsListItems.data.where((destinationData) {

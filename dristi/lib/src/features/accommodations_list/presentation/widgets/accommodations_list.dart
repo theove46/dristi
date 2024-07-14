@@ -5,6 +5,7 @@ import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
@@ -179,10 +180,10 @@ class _AccommodationsListState
 
   List<AccommodationsListEntity> searchResults() {
     final accommodationsModelsItems = ref.watch(accommodationsListProvider);
-    final searchFieldState = ref.watch(accommodationsListSearchField);
-    final districtFieldState = ref.watch(accommodationsListDistrictField);
+    final searchFieldState = ref.watch(spotsListSearchField);
+    final districtFieldState = ref.watch(spotsListDistrictField);
     final favoriteState = ref.watch(favouriteItemsProvider).data;
-    final isShowFavouriteState = ref.watch(favouriteAccommodationsList);
+    final isShowFavouriteState = ref.watch(spotsListIsShowFavourite);
 
     List<AccommodationsListEntity> result =
         accommodationsModelsItems.data.where((u) {

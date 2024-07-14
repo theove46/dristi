@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -183,9 +183,9 @@ class _CategoriesBuilderState
   }
 
   void navigateToDestinationsScreen(String title) {
-    ref.watch(destinationsListCategoryField);
+    ref.watch(spotsListCategoryField);
     if (title != context.localization.allCategories) {
-      ref.read(destinationsListCategoryField.notifier).state = title;
+      ref.read(spotsListCategoryField.notifier).state = title;
     }
     context.pushNamed(AppRoutes.destinationsList);
   }

@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -65,9 +65,9 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 ),
               ),
               onTap: () {
-                ref.watch(isShowFavouriteDestinationList);
+                ref.watch(spotsListIsShowFavourite);
                 final isShowFavouriteHotelsNotifier =
-                    ref.read(isShowFavouriteDestinationList.notifier);
+                    ref.read(spotsListIsShowFavourite.notifier);
 
                 isShowFavouriteHotelsNotifier.state = true;
 

@@ -4,11 +4,12 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
+import 'package:dristi/src/core/global_widgets/spot_list_screen_appbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
-import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list_app_bar.dart';
 import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list.dart';
 import 'package:dristi/src/features/destinations_list/presentation/widgets/destinations_list_filtered_row.dart';
 import 'package:flutter/material.dart';
@@ -49,12 +50,12 @@ class _DestinationListScreenState
           .getDestinationsListComponents(appLanguageState);
     }
 
-    final categoryState = ref.watch(destinationsListCategoryField);
+    final categoryState = ref.watch(spotsListCategoryField);
     if (categoryState.isNotEmpty) {
       categoryController.text = categoryState;
     }
 
-    final districtState = ref.watch(destinationsListDistrictField);
+    final districtState = ref.watch(spotsListDistrictField);
     if (districtState.isNotEmpty) {
       districtController.text = districtState;
     }
@@ -73,7 +74,7 @@ class _DestinationListScreenState
           onRefresh: _getDestinationsListComponents,
           child: CustomScrollView(
             slivers: [
-              DestinationsAppBar(
+              SpotListScreenAppBar(
                 searchFieldController: searchFieldController,
                 categoryController: categoryController,
                 districtController: districtController,

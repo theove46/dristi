@@ -4,12 +4,13 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/advertisement_image.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
+import 'package:dristi/src/core/global_widgets/spot_list_screen_appbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/riverpod/accommodations_list_provider.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list_filtered_row.dart';
-import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list_app_bar.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/widgets/accommodations_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,15 +47,14 @@ class _AccommodationsListScreenState
           .getAccommodationsListComponents(appLanguageState);
     }
 
-    final accommodationsListState = ref.watch(accommodationsListDistrictField);
+    final accommodationsListState = ref.watch(spotsListDistrictField);
     if (accommodationsListState.isNotEmpty) {
-      accommodationsController.text = accommodationsListState;
+      districtController.text = accommodationsListState;
     }
   }
 
   final TextEditingController searchFieldController = TextEditingController();
-  final TextEditingController accommodationsController =
-      TextEditingController();
+  final TextEditingController districtController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +65,15 @@ class _AccommodationsListScreenState
           onRefresh: _getHotelsListComponents,
           child: CustomScrollView(
             slivers: [
-              AccommodationsListScreenAppBar(
+              SpotListScreenAppBar(
                 searchFieldController: searchFieldController,
-                accommodationsController: accommodationsController,
+                districtController: districtController,
               ),
               const SliverToBoxAdapter(
                 child: NetworkErrorAlert(),
               ),
               AccommodationsListScreenFilteredRow(
-                accommodationsController: accommodationsController,
+                accommodationsController: districtController,
               ),
               // _buildAdvertisement(), // For Future Usage
               const AccommodationsList(),

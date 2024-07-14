@@ -7,23 +7,3 @@ final destinationsListProvider =
   DestinationsListNotifier.new,
   name: 'destinationsListProvider',
 );
-
-final destinationsListSearchField = StateProvider.autoDispose<String>(
-  (ref) => '',
-  name: 'destinationsListSearchField',
-);
-
-final destinationsListCategoryField = StateProvider.autoDispose<String>(
-  (ref) => '',
-  name: 'destinationsListCategoryField',
-);
-
-final destinationsListDistrictField = StateProvider.autoDispose<String>(
-  (ref) => '',
-  name: 'destinationsListDistrictField',
-);
-
-final isShowFavouriteDestinationList = StateProvider.autoDispose<bool>(
-  (ref) => false,
-  name: 'isShowFavouriteDestinationList',
-);

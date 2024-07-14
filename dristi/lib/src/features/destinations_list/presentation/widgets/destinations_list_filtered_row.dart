@@ -1,7 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,16 +23,14 @@ class FilteredRow extends ConsumerStatefulWidget {
 class _FilteredRowState extends BaseConsumerStatefulWidget<FilteredRow> {
   @override
   Widget build(BuildContext context) {
-    final categoryFieldState = ref.watch(destinationsListCategoryField);
-    final districtFieldState = ref.watch(destinationsListDistrictField);
+    final categoryFieldState = ref.watch(spotsListCategoryField);
+    final districtFieldState = ref.watch(spotsListDistrictField);
 
-    final categoryFieldNotifier =
-        ref.read(destinationsListCategoryField.notifier);
-    final districtFieldNotifier =
-        ref.read(destinationsListDistrictField.notifier);
+    final categoryFieldNotifier = ref.read(spotsListCategoryField.notifier);
+    final districtFieldNotifier = ref.read(spotsListDistrictField.notifier);
 
     final isShowFavouriteDestinationsState =
-        ref.watch(isShowFavouriteDestinationList);
+        ref.watch(spotsListIsShowFavourite);
 
     return SliverToBoxAdapter(
       child: categoryFieldNotifier.state.isNotEmpty ||

@@ -3,9 +3,9 @@ import 'package:dristi/l10n/localizations.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
-import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/destinations_list/presentation/riverpod/destinations_list_provider.dart';
+import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
 import 'package:dristi/src/core/global_widgets/filtered_bottom_sheet.dart';
+import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/riverpod/categories_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
@@ -14,24 +14,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class DestinationsAppBar extends ConsumerStatefulWidget {
-  const DestinationsAppBar({
+class SpotListScreenAppBar extends ConsumerStatefulWidget {
+  const SpotListScreenAppBar({
     required this.searchFieldController,
-    required this.categoryController,
     required this.districtController,
+    this.categoryController,
     super.key,
   });
 
   final TextEditingController searchFieldController;
-  final TextEditingController categoryController;
   final TextEditingController districtController;
+  final TextEditingController? categoryController;
 
   @override
-  ConsumerState createState() => _DestinationsAppBarState();
+  ConsumerState createState() => _SpotListScreenAppBarState();
 }
 
-class _DestinationsAppBarState
-    extends BaseConsumerStatefulWidget<DestinationsAppBar> {
+class _SpotListScreenAppBarState
+    extends BaseConsumerStatefulWidget<SpotListScreenAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -45,14 +45,12 @@ class _DestinationsAppBarState
   }
 
   Widget _buildAppBar() {
-    ref.watch(destinationsListSearchField);
-    ref.watch(destinationsListCategoryField);
-    ref.watch(destinationsListDistrictField);
-    final searchFieldNotifier = ref.read(destinationsListSearchField.notifier);
-    final categoryFieldNotifier =
-        ref.read(destinationsListCategoryField.notifier);
-    final districtFieldNotifier =
-        ref.read(destinationsListDistrictField.notifier);
+    ref.watch(spotsListSearchField);
+    ref.watch(spotsListCategoryField);
+    ref.watch(spotsListDistrictField);
+    final searchFieldNotifier = ref.read(spotsListSearchField.notifier);
+    final categoryFieldNotifier = ref.read(spotsListCategoryField.notifier);
+    final districtFieldNotifier = ref.read(spotsListDistrictField.notifier);
 
     return AppBar(
       leading: IconButton(
@@ -105,13 +103,15 @@ class _DestinationsAppBarState
       itemBuilder: (context) =>
           networkState.value?.first != ConnectivityResult.none
               ? [
-                  _buildMenuItem(
-                    controller: widget.categoryController,
-                    hintText: context.localization.selectCategory,
-                    onTap: () {
-                      _showCategoryFilter();
-                    },
-                  ),
+                  if (widget.categoryController != null)
+                    _buildMenuItem(
+                      controller:
+                          widget.categoryController ?? TextEditingController(),
+                      hintText: context.localization.selectCategory,
+                      onTap: () {
+                        _showCategoryFilter();
+                      },
+                    ),
                   _buildMenuItem(
                     controller: widget.districtController,
                     hintText: context.localization.selectDistrict,
@@ -152,10 +152,9 @@ class _DestinationsAppBarState
   }
 
   PopupMenuItem<String> _favouriteMenuItem() {
-    final isShowFavouriteDestinationState =
-        ref.watch(isShowFavouriteDestinationList);
+    final isShowFavouriteDestinationState = ref.watch(spotsListIsShowFavourite);
     final isShowFavouriteDestinationNotifier =
-        ref.read(isShowFavouriteDestinationList.notifier);
+        ref.read(spotsListIsShowFavourite.notifier);
 
     return PopupMenuItem(
       child: Padding(
@@ -184,8 +183,7 @@ class _DestinationsAppBarState
   }
 
   void _showCategoryFilter() {
-    final categoryFieldNotifier =
-        ref.read(destinationsListCategoryField.notifier);
+    final categoryFieldNotifier = ref.read(spotsListCategoryField.notifier);
     final categoriesItems = ref.read(categoriesProvider);
 
     showModalBottomSheet(
@@ -202,7 +200,7 @@ class _DestinationsAppBarState
         return FilteredBottomSheet(
           items: categoriesItems.data,
           notifier: categoryFieldNotifier,
-          controller: widget.categoryController,
+          controller: widget.categoryController ?? TextEditingController(),
           text: context.localization.selectCategory,
           type: DestinationFilters.category,
         );
@@ -211,8 +209,7 @@ class _DestinationsAppBarState
   }
 
   void _showDistrictFilter() {
-    final districtFieldNotifier =
-        ref.read(destinationsListDistrictField.notifier);
+    final districtFieldNotifier = ref.read(spotsListDistrictField.notifier);
     final districtsItems = ref.read(districtProvider);
 
     showModalBottomSheet(

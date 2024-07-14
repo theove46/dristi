@@ -7,18 +7,3 @@ final accommodationsListProvider =
   AccommodationsListNotifier.new,
   name: 'accommodationsListProvider',
 );
-
-final accommodationsListSearchField = StateProvider.autoDispose<String>(
-  (ref) => '',
-  name: 'accommodationsListSearchField',
-);
-
-final accommodationsListDistrictField = StateProvider.autoDispose<String>(
-  (ref) => '',
-  name: 'accommodationsListDistrictField',
-);
-
-final favouriteAccommodationsList = StateProvider.autoDispose<bool>(
-  (ref) => false,
-  name: 'favouriteAccommodationsList',
-);
