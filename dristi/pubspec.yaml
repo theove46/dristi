@@ -61,6 +61,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Nova-Square-Regular.ttf
           weight: 700
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Sans-Regular.ttf
+          weight: 400
     - family: Vibes
       fonts:
         - asset: assets/fonts/Great-Vibes-Regular.ttf

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FontFamily {
   static const String nova = 'Nova';
+  static const String nunito = 'Nunito';
   static const String vibes = 'Vibes';
 }
 
@@ -17,10 +18,11 @@ class AppTextStyles {
   final TextStyle _bold = const TextStyle(fontWeight: FontWeight.w700);
 
   /// Font Families
-  TextStyle get _novaRegular => _regular.copyWith(fontFamily: FontFamily.nova);
+  TextStyle get _novaRegular =>
+      _regular.copyWith(fontFamily: FontFamily.nunito);
   TextStyle get _novaSemiBold =>
-      _semiBold.copyWith(fontFamily: FontFamily.nova);
-  TextStyle get _novaBold => _bold.copyWith(fontFamily: FontFamily.nova);
+      _semiBold.copyWith(fontFamily: FontFamily.nunito);
+  TextStyle get _novaBold => _bold.copyWith(fontFamily: FontFamily.nunito);
   TextStyle get _vibesBold => _bold.copyWith(fontFamily: FontFamily.vibes);
 
   /// Font Colors

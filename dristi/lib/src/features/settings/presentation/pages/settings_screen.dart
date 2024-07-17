@@ -47,23 +47,12 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         background: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            onPressed: () {
-              context.pop();
-            },
+          title: Text(
+            context.localization.settings,
           ),
-          title: Padding(
-            padding: EdgeInsets.only(
-              right: AppValues.dimen_24.r,
-            ),
-            child: Text(context.localization.settings),
-          ),
+          centerTitle: true,
         ),
       ),
-      automaticallyImplyLeading: false,
       expandedHeight: AppValues.dimen_70.h,
     );
   }
