@@ -1,5 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/cache/cache_service.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_state.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';

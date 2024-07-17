@@ -1,4 +1,4 @@
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 
 class ThemeState extends Equatable {

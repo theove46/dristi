@@ -24,6 +24,9 @@ class UIColors {
 
   Color get onImage => Theme.of(context).colorScheme.onSurface;
 
+  Color get onPrimaryContainer =>
+      Theme.of(context).colorScheme.onPrimaryContainer;
+
   // Text Colors
   static Color primaryText(BuildContext context) =>
       Theme.of(context).colorScheme.onPrimary;

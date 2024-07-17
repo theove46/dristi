@@ -27,6 +27,12 @@ enum DestinationScreenItemType {
   blogsScreen,
 }
 
+enum BottomNavItems {
+  home,
+  destinations,
+  settings,
+}
+
 List<Locale> get supportedLanguages => AppLanguages.values
     .map((AppLanguages language) => language.toLanguage)
     .toList();

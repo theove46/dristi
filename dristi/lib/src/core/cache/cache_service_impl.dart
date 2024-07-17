@@ -1,4 +1,4 @@
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'cache_service.dart';

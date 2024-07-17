@@ -5,6 +5,7 @@ import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/routes/navigation_helper.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/accommodations_list/presentation/pages/accommodations_list_screen.dart';
+import 'package:dristi/src/core/global_widgets/bottom_navigation_bar.dart';
 import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/districts/presentation/pages/districts_list_screen.dart';
 import 'package:dristi/src/features/gallery/presentation/pages/gallery_screen.dart';
@@ -20,6 +21,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class _Path {
   static const String home = '/home';
+  static const String bottomNavBar = '/bottomNavBar';
   static const String splash = '/splash';
   static const String destination = '/destination/:destinationId/:instanceId';
   static const String destinationsList = '/destinationsList';
@@ -51,6 +53,11 @@ GoRouter appRouter = GoRouter(
       path: _Path.splash,
       name: AppRoutes.splash,
       builder: (context, state) => const OnBoardingScreen(),
+    ),
+    GoRoute(
+      path: _Path.bottomNavBar,
+      name: AppRoutes.bottomNavBar,
+      builder: (context, state) => const BottomNavigation(),
     ),
     GoRoute(
       path: _Path.home,

@@ -110,6 +110,6 @@ class _OnBoardingScreenState
   }
 
   void navigateToHomeScreen() {
-    context.pushReplacementNamed(AppRoutes.home);
+    context.pushReplacementNamed(AppRoutes.bottomNavBar);
   }
 }
