@@ -167,7 +167,7 @@ class _ImageViewerScreenState
       height: isActive ? AppValues.dimen_8.r : AppValues.dimen_6.r,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive ? uiColors.primary : uiColors.highlight,
+        color: isActive ? uiColors.primary : uiColors.secondary,
       ),
     );
   }

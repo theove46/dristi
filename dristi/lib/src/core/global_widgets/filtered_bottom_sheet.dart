@@ -90,7 +90,7 @@ class _FilteredBottomSheetState
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppValues.dimen_8.r),
                       color: isSelected
-                          ? uiColors.highlight
+                          ? uiColors.secondary
                           : uiColors.transparent,
                     ),
                     child: Row(

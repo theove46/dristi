@@ -37,7 +37,7 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                   child: Container(
                     padding: EdgeInsets.all(AppValues.dimen_2.r),
                     decoration: BoxDecoration(
-                      color: uiColors.onImage,
+                      color: uiColors.light,
                       shape: BoxShape.circle,
                     ),
                     child: ClipOval(

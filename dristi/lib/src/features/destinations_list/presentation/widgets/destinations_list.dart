@@ -114,8 +114,8 @@ class _DestinationsListState
           end: Alignment.topCenter,
           tileMode: TileMode.clamp,
           colors: [
-            uiColors.shadow,
-            uiColors.shadow.withOpacity(0.25),
+            uiColors.dark,
+            uiColors.dark.withOpacity(0.25),
             uiColors.transparent,
           ],
         ),
@@ -143,7 +143,7 @@ class _DestinationsListState
               width: AppValues.dimen_24.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: uiColors.onImage.withOpacity(0.7),
+                color: uiColors.light.withOpacity(0.7),
               ),
               child: Icon(
                 isFavorite ? Icons.favorite : Icons.favorite_border_outlined,

@@ -87,7 +87,7 @@ class _SpotScreenTopIconsState
         width: AppValues.dimen_40.r,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: uiColors.onImage,
+          color: uiColors.light,
         ),
         child: Center(child: icon),
       ),

@@ -90,9 +90,7 @@ class _BottomNavigationState
       icon: Icon(
         icon,
         size: AppValues.dimen_32.r,
-        color: bottomNavBarState == item
-            ? uiColors.primary
-            : uiColors.onPrimaryContainer,
+        color: bottomNavBarState == item ? uiColors.primary : uiColors.tertiary,
       ),
       label: bottomNavBarState.name,
     );

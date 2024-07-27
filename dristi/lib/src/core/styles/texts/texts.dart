@@ -46,10 +46,6 @@ class AppTextStyles {
         color: UIColors.secondaryText(context),
       );
 
-  TextStyle get tertiaryNovaSemiBold => _novaSemiBold.copyWith(
-        color: UIColors.tertiaryText(context),
-      );
-
   TextStyle get errorNovaRegular => _novaRegular.copyWith(
         color: UIColors.errorText(context),
       );
@@ -59,27 +55,27 @@ class AppTextStyles {
       );
 
   TextStyle get blushNovaRegular => _novaRegular.copyWith(
-        color: UIColors.blushText(context),
+        color: UIColors.tertiaryText(context),
       );
 
   TextStyle get onImageShadowNovaRegular => _novaRegular.copyWith(
-        color: UIColors.onImageShadowText(context),
+        color: UIColors.darkText(context),
       );
 
   TextStyle get onImageNovaRegular => _novaRegular.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageNovaSemiBold => _novaSemiBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageNovaBold => _novaBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageVibesBold => _vibesBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageShadow => onImageVibesBold.copyWith(
@@ -87,7 +83,7 @@ class AppTextStyles {
           Shadow(
             offset: const Offset(3.0, 3.0),
             blurRadius: 2.0,
-            color: UIColors.onImageShadowText(context),
+            color: UIColors.darkText(context),
           ),
         ],
       );
@@ -130,11 +126,6 @@ class AppTextStyles {
 
   TextStyle get secondaryNovaSemiBold20 =>
       secondaryNovaSemiBold.copyWith(fontSize: 20.sp);
-
-  // Tertiary Color texts
-
-  TextStyle get tertiaryNovaSemiBold16 =>
-      tertiaryNovaSemiBold.copyWith(fontSize: 16.sp);
 
   // Error / Always Red Color texts
 

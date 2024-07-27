@@ -59,7 +59,7 @@ class _SpotScreenImageState
         height: AppValues.dimen_75.r,
         width: AppValues.dimen_75.r,
         decoration: BoxDecoration(
-          color: uiColors.onImage,
+          color: uiColors.light,
           borderRadius: BorderRadius.circular(AppValues.dimen_12.r),
         ),
         child: Stack(
@@ -81,7 +81,7 @@ class _SpotScreenImageState
             Center(
               child: Icon(
                 Icons.more_horiz_outlined,
-                color: uiColors.onImage,
+                color: uiColors.light,
                 size: AppValues.dimen_32.h,
               ),
             ),
