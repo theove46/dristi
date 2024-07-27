@@ -23,6 +23,18 @@ class Assets {
   static const String heartFill = '$iconsPath/heart_fill.svg';
   static const String search = '$iconsPath/search.svg';
   static const String filter = '$iconsPath/filter.svg';
+  static const String contact = '$iconsPath/contact.svg';
+  static const String contribution = '$iconsPath/contribution.svg';
+  static const String follow = '$iconsPath/follow.svg';
+  static const String language = '$iconsPath/language.svg';
+  static const String privacy = '$iconsPath/privacy.svg';
+  static const String promotion = '$iconsPath/promotion.svg';
+  static const String ratings = '$iconsPath/ratings.svg';
+  static const String share = '$iconsPath/share.svg';
+  static const String support = '$iconsPath/support.svg';
+  static const String terms = '$iconsPath/terms.svg';
+  static const String theme = '$iconsPath/theme.svg';
+  static const String version = '$iconsPath/version.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =
