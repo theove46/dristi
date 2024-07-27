@@ -54,6 +54,7 @@ class _BottomNavigationState
     return Scaffold(
       body: PageView(
         controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
         children: _widgetOptions.values.toList(),
         onPageChanged: (index) {
           bottomNavBarNotifier.state = BottomNavItems.values[index];
