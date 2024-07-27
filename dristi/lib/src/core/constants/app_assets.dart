@@ -1,5 +1,6 @@
 class Assets {
   static const String imagePath = 'assets/images';
+  static const String iconsPath = 'assets/images/icons';
   static const String itemsPath = 'assets/images/items';
   static const String jsonAssets = 'assets/json';
 
@@ -12,6 +13,15 @@ class Assets {
   static const String error = '$itemsPath/error.svg';
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';
+
+  /// Common Icons
+  static const String home = '$iconsPath/home.svg';
+  static const String back = '$iconsPath/back.svg';
+  static const String destination = '$iconsPath/destination.svg';
+  static const String settings = '$iconsPath/settings.svg';
+  static const String heart = '$iconsPath/heart.svg';
+  static const String heartFill = '$iconsPath/heart_fill.svg';
+  static const String search = '$iconsPath/search.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =

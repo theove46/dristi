@@ -27,6 +27,8 @@ const lightColorScheme = ColorScheme(
 
   scrim: Color(0xFFdee1ec), // set scrim
 
+  outline: Color(0xFF274c77), // set outline
+
   shadow: Color(0xFF274c77), // set dark
 );
 
@@ -56,6 +58,8 @@ const darkColorScheme = ColorScheme(
   onInverseSurface: Color(0xFF1c4b82), // set gradient
 
   scrim: Color(0xFF092F5D), // set scrim
+
+  outline: Color(0xFF54d2d2), // set outline
 
   shadow: Color(0xFF072448), // set dark
 );

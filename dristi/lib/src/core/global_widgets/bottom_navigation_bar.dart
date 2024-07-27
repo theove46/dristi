@@ -1,12 +1,13 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/bottom_nav_bar_providers/bottom_nav_bar_providers.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -61,15 +62,15 @@ class _BottomNavigationState
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           _buildBottomNavigationBarItem(
-            MaterialSymbols.home_filled,
+            Assets.home,
             BottomNavItems.home,
           ),
           _buildBottomNavigationBarItem(
-            MaterialSymbols.location_on_filled,
+            Assets.destination,
             BottomNavItems.destinations,
           ),
           _buildBottomNavigationBarItem(
-            MaterialSymbols.settings_filled,
+            Assets.settings,
             BottomNavItems.settings,
           ),
         ],
@@ -83,13 +84,15 @@ class _BottomNavigationState
   }
 
   BottomNavigationBarItem _buildBottomNavigationBarItem(
-      IconData icon, BottomNavItems item) {
+      String icon, BottomNavItems item) {
     final bottomNavBarState = ref.watch(bottomNavBarProvider);
 
     return BottomNavigationBarItem(
-      icon: Icon(
-        icon,
-        size: AppValues.dimen_32.r,
+      icon: AssetImageView(
+        fileName: icon,
+        fit: BoxFit.cover,
+        height: AppValues.dimen_28.r,
+        width: AppValues.dimen_28.r,
         color: bottomNavBarState == item ? uiColors.primary : uiColors.tertiary,
       ),
       label: bottomNavBarState.name,
