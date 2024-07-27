@@ -1,8 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
@@ -118,7 +120,13 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
               padding: EdgeInsets.all(AppValues.dimen_10.r),
               child: Row(
                 children: [
-                  const Icon(Icons.search),
+                  AssetImageView(
+                    fileName: Assets.search,
+                    height: AppValues.dimen_24.r,
+                    width: AppValues.dimen_24.r,
+                    color: uiColors.primary,
+                  ),
+                  SizedBox(width: AppValues.dimen_10.w),
                   Text(
                     context.localization.search,
                     style: appTextStyles.blushNovaRegular12,
