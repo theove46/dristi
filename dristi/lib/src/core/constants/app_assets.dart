@@ -22,6 +22,7 @@ class Assets {
   static const String heart = '$iconsPath/heart.svg';
   static const String heartFill = '$iconsPath/heart_fill.svg';
   static const String search = '$iconsPath/search.svg';
+  static const String filter = '$iconsPath/filter.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =

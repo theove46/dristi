@@ -1,4 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -98,7 +100,12 @@ class _SpotListScreenAppBarState
     return PopupMenuButton<String>(
       icon: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_10.w),
-        child: const Icon(Icons.tune),
+        child: AssetImageView(
+          fileName: Assets.filter,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
+        ),
       ),
       itemBuilder: (context) =>
           networkState.value?.first != ConnectivityResult.none
