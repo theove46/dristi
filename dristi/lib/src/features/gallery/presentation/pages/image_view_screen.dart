@@ -137,7 +137,7 @@ class _ImageViewerScreenState
               fileName: Assets.backward,
               height: AppValues.dimen_32.r,
               width: AppValues.dimen_32.r,
-              color: uiColors.primary,
+              color: currentIndex > 0 ? uiColors.primary : uiColors.tertiary,
             ),
             onPressed: () {
               if (currentIndex > 0) {
@@ -162,7 +162,9 @@ class _ImageViewerScreenState
               fileName: Assets.forward,
               height: AppValues.dimen_32.r,
               width: AppValues.dimen_32.r,
-              color: uiColors.primary,
+              color: currentIndex < (widget.arguments!.images.length - 1)
+                  ? uiColors.primary
+                  : uiColors.tertiary,
             ),
             onPressed: () {
               if (currentIndex < widget.arguments!.images.length - 1) {
