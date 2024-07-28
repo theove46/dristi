@@ -157,6 +157,8 @@ class AppTextStyles {
 
   TextStyle get onImageNovaBold28 => onImageNovaBold.copyWith(fontSize: 28.sp);
 
+  TextStyle get onImageNovaBold36 => onImageNovaBold.copyWith(fontSize: 32.sp);
+
   TextStyle get onImageBoldShadow32 => onImageShadow.copyWith(fontSize: 32.sp);
 
   TextStyle get onImageBoldShadow44 => onImageShadow.copyWith(fontSize: 44.sp);

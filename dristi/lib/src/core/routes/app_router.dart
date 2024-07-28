@@ -16,11 +16,13 @@ import 'package:dristi/src/features/accommodation/presentation/pages/accommodati
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/destination/presentation/pages/destination_screen.dart';
+import 'package:dristi/src/features/travelling/presentation/pages/travelling_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class _Path {
   static const String home = '/home';
+  static const String travelling = '/travelling';
   static const String bottomNavBar = '/bottomNavBar';
   static const String splash = '/splash';
   static const String destination = '/destination/:destinationId/:instanceId';
@@ -63,6 +65,11 @@ GoRouter appRouter = GoRouter(
       path: _Path.home,
       name: AppRoutes.home,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: _Path.travelling,
+      name: AppRoutes.travelling,
+      builder: (context, state) => const TravellingScreen(),
     ),
     GoRoute(
       path: _Path.destination,

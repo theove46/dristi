@@ -2,6 +2,7 @@ class Assets {
   static const String imagePath = 'assets/images';
   static const String iconsPath = 'assets/images/icons';
   static const String itemsPath = 'assets/images/items';
+  static const String destinationsPath = 'assets/images/destinations';
   static const String jsonAssets = 'assets/json';
 
   static const String commonWebUrl = 'https://flutter.dev';
@@ -14,11 +15,14 @@ class Assets {
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';
 
+  static const String sonargaon = '$destinationsPath/sonargaon.jpg';
+  static const String kaptai = '$destinationsPath/kaptai.jpg';
+
   /// Common Icons
   static const String home = '$iconsPath/home.svg';
   static const String backward = '$iconsPath/backward.svg';
   static const String forward = '$iconsPath/forward.svg';
-  static const String destination = '$iconsPath/destination.svg';
+  static const String travelling = '$iconsPath/travelling.svg';
   static const String settings = '$iconsPath/settings.svg';
   static const String heartOutlined = '$iconsPath/heart_outlined.svg';
   static const String heartFill = '$iconsPath/heart_fill.svg';

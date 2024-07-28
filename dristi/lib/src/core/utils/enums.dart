@@ -29,7 +29,7 @@ enum DestinationScreenItemType {
 
 enum BottomNavItems {
   home,
-  destinations,
+  travelling,
   settings,
 }
 

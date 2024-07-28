@@ -54,7 +54,7 @@ flutter:
     - assets/images/destination_items/
     - assets/images/icons/
     - assets/images/items/
-    - assets/images/on_boarding/
+    - assets/images/destinations/
     - assets/json/
 
   fonts:

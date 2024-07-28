@@ -4,9 +4,9 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/bottom_nav_bar_providers/bottom_nav_bar_providers.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/enums.dart';
-import 'package:dristi/src/features/destinations_list/presentation/pages/destinations_list_screen.dart';
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
+import 'package:dristi/src/features/travelling/presentation/pages/travelling_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +26,7 @@ class _BottomNavigationState
 
   final Map<BottomNavItems, Widget> _widgetOptions = {
     BottomNavItems.home: const HomeScreen(),
-    BottomNavItems.destinations: const DestinationsListScreen(),
+    BottomNavItems.travelling: const TravellingScreen(),
     BottomNavItems.settings: const SettingsScreen(),
   };
 
@@ -67,8 +67,8 @@ class _BottomNavigationState
             BottomNavItems.home,
           ),
           _buildBottomNavigationBarItem(
-            Assets.destination,
-            BottomNavItems.destinations,
+            Assets.travelling,
+            BottomNavItems.travelling,
           ),
           _buildBottomNavigationBarItem(
             Assets.settings,
