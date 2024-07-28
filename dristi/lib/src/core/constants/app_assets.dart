@@ -3,6 +3,7 @@ class Assets {
   static const String iconsPath = 'assets/images/icons';
   static const String itemsPath = 'assets/images/items';
   static const String destinationsPath = 'assets/images/destinations';
+  static const String travelItemsPath = 'assets/images/travel_items';
   static const String jsonAssets = 'assets/json';
 
   static const String commonWebUrl = 'https://flutter.dev';
@@ -12,10 +13,12 @@ class Assets {
   static const String forestCard = '$itemsPath/forest_card.png';
   static const String emptyList = '$itemsPath/empty_list.png';
   static const String error = '$itemsPath/error.svg';
-  static const String destinations = '$itemsPath/destinations.png';
-  static const String districts = '$itemsPath/districts.png';
-  static const String favorites = '$itemsPath/favorites.png';
-  static const String hotels = '$itemsPath/hotels.png';
+
+  /// Travel Item Images
+  static const String destinations = '$travelItemsPath/destinations.png';
+  static const String districts = '$travelItemsPath/districts.png';
+  static const String favorites = '$travelItemsPath/favorites.png';
+  static const String hotels = '$travelItemsPath/hotels.png';
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';
 
