@@ -38,7 +38,6 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             ),
             sliver: _buildSettingsItemsList(),
           ),
-          //_buildSettingsItemsList(),
         ],
       ),
     );

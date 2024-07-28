@@ -91,23 +91,6 @@ class _DrawerBuilderState extends BaseConsumerStatefulWidget<DrawerBuilder> {
                 context.pushNamed(AppRoutes.accommodationsList);
               },
             ),
-            ListTile(
-              title: Text(
-                context.localization.settings,
-                style: appTextStyles.secondaryNovaRegular16,
-              ),
-              trailing: Padding(
-                padding: EdgeInsets.only(right: AppValues.dimen_2.w),
-                child: Icon(
-                  Icons.settings_sharp,
-                  color: uiColors.primary,
-                  size: AppValues.dimen_20.sp,
-                ),
-              ),
-              onTap: () {
-                navigateToSettings();
-              },
-            ),
           ],
         ),
       ),

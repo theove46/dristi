@@ -56,7 +56,12 @@ class _SpotListScreenAppBarState
 
     return AppBar(
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
+        icon: AssetImageView(
+          fileName: Assets.back,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
+        ),
         onPressed: () {
           searchFieldNotifier.state = '';
           categoryFieldNotifier.state = '';

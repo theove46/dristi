@@ -1,6 +1,8 @@
 import 'package:dristi/src/core/base/base_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
@@ -79,8 +81,11 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
   Widget _buildAppBar() {
     return AppBar(
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
+        icon: AssetImageView(
+          fileName: Assets.back,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
         ),
         onPressed: () async {
           if (await controller.canGoBack()) {
