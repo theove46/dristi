@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/favourites_items/favourites_items_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/sliver_empty_list_image.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
@@ -146,10 +148,12 @@ class _AccommodationsListState
                 shape: BoxShape.circle,
                 color: uiColors.light.withOpacity(0.7),
               ),
-              child: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
+              padding: EdgeInsets.all(AppValues.dimen_2.r),
+              child: AssetImageView(
+                fileName: isFavorite ? Assets.heartFill : Assets.heartOutlined,
+                height: AppValues.dimen_16.r,
+                width: AppValues.dimen_16.r,
                 color: uiColors.error,
-                size: AppValues.dimen_16.r,
               ),
             ),
           ],

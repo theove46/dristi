@@ -57,7 +57,7 @@ class _SpotScreenTopIconsState
             ],
           ),
           _buildNavigationIcon(
-            icon: isFavorite ? Assets.heart : Assets.heartFill,
+            icon: isFavorite ? Assets.heartFill : Assets.heartOutlined,
             color: uiColors.error,
             onTap: () {
               widget.onFavoriteToggle(widget.itemId);

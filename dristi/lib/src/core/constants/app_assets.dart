@@ -19,7 +19,7 @@ class Assets {
   static const String back = '$iconsPath/back.svg';
   static const String destination = '$iconsPath/destination.svg';
   static const String settings = '$iconsPath/settings.svg';
-  static const String heart = '$iconsPath/heart.svg';
+  static const String heartOutlined = '$iconsPath/heart_outlined.svg';
   static const String heartFill = '$iconsPath/heart_fill.svg';
   static const String search = '$iconsPath/search.svg';
   static const String filter = '$iconsPath/filter.svg';
@@ -36,6 +36,7 @@ class Assets {
   static const String theme = '$iconsPath/theme.svg';
   static const String version = '$iconsPath/version.svg';
   static const String gallery = '$iconsPath/gallery.svg';
+  static const String close = '$iconsPath/close.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =

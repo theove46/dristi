@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -46,9 +48,11 @@ class _FilteredBottomSheetState
                 style: appTextStyles.primaryNovaBold20,
               ),
               IconButton(
-                icon: Icon(
-                  Icons.close,
-                  size: AppValues.dimen_20.r,
+                icon: AssetImageView(
+                  fileName: Assets.close,
+                  height: AppValues.dimen_16.r,
+                  width: AppValues.dimen_16.r,
+                  color: uiColors.primary,
                 ),
                 onPressed: () {
                   context.pop();
