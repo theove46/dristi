@@ -35,6 +35,7 @@ class Assets {
   static const String terms = '$iconsPath/terms.svg';
   static const String theme = '$iconsPath/theme.svg';
   static const String version = '$iconsPath/version.svg';
+  static const String gallery = '$iconsPath/gallery.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =
