@@ -62,6 +62,10 @@ class AppTextStyles {
         color: UIColors.darkText(context),
       );
 
+  TextStyle get darkNovaBold => _novaBold.copyWith(
+        color: UIColors.darkText(context),
+      );
+
   TextStyle get onImageNovaRegular => _novaRegular.copyWith(
         color: UIColors.lightText(context),
       );
@@ -144,6 +148,8 @@ class AppTextStyles {
   TextStyle get onImageShadowNovaRegular12 =>
       onImageShadowNovaRegular.copyWith(fontSize: 12.sp);
 
+  TextStyle get darkNovaBold12 => darkNovaBold.copyWith(fontSize: 12.sp);
+
   // OnImage / Always White Color texts
 
   TextStyle get onImageNovaRegular8 =>
@@ -152,8 +158,13 @@ class AppTextStyles {
   TextStyle get onImageNovaRegular12 =>
       onImageNovaRegular.copyWith(fontSize: 12.sp);
 
+  TextStyle get onImageNovaSemiBold12 =>
+      onImageNovaSemiBold.copyWith(fontSize: 12.sp);
+
   TextStyle get onImageNovaSemiBold16 =>
       onImageNovaSemiBold.copyWith(fontSize: 16.sp);
+
+  TextStyle get onImageNovaBold12 => onImageNovaBold.copyWith(fontSize: 12.sp);
 
   TextStyle get onImageNovaBold28 => onImageNovaBold.copyWith(fontSize: 28.sp);
 

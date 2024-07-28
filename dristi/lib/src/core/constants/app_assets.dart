@@ -12,6 +12,10 @@ class Assets {
   static const String forestCard = '$itemsPath/forest_card.png';
   static const String emptyList = '$itemsPath/empty_list.png';
   static const String error = '$itemsPath/error.svg';
+  static const String destinations = '$itemsPath/destinations.png';
+  static const String districts = '$itemsPath/districts.png';
+  static const String favorites = '$itemsPath/favorites.png';
+  static const String hotels = '$itemsPath/hotels.png';
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';
 
