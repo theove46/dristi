@@ -66,13 +66,25 @@ class _DistrictsAppBarState
           style: appTextStyles.secondaryNovaRegular16,
           decoration: InputDecoration(
             hintText: context.localization.searchDistricts,
+            suffixIconConstraints: BoxConstraints(
+              minHeight: AppValues.dimen_16.r,
+              minWidth: AppValues.dimen_16.r,
+            ),
             suffixIcon: _searchFieldController.text.isNotEmpty
                 ? GestureDetector(
                     onTap: () {
                       _searchFieldController.clear();
                       searchFieldNotifier.state = '';
                     },
-                    child: const Icon(Icons.clear),
+                    child: Container(
+                      padding: EdgeInsets.only(right: AppValues.dimen_10.w),
+                      child: AssetImageView(
+                        fileName: Assets.close,
+                        height: AppValues.dimen_16.r,
+                        width: AppValues.dimen_16.r,
+                        color: uiColors.primary,
+                      ),
+                    ),
                   )
                 : null,
           ),
