@@ -1,6 +1,8 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entities/gallery_screen_entity.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,12 @@ class _GalleryScreenState extends BaseConsumerStatefulWidget<GalleryScreen> {
       flexibleSpace: FlexibleSpaceBar(
         background: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: AssetImageView(
+              fileName: Assets.backward,
+              height: AppValues.dimen_32.r,
+              width: AppValues.dimen_32.r,
+              color: uiColors.primary,
+            ),
             onPressed: () {
               context.pop();
             },

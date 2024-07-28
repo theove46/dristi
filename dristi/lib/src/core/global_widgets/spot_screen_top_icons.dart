@@ -40,7 +40,7 @@ class _SpotScreenTopIconsState
           Row(
             children: [
               _buildNavigationIcon(
-                icon: Assets.back,
+                icon: Assets.backward,
                 color: uiColors.primary,
                 onTap: () {
                   context.pop();

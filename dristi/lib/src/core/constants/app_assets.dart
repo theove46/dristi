@@ -16,7 +16,8 @@ class Assets {
 
   /// Common Icons
   static const String home = '$iconsPath/home.svg';
-  static const String back = '$iconsPath/back.svg';
+  static const String backward = '$iconsPath/backward.svg';
+  static const String forward = '$iconsPath/forward.svg';
   static const String destination = '$iconsPath/destination.svg';
   static const String settings = '$iconsPath/settings.svg';
   static const String heartOutlined = '$iconsPath/heart_outlined.svg';
@@ -38,6 +39,7 @@ class Assets {
   static const String gallery = '$iconsPath/gallery.svg';
   static const String close = '$iconsPath/close.svg';
   static const String location = '$iconsPath/location.svg';
+  static const String download = '$iconsPath/download.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =

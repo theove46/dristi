@@ -82,7 +82,7 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
     return AppBar(
       leading: IconButton(
         icon: AssetImageView(
-          fileName: Assets.back,
+          fileName: Assets.backward,
           height: AppValues.dimen_32.r,
           width: AppValues.dimen_32.r,
           color: uiColors.primary,
