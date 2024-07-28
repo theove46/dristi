@@ -40,6 +40,8 @@ class Assets {
   static const String close = '$iconsPath/close.svg';
   static const String location = '$iconsPath/location.svg';
   static const String download = '$iconsPath/download.svg';
+  static const String up = '$iconsPath/up.svg';
+  static const String down = '$iconsPath/down.svg';
 
   /// JSON Assets
   static const String districtComponentsEn =

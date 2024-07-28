@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
@@ -151,8 +153,8 @@ class _CategoriesBuilderState
           alignment: Alignment.center,
           children: [
             Container(
-              width: AppValues.dimen_30.r,
-              height: AppValues.dimen_30.r,
+              width: AppValues.dimen_40.r,
+              height: AppValues.dimen_40.r,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -161,8 +163,11 @@ class _CategoriesBuilderState
                 color: uiColors.secondary,
               ),
             ),
-            Icon(
-              expandState ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+            AssetImageView(
+              fileName: expandState ? Assets.up : Assets.down,
+              height: AppValues.dimen_32.r,
+              width: AppValues.dimen_32.r,
+              color: uiColors.primary,
             ),
           ],
         ),
