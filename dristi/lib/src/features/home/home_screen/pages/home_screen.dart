@@ -9,7 +9,6 @@ import 'package:dristi/src/core/global_widgets/network_error_alert.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
-import 'package:dristi/src/features/drawer/presentation/widgets/drawer_builder.dart';
 import 'package:dristi/src/features/home/advertisements/presentation/widgets/advertisement_builder.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:dristi/src/features/home/categories/presentations/widgets/categories_builder.dart';
@@ -65,7 +64,6 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerBuilder(),
       body: RefreshIndicator(
         onRefresh: getHomeComponents,
         child: CustomScrollView(
@@ -100,7 +98,7 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
           context.pushNamed(AppRoutes.destinationsList);
         },
         child: Padding(
-          padding: EdgeInsets.only(right: AppValues.dimen_16.w),
+          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_16.w),
           child: Container(
             height: AppValues.dimen_50.h,
             width: double.infinity,
