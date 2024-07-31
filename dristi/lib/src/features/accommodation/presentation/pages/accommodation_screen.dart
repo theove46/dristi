@@ -85,27 +85,21 @@ class _AccommodationScreenState
   }
 
   Widget _buildDescription() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              navigateToGallery();
-            },
-            child: Container(
-              height: AppValues.dimen_480.h,
+    return DraggableScrollableSheet(
+      initialChildSize: 0.5,
+      minChildSize: 0.5,
+      maxChildSize: 0.9,
+      builder: (context, scrollController) {
+        return Container(
+          decoration: BoxDecoration(
+            color: uiColors.secondary,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(AppValues.dimen_20.r),
+              topRight: Radius.circular(AppValues.dimen_20.r),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: uiColors.secondary,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(AppValues.dimen_20.r),
-                topRight: Radius.circular(AppValues.dimen_20.r),
-              ),
-            ),
+          child: SingleChildScrollView(
+            controller: scrollController,
             child: Padding(
               padding: EdgeInsets.all(AppValues.dimen_16.r),
               child: const Column(
@@ -117,8 +111,8 @@ class _AccommodationScreenState
               ),
             ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
