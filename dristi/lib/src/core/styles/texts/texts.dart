@@ -158,6 +158,9 @@ class AppTextStyles {
   TextStyle get onImageNovaRegular12 =>
       onImageNovaRegular.copyWith(fontSize: 12.sp);
 
+  TextStyle get onImageNovaRegular36 =>
+      onImageNovaRegular.copyWith(fontSize: 36.sp);
+
   TextStyle get onImageNovaSemiBold12 =>
       onImageNovaSemiBold.copyWith(fontSize: 12.sp);
 

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
@@ -48,9 +50,17 @@ class _TravellingScreenState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        ClipOval(
+          child: AssetImageView(
+            fileName: Assets.logo,
+            height: AppValues.dimen_48.r,
+            width: AppValues.dimen_48.r,
+            fit: BoxFit.cover,
+          ),
+        ),
         Text(
           context.localization.findYour,
-          style: appTextStyles.onImageNovaBold36,
+          style: appTextStyles.onImageNovaRegular36,
         ),
         Text(
           context.localization.favouritePlace,

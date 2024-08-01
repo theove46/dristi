@@ -93,12 +93,22 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
 
   Widget _buildAppBar() {
     return AppBar(
+      leading: Padding(
+        padding: EdgeInsets.all(AppValues.dimen_10.w),
+        child: const ClipOval(
+          child: AssetImageView(
+            fileName: Assets.logo,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      titleSpacing: 2,
       title: GestureDetector(
         onTap: () {
           context.pushNamed(AppRoutes.destinationsList);
         },
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_16.w),
+          padding: EdgeInsets.only(right: AppValues.dimen_16.w),
           child: Container(
             height: AppValues.dimen_50.h,
             width: double.infinity,
