@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entities/gallery_screen_entity.dart';
 import 'package:dristi/src/core/global_entities/images_entity.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -59,7 +61,7 @@ class _SpotScreenImageState
         height: AppValues.dimen_75.r,
         width: AppValues.dimen_75.r,
         decoration: BoxDecoration(
-          color: uiColors.onImage,
+          color: uiColors.light,
           borderRadius: BorderRadius.circular(AppValues.dimen_12.r),
         ),
         child: Stack(
@@ -79,10 +81,11 @@ class _SpotScreenImageState
               ),
             ),
             Center(
-              child: Icon(
-                Icons.more_horiz_outlined,
-                color: uiColors.onImage,
-                size: AppValues.dimen_32.h,
+              child: AssetImageView(
+                fileName: Assets.gallery,
+                height: AppValues.dimen_40.r,
+                width: AppValues.dimen_40.r,
+                color: uiColors.light,
               ),
             ),
           ],

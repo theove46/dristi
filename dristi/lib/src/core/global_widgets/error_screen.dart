@@ -49,7 +49,7 @@ class _ErrorScreenState extends BaseStatefulWidget<ErrorScreen> {
                 onPressed: widget.onPressed,
                 child: Text(
                   context.localization.goBack,
-                  style: appTextStyles.tertiaryNovaSemiBold16,
+                  style: appTextStyles.primaryNovaSemiBold16,
                 ),
               ),
             ),

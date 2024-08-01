@@ -16,12 +16,12 @@ class ShowSnackBarMessage {
           child: Text(
             message,
             style: TextStyle(
-              color: UIColors.componentsWhite(context),
+              color: UIColors.lightText(context),
               fontSize: 16,
             ),
           ),
         ),
-        backgroundColor: UIColors.componentsPrimary(context),
+        backgroundColor: UIColors.primaryComponent(context),
       ),
     );
   }
@@ -37,12 +37,12 @@ class ShowSnackBarMessage {
           child: Text(
             message,
             style: TextStyle(
-              color: UIColors.componentsWhite(context),
+              color: UIColors.lightText(context),
               fontSize: 16,
             ),
           ),
         ),
-        backgroundColor: UIColors.componentsError(context),
+        backgroundColor: UIColors.errorText(context),
       ),
     );
   }
@@ -60,14 +60,14 @@ class ShowSnackBarMessage {
               child: Text(
                 message,
                 style: TextStyle(
-                  color: UIColors.componentsWhite(context),
+                  color: UIColors.lightText(context),
                   fontSize: 16,
                 ),
               ),
             ),
           ],
         ),
-        backgroundColor: UIColors.componentsPrimary(context),
+        backgroundColor: UIColors.primaryComponent(context),
       ),
     );
   }

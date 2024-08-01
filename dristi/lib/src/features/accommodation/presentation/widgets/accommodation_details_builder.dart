@@ -1,6 +1,8 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entities/website_entity.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/accommodation/presentation/riverpod/accommodation_data/accommodation_provider.dart';
@@ -86,10 +88,11 @@ class _AccommodationScreenDetailsBuilderState
               style: appTextStyles.primaryNovaRegular12,
             ),
             SizedBox(width: AppValues.dimen_10.w),
-            Icon(
-              Icons.location_on_rounded,
-              color: uiColors.primary,
-              size: AppValues.dimen_16.r,
+            AssetImageView(
+              fileName: Assets.location,
+              height: AppValues.dimen_16.r,
+              width: AppValues.dimen_16.r,
+              color: uiColors.tertiary,
             ),
           ],
         ),

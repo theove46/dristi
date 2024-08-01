@@ -34,6 +34,8 @@ dependencies:
   flutter_staggered_grid_view: 0.7.0
   gal: 2.3.0
   rive_animated_icon: 2.0.0
+  flutter_animated_icons: 1.0.1
+  flutter_material_symbols: 0.0.4
 
 # Run fvm flutter gen-l10n / flutter gen-l10n if Localization error
 
@@ -50,8 +52,10 @@ flutter:
 
   assets:
     - assets/images/destination_items/
+    - assets/images/travel_items/
+    - assets/images/icons/
     - assets/images/items/
-    - assets/images/on_boarding/
+    - assets/images/destinations/
     - assets/json/
 
   fonts:
@@ -59,6 +63,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Nova-Square-Regular.ttf
           weight: 700
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Sans-Regular.ttf
+          weight: 400
     - family: Vibes
       fonts:
         - asset: assets/fonts/Great-Vibes-Regular.ttf

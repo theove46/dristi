@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FontFamily {
   static const String nova = 'Nova';
+  static const String nunito = 'Nunito';
   static const String vibes = 'Vibes';
 }
 
@@ -17,10 +18,11 @@ class AppTextStyles {
   final TextStyle _bold = const TextStyle(fontWeight: FontWeight.w700);
 
   /// Font Families
-  TextStyle get _novaRegular => _regular.copyWith(fontFamily: FontFamily.nova);
+  TextStyle get _novaRegular =>
+      _regular.copyWith(fontFamily: FontFamily.nunito);
   TextStyle get _novaSemiBold =>
-      _semiBold.copyWith(fontFamily: FontFamily.nova);
-  TextStyle get _novaBold => _bold.copyWith(fontFamily: FontFamily.nova);
+      _semiBold.copyWith(fontFamily: FontFamily.nunito);
+  TextStyle get _novaBold => _bold.copyWith(fontFamily: FontFamily.nunito);
   TextStyle get _vibesBold => _bold.copyWith(fontFamily: FontFamily.vibes);
 
   /// Font Colors
@@ -44,10 +46,6 @@ class AppTextStyles {
         color: UIColors.secondaryText(context),
       );
 
-  TextStyle get tertiaryNovaSemiBold => _novaSemiBold.copyWith(
-        color: UIColors.tertiaryText(context),
-      );
-
   TextStyle get errorNovaRegular => _novaRegular.copyWith(
         color: UIColors.errorText(context),
       );
@@ -57,27 +55,31 @@ class AppTextStyles {
       );
 
   TextStyle get blushNovaRegular => _novaRegular.copyWith(
-        color: UIColors.blushText(context),
+        color: UIColors.tertiaryText(context),
       );
 
   TextStyle get onImageShadowNovaRegular => _novaRegular.copyWith(
-        color: UIColors.onImageShadowText(context),
+        color: UIColors.darkText(context),
+      );
+
+  TextStyle get darkNovaBold => _novaBold.copyWith(
+        color: UIColors.darkText(context),
       );
 
   TextStyle get onImageNovaRegular => _novaRegular.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageNovaSemiBold => _novaSemiBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageNovaBold => _novaBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageVibesBold => _vibesBold.copyWith(
-        color: UIColors.onImageText(context),
+        color: UIColors.lightText(context),
       );
 
   TextStyle get onImageShadow => onImageVibesBold.copyWith(
@@ -85,7 +87,7 @@ class AppTextStyles {
           Shadow(
             offset: const Offset(3.0, 3.0),
             blurRadius: 2.0,
-            color: UIColors.onImageShadowText(context),
+            color: UIColors.darkText(context),
           ),
         ],
       );
@@ -129,11 +131,6 @@ class AppTextStyles {
   TextStyle get secondaryNovaSemiBold20 =>
       secondaryNovaSemiBold.copyWith(fontSize: 20.sp);
 
-  // Tertiary Color texts
-
-  TextStyle get tertiaryNovaSemiBold16 =>
-      tertiaryNovaSemiBold.copyWith(fontSize: 16.sp);
-
   // Error / Always Red Color texts
 
   TextStyle get errorNovaRegular12 =>
@@ -151,6 +148,8 @@ class AppTextStyles {
   TextStyle get onImageShadowNovaRegular12 =>
       onImageShadowNovaRegular.copyWith(fontSize: 12.sp);
 
+  TextStyle get darkNovaBold12 => darkNovaBold.copyWith(fontSize: 12.sp);
+
   // OnImage / Always White Color texts
 
   TextStyle get onImageNovaRegular8 =>
@@ -159,10 +158,20 @@ class AppTextStyles {
   TextStyle get onImageNovaRegular12 =>
       onImageNovaRegular.copyWith(fontSize: 12.sp);
 
+  TextStyle get onImageNovaRegular36 =>
+      onImageNovaRegular.copyWith(fontSize: 36.sp);
+
+  TextStyle get onImageNovaSemiBold12 =>
+      onImageNovaSemiBold.copyWith(fontSize: 12.sp);
+
   TextStyle get onImageNovaSemiBold16 =>
       onImageNovaSemiBold.copyWith(fontSize: 16.sp);
 
+  TextStyle get onImageNovaBold12 => onImageNovaBold.copyWith(fontSize: 12.sp);
+
   TextStyle get onImageNovaBold28 => onImageNovaBold.copyWith(fontSize: 28.sp);
+
+  TextStyle get onImageNovaBold36 => onImageNovaBold.copyWith(fontSize: 32.sp);
 
   TextStyle get onImageBoldShadow32 => onImageShadow.copyWith(fontSize: 32.sp);
 

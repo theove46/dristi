@@ -1,4 +1,4 @@
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/styles/themes/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

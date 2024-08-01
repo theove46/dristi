@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_entities/gallery_screen_entity.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +47,24 @@ class _ImageViewerScreenState
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: AssetImageView(
+            fileName: Assets.backward,
+            height: AppValues.dimen_32.r,
+            width: AppValues.dimen_32.r,
+            color: uiColors.primary,
+          ),
           onPressed: () {
             context.pop();
           },
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.download),
+            icon: AssetImageView(
+              fileName: Assets.download,
+              height: AppValues.dimen_32.r,
+              width: AppValues.dimen_32.r,
+              color: uiColors.primary,
+            ),
             onPressed: () async {
               final path =
                   '${Directory.systemTemp.path}/${widget.arguments!.galleryName}_${currentIndex}_${context.localization.credit}.jpg';
@@ -121,8 +133,11 @@ class _ImageViewerScreenState
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
+            icon: AssetImageView(
+              fileName: Assets.backward,
+              height: AppValues.dimen_32.r,
+              width: AppValues.dimen_32.r,
+              color: currentIndex > 0 ? uiColors.primary : uiColors.tertiary,
             ),
             onPressed: () {
               if (currentIndex > 0) {
@@ -143,8 +158,13 @@ class _ImageViewerScreenState
             ),
           ),
           IconButton(
-            icon: const Icon(
-              Icons.arrow_forward_ios,
+            icon: AssetImageView(
+              fileName: Assets.forward,
+              height: AppValues.dimen_32.r,
+              width: AppValues.dimen_32.r,
+              color: currentIndex < (widget.arguments!.images.length - 1)
+                  ? uiColors.primary
+                  : uiColors.tertiary,
             ),
             onPressed: () {
               if (currentIndex < widget.arguments!.images.length - 1) {
@@ -167,7 +187,7 @@ class _ImageViewerScreenState
       height: isActive ? AppValues.dimen_8.r : AppValues.dimen_6.r,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive ? uiColors.primary : uiColors.highlight,
+        color: isActive ? uiColors.primary : uiColors.tertiary,
       ),
     );
   }

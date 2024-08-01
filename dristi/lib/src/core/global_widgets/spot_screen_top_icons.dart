@@ -1,5 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,25 +40,16 @@ class _SpotScreenTopIconsState
           Row(
             children: [
               _buildNavigationIcon(
-                icon: Padding(
-                  padding: EdgeInsets.only(left: AppValues.dimen_6.w),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: uiColors.primary,
-                    size: AppValues.dimen_20.r,
-                  ),
-                ),
+                icon: Assets.backward,
+                color: uiColors.primary,
                 onTap: () {
                   context.pop();
                 },
               ),
               SizedBox(width: AppValues.dimen_10.w),
               _buildNavigationIcon(
-                icon: Icon(
-                  Icons.home_rounded,
-                  color: uiColors.primary,
-                  size: AppValues.dimen_20.r,
-                ),
+                icon: Assets.home,
+                color: uiColors.primary,
                 onTap: () {
                   popUntilHome(context);
                 },
@@ -64,11 +57,8 @@ class _SpotScreenTopIconsState
             ],
           ),
           _buildNavigationIcon(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
-              color: uiColors.error,
-              size: AppValues.dimen_20.r,
-            ),
+            icon: isFavorite ? Assets.heartFill : Assets.heartOutlined,
+            color: uiColors.error,
             onTap: () {
               widget.onFavoriteToggle(widget.itemId);
             },
@@ -78,8 +68,11 @@ class _SpotScreenTopIconsState
     );
   }
 
-  Widget _buildNavigationIcon(
-      {required Widget icon, required Function()? onTap}) {
+  Widget _buildNavigationIcon({
+    required String icon,
+    required Color color,
+    required Function()? onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -87,9 +80,14 @@ class _SpotScreenTopIconsState
         width: AppValues.dimen_40.r,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: uiColors.onImage,
+          color: uiColors.light,
         ),
-        child: Center(child: icon),
+        child: AssetImageView(
+          fileName: icon,
+          height: AppValues.dimen_20.r,
+          width: AppValues.dimen_20.r,
+          color: color,
+        ),
       ),
     );
   }

@@ -39,7 +39,7 @@ Widget buildShimmerContainer({
     child: Container(
       height: height,
       width: width,
-      color: UIColors.onImageText(context),
+      color: UIColors.lightText(context),
     ),
   );
 }
@@ -214,7 +214,7 @@ Widget buildHomeScreenCategoriesShimmer(BuildContext context) {
         Radius.circular(AppValues.dimen_10.r),
       ),
       border: Border.all(
-        color: UIColors.componentsPrimary(context).withOpacity(0.5),
+        color: UIColors.primaryComponent(context).withOpacity(0.5),
         width: 2.r,
       ),
     ),
@@ -346,7 +346,7 @@ Widget buildFullScreenShimmer(BuildContext context) {
     child: Container(
       width: double.infinity,
       height: double.infinity,
-      color: UIColors.blushText(context),
+      color: UIColors.tertiaryText(context),
     ),
   );
 }

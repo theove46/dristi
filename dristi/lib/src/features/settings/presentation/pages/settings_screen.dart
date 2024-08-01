@@ -1,4 +1,6 @@
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
@@ -36,7 +38,6 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             ),
             sliver: _buildSettingsItemsList(),
           ),
-          //_buildSettingsItemsList(),
         ],
       ),
     );
@@ -47,23 +48,12 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         background: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            onPressed: () {
-              context.pop();
-            },
+          title: Text(
+            context.localization.settings,
           ),
-          title: Padding(
-            padding: EdgeInsets.only(
-              right: AppValues.dimen_24.r,
-            ),
-            child: Text(context.localization.settings),
-          ),
+          centerTitle: true,
         ),
       ),
-      automaticallyImplyLeading: false,
       expandedHeight: AppValues.dimen_70.h,
     );
   }
@@ -74,7 +64,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
 
     final settingsItems = [
       _buildSettingsItem(
-        icon: Icons.brightness_4,
+        icon: Assets.theme,
         title: context.localization.theme,
         subTitle: _getThemeText(themeState.theme),
         onTap: () {
@@ -102,7 +92,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         },
       ),
       _buildSettingsItem(
-        icon: Icons.language,
+        icon: Assets.language,
         title: context.localization.language,
         subTitle: _getLanguageText(languageState.language),
         onTap: () {
@@ -126,32 +116,32 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         },
       ),
       _buildSettingsItem(
-        icon: Icons.hive,
+        icon: Assets.follow,
         title: context.localization.followDristi,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.stars,
+        icon: Assets.ratings,
         title: context.localization.ratingsAndReview,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.share,
+        icon: Assets.share,
         title: context.localization.shareDristi,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.edit_note_rounded,
+        icon: Assets.contribution,
         title: context.localization.contribution,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.mail,
+        icon: Assets.contact,
         title: context.localization.contactUs,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.workspace_premium,
+        icon: Assets.promotion,
         title: context.localization.makePromotion,
         onTap: () {
           navigateToWebView(
@@ -160,22 +150,22 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         },
       ),
       _buildSettingsItem(
-        icon: Icons.volunteer_activism,
+        icon: Assets.support,
         title: context.localization.support,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.policy,
+        icon: Assets.privacy,
         title: context.localization.privacyPolicy,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.article,
+        icon: Assets.terms,
         title: context.localization.termsOfService,
         onTap: () {},
       ),
       _buildSettingsItem(
-        icon: Icons.history,
+        icon: Assets.version,
         title: context.localization.appVersion,
         subTitle: '1.0',
         onTap: () {},
@@ -191,7 +181,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
   }
 
   Widget _buildSettingsItem({
-    required IconData icon,
+    required String icon,
     required String title,
     String? subTitle,
     required VoidCallback onTap,
@@ -201,7 +191,12 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
       elevation: 0,
       margin: EdgeInsets.symmetric(vertical: AppValues.dimen_3.h),
       child: ListTile(
-        leading: Icon(icon, color: uiColors.primary),
+        leading: AssetImageView(
+          fileName: icon,
+          height: AppValues.dimen_28.r,
+          width: AppValues.dimen_28.r,
+          color: uiColors.primary,
+        ),
         title: Text(title),
         titleTextStyle: appTextStyles.secondaryNovaRegular16,
         subtitle: subTitle != null ? Text(subTitle) : null,

@@ -1,5 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
@@ -54,7 +56,12 @@ class _SpotListScreenAppBarState
 
     return AppBar(
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
+        icon: AssetImageView(
+          fileName: Assets.backward,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
+        ),
         onPressed: () {
           searchFieldNotifier.state = '';
           categoryFieldNotifier.state = '';
@@ -74,13 +81,25 @@ class _SpotListScreenAppBarState
         style: appTextStyles.secondaryNovaRegular16,
         decoration: InputDecoration(
           hintText: context.localization.searchDestination,
+          suffixIconConstraints: BoxConstraints(
+            minHeight: AppValues.dimen_16.r,
+            minWidth: AppValues.dimen_16.r,
+          ),
           suffixIcon: widget.searchFieldController.text.isNotEmpty
               ? GestureDetector(
                   onTap: () {
                     widget.searchFieldController.clear();
                     searchFieldNotifier.state = '';
                   },
-                  child: const Icon(Icons.clear),
+                  child: Container(
+                    padding: EdgeInsets.only(right: AppValues.dimen_10.w),
+                    child: AssetImageView(
+                      fileName: Assets.close,
+                      height: AppValues.dimen_16.r,
+                      width: AppValues.dimen_16.r,
+                      color: uiColors.primary,
+                    ),
+                  ),
                 )
               : null,
         ),
@@ -98,7 +117,12 @@ class _SpotListScreenAppBarState
     return PopupMenuButton<String>(
       icon: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppValues.dimen_10.w),
-        child: const Icon(Icons.tune),
+        child: AssetImageView(
+          fileName: Assets.filter,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
+        ),
       ),
       itemBuilder: (context) =>
           networkState.value?.first != ConnectivityResult.none

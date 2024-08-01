@@ -1,106 +1,65 @@
 import 'package:flutter/material.dart';
 
-// Color instruction:
-// primary, secondary, tertiary, error: Variations of Components Colors
-// onPrimary, onSecondary, onTertiary, onError: Variations of texts
-// onPrimaryContainer: Blush color
-// surface: Scaffold Background Color -> Mainly Secondary Color
-// onSurface: Always White Color -> Components On Image Color
-// outline: Outline Color -> Mainly Primary Color
-// shadow: Deep Color -> Primary for Light, Secondary for Dark
-// surfaceDim: Lighter Variants for shadow Color
-// surTint: Container background color, Appbar surfaceTintColor color
-// inverseSurface, onInverseSurface: Shimmer gradient Colors
-// scrim: TextField color
-
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
 
   // primary
-  primary: Color(0xFF086972), // set
-  onPrimary: Color(0xFF086972), // set
-  primaryContainer: Color(0xFF000000),
-  onPrimaryContainer: Color(0xFF6d6e70), // set
+  primary: Color(0xFF274c77), // set primary
+  onPrimary: Color(0xFF274c77), // set primary text
 
   // secondary
-  secondary: Color(0xFFeff3f6), // set
-  onSecondary: Color(0xff333333), // set
-  secondaryContainer: Color(0xFF000000),
-  onSecondaryContainer: Color(0xFF000000),
+  secondary: Color(0xFFe7ecef), // set secondary
+  onSecondary: Color(0xff333333), // set secondary text
 
   // tertiary
-  tertiary: Color(0xFF17b978), // set
-  onTertiary: Color(0xFFeff3f6), // set
-  tertiaryContainer: Color(0xFFE6CDD5),
-  onTertiaryContainer: Color(0xFF332227),
+  tertiary: Color(0xFF6096ba), // set tertiary
+  onTertiary: Color(0xFF6d6e70), // set blush text
 
   // error
-  error: Color(0xffEA5455), // set
-  onError: Color(0xffEA5455), // set
-  errorContainer: Color(0xFFE6ACA6),
-  onErrorContainer: Color(0xFF000000),
+  error: Color(0xffEA5455), // set error
+  onError: Color(0xffEA5455), // set error text
 
-  // surface
-  surface: Color(0xFFeff3f6), // set
-  onSurface: Color(0xFFeff3f6), // set
-  surfaceDim: Color(0xFFe2ded3), // set
-  inverseSurface: Color(0xFFEBEBF4), // set
-  onInverseSurface: Color(0xFFF4F4F4), // set
-  onSurfaceVariant: Color(0xFF000000),
-  surfaceTint: Color(0xFFdaeaf6), // set
+  surface: Color(0xFFe7ecef), // set background
+  onSurface: Color(0xFFe7ecef), // set light
 
-  // scrim
-  scrim: Color(0xFFdee1ec), // set
+  inverseSurface: Color(0xFFEBEBF4), // set gradient
+  onInverseSurface: Color(0xFFF4F4F4), // set gradient
 
-  // outline
-  outline: Color(0xFF086972), // set
+  scrim: Color(0xFFdee1ec), // set scrim
 
-  // shadow
-  shadow: Color(0xFF086972), // set
+  outline: Color(0xFF274c77), // set outline
+
+  shadow: Color(0xFF274c77), // set dark
 );
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
 
   // primary
-  primary: Color(0xFF54d2d2), // set
-  onPrimary: Color(0xFF54d2d2), // set
-  primaryContainer: Color(0xFF000000),
-  onPrimaryContainer: Color(0xFFd9dad7),
+  primary: Color(0xFF54d2d2), // set primary
+  onPrimary: Color(0xFF54d2d2), // set primary text
 
   // secondary
-  secondary: Color(0xFF072448), // set
-  onSecondary: Color(0xFFdaeaf6), // set
-  secondaryContainer: Color(0xFF000000),
-  onSecondaryContainer: Color(0xFF000000),
+  secondary: Color(0xFF072448), // set secondary
+  onSecondary: Color(0xFFdaeaf6), // set secondary text
 
   // tertiary
-  tertiary: Color(0xFFfacf5a), // set
-  onTertiary: Color(0xFFdaeaf6), // set
-  tertiaryContainer: Color(0xFF000000),
-  onTertiaryContainer: Color(0xFF000000),
+  tertiary: Color(0xFFdaeaf6), // set tertiary
+  onTertiary: Color(0xFFd9dad7), // set blush text
 
   // error
-  error: Color(0xffff304f), // set
-  onError: Color(0xffff304f), // set
-  errorContainer: Color(0xFF000000),
-  onErrorContainer: Color(0xFF000000),
+  error: Color(0xffff304f), // set error
+  onError: Color(0xffff304f), // set error text
 
-  // surface
-  surface: Color(0xFF072448), // set
-  onSurface: Color(0xFFdaeaf6), // set
-  surfaceDim: Color(0xFF092F5D), // set
-  inverseSurface: Color(0xFF183661), // set
-  onInverseSurface: Color(0xFF1c4b82), // set
-  onSurfaceVariant: Color(0xFF000000),
-  surfaceTint: Color(0xFF88bef5), // set
+  surface: Color(0xFF072448), // set background
+  onSurface: Color(0xFFdaeaf6), // set light
 
-  // scrim
-  scrim: Color(0xFF092F5D), // set
+  inverseSurface: Color(0xFF183661), // set gradient
+  onInverseSurface: Color(0xFF1c4b82), // set gradient
 
-  // outline
-  outline: Color(0xFF54d2d2), // set
+  scrim: Color(0xFF092F5D), // set scrim
 
-  // shadow
-  shadow: Color(0xFF072448), // set
+  outline: Color(0xFF54d2d2), // set outline
+
+  shadow: Color(0xFF072448), // set dark
 );

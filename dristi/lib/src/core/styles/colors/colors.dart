@@ -6,59 +6,49 @@ class UIColors {
 
   Color transparent = Colors.transparent;
 
-  Color get primary => Theme.of(context).colorScheme.primary;
+  Color get primary => Theme.of(context).colorScheme.primary; // set primary
 
   Color get secondary => Theme.of(context).colorScheme.secondary;
 
   Color get tertiary => Theme.of(context).colorScheme.tertiary;
 
-  Color get error => Theme.of(context).colorScheme.error;
+  Color get error => Theme.of(context).colorScheme.error; // set error
 
-  Color get shadow => Theme.of(context).colorScheme.shadow;
+  Color get background =>
+      Theme.of(context).colorScheme.surface; // set background
 
-  Color get background => Theme.of(context).colorScheme.surface;
+  Color get light => Theme.of(context).colorScheme.onSurface; // set light
 
-  Color get highlight => Theme.of(context).colorScheme.surfaceDim;
+  Color get dark => Theme.of(context).colorScheme.shadow; // set dark
 
-  Color get scrim => Theme.of(context).colorScheme.scrim;
-
-  Color get onImage => Theme.of(context).colorScheme.onSurface;
+  Color get scrim => Theme.of(context).colorScheme.scrim; // set scrim
 
   // Text Colors
   static Color primaryText(BuildContext context) =>
-      Theme.of(context).colorScheme.onPrimary;
+      Theme.of(context).colorScheme.onPrimary; // set primary text
 
   static Color secondaryText(BuildContext context) =>
-      Theme.of(context).colorScheme.onSecondary;
+      Theme.of(context).colorScheme.onSecondary; // set secondary text
 
   static Color tertiaryText(BuildContext context) =>
-      Theme.of(context).colorScheme.onTertiary;
+      Theme.of(context).colorScheme.onTertiary; // set blush text
 
   static Color errorText(BuildContext context) =>
-      Theme.of(context).colorScheme.onError;
+      Theme.of(context).colorScheme.onError; // set error text
 
-  static Color blushText(BuildContext context) =>
-      Theme.of(context).colorScheme.onPrimaryContainer;
+  static Color lightText(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurface; // set light text
 
-  static Color onImageText(BuildContext context) =>
-      Theme.of(context).colorScheme.onSurface;
-
-  static Color onImageShadowText(BuildContext context) =>
-      Theme.of(context).colorScheme.shadow;
+  static Color darkText(BuildContext context) =>
+      Theme.of(context).colorScheme.shadow; // set dark text
 
   // Component Colors
-  static Color componentsPrimary(BuildContext context) =>
-      Theme.of(context).colorScheme.primary;
-
-  static Color componentsWhite(BuildContext context) =>
-      Theme.of(context).colorScheme.onSurface;
-
-  static Color componentsError(BuildContext context) =>
-      Theme.of(context).colorScheme.error;
+  static Color primaryComponent(BuildContext context) =>
+      Theme.of(context).colorScheme.primary; // set Primary Color
 
   static List<Color> shimmerGradient(BuildContext context) => [
         Theme.of(context).colorScheme.inverseSurface,
         Theme.of(context).colorScheme.onInverseSurface,
         Theme.of(context).colorScheme.inverseSurface,
-      ];
+      ]; // set gradient
 }

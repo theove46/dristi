@@ -1,4 +1,4 @@
-import 'package:dristi/l10n/localizations.dart';
+import 'package:dristi/src/core/utils/enums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'cache_service_impl.dart';

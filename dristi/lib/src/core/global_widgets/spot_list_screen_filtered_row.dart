@@ -1,6 +1,8 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/spots_providers/spot_providers.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -92,12 +94,14 @@ class _FilteredRowState
             text,
             style: appTextStyles.secondaryNovaRegular12,
           ),
-          SizedBox(width: AppValues.dimen_4.w),
+          SizedBox(width: AppValues.dimen_6.w),
           GestureDetector(
             onTap: onTap,
-            child: Icon(
-              isCloseIcon ? Icons.close : Icons.favorite,
-              size: AppValues.dimen_16.sp,
+            child: AssetImageView(
+              fileName: isCloseIcon ? Assets.close : Assets.heartFill,
+              height: AppValues.dimen_16.r,
+              width: AppValues.dimen_16.r,
+              color: uiColors.primary,
             ),
           ),
         ],

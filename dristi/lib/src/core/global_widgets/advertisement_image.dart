@@ -60,7 +60,7 @@ class _AdvertisementImageState
                   vertical: AppValues.dimen_8.r,
                 ),
                 decoration: BoxDecoration(
-                  color: uiColors.onImage.withOpacity(0.8),
+                  color: uiColors.light.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(
                     AppValues.dimen_10.r,
                   ),

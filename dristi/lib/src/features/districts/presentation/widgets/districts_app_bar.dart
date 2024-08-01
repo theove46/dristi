@@ -1,5 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +38,11 @@ class _DistrictsAppBarState
 
     return AppBar(
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
+        icon: AssetImageView(
+          fileName: Assets.backward,
+          height: AppValues.dimen_32.r,
+          width: AppValues.dimen_32.r,
+          color: uiColors.primary,
         ),
         onPressed: () {
           _searchFieldController.clear();
@@ -61,13 +66,25 @@ class _DistrictsAppBarState
           style: appTextStyles.secondaryNovaRegular16,
           decoration: InputDecoration(
             hintText: context.localization.searchDistricts,
+            suffixIconConstraints: BoxConstraints(
+              minHeight: AppValues.dimen_16.r,
+              minWidth: AppValues.dimen_16.r,
+            ),
             suffixIcon: _searchFieldController.text.isNotEmpty
                 ? GestureDetector(
                     onTap: () {
                       _searchFieldController.clear();
                       searchFieldNotifier.state = '';
                     },
-                    child: const Icon(Icons.clear),
+                    child: Container(
+                      padding: EdgeInsets.only(right: AppValues.dimen_10.w),
+                      child: AssetImageView(
+                        fileName: Assets.close,
+                        height: AppValues.dimen_16.r,
+                        width: AppValues.dimen_16.r,
+                        color: uiColors.primary,
+                      ),
+                    ),
                   )
                 : null,
           ),

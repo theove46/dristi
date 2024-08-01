@@ -18,7 +18,7 @@ class CustomAppBarTheme extends AppBarTheme {
           titleTextStyle: TextStyle(
             color: scheme.primary,
             fontWeight: FontWeight.w700,
-            fontFamily: FontFamily.nova,
+            fontFamily: FontFamily.nunito,
             fontSize: 16.sp,
           ),
           iconTheme: CustomIconTheme(

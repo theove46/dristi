@@ -59,7 +59,7 @@ class _OnBoardingScreenState
     );
 
     return Scaffold(
-      backgroundColor: uiColors.shadow,
+      backgroundColor: uiColors.dark,
       body: onBoardingItems.data != null
           ? Stack(
               children: [
@@ -86,7 +86,7 @@ class _OnBoardingScreenState
           onPressed: notifier.homeScreenNavigationSubmit,
           child: Text(
             context.localization.getStarted,
-            style: appTextStyles.tertiaryNovaSemiBold16,
+            style: appTextStyles.onImageNovaSemiBold16,
           ),
         ),
       ),
@@ -110,6 +110,6 @@ class _OnBoardingScreenState
   }
 
   void navigateToHomeScreen() {
-    context.pushReplacementNamed(AppRoutes.home);
+    context.pushReplacementNamed(AppRoutes.bottomNavBar);
   }
 }

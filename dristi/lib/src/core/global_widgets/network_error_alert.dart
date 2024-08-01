@@ -47,7 +47,7 @@ class _NetworkErrorAlertState
           Container(
             height: AppValues.dimen_16.h,
             width: double.infinity,
-            color: UIColors.componentsError(context),
+            color: UIColors.errorText(context),
             child: Center(
               child: Text(
                 context.localization.noNetwork,
