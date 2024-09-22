@@ -51,11 +51,14 @@ class _TravellingScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ClipOval(
-          child: AssetImageView(
-            fileName: Assets.logo,
-            height: AppValues.dimen_48.r,
-            width: AppValues.dimen_48.r,
-            fit: BoxFit.cover,
+          child: Container(
+            color: uiColors.light,
+            child: AssetImageView(
+              fileName: Assets.logo,
+              height: AppValues.dimen_60.r,
+              width: AppValues.dimen_60.r,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Text(
@@ -66,7 +69,6 @@ class _TravellingScreenState
           context.localization.favouritePlace,
           style: appTextStyles.onImageNovaBold36,
         ),
-        const Divider(),
       ],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
+import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
@@ -101,9 +103,25 @@ class _OnBoardingScreenState
       ),
       child: Align(
         alignment: Alignment.topLeft,
-        child: Text(
-          context.localization.appName,
-          style: appTextStyles.onImageNovaBold28,
+        child: Row(
+          children: [
+            ClipOval(
+              child: Container(
+                color: uiColors.light,
+                child: AssetImageView(
+                  fileName: Assets.logo,
+                  height: AppValues.dimen_40.r,
+                  width: AppValues.dimen_40.r,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(width: AppValues.dimen_10.w),
+            Text(
+              context.localization.appName,
+              style: appTextStyles.onImageNovaBold36,
+            ),
+          ],
         ),
       ),
     );

@@ -95,10 +95,13 @@ class _HomeScreenState extends BaseConsumerStatefulWidget<HomeScreen> {
     return AppBar(
       leading: Padding(
         padding: EdgeInsets.all(AppValues.dimen_10.w),
-        child: const ClipOval(
-          child: AssetImageView(
-            fileName: Assets.logo,
-            fit: BoxFit.cover,
+        child: ClipOval(
+          child: Container(
+            color: uiColors.light,
+            child: const AssetImageView(
+              fileName: Assets.logo,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
