@@ -21,7 +21,6 @@ class BottomNavigation extends ConsumerStatefulWidget {
 class _BottomNavigationState
     extends BaseConsumerStatefulWidget<BottomNavigation>
     with SingleTickerProviderStateMixin {
-  final PageController _pageController = PageController();
   late final AnimationController _animationController;
 
   final Map<BottomNavItems, Widget> _widgetOptions = {
@@ -41,7 +40,6 @@ class _BottomNavigationState
 
   @override
   void dispose() {
-    _pageController.dispose();
     _animationController.dispose();
     super.dispose();
   }
@@ -49,16 +47,11 @@ class _BottomNavigationState
   @override
   Widget build(BuildContext context) {
     final bottomNavBarState = ref.watch(bottomNavBarProvider);
-    final bottomNavBarNotifier = ref.read(bottomNavBarProvider.notifier);
 
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
+      body: IndexedStack(
+        index: bottomNavBarState.index,
         children: _widgetOptions.values.toList(),
-        onPageChanged: (index) {
-          bottomNavBarNotifier.state = BottomNavItems.values[index];
-        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -103,7 +96,6 @@ class _BottomNavigationState
   void _onItemTapped(BottomNavItems item) {
     final bottomNavBarNotifier = ref.read(bottomNavBarProvider.notifier);
     bottomNavBarNotifier.state = item;
-    _pageController.jumpToPage(item.index);
     _animationController.forward(from: 0);
   }
 }
