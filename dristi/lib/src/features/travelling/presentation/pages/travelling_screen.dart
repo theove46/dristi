@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
