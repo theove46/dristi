@@ -6,6 +6,7 @@ import 'package:dristi/src/core/global_providers/network_status/network_status_p
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/districts/presentation/riverpod/district_provider.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
+import 'package:dristi/src/features/settings/presentation/riverpod/settings_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LanguageNotifier extends Notifier<LanguageState> {
@@ -43,6 +44,7 @@ class LanguageNotifier extends Notifier<LanguageState> {
           .read(popularDistrictProvider.notifier)
           .getPopularDistrictComponents(appLanguage);
       ref.read(districtProvider.notifier).getDistrictComponents(appLanguage);
+      ref.read(settingsProvider.notifier).getSettingsComponents(appLanguage);
     }
   }
 
