@@ -36,6 +36,7 @@ dependencies:
   rive_animated_icon: 2.0.0
   flutter_animated_icons: 1.0.1
   flutter_material_symbols: 0.0.4
+  google_mobile_ads: 5.1.0
 
 # Run fvm flutter gen-l10n / flutter gen-l10n if Localization error
 
@@ -55,6 +56,7 @@ flutter:
     - assets/images/travel_items/
     - assets/images/icons/
     - assets/images/items/
+    - assets/images/social_media/
     - assets/images/destinations/
     - assets/json/
 

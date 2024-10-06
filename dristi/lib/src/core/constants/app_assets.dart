@@ -2,6 +2,7 @@ class Assets {
   static const String imagePath = 'assets/images';
   static const String iconsPath = 'assets/images/icons';
   static const String itemsPath = 'assets/images/items';
+  static const String socialMediaPath = 'assets/images/social_media';
   static const String destinationsPath = 'assets/images/destinations';
   static const String travelItemsPath = 'assets/images/travel_items';
   static const String jsonAssets = 'assets/json';
@@ -53,6 +54,15 @@ class Assets {
   static const String download = '$iconsPath/download.svg';
   static const String up = '$iconsPath/up.svg';
   static const String down = '$iconsPath/down.svg';
+
+  /// Social Media Icons
+  static const String email = '$socialMediaPath/email.png';
+  static const String facebook = '$socialMediaPath/facebook.png';
+  static const String googleForm = '$socialMediaPath/google_forms.png';
+  static const String instagram = '$socialMediaPath/instagram.png';
+  static const String playStore = '$socialMediaPath/playstore.png';
+  static const String whatsapp = '$socialMediaPath/whatsapp.png';
+  static const String youtube = '$socialMediaPath/youtube.png';
 
   /// JSON Assets
   static const String districtComponentsEn =
