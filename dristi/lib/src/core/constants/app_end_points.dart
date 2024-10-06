@@ -9,6 +9,7 @@ class API {
   static const String destinationsList = '/destinations.json';
   static const String accommodations = '/accommodations';
   static const String accommodationsList = '/hotels_and_resorts.json';
+  static const String settings = '/settings.json';
   static const String language = '/language_';
 
   static const String categories = '/categories.json';
