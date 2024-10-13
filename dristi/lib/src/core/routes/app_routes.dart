@@ -13,6 +13,7 @@ abstract class AppRoutes {
   static const String settings = 'settings';
   static const String gallery = 'gallery';
   static const String imageView = 'imageView';
+  static const String promotion = 'promotion';
   static const String webView = 'webView';
   static const String error = 'error';
 }

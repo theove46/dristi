@@ -14,6 +14,7 @@ import 'package:dristi/src/features/home/advertisements/domain/entity/advertisem
 import 'package:dristi/src/features/home/home_screen/pages/home_screen.dart';
 import 'package:dristi/src/features/accommodation/presentation/pages/accommodation_screen.dart';
 import 'package:dristi/src/features/on_boarding/presentation/pages/on_boarding_screen.dart';
+import 'package:dristi/src/features/promotion/presentation/pages/promotion_screen.dart';
 import 'package:dristi/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:dristi/src/features/destination/presentation/pages/destination_screen.dart';
 import 'package:dristi/src/features/travelling/presentation/pages/travelling_screen.dart';
@@ -34,6 +35,7 @@ abstract class _Path {
   static const String settings = '/settings';
   static const String gallery = '/gallery';
   static const String imageView = '/imageView';
+  static const String promotion = '/promotion';
   static const String webView = '/webView';
   static const String error = '/error';
 }
@@ -135,6 +137,13 @@ GoRouter appRouter = GoRouter(
         return ImageViewerScreen(
           arguments: state.extra as GalleryScreenEntity,
         );
+      },
+    ),
+    GoRoute(
+      path: _Path.promotion,
+      name: AppRoutes.promotion,
+      builder: (context, state) {
+        return const PromotionScreen();
       },
     ),
     GoRoute(
