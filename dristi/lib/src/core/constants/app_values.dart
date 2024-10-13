@@ -41,6 +41,7 @@ class AppValues {
   static const double dimen_220 = 220;
   static const double dimen_240 = 240;
   static const double dimen_280 = 280;
+  static const double dimen_320 = 320;
   static const double dimen_480 = 480;
   static const double dimen_500 = 500;
 

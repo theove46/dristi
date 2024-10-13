@@ -22,6 +22,9 @@ class Assets {
   static const String hotels = '$travelItemsPath/hotels.png';
 
   static const String advertiseBanner = '$itemsPath/advertise_banner.png';
+  static const String promotionScreenImage = '$itemsPath/promotion.png';
+
+  static const String thankYou = '$itemsPath/thank_you.png';
 
   static const String sonargaon = '$destinationsPath/sonargaon.jpg';
   static const String kaptai = '$destinationsPath/kaptai.jpg';
