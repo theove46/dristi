@@ -3,13 +3,13 @@ import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
+import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
-import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_provider.dart';
 import 'package:dristi/src/features/settings/presentation/widgets/settings_bottom_sheet.dart';
 import 'package:dristi/src/features/settings/presentation/widgets/sheet_items.dart';
@@ -17,6 +17,7 @@ import 'package:dristi/src/features/settings/presentation/widgets/social_account
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({
@@ -99,9 +100,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         icon: Assets.promotion,
         title: context.localization.makePromotion,
         onTap: () {
-          navigateToPromotionScreen(
-            item: AdvertisementEntity.initial(),
-          );
+          navigateToPromotionScreen();
         },
       ),
       _buildSettingsItem(
@@ -471,7 +470,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
     );
   }
 
-  void navigateToPromotionScreen({required AdvertisementEntity item}) {
-    //context.pushNamed(AppRoutes.webView, extra: item);
+  void navigateToPromotionScreen() {
+    context.pushNamed(AppRoutes.promotion);
   }
 }

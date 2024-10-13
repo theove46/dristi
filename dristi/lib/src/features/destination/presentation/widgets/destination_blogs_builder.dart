@@ -106,7 +106,10 @@ class _DestinationScreenBlogsBuilderState
             TextSpan(
               text: context.localization.contactUs,
               style: appTextStyles.primaryNovaRegular12,
-              recognizer: TapGestureRecognizer()..onTap = () {},
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  navigateToPromotionScreen();
+                },
             ),
           ],
         ),
@@ -116,5 +119,9 @@ class _DestinationScreenBlogsBuilderState
 
   void navigateToWebView({required String url}) {
     context.pushNamed(AppRoutes.webView, extra: url);
+  }
+
+  void navigateToPromotionScreen() {
+    context.pushNamed(AppRoutes.promotion);
   }
 }

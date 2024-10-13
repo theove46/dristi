@@ -4,7 +4,6 @@ import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/global_widgets/shimmers.dart';
-import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:dristi/src/features/home/advertisements/presentation/riverpod/advertisement_state.dart';
 import 'package:dristi/src/features/home/home_screen/riverpod/home_provider.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,7 @@ class _ImageAdvertisementBuilderState
           padding: EdgeInsets.only(top: AppValues.dimen_16.h),
           child: GestureDetector(
             onTap: () {
-              navigateToWebView(item: item);
+              navigateToPromotionScreen();
             },
             child: SizedBox(
               width: double.infinity,
@@ -132,7 +131,7 @@ class _ImageAdvertisementBuilderState
     );
   }
 
-  void navigateToWebView({required AdvertisementEntity item}) {
-    context.pushNamed(AppRoutes.webView, extra: item);
+  void navigateToPromotionScreen() {
+    context.pushNamed(AppRoutes.promotion);
   }
 }

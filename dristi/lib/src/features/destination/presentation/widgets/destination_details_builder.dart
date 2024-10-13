@@ -49,7 +49,6 @@ class _DestinationScreenDetailsBuilderState
           destinationDataState.data.details,
           style: appTextStyles.secondaryNovaRegular16,
         ),
-        SizedBox(height: AppValues.dimen_16.h),
       ],
     );
   }
