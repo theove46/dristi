@@ -5,6 +5,7 @@ import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
+import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_provider.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +136,10 @@ class _PromotionScreenState
   Widget _buildContactInformation() {
     final settingsState = ref.watch(settingsProvider);
 
+    final settingsNotifier = ref.read(settingsProvider.notifier);
+
+    final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
+
     if (settingsState.data == null || settingsState.data.follow == null) {
       return const SizedBox.shrink();
     }
@@ -148,14 +153,24 @@ class _PromotionScreenState
           textAlign: TextAlign.center,
         ),
         _buildContactButton(
-            asset: Assets.email,
-            title: settingsState.data.contact?.email,
-            onPressed: () {}),
-        SizedBox(height: AppValues.dimen_10.h),
+          asset: Assets.email,
+          title: settingsState.data.contact.email,
+          onPressed: () {},
+        ),
+        SizedBox(height: AppValues.dimen_20.h),
         _buildContactButton(
-            asset: Assets.whatsapp,
-            title: settingsState.data.contact?.whatsapp,
-            onPressed: () {}),
+          asset: Assets.whatsapp,
+          title: settingsState.data.contact.whatsapp,
+          onPressed: () async {
+            try {
+              await settingsNotifier.navigateToWhatsappMessage(
+                phoneNumber: settingsState.data.contact.whatsapp,
+              );
+            } catch (error) {
+              errorSnackBar(whatsAppErrorMessage);
+            }
+          },
+        ),
         SizedBox(height: AppValues.dimen_30.h),
       ],
     );
@@ -238,8 +253,15 @@ class _PromotionScreenState
             height: AppValues.dimen_40.r,
             width: AppValues.dimen_40.r,
           ),
-          SizedBox(width: AppValues.dimen_10.w),
-          Text(title, style: appTextStyles.primaryNovaRegular16),
+          SizedBox(width: AppValues.dimen_20.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: appTextStyles.primaryNovaRegular16),
+              Text(context.localization.clickHereToContinue,
+                  style: appTextStyles.primaryNovaRegular12),
+            ],
+          ),
         ],
       ),
     );
@@ -267,6 +289,13 @@ class _PromotionScreenState
           width: AppValues.dimen_150.r,
         ),
       ),
+    );
+  }
+
+  void errorSnackBar(String message) async {
+    ShowSnackBarMessage.showErrorSnackBar(
+      message: message,
+      context: context,
     );
   }
 }

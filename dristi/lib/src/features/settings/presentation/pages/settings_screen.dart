@@ -3,6 +3,7 @@ import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
+import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
 import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
@@ -199,11 +200,13 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             title: context.localization.facebook,
             url: followAccountsState.facebookUrl,
             icon: Assets.facebook,
+            onPressed: () {},
           ),
           SocialAccountsTile(
             title: context.localization.instagram,
             url: followAccountsState.instagramUrl,
             icon: Assets.instagram,
+            onPressed: () {},
           ),
         ],
       );
@@ -237,6 +240,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         title: context.localization.playStore,
         url: ratingsReviewsState.playStoreLink,
         icon: Assets.playStore,
+        onPressed: () {},
       );
     }
 
@@ -267,6 +271,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
         title: context.localization.googleForm,
         url: contributionState.googleForm,
         icon: Assets.googleForm,
+        onPressed: () {},
       );
     }
 
@@ -285,12 +290,15 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
 
   Widget _buildContactUs() {
     final settingsState = ref.watch(settingsProvider);
+    final settingsNotifier = ref.read(settingsProvider.notifier);
 
     if (settingsState.data == null || settingsState.data.contact == null) {
       return const SizedBox.shrink();
     }
 
     final contactState = settingsState.data!.contact!;
+
+    final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
 
     Widget buildCallBackWidget() {
       return Column(
@@ -299,11 +307,22 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             title: context.localization.email,
             url: contactState.email,
             icon: Assets.email,
+            onPressed: () {},
           ),
           SocialAccountsTile(
             title: context.localization.whatsapp,
             url: contactState.whatsapp,
             icon: Assets.whatsapp,
+            onPressed: () async {
+              context.pop();
+              try {
+                await settingsNotifier.navigateToWhatsappMessage(
+                  phoneNumber: contactState.whatsapp,
+                );
+              } catch (error) {
+                errorSnackBar(whatsAppErrorMessage);
+              }
+            },
           ),
         ],
       );
@@ -472,5 +491,12 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
 
   void navigateToPromotionScreen() {
     context.pushNamed(AppRoutes.promotion);
+  }
+
+  void errorSnackBar(String message) async {
+    ShowSnackBarMessage.showErrorSnackBar(
+      message: message,
+      context: context,
+    );
   }
 }

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/settings/domain/repositories/settings_repositories.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsNotifier extends Notifier<SettingsState> {
   late SettingsRepository repository;
@@ -37,6 +40,24 @@ class SettingsNotifier extends Notifier<SettingsState> {
       state = state.copyWith(
         status: SettingsStatus.failure,
       );
+    }
+  }
+
+  Future<void> navigateToWhatsappMessage({
+    required String phoneNumber,
+  }) async {
+    var androidUrl = "whatsapp://send?phone=$phoneNumber";
+    var iosUrl = "https://wa.me/$phoneNumber";
+
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(Uri.parse(iosUrl));
+      } else {
+        await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      throw Exception(
+          "Whatsapp is not installed or Error on loading Whatsapp.");
     }
   }
 }

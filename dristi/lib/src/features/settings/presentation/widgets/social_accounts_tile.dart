@@ -10,12 +10,14 @@ class SocialAccountsTile extends ConsumerStatefulWidget {
     required this.title,
     required this.url,
     required this.icon,
+    required this.onPressed,
     super.key,
   });
 
   final String title;
   final String url;
   final String icon;
+  final VoidCallback onPressed;
 
   @override
   ConsumerState createState() => _SocialAccountsTileState();
@@ -35,7 +37,7 @@ class _SocialAccountsTileState
         height: AppValues.dimen_28.r,
         width: AppValues.dimen_28.r,
       ),
-      onTap: () {},
+      onTap: widget.onPressed,
     );
   }
 }
