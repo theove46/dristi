@@ -7,7 +7,7 @@ import 'package:dristi/src/core/global_widgets/shimmers.dart';
 import 'package:dristi/src/features/home/advertisements/domain/entity/advertisement_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {

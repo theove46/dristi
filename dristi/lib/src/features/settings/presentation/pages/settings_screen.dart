@@ -1,21 +1,21 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
-import 'package:dristi/src/core/global_providers/deep_linking_providers/deep_linking_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
-import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
-import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/routes/app_routes.dart';
-import 'package:dristi/src/core/utils/enums.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
-import 'package:dristi/src/core/global_providers/theme_settings/theme_settings_provider.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_provider.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/contact.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/contribution.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/follow_social_accounts.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/language_settings.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/ratings_and_review.dart';
 import 'package:dristi/src/features/settings/presentation/widgets/settings_bottom_sheet.dart';
-import 'package:dristi/src/features/settings/presentation/widgets/sheet_items.dart';
-import 'package:dristi/src/features/settings/presentation/widgets/social_accounts_tile.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/settings_item.dart';
+import 'package:dristi/src/features/settings/presentation/widgets/theme_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,25 +87,25 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
 
   Widget _buildSettingsItemsList() {
     final settingsItems = [
-      _buildThemeSettings(),
-      _buildLanguageSettings(),
-      _buildFollowSocialAccounts(),
-      _buildRatingsReviews(),
-      _buildSettingsItem(
+      const ThemeSettings(),
+      const LanguageSettings(),
+      const FollowSocialAccounts(),
+      const RatingsAndReview(),
+      SettingsItems(
         icon: Assets.share,
         title: context.localization.shareDristi,
         onTap: () {},
       ),
-      _buildContribution(),
-      _buildContactUs(),
-      _buildSettingsItem(
+      const Contribution(),
+      const Contact(),
+      SettingsItems(
         icon: Assets.promotion,
         title: context.localization.makePromotion,
         onTap: () {
           navigateToPromotionScreen();
         },
       ),
-      _buildSettingsItem(
+      SettingsItems(
         icon: Assets.support,
         title: context.localization.support,
         onTap: () {},
@@ -123,230 +123,10 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
     );
   }
 
-  Widget _buildThemeSettings() {
-    final themeState = ref.watch(themeProvider);
-
-    return _buildSettingsItem(
-      icon: Assets.theme,
-      title: context.localization.theme,
-      subTitle: _getThemeText(themeState.theme),
-      onTap: () {
-        _showSelectionBottomSheet(
-          title: context.localization.theme,
-          items: [
-            SheetItem(
-              title: context.localization.systemDefault,
-              value: AppTheme.systemDefault,
-            ),
-            SheetItem(
-              title: context.localization.light,
-              value: AppTheme.light,
-            ),
-            SheetItem(
-              title: context.localization.dark,
-              value: AppTheme.dark,
-            ),
-          ],
-          selectedItem: themeState.theme,
-          onItemSelected: (value) {
-            ref.read(themeProvider.notifier).setTheme(value);
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildLanguageSettings() {
-    final languageState = ref.watch(languageProvider);
-
-    return _buildSettingsItem(
-      icon: Assets.language,
-      title: context.localization.language,
-      subTitle: _getLanguageText(languageState.language),
-      onTap: () {
-        _showSelectionBottomSheet(
-          title: context.localization.language,
-          items: [
-            SheetItem(
-              title: context.localization.english,
-              value: AppLanguages.en,
-            ),
-            SheetItem(
-              title: context.localization.bengali,
-              value: AppLanguages.bn,
-            ),
-          ],
-          selectedItem: languageState.language,
-          onItemSelected: (value) {
-            ref.read(languageProvider.notifier).setLanguage(value);
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildFollowSocialAccounts() {
-    final settingsState = ref.watch(settingsProvider);
-
-    if (settingsState.data == null || settingsState.data.follow == null) {
-      return const SizedBox.shrink();
-    }
-
-    final followAccountsState = settingsState.data!.follow!;
-
-    Widget buildCallBackWidget() {
-      return Column(
-        children: [
-          SocialAccountsTile(
-            title: context.localization.facebook,
-            url: followAccountsState.facebookUrl,
-            icon: Assets.facebook,
-            onPressed: () {},
-          ),
-          SocialAccountsTile(
-            title: context.localization.instagram,
-            url: followAccountsState.instagramUrl,
-            icon: Assets.instagram,
-            onPressed: () {},
-          ),
-        ],
-      );
-    }
-
-    return _buildSettingsItem(
-      icon: Assets.follow,
-      title: context.localization.followDristi,
-      onTap: () {
-        _showWidgetsInBottomSheet(
-          title: context.localization.followDristi,
-          description: followAccountsState.description,
-          callBackWidget: buildCallBackWidget(),
-        );
-      },
-    );
-  }
-
-  Widget _buildRatingsReviews() {
-    final settingsState = ref.watch(settingsProvider);
-
-    if (settingsState.data == null ||
-        settingsState.data.ratingsReviews == null) {
-      return const SizedBox.shrink();
-    }
-
-    final ratingsReviewsState = settingsState.data!.ratingsReviews!;
-
-    Widget buildCallBackWidget() {
-      return SocialAccountsTile(
-        title: context.localization.playStore,
-        url: ratingsReviewsState.playStoreLink,
-        icon: Assets.playStore,
-        onPressed: () {},
-      );
-    }
-
-    return _buildSettingsItem(
-      icon: Assets.follow,
-      title: context.localization.ratingsAndReview,
-      onTap: () {
-        _showWidgetsInBottomSheet(
-          title: context.localization.ratingsAndReview,
-          description: ratingsReviewsState.description,
-          callBackWidget: buildCallBackWidget(),
-        );
-      },
-    );
-  }
-
-  Widget _buildContribution() {
-    final settingsState = ref.watch(settingsProvider);
-
-    if (settingsState.data == null || settingsState.data.contribution == null) {
-      return const SizedBox.shrink();
-    }
-
-    final contributionState = settingsState.data!.contribution!;
-
-    Widget buildCallBackWidget() {
-      return SocialAccountsTile(
-        title: context.localization.googleForm,
-        url: contributionState.googleForm,
-        icon: Assets.googleForm,
-        onPressed: () {},
-      );
-    }
-
-    return _buildSettingsItem(
-      icon: Assets.contribution,
-      title: context.localization.contribution,
-      onTap: () {
-        _showWidgetsInBottomSheet(
-          title: context.localization.contribution,
-          description: contributionState.description,
-          callBackWidget: buildCallBackWidget(),
-        );
-      },
-    );
-  }
-
-  Widget _buildContactUs() {
-    final settingsState = ref.watch(settingsProvider);
-
-    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
-
-    if (settingsState.data == null || settingsState.data.contact == null) {
-      return const SizedBox.shrink();
-    }
-
-    final contactState = settingsState.data!.contact!;
-
-    final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
-
-    Widget buildCallBackWidget() {
-      return Column(
-        children: [
-          SocialAccountsTile(
-            title: context.localization.email,
-            url: contactState.email,
-            icon: Assets.email,
-            onPressed: () {},
-          ),
-          SocialAccountsTile(
-            title: context.localization.whatsapp,
-            url: contactState.whatsapp,
-            icon: Assets.whatsapp,
-            onPressed: () async {
-              context.pop();
-              try {
-                await deepLinkingNotifier.navigateToWhatsappMessage(
-                  phoneNumber: settingsState.data.contact.whatsapp,
-                );
-              } catch (error) {
-                errorSnackBar(whatsAppErrorMessage);
-              }
-            },
-          ),
-        ],
-      );
-    }
-
-    return _buildSettingsItem(
-      icon: Assets.contact,
-      title: context.localization.contactUs,
-      onTap: () {
-        _showWidgetsInBottomSheet(
-          title: context.localization.contactUs,
-          description: contactState.description,
-          callBackWidget: buildCallBackWidget(),
-        );
-      },
-    );
-  }
-
   Widget _buildPrivacyPolicy() {
     final settingsState = ref.watch(settingsProvider);
 
-    return _buildSettingsItem(
+    return SettingsItems(
       icon: Assets.ratings,
       title: context.localization.privacyPolicy,
       onTap: () {
@@ -362,7 +142,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
   Widget _buildTermsOfService() {
     final settingsState = ref.watch(settingsProvider);
 
-    return _buildSettingsItem(
+    return SettingsItems(
       icon: Assets.terms,
       title: context.localization.termsOfService,
       onTap: () {
@@ -376,84 +156,10 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
   }
 
   Widget _buildAppVersion() {
-    return _buildSettingsItem(
+    return SettingsItems(
       icon: Assets.version,
       title: context.localization.appVersion,
       subTitle: TextConstants.appVersion,
-    );
-  }
-
-  String _getThemeText(AppTheme theme) {
-    switch (theme) {
-      case AppTheme.systemDefault:
-        return context.localization.systemDefault;
-      case AppTheme.light:
-        return context.localization.light;
-      case AppTheme.dark:
-        return context.localization.dark;
-      default:
-        return '';
-    }
-  }
-
-  String _getLanguageText(AppLanguages language) {
-    switch (language) {
-      case AppLanguages.en:
-        return context.localization.english;
-      case AppLanguages.bn:
-        return context.localization.bengali;
-      default:
-        return '';
-    }
-  }
-
-  Widget _buildSettingsItem({
-    required String icon,
-    required String title,
-    String? subTitle,
-    VoidCallback? onTap,
-  }) {
-    return Card(
-      color: uiColors.scrim,
-      elevation: 0,
-      margin: EdgeInsets.symmetric(vertical: AppValues.dimen_3.h),
-      child: ListTile(
-        leading: AssetImageView(
-          fileName: icon,
-          height: AppValues.dimen_28.r,
-          width: AppValues.dimen_28.r,
-          color: uiColors.primary,
-        ),
-        title: Text(title),
-        titleTextStyle: appTextStyles.secondaryNovaRegular16,
-        subtitle: subTitle != null ? Text(subTitle) : null,
-        subtitleTextStyle: appTextStyles.secondaryNovaRegular12,
-        onTap: onTap,
-        minTileHeight: AppValues.dimen_60.h,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: AppValues.dimen_16.r,
-          vertical: AppValues.dimen_8.r,
-        ),
-      ),
-    );
-  }
-
-  void _showSelectionBottomSheet<T>({
-    required String title,
-    required List<SheetItem<T>> items,
-    required T selectedItem,
-    required Function(dynamic) onItemSelected,
-  }) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SettingsBottomSheet(
-          title: title,
-          items: items,
-          selectedItem: selectedItem,
-          onItemSelected: onItemSelected,
-        );
-      },
     );
   }
 
@@ -474,31 +180,7 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
     );
   }
 
-  void _showWidgetsInBottomSheet<T>({
-    required String title,
-    required String description,
-    required Widget callBackWidget,
-  }) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SettingsBottomSheet(
-          title: title,
-          description: description,
-          callBackWidget: callBackWidget,
-        );
-      },
-    );
-  }
-
   void navigateToPromotionScreen() {
     context.pushNamed(AppRoutes.promotion);
-  }
-
-  void errorSnackBar(String message) async {
-    ShowSnackBarMessage.showErrorSnackBar(
-      message: message,
-      context: context,
-    );
   }
 }

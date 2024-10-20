@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:dristi/src/features/settings/domain/repositories/settings_repositories.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SettingsNotifier extends Notifier<SettingsState> {
   late SettingsRepository repository;
