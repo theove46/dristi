@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_global_texts.dart';
+import 'package:dristi/src/core/global_providers/deep_linking_providers/deep_linking_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
 import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
@@ -290,7 +291,8 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
 
   Widget _buildContactUs() {
     final settingsState = ref.watch(settingsProvider);
-    final settingsNotifier = ref.read(settingsProvider.notifier);
+
+    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
 
     if (settingsState.data == null || settingsState.data.contact == null) {
       return const SizedBox.shrink();
@@ -316,8 +318,8 @@ class _SettingsScreenState extends BaseConsumerStatefulWidget<SettingsScreen> {
             onPressed: () async {
               context.pop();
               try {
-                await settingsNotifier.navigateToWhatsappMessage(
-                  phoneNumber: contactState.whatsapp,
+                await deepLinkingNotifier.navigateToWhatsappMessage(
+                  phoneNumber: settingsState.data.contact.whatsapp,
                 );
               } catch (error) {
                 errorSnackBar(whatsAppErrorMessage);

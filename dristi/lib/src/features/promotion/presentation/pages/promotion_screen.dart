@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
 import 'package:dristi/src/core/constants/app_values.dart';
+import 'package:dristi/src/core/global_providers/deep_linking_providers/deep_linking_provider.dart';
 import 'package:dristi/src/core/global_providers/language_settings/language_settings_provider.dart';
 import 'package:dristi/src/core/global_providers/network_status/network_status_provider.dart';
 import 'package:dristi/src/core/global_widgets/asset_image_view.dart';
@@ -136,7 +137,7 @@ class _PromotionScreenState
   Widget _buildContactInformation() {
     final settingsState = ref.watch(settingsProvider);
 
-    final settingsNotifier = ref.read(settingsProvider.notifier);
+    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
 
     final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
 
@@ -163,7 +164,7 @@ class _PromotionScreenState
           title: settingsState.data.contact.whatsapp,
           onPressed: () async {
             try {
-              await settingsNotifier.navigateToWhatsappMessage(
+              await deepLinkingNotifier.navigateToWhatsappMessage(
                 phoneNumber: settingsState.data.contact.whatsapp,
               );
             } catch (error) {

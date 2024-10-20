@@ -42,22 +42,4 @@ class SettingsNotifier extends Notifier<SettingsState> {
       );
     }
   }
-
-  Future<void> navigateToWhatsappMessage({
-    required String phoneNumber,
-  }) async {
-    var androidUrl = "whatsapp://send?phone=$phoneNumber";
-    var iosUrl = "https://wa.me/$phoneNumber";
-
-    try {
-      if (Platform.isIOS) {
-        await launchUrl(Uri.parse(iosUrl));
-      } else {
-        await launchUrl(Uri.parse(androidUrl));
-      }
-    } on Exception {
-      throw Exception(
-          "Whatsapp is not installed or Error on loading Whatsapp.");
-    }
-  }
 }
