@@ -11,6 +11,32 @@ class DeepLinkingNotifier extends Notifier<DeepLinkingState> {
     return const DeepLinkingState();
   }
 
+  Future<void> navigateToEmail({
+    required String emailAccount,
+    String subject = '',
+    String body = '',
+  }) async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: emailAccount,
+    );
+
+    try {
+      await launchUrl(emailLaunchUri);
+      state = state.copyWith(
+        status: DeepLinkingStatus.success,
+      );
+    } catch (e, stackTrace) {
+      Log.error(e.toString());
+      Log.error(stackTrace.toString());
+
+      state = state.copyWith(
+        status: DeepLinkingStatus.failure,
+      );
+      throw Exception("Error opening email app.");
+    }
+  }
+
   Future<void> navigateToWhatsappMessage({
     required String phoneNumber,
   }) async {

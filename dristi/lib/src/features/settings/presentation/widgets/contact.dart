@@ -31,7 +31,8 @@ class _ContactState extends BaseConsumerStatefulWidget<Contact> {
 
     final contactState = settingsState.data!.contact!;
 
-    final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
+    final emailErrorMessage = context.localization.emailAppOpeningError;
+    final whatsAppErrorMessage = context.localization.whatsAppOpeningError;
 
     Widget buildCallBackWidget() {
       return Column(
@@ -40,7 +41,16 @@ class _ContactState extends BaseConsumerStatefulWidget<Contact> {
             title: context.localization.email,
             url: contactState.email,
             icon: Assets.email,
-            onPressed: () {},
+            onPressed: () async {
+              context.pop();
+              try {
+                await deepLinkingNotifier.navigateToEmail(
+                  emailAccount: settingsState.data.contact.email,
+                );
+              } catch (error) {
+                errorSnackBar(emailErrorMessage);
+              }
+            },
           ),
           SocialAccountsTile(
             title: context.localization.whatsapp,

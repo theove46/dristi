@@ -139,7 +139,8 @@ class _PromotionScreenState
 
     final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
 
-    final whatsAppErrorMessage = context.localization.whatsAppLoadingError;
+    final emailErrorMessage = context.localization.emailAppOpeningError;
+    final whatsAppErrorMessage = context.localization.whatsAppOpeningError;
 
     if (settingsState.data == null || settingsState.data.follow == null) {
       return const SizedBox.shrink();
@@ -156,7 +157,15 @@ class _PromotionScreenState
         _buildContactButton(
           asset: Assets.email,
           title: settingsState.data.contact.email,
-          onPressed: () {},
+          onPressed: () async {
+            try {
+              await deepLinkingNotifier.navigateToEmail(
+                emailAccount: settingsState.data.contact.email,
+              );
+            } catch (error) {
+              errorSnackBar(emailErrorMessage);
+            }
+          },
         ),
         SizedBox(height: AppValues.dimen_20.h),
         _buildContactButton(
