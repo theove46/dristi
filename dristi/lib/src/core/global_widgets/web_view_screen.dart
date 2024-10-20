@@ -8,7 +8,7 @@ import 'package:dristi/src/features/home/advertisements/domain/entity/advertisem
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
   const WebViewScreen({
@@ -25,29 +25,29 @@ class WebViewScreen extends StatefulWidget {
 }
 
 class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
-  late WebViewController controller;
+  //late WebViewController controller;
   bool loading = true;
 
   @override
   void initState() {
     super.initState();
 
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {},
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {
-            setState(() {
-              loading = false;
-            });
-          },
-          onWebResourceError: (WebResourceError error) {},
-        ),
-      )
-      ..loadRequest(Uri.parse(widget.url ?? widget.item?.url ?? ''));
+    // controller = WebViewController()
+    //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    //   ..setBackgroundColor(const Color(0x00000000))
+    //   ..setNavigationDelegate(
+    //     NavigationDelegate(
+    //       onProgress: (int progress) {},
+    //       onPageStarted: (String url) {},
+    //       onPageFinished: (String url) {
+    //         setState(() {
+    //           loading = false;
+    //         });
+    //       },
+    //       onWebResourceError: (WebResourceError error) {},
+    //     ),
+    //   )
+    //   ..loadRequest(Uri.parse(widget.url ?? widget.item?.url ?? ''));
   }
 
   @override
@@ -88,11 +88,11 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
           color: uiColors.primary,
         ),
         onPressed: () async {
-          if (await controller.canGoBack()) {
-            controller.goBack();
-          } else if (mounted) {
-            context.pop();
-          }
+          // if (await controller.canGoBack()) {
+          //   controller.goBack();
+          // } else if (mounted) {
+          //   context.pop();
+          // }
         },
       ),
       title: Text(
@@ -107,11 +107,13 @@ class _WebViewScreenState extends BaseStatefulWidget<WebViewScreen> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        loading
-            ? buildFullScreenShimmer(context)
-            : WebViewWidget(
-                controller: controller,
-              ),
+        // loading
+        //     ? buildFullScreenShimmer(context)
+        //     : WebViewWidget(
+        //         controller: controller,
+        //       ),
+
+        buildFullScreenShimmer(context)
       ],
     );
   }
