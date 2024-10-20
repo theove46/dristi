@@ -1,5 +1,7 @@
 import 'package:dristi/src/core/base/base_consumer_stateful_widget.dart';
 import 'package:dristi/src/core/constants/app_assets.dart';
+import 'package:dristi/src/core/global_providers/deep_linking_providers/deep_linking_provider.dart';
+import 'package:dristi/src/core/global_widgets/primary_snackbar.dart';
 import 'package:dristi/src/core/utils/localization_ext.dart';
 import 'package:dristi/src/features/settings/presentation/riverpod/settings_provider.dart';
 import 'package:dristi/src/features/settings/presentation/widgets/settings_bottom_sheet.dart';
@@ -20,18 +22,31 @@ class _ContributionState extends BaseConsumerStatefulWidget<Contribution> {
   Widget build(BuildContext context) {
     final settingsState = ref.watch(settingsProvider);
 
-    if (settingsState.data == null || settingsState.data.contribution == null) {
+    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
+
+    if (settingsState.data == null || settingsState.data.follow == null) {
       return const SizedBox.shrink();
     }
 
     final contributionState = settingsState.data!.contribution!;
+
+    final contributionOpeningError =
+        context.localization.contributionOpeningError;
 
     Widget buildCallBackWidget() {
       return SocialAccountsTile(
         title: context.localization.googleForm,
         url: contributionState.googleForm,
         icon: Assets.googleForm,
-        onPressed: () {},
+        onPressed: () async {
+          try {
+            await deepLinkingNotifier.openSocialAccountsOrLinks(
+              url: settingsState.data.contribution.googleForm,
+            );
+          } catch (error) {
+            errorSnackBar(contributionOpeningError);
+          }
+        },
       );
     }
 
@@ -50,6 +65,13 @@ class _ContributionState extends BaseConsumerStatefulWidget<Contribution> {
           },
         );
       },
+    );
+  }
+
+  void errorSnackBar(String message) async {
+    ShowSnackBarMessage.showErrorSnackBar(
+      message: message,
+      context: context,
     );
   }
 }

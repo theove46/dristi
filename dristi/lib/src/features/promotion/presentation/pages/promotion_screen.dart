@@ -141,6 +141,8 @@ class _PromotionScreenState
 
     final emailErrorMessage = context.localization.emailAppOpeningError;
     final whatsAppErrorMessage = context.localization.whatsAppOpeningError;
+    final socialAccountsOpeningError =
+        context.localization.socialAccountsOpeningError;
 
     if (settingsState.data == null || settingsState.data.follow == null) {
       return const SizedBox.shrink();
@@ -187,6 +189,17 @@ class _PromotionScreenState
   }
 
   Widget _buildSocialMediaFollowButtons() {
+    final settingsState = ref.watch(settingsProvider);
+
+    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
+
+    final socialAccountsOpeningError =
+        context.localization.socialAccountsOpeningError;
+
+    if (settingsState.data == null || settingsState.data.follow == null) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       children: [
         Text(
@@ -200,17 +213,41 @@ class _PromotionScreenState
           children: [
             _buildSocialMediaButton(
               asset: Assets.youtube,
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  await deepLinkingNotifier.openSocialAccountsOrLinks(
+                    url: settingsState.data.share.shareLink,
+                  );
+                } catch (error) {
+                  errorSnackBar(socialAccountsOpeningError);
+                }
+              },
             ),
             SizedBox(width: AppValues.dimen_16.w),
             _buildSocialMediaButton(
               asset: Assets.facebook,
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  await deepLinkingNotifier.openSocialAccountsOrLinks(
+                    url: settingsState.data.follow.facebookUrl,
+                  );
+                } catch (error) {
+                  errorSnackBar(socialAccountsOpeningError);
+                }
+              },
             ),
             SizedBox(width: AppValues.dimen_16.w),
             _buildSocialMediaButton(
               asset: Assets.instagram,
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  await deepLinkingNotifier.openSocialAccountsOrLinks(
+                    url: settingsState.data.follow.instagramUrl,
+                  );
+                } catch (error) {
+                  errorSnackBar(socialAccountsOpeningError);
+                }
+              },
             ),
           ],
         ),
@@ -220,6 +257,17 @@ class _PromotionScreenState
   }
 
   Widget _buildContributionButton() {
+    final settingsState = ref.watch(settingsProvider);
+
+    final deepLinkingNotifier = ref.read(deepLinkingProvider.notifier);
+
+    final contributionOpeningError =
+        context.localization.contributionOpeningError;
+
+    if (settingsState.data == null || settingsState.data.follow == null) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       children: [
         Text(
@@ -240,7 +288,15 @@ class _PromotionScreenState
               SizedBox(width: AppValues.dimen_10.w),
               _buildSocialMediaButton(
                 asset: Assets.googleForm,
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await deepLinkingNotifier.openSocialAccountsOrLinks(
+                      url: settingsState.data.contribution.googleForm,
+                    );
+                  } catch (error) {
+                    errorSnackBar(contributionOpeningError);
+                  }
+                },
               ),
             ],
           ),

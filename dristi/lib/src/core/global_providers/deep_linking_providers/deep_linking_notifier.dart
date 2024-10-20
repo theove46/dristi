@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dristi/src/core/global_providers/deep_linking_providers/deep_linking_state.dart';
 import 'package:dristi/src/core/loggers/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DeepLinkingNotifier extends Notifier<DeepLinkingState> {
@@ -62,6 +63,35 @@ class DeepLinkingNotifier extends Notifier<DeepLinkingState> {
       );
       throw Exception(
           "Whatsapp is not installed or Error on loading Whatsapp.");
+    }
+  }
+
+  // TODO: Implement after publish in play store.
+  Future<void> openStoreListing({required String packageName}) async {
+    final InAppReview inAppReview = InAppReview.instance;
+
+    inAppReview.requestReview();
+
+    inAppReview.openStoreListing(
+      appStoreId: packageName,
+    );
+  }
+
+  Future<void> openSocialAccountsOrLinks({required String url}) async {
+    try {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+
+      state = state.copyWith(
+        status: DeepLinkingStatus.success,
+      );
+    } catch (e, stackTrace) {
+      Log.error(e.toString());
+      Log.error(stackTrace.toString());
+
+      state = state.copyWith(
+        status: DeepLinkingStatus.failure,
+      );
+      throw Exception("Error opening social media app.");
     }
   }
 }

@@ -35,6 +35,7 @@ dependencies:
   rive_animated_icon: 2.0.0
   flutter_animated_icons: 1.0.1
   flutter_material_symbols: 0.0.4
+  in_app_review: 2.0.9
 
 # Run fvm flutter gen-l10n / flutter gen-l10n if Localization error
 
